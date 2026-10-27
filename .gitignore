@@ -1,0 +1,44 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Python and tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage*
+htmlcov/
+*.egg-info/
+build/
+dist/
+# Generated research inputs and outputs (retain dumy_policies/)
+data/
+datasets/
+models/
+artifacts/
+outputs/
+checkpoints/
+logs/
+*.safetensors
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.gguf
+# Local editor and OS state
+.DS_Store
+.idea/
+.vscode/
+
+# Local source-repository inputs (preserved on disk; excluded from package/Git outputs)
+/code_repos/
+
+# Optional project-local Hugging Face caches
+.cache/huggingface/
+hf_cache/

@@ -1,0 +1,109 @@
+{
+  "$defs": {
+    "AssistantMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "const": "assistant",
+          "default": "assistant",
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "minLength": 20,
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content"
+      ],
+      "title": "AssistantMessage",
+      "type": "object"
+    },
+    "SystemMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "const": "system",
+          "default": "system",
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "minLength": 1,
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content"
+      ],
+      "title": "SystemMessage",
+      "type": "object"
+    },
+    "UserMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "const": "user",
+          "default": "user",
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "minLength": 12,
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content"
+      ],
+      "title": "UserMessage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "repository-data-v1",
+      "default": "repository-data-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "example_id": {
+      "title": "Example Id",
+      "type": "string"
+    },
+    "messages": {
+      "maxItems": 3,
+      "minItems": 3,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/SystemMessage"
+        },
+        {
+          "$ref": "#/$defs/UserMessage"
+        },
+        {
+          "$ref": "#/$defs/AssistantMessage"
+        }
+      ],
+      "title": "Messages",
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "example_id",
+    "messages",
+    "metadata"
+  ],
+  "title": "CodeTrainingRecord",
+  "type": "object"
+}

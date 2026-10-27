@@ -1,0 +1,38 @@
+[project]
+name = "policy-dissertation"
+version = "0.1.0"
+description = "Modular research framework for corporate policy transformation."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datasets>=4,<5",
+    "huggingface-hub>=1,<2",
+    "jinja2>=3.1,<4",
+    "langchain-openai>=1,<2",
+    "langgraph>=1,<2",
+    "pydantic-settings>=2.6,<3",
+    "pymupdf>=1.26,<1.27",
+    "pymupdf4llm>=0.0.27,<0.1",
+    "transformers>=5,<6",
+    "tree-sitter>=0.25,<0.26",
+    "tree-sitter-kotlin>=1,<2",
+    "tree-sitter-typescript>=0.23,<0.24",
+    "typer>=0.15,<1",
+]
+
+[project.scripts]
+llmops = "policy_dissertation.cli:main"
+policy-dissertation = "policy_dissertation.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8,<10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

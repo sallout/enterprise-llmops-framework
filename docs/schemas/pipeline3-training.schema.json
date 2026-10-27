@@ -1,0 +1,280 @@
+{
+  "$defs": {
+    "ExternalMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "system",
+            "user",
+            "assistant",
+            "tool"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Content"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "tool_call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Call Id"
+        },
+        "tool_calls": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ToolCall"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Calls"
+        }
+      },
+      "required": [
+        "role",
+        "content"
+      ],
+      "title": "ExternalMessage",
+      "type": "object"
+    },
+    "SourceMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset": {
+          "title": "Dataset",
+          "type": "string"
+        },
+        "config": {
+          "title": "Config",
+          "type": "string"
+        },
+        "split": {
+          "title": "Split",
+          "type": "string"
+        },
+        "revision": {
+          "minLength": 1,
+          "title": "Revision",
+          "type": "string"
+        },
+        "record_id": {
+          "title": "Record Id",
+          "type": "string"
+        },
+        "record_id_kind": {
+          "enum": [
+            "upstream",
+            "stream_ordinal"
+          ],
+          "title": "Record Id Kind",
+          "type": "string"
+        },
+        "stream_ordinal": {
+          "minimum": 0,
+          "title": "Stream Ordinal",
+          "type": "integer"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "type": "string"
+        },
+        "license_url": {
+          "title": "License Url",
+          "type": "string"
+        },
+        "source_fields": {
+          "additionalProperties": true,
+          "title": "Source Fields",
+          "type": "object"
+        },
+        "source_message_metadata": {
+          "additionalProperties": true,
+          "title": "Source Message Metadata",
+          "type": "object"
+        },
+        "transformations": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Transformations",
+          "type": "array"
+        },
+        "token_count": {
+          "minimum": 0,
+          "title": "Token Count",
+          "type": "integer"
+        },
+        "token_method": {
+          "const": "utf8_serialized_messages_bytes_v1",
+          "default": "utf8_serialized_messages_bytes_v1",
+          "title": "Token Method",
+          "type": "string"
+        },
+        "locally_executed": {
+          "const": false,
+          "default": false,
+          "title": "Locally Executed",
+          "type": "boolean"
+        },
+        "semantic_status": {
+          "const": "structural_checks_only",
+          "default": "structural_checks_only",
+          "title": "Semantic Status",
+          "type": "string"
+        },
+        "external_test_results_status": {
+          "enum": [
+            "not_locally_verified",
+            "not_provided"
+          ],
+          "title": "External Test Results Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dataset",
+        "config",
+        "split",
+        "revision",
+        "record_id",
+        "record_id_kind",
+        "stream_ordinal",
+        "content_hash",
+        "source_url",
+        "license",
+        "license_url",
+        "token_count",
+        "external_test_results_status"
+      ],
+      "title": "SourceMetadata",
+      "type": "object"
+    },
+    "ToolCall": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "function",
+          "title": "Type",
+          "type": "string"
+        },
+        "function": {
+          "$ref": "#/$defs/ToolFunction"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "function"
+      ],
+      "title": "ToolCall",
+      "type": "object"
+    },
+    "ToolFunction": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "arguments": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            }
+          ],
+          "title": "Arguments"
+        }
+      },
+      "required": [
+        "name",
+        "arguments"
+      ],
+      "title": "ToolFunction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "external-datasets-v1",
+      "default": "external-datasets-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "example_id": {
+      "title": "Example Id",
+      "type": "string"
+    },
+    "messages": {
+      "items": {
+        "$ref": "#/$defs/ExternalMessage"
+      },
+      "minItems": 2,
+      "title": "Messages",
+      "type": "array"
+    },
+    "metadata": {
+      "$ref": "#/$defs/SourceMetadata"
+    }
+  },
+  "required": [
+    "example_id",
+    "messages",
+    "metadata"
+  ],
+  "title": "ExternalTrainingRecord",
+  "type": "object"
+}
