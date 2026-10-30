@@ -2172,3 +2172,50 @@ these results verify implementation behaviour with a fake Hub, not server transf
 or preservation of the real 14B checkpoints. The actual server command and restoration
 example are documented in README.md. Server storage should be released only after
 that real command reports a verified backup and its receipt/revision are retained.
+
+## NF4 evaluation report serialization and export-only recovery — 30 October 2026
+
+Operator-supplied RunPod evidence showed both original_bf16 and final_nf4 reaching
+48/48 eligible tasks from a 50-task frozen selection. Diagnostic counts showed
+48 checkpoints per model and 96 exported answers, but report.json remained RUNNING
+with only original_bf16 recorded and no errors. The execution mode was disabled,
+so these are generated answers rather than executed benchmark successes. Actual
+exclusion reasons remain in the server overlap checkpoint; they are not inferred
+solely from the change in task count. No quality improvement is established.
+
+Inspected the export path and reproduced a matching serialization defect locally:
+a Transformers BitsAndBytesConfig object cannot be passed directly to json.dumps.
+The same object placed in model-load report metadata could fail both the ordinary
+report write and its finally-block write, leaving the earlier RUNNING report on
+disk. The server's actual traceback was unavailable, so this is a reproduced
+compatible failure mechanism rather than a remotely observed exception trace.
+Real BitsAndBytesConfig serialization was tested using a constructor-bypassed
+instance because this macOS environment intentionally has no PyTorch; this is not
+a real NF4 GPU load test.
+
+Added recursive metadata conversion through to_dict and explicit torch dtype/device
+strings in model_evaluation/backend.py; normalize metadata before inserting it in
+reports. Added a serialization-failure fallback so an invalid metadata value cannot
+mask the failure while leaving a RUNNING disk report. Existing per-task generation
+outputs and compression models are not rewritten by this correction.
+
+Added `llmops finalize_evaluation --input PATH` for CPU-only recovery from completed
+original task caches. It checks the original manifest fingerprint, suite digest,
+overlap-cache checksum/key and every model/task cache key/data digest. It uses the
+original run fingerprint across this export-only code change, without weakening
+normal inference resume's implementation checks. It refuses missing/modified tasks
+without starting generation. Existing exports are archived under `_recovery/`;
+results, review rows and summary are rebuilt with all verified answers. Missing
+uncommitted model-load metadata remains explicitly unavailable. Stored per-answer
+latency/memory evidence is retained; no timings or semantic approvals are invented.
+Execution-disabled exports retain evaluation_complete=false and pass_at_1=null;
+Docker scoring is still required for executable coding results.
+
+Actual verification: `uv run --locked pytest -q` returned **424 passed, 4 skipped**,
+five existing SWIG warnings, **12.17 seconds**. Regression tests cover the real
+Transformers metadata object's JSON conversion, two-model final export, recovery
+with a prior-code manifest without GPU/regeneration, exclusion preservation,
+missing/tampered task or manifest refusal, prior-report preservation and CLI
+recovery. `finalize_evaluation --help` and `git diff --check` passed. No access to
+the server's 96 actual answer files or models was available locally; real recovery
+must be confirmed by running the new command on that existing evaluation directory.

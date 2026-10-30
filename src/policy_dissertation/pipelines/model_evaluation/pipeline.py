@@ -10,7 +10,7 @@ from policy_dissertation.pipelines.external_datasets.pipeline import file_hash
 from policy_dissertation.pipelines.policy_transformation.data_io import digest, dump_json, dump_jsonl, load_cache, save_cache
 from policy_dissertation.pipelines.policy_transformation.pipeline import output_lock
 from .suites import read_suite
-from .backend import CudaGenerator
+from .backend import CudaGenerator, json_metadata
 from .execution import DockerExecutor
 from .scoring import score, summarize
 from .contamination import audit
@@ -109,7 +109,7 @@ def run_evaluation(suite_path, output, models, settings, config, *, resume=False
                         save_cache(cache, key, checked)
             for label, identity in identities.items():
                 progress(f'[3/4] Loading {label}; models run sequentially')
-                info = backend.load(identity['source'], identity['revision'], config)
+                info = json_metadata(backend.load(identity['source'], identity['revision'], config))
                 try:
                     if report['models']:
                         first = next(iter(report['models'].values()))['load']
@@ -166,7 +166,15 @@ def run_evaluation(suite_path, output, models, settings, config, *, resume=False
             raise DissertationError('Evaluation did not complete. Inspect report.json; completed task checkpoints are preserved.') from None
         finally:
             report['finished_at'] = datetime.now(timezone.utc).isoformat()
-            dump_json(output/'report.json', report)
+            try:
+                dump_json(output/'report.json', report)
+            except (TypeError, ValueError):
+                # A secondary serialization failure must not mask the original
+                # error or leave the last successful disk report marked RUNNING.
+                fallback = {k: v for k, v in report.items() if k != 'models'}
+                fallback.update(status='FAILED', models={}, evaluation_complete=False,
+                    errors=report['errors'] + ['report_metadata_serialization_failed; task checkpoints preserved'])
+                dump_json(output/'report.json', fallback)
             backend.release()
 
 
@@ -239,3 +247,98 @@ def comparisons(models):
                 result[label][suite] = {'baseline': baseline, 'delta_percentage_points': 100*(b-a),
                     'note': 'Descriptive matched-selection difference, not a statistical significance claim.'}
     return result
+
+
+def finalize_saved(input_directory, *, progress=print):
+    """Rebuild a complete export from original checksummed caches, without CUDA.
+
+    This is an explicit export-only recovery across code versions. The original
+    manifest fingerprint and per-task cache keys remain authoritative; normal
+    inference resume still refuses a changed implementation fingerprint.
+    """
+    root = Path(input_directory).resolve()
+    with output_lock(root):
+        frozen = json.loads((root/'manifest.json').read_text())
+        manifest = dict(frozen); fingerprint = manifest.pop('fingerprint', None)
+        if digest(manifest) != fingerprint or manifest.get('version') != VERSION:
+            raise DissertationError('Original evaluation manifest checksum/version mismatch.')
+        payload, cases = read_suite(root/'suite.json')
+        if payload['digest'] != manifest.get('suite_digest'):
+            raise DissertationError('Frozen suite differs from the original evaluation manifest.')
+        from .schemas import EvaluationConfig
+        config = EvaluationConfig.model_validate(manifest['configuration'])
+        previous = json.loads((root/'report.json').read_text())
+        if previous.get('schema_version') != VERSION or previous.get('fingerprint') != fingerprint:
+            raise DissertationError('Report identity differs from the original run; recovery refused.')
+        excluded = {}
+        overlap = {'status': 'NOT_CHECKED', 'excluded': {}}
+        if manifest.get('training_tokens_hash') is not None:
+            key = digest({'fingerprint': fingerprint, 'audit': VERSION})
+            overlap = load_cache(root/'overlap.json', key)
+            if overlap is None:
+                raise DissertationError('Original overlap checkpoint is missing or changed; recovery refused.')
+            excluded = overlap['excluded']
+            if not set(excluded) <= {c.id for c in cases}:
+                raise DissertationError('Invalid excluded task IDs in overlap checkpoint.')
+        selected = [c for c in cases if c.id not in excluded]
+        if not selected: raise DissertationError('No eligible tasks in the frozen selection.')
+        rows = []; models = {}
+        progress('Verifying original task checkpoints; no model loading or generation')
+        for label, identity in manifest['models'].items():
+            if not re.fullmatch('[a-zA-Z0-9_-]{1,64}', label):
+                raise DissertationError('Invalid original model label.')
+            model_rows = []
+            for case in selected:
+                key = digest({'run': fingerprint, 'model': label, 'case': case.model_dump()})
+                row = load_cache(root/'_checkpoints'/label/(digest(case.id)+'.json'), key)
+                if row is None:
+                    raise DissertationError('Missing or changed task checkpoint: '+label+'/'+case.id+'. No inference was restarted.')
+                if (row.get('model'), row.get('case_id'), row.get('suite')) != (label, case.id, case.suite):
+                    raise DissertationError('Checkpoint model/task identity mismatch.')
+                if config.executor == 'disabled' and row.get('score') != score(case, row['generation'], None):
+                    raise DissertationError('Saved generation-only score is inconsistent with its answer status.')
+                model_rows.append(row)
+            # Missing model-load metadata remains explicitly unavailable; no fresh
+            # load, memory footprint or quantization evidence is invented.
+            load = previous.get('models', {}).get(label, {}).get('load', {
+                'metadata_available': False,
+                'note': 'Load metadata was not committed before export failure; generation timings remain in task checkpoints.'})
+            models[label] = {'identity': identity, 'load': json_metadata(load), 'metrics': summarize(model_rows)}
+            rows.extend(model_rows)
+            progress(f'  {label}: {len(model_rows)} verified saved answers')
+        report = {k: v for k, v in previous.items() if k not in ('models', 'errors', 'output_hashes', 'comparisons', 'recovery')}
+        warnings = []
+        if any(c.suite == 'enterprise' for c in selected): warnings.append('enterprise_semantic_review_pending')
+        if not manifest.get('training_tokens_hash'): warnings.append('training_overlap_not_checked')
+        if excluded: warnings.append('suspected_training_overlap_excluded')
+        if config.executor == 'disabled': warnings.append('code_execution_disabled_no_pass_at_1')
+        report.update(models=models, errors=[], warnings=warnings, comparisons=comparisons(models),
+            contamination=overlap, configuration=config.model_dump(), runtime=manifest['runtime'], execution=manifest['execution'],
+            selected_tasks=len(cases), evaluated_tasks_per_model=len(selected),
+            status='COMPLETED_WITH_WARNINGS' if warnings else 'COMPLETED',
+            evaluation_complete=config.executor != 'disabled' or not any(c.suite != 'enterprise' for c in selected),
+            semantic_enterprise_correctness_verified=False)
+        previous_hash = file_hash(root/'report.json')
+        report['recovery'] = {'method': 'original checksummed per-task cache export',
+            'previous_report_hash': previous_hash, 'original_fingerprint': fingerprint,
+            'model_inference_rerun': False, 'code_tests_rerun': False,
+            'note': 'Existing code-test outcomes, if any, are inherited; enterprise semantic approval remains pending.'}
+        # Verify the rebuilt report is serializable before touching final exports.
+        json.dumps(report)
+        recovery = root/'_recovery'; recovery.mkdir(exist_ok=True)
+        from policy_dissertation.pipelines.policy_transformation.data_io import atomic_text
+        for name in ('report.json', 'results.jsonl', 'enterprise_review.jsonl'):
+            path = root/name
+            if path.exists():
+                archive = recovery/(path.stem+'-'+file_hash(path)+path.suffix)
+                if not archive.exists(): atomic_text(archive, path.read_text())
+        dump_jsonl(root/'results.jsonl', rows)
+        by_id = {c.id: c for c in selected}
+        dump_jsonl(root/'enterprise_review.jsonl', [r | {'messages': by_id[r['case_id']].messages,
+            'reference': by_id[r['case_id']].reference,
+            'review': {'correctness': None, 'conditions_and_exceptions': None, 'unsupported_claims': None}}
+            for r in rows if r['suite'] == 'enterprise'])
+        report['output_hashes'] = {n: file_hash(root/n) for n in ('suite.json', 'results.jsonl', 'enterprise_review.jsonl')}
+        report['recovered_at'] = datetime.now(timezone.utc).isoformat()
+        dump_json(root/'report.json', report)
+        return report

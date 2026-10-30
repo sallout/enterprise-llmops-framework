@@ -278,3 +278,104 @@ def test_different_model_templates_fail_matched_comparison(tmp_path):
             backend=backend,executor=FakeExecutor(),identity_provider=identity,progress=lambda _:None)
     r=json.loads((tmp_path/'out/report.json').read_text())
     assert 'templates differ' in r['errors'][0] and r['status']=='FAILED'
+
+
+def quantization_object():
+    # Real Transformers class, constructor bypassed because the macOS data-only
+    # environment intentionally has no PyTorch. Tests serialization, not CUDA.
+    from transformers import BitsAndBytesConfig
+    value=BitsAndBytesConfig.__new__(BitsAndBytesConfig)
+    value.__dict__.update(bnb_4bit_compute_dtype='torch.bfloat16',bnb_4bit_quant_storage='torch.uint8',
+                          _load_in_4bit=True,_load_in_8bit=False)
+    return value
+
+
+def test_real_transformers_quantization_metadata_is_json_serializable_after_conversion():
+    from policy_dissertation.pipelines.model_evaluation.backend import json_metadata
+    q=quantization_object()
+    with pytest.raises(TypeError):json.dumps({'quantization':q})
+    actual=json_metadata({'quantization':q})
+    assert json.loads(json.dumps(actual))['quantization']['bnb_4bit_compute_dtype']=='bfloat16'
+
+
+def test_nf4_metadata_export_regression_after_last_generated_answer(tmp_path):
+    path=frozen(tmp_path);backend=FakeBackend();q=quantization_object()
+    backend.load=lambda source,*_args:{'quantization':q if source=='nf4' else None}
+    r=run_evaluation(path,tmp_path/'out',{'original':'bf16','final':'nf4'},Settings(),EvaluationConfig(executor='disabled'),
+        backend=backend,identity_provider=identity,progress=lambda _:None)
+    report=json.loads((tmp_path/'out/report.json').read_text())
+    assert len(report['models'])==2 and report['status']=='COMPLETED_WITH_WARNINGS'
+    assert report['models']['final']['load']['quantization']['load_in_4bit'] is True
+    assert len((tmp_path/'out/results.jsonl').read_text().splitlines())==8
+
+
+def interrupted_export_fixture(tmp_path):
+    path=frozen(tmp_path);out=tmp_path/'out'
+    run_evaluation(path,out,{'original':'bf16','final':'nf4'},Settings(),EvaluationConfig(executor='disabled'),
+        backend=FakeBackend(),identity_provider=identity,progress=lambda _:None)
+    # Emulate a previous-code manifest rather than permitting normal resume to
+    # bypass implementation fingerprints after applying this export-only repair.
+    manifest=json.loads((out/'manifest.json').read_text());manifest.pop('fingerprint')
+    manifest['implementation']['backend.py']='prior-server-implementation'
+    fingerprint=digest(manifest);manifest['fingerprint']=fingerprint;dump_json(out/'manifest.json',manifest)
+    _,cases=read_suite(out/'suite.json')
+    from policy_dissertation.pipelines.policy_transformation.data_io import save_cache
+    for label in manifest['models']:
+        for case in cases:
+            cache=out/'_checkpoints'/label/(digest(case.id)+'.json')
+            row=json.loads(cache.read_text())['data']
+            save_cache(cache,digest({'run':fingerprint,'model':label,'case':case.model_dump()}),row)
+    r=json.loads((out/'report.json').read_text());r.update(status='RUNNING',errors=[],fingerprint=fingerprint)
+    r['models'].pop('final');r.pop('output_hashes',None)
+    dump_json(out/'report.json',r)
+    return out
+
+
+def test_finalize_original_checkpoints_across_export_fix_without_gpu(tmp_path,monkeypatch):
+    from policy_dissertation.pipelines.model_evaluation.pipeline import finalize_saved
+    out=interrupted_export_fixture(tmp_path);old=(out/'report.json').read_bytes()
+    monkeypatch.setattr(FakeBackend,'generate',lambda *_args:pytest.fail('No generation allowed'))
+    r=finalize_saved(out,progress=lambda _:None)
+    assert len(r['models'])==2 and r['evaluated_tasks_per_model']==4
+    assert not r['evaluation_complete'] and not r['recovery']['model_inference_rerun']
+    assert r['models']['final']['load']['metadata_available'] is False
+    assert r['models']['final']['metrics']['humaneval']['pass_at_1'] is None
+    assert len((out/'results.jsonl').read_text().splitlines())==8
+    assert any(p.read_bytes()==old for p in (out/'_recovery').glob('report-*.json'))
+
+
+@pytest.mark.parametrize('failure',['missing','tamper','manifest'])
+def test_finalize_refuses_incomplete_or_changed_evidence(tmp_path,failure):
+    from policy_dissertation.pipelines.model_evaluation.pipeline import finalize_saved
+    out=interrupted_export_fixture(tmp_path);original=(out/'report.json').read_bytes()
+    checkpoint=next((out/'_checkpoints').rglob('*.json'))
+    if failure=='missing':checkpoint.unlink()
+    elif failure=='tamper':
+        v=json.loads(checkpoint.read_text());v['data']['generation']['text']='changed';dump_json(checkpoint,v)
+    else:
+        v=json.loads((out/'manifest.json').read_text());v['configuration']['seed']=123;dump_json(out/'manifest.json',v)
+    with pytest.raises(DissertationError):finalize_saved(out,progress=lambda _:None)
+    assert (out/'report.json').read_bytes()==original
+
+
+def test_finalize_cli_recovers_saved_comparison(tmp_path):
+    out=interrupted_export_fixture(tmp_path)
+    r=CliRunner().invoke(app,['finalize_evaluation','--input',str(out)])
+    assert r.exit_code==0,r.output
+    assert 'no model inference rerun' in r.output and 'Evaluation complete: False' in r.output
+
+
+def test_finalize_preserves_verified_overlap_exclusions(tmp_path,monkeypatch):
+    import policy_dissertation.pipelines.model_evaluation.pipeline as module
+    path=frozen(tmp_path);_,cases=read_suite(path);out=tmp_path/'out';tokens=tmp_path/'train.jsonl'
+    tokens.write_text('{}\n');backend=FakeBackend();backend.tokenizer=object()
+    monkeypatch.setattr(module,'audit',lambda *args:{'status':'LIMITED_CHECK_COMPLETED','excluded':{cases[0].id:{'reason':'fixture_overlap'}},'training_rows_checked':1})
+    run_evaluation(path,out,{'original':'bf16','final':'nf4'},Settings(),EvaluationConfig(executor='disabled'),
+        training_tokens=tokens,backend=backend,identity_provider=identity,progress=lambda _:None)
+    report=json.loads((out/'report.json').read_text());report['status']='RUNNING';report['models'].pop('final')
+    dump_json(out/'report.json',report)
+    result=module.finalize_saved(out,progress=lambda _:None)
+    assert result['selected_tasks']==4 and result['evaluated_tasks_per_model']==3
+    rows=[json.loads(line) for line in (out/'results.jsonl').read_text().splitlines()]
+    assert len(rows)==6 and all(r['case_id']!=cases[0].id for r in rows)
+    assert 'suspected_training_overlap_excluded' in result['warnings']

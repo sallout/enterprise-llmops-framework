@@ -7,6 +7,21 @@ from pathlib import Path
 from policy_dissertation.errors import DissertationError
 
 
+def json_metadata(value):
+    """Convert Transformers quantization objects/dtypes without importing torch."""
+    if value is None or isinstance(value, (str, bool, int, float)):
+        return value
+    if isinstance(value, dict):
+        return {str(key): json_metadata(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_metadata(item) for item in value]
+    if callable(getattr(value, 'to_dict', None)):
+        return json_metadata(value.to_dict())
+    if type(value).__module__ == 'torch' and type(value).__name__ in ('dtype', 'device'):
+        return str(value)
+    raise TypeError('Unsupported model metadata type: ' + type(value).__name__)
+
+
 class CudaGenerator:
     def __init__(self, settings):
         self.settings = settings
@@ -36,7 +51,7 @@ class CudaGenerator:
         self.torch.manual_seed(config.seed); self.torch.cuda.manual_seed_all(config.seed)
         self.torch.backends.cuda.matmul.allow_tf32 = False
         return {'model_memory_bytes': self.model.get_memory_footprint(),
-                'quantization': getattr(self.model.config, 'quantization_config', None),
+                'quantization': json_metadata(getattr(self.model.config, 'quantization_config', None)),
                 'chat_template_hash': __import__('hashlib').sha256((self.tokenizer.chat_template or '').encode()).hexdigest()}
 
     def generate(self, messages, config):

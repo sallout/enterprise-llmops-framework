@@ -725,3 +725,18 @@ def backup_model_command(
         typer.echo(f"Files: {result['verified_files']}; bytes: {result['backup_bytes']}")
         typer.echo(f"Receipt: {output.resolve()/'report.json'}")
     run_safely(execute)
+
+
+@app.command('finalize_evaluation')
+def finalize_evaluation_command(
+    input_directory: Path = typer.Option(..., '--input', exists=True, file_okay=False, help='Existing evaluation directory with frozen manifest and all task checkpoints.'),
+) -> None:
+    """Recover evaluation exports from original checksummed answers; no GPU or regeneration."""
+    def execute():
+        from policy_dissertation.pipelines.model_evaluation.pipeline import finalize_saved
+        result = finalize_saved(input_directory, progress=lambda text: typer.echo(text, err=True))
+        typer.echo(f"Status: {result['status']}; recovered models: {len(result['models'])}")
+        typer.echo(f"Answers per model: {result['evaluated_tasks_per_model']}; no model inference rerun.")
+        typer.echo(f"Evaluation complete: {result['evaluation_complete']}; code tests remain pending when execution was disabled.")
+        typer.echo(f"Report: {input_directory.resolve()/'report.json'}")
+    run_safely(execute)

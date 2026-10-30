@@ -198,3 +198,27 @@ RUN_MODEL_EVALUATION_DOCKER_TESTS=1 uv run pytest tests/test_model_evaluation_do
 Sources: [HumanEval dataset card](https://huggingface.co/datasets/openai/openai_humaneval),
 [MBPP dataset card](https://huggingface.co/datasets/google-research-datasets/mbpp),
 [Qwen3-14B model card](https://huggingface.co/Qwen/Qwen3-14B).
+
+## Recover a completed generation export after a report-writing failure
+
+If all answers were saved but the report remained RUNNING after NF4 export
+metadata failed to serialize, update the project and run:
+
+```bash
+uv run --locked llmops finalize_evaluation \
+  --input /workspace/artifacts/evaluation_50
+```
+
+This is CPU-only export recovery, with no model loading, model downloads, answer
+regeneration or code-test execution. It verifies the original manifest fingerprint,
+frozen suite, checksummed overlap decisions and every original per-model/task cache
+key. It refuses incomplete/modified evidence rather than silently regenerating it.
+It can therefore recover a prior implementation's completed answers after this
+export-only code correction, while ordinary inference `--resume` continues to refuse
+changed implementation fingerprints. Previous exports are retained under
+`_recovery/`. Missing uncommitted model-load metadata remains explicitly unavailable;
+timing and memory measurements already recorded per answer are retained.
+
+An execution-disabled run still has `evaluation_complete=false` and no code pass@1.
+After recovery, use `score_evaluation` on a Docker host to execute the saved answers.
+Recovering a report is not evidence of model improvement or semantic correctness.
