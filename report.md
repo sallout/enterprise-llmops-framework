@@ -1928,3 +1928,31 @@ README, `docs/interactive-cli.md`, `docs/compression.md` and
 traceable compression/specialization experiment to the dissertation framework while
 preserving a clear separation between implementation checks, future GPU execution,
 and empirical claims requiring final evaluation.
+
+## RunPod CUDA smoke-test failure and API correction — 2026-10-30
+
+User-supplied real RunPod output from
+`RUN_COMPRESSION_CUDA_TESTS=1 uv run --extra training pytest tests/test_compression_cuda.py -q`
+reported **1 failed in 16.70 seconds**. This was not a successful end-to-end CUDA run.
+The trace shows CUDA preflight passed; the tiny Qwen model was structurally pruned,
+attention-preservation/parameter/shape assertions passed, and checkpoint saving and
+loading succeeded. Failure occurred constructing Transformers TrainingArguments:
+`TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'warmup_ratio'`.
+No optimizer updates or NF4 export/reload were reached. The uv hardlink warning was
+an unrelated cross-filesystem copy fallback; dependency installation completed.
+
+Inspected installed Transformers 5.20.2 TrainingArguments fields: `warmup_ratio` is
+absent, `warmup_steps` is supported; no other supplied training keyword was unsupported.
+Updated `pipelines/training/backend.py` to construct arguments through
+`recovery_arguments`, computing absolute warmup as
+`min(max_steps - 1, ceil(max_steps * 0.03))`. This reserves at least one non-warmup
+optimizer step even for a one-step smoke run. Added six regression cases for step
+budgets and compatibility against actual installed TrainingArguments dataclass fields.
+Targeted compression tests: **26 passed**, five existing SWIG warnings. Full-suite
+result is recorded below after execution. The fixed CUDA integration must still be
+rerun on RunPod; local checks do not establish a successful real recovery or export.
+
+Post-fix `uv run pytest -q`: **375 passed, 2 skipped**, five existing SWIG warnings,
+11.03 seconds. Skips remain real Linux/CUDA integration (not executed on macOS) and
+Docker-daemon-dependent code execution. `git diff --check` passed. No input datasets,
+credentials, model weights or previous accepted coding exports were modified.

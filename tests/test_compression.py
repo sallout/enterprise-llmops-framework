@@ -210,3 +210,19 @@ def test_resume_chooses_complete_checkpoint_not_interrupted_newest(tmp_path):
     assert last_complete_checkpoint(tmp_path)==str(complete)
     (complete/'optimizer.pt').unlink()
     assert last_complete_checkpoint(tmp_path) is None
+
+
+@pytest.mark.parametrize('steps,expected',[(1,0),(2,1),(10,1),(200,6),(1000,30)])
+def test_warmup_has_optimizer_steps_remaining(steps,expected,tmp_path):
+    from policy_dissertation.pipelines.training.backend import recovery_arguments
+    args=recovery_arguments(tmp_path,CompressionConfig(max_steps=steps))
+    assert args['warmup_steps']==expected and args['warmup_steps']<steps
+    assert 'warmup_ratio' not in args
+
+
+def test_recovery_arguments_match_installed_transformers_api(tmp_path):
+    from dataclasses import fields
+    from transformers import TrainingArguments
+    from policy_dissertation.pipelines.training.backend import recovery_arguments
+    supported={f.name for f in fields(TrainingArguments) if f.init}
+    assert set(recovery_arguments(tmp_path,CompressionConfig()))<=supported

@@ -24,6 +24,18 @@ def token_rows(path):
             yield {k:row[k] for k in ('input_ids','attention_mask','labels')}
 
 
+def recovery_arguments(checkpoints,config):
+    """Use absolute warmup steps: Transformers 5 removed warmup_ratio."""
+    return dict(output_dir=str(checkpoints),max_steps=config.max_steps,
+        per_device_train_batch_size=config.batch_size,gradient_accumulation_steps=config.gradient_accumulation,
+        learning_rate=config.learning_rate,bf16=True,fp16=False,seed=config.seed,data_seed=config.seed,
+        save_strategy='steps',save_steps=config.save_steps,save_total_limit=2,logging_steps=1,
+        report_to=[],push_to_hub=False,eval_strategy='no',optim='adamw_torch',
+        warmup_steps=min(config.max_steps-1,math.ceil(config.max_steps*.03)),
+        gradient_checkpointing=True,gradient_checkpointing_kwargs={'use_reentrant':False},
+        dataloader_num_workers=0,remove_unused_columns=False,logging_nan_inf_filter=False)
+
+
 def last_complete_checkpoint(folder):
     """Ignore interrupted checkpoint writes; the caller reports when no complete checkpoint exists."""
     candidates=[]
@@ -142,13 +154,7 @@ class CudaBackend:
             return {key:t.tensor([r[key]+[fill]*(size-len(r[key])) for r in rows],dtype=t.long)
                     for key,fill in (('input_ids',padding),('attention_mask',0),('labels',-100))}
         checkpoints=Path(directory)/'checkpoints';checkpoints.mkdir(parents=True,exist_ok=True)
-        arguments=TrainingArguments(output_dir=str(checkpoints),max_steps=config.max_steps,
-            per_device_train_batch_size=config.batch_size,gradient_accumulation_steps=config.gradient_accumulation,
-            learning_rate=config.learning_rate,bf16=True,fp16=False,seed=config.seed,data_seed=config.seed,
-            save_strategy='steps',save_steps=config.save_steps,save_total_limit=2,logging_steps=1,
-            report_to=[],push_to_hub=False,eval_strategy='no',optim='adamw_torch',warmup_ratio=.03,
-            gradient_checkpointing=True,gradient_checkpointing_kwargs={'use_reentrant':False},
-            dataloader_num_workers=0,remove_unused_columns=False,logging_nan_inf_filter=False)
+        arguments=TrainingArguments(**recovery_arguments(checkpoints,config))
         class FiniteLoss(TrainerCallback):
             def on_log(self,args,state,control,logs=None,**kwargs):
                 for key in ('loss','grad_norm'):
