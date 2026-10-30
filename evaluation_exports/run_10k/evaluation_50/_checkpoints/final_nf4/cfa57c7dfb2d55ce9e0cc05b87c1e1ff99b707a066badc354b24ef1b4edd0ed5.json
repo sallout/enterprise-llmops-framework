@@ -1,0 +1,32 @@
+{
+  "key": "0a40e34bc8ce4a8943373dadb3e4a3e4a91059c453097abf06c068ba5564ce8f",
+  "digest": "ab64282e3f9e72e401404a7cc913d2259085b90f12515725e97c06932b41038b",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:133",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "133"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_negativenum(numbers):\n    \"\"\"\n    Calculate the sum of the negative numbers in a given list of numbers.\n\n    :param numbers: List of integers\n    :return: Sum of negative numbers\n    \"\"\"\n    return sum(num for num in numbers if num < 0)\n```",
+      "input_tokens": 178,
+      "output_tokens": 64,
+      "generation_seconds": 3.3680031730327755,
+      "output_tokens_per_second_including_prefill": 19.00235739456567,
+      "peak_allocated_bytes": 9925101568,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

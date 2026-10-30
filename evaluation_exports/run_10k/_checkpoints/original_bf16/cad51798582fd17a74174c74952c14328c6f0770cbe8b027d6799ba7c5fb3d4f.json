@@ -1,0 +1,32 @@
+{
+  "key": "6ce650d54ded931da9611f24036637ad754018599dcbf79dffcee8f9977c7fb9",
+  "digest": "eb81fb8804bafe0ff1b625b091aee72db183c176c94947a706f4ea97ee7c4f4c",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/113",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/113"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef odd_count(lst):\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n    \"\"\"\n    result = []\n    for s in lst:\n        count = sum(1 for ch in s if int(ch) % 2 != 0)\n        template = \"the number of odd elements {}n the str{}ng {} of the {}nput.\"\n        result.append(template.format(count, count, count, count))\n    return result\n```",
+      "input_tokens": 211,
+      "output_tokens": 153,
+      "generation_seconds": 6.13787105504889,
+      "output_tokens_per_second_including_prefill": 24.92720987909077,
+      "peak_allocated_bytes": 29610986496,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

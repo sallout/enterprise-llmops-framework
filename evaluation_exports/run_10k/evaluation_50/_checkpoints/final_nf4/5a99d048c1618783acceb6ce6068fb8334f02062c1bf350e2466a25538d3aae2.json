@@ -1,0 +1,32 @@
+{
+  "key": "a8e1fe61ce9b2ab07b934c26254b92266e4408d619c0f013a11f7a1cad3260d8",
+  "digest": "efbad2fe05d790e86c7400ca1fb980aafb90f577d05c2410ccb890e50b49a2f7",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:105",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "105"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count booleans(lst):\n    return sum(1 for item in lst if isinstance(item, bool) and item)\n\nassert count booleans([True, False, True]) == 2\nassert count booleans([False, False]) == 0\nassert count booleans([True, True, True]) == 3\n```",
+      "input_tokens": 79,
+      "output_tokens": 72,
+      "generation_seconds": 3.796739664976485,
+      "output_tokens_per_second_including_prefill": 18.96363889896726,
+      "peak_allocated_bytes": 9897693184,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

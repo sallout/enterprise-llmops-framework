@@ -1,0 +1,32 @@
+{
+  "key": "6106ebc71aad5bf2e048d19c7041b5d404848061c5a72ca64df622016ab19cc3",
+  "digest": "e03b7e43c60ac6cc52fa16ecfeb6180c1a7ddc091e1b0e4a16fc4c99098dfc56",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/66",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/66"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef digitSum(s):\n    \"\"\"Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n    Examples:\n        digitSum(\"\") => 0\n        digitSum(\"abAB\") => 131\n        digitSum(\"abcCd\") => 67\n        digitSum(\"helloE\") => 69\n        digitSum(\"woArBld\") => 131\n        digitSum(\"aAaaaXa\") => 153\n    \"\"\"\n    return sum(ord(c) for c in s if c.isupper())\n```",
+      "input_tokens": 149,
+      "output_tokens": 134,
+      "generation_seconds": 5.4077242240309715,
+      "output_tokens_per_second_including_prefill": 24.779370109985948,
+      "peak_allocated_bytes": 29592891392,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

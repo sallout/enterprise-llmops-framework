@@ -1,0 +1,32 @@
+{
+  "key": "85e5bd1112a437fe260afe1a78aa309296d47585c32cef62d2d003c1a756b5ed",
+  "digest": "60a347a08f3038f1ea03abd7b3a86bb64411dd5250301d26d5e4a41c55a2a588",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:103",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "103"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import comb\n\ndef eulerian_num(n, m):\n    \"\"\"\n    Returns the Eulerian number a(n, m).\n    \"\"\"\n    if m < 0 or m >= n:\n        return 0\n    total = 0\n    for k in range(m + 1, n + 1):\n        total += (-1) ** (k - m - 1) * comb(k, m + 1) * (k - m) ** (n - k)\n    return total\n```",
+      "input_tokens": 91,
+      "output_tokens": 110,
+      "generation_seconds": 5.724111094023101,
+      "output_tokens_per_second_including_prefill": 19.216957566539513,
+      "peak_allocated_bytes": 9900955648,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

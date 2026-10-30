@@ -1,0 +1,32 @@
+{
+  "key": "7ef210863e1ae8c7227a29c8bc2b811d18fe0431e50e81bfbea7c214ef25ba58",
+  "digest": "bdf08c81749804a917c4c53aad8b0dde83247ee76075a0b0806362c4cd1029a7",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:75",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "75"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_tuples(tuples_list, k):\n    return [t for t in tuples_list if all(x % k == 0 for x in t)]\n```",
+      "input_tokens": 200,
+      "output_tokens": 36,
+      "generation_seconds": 1.4715928570367396,
+      "output_tokens_per_second_including_prefill": 24.463288081250337,
+      "peak_allocated_bytes": 29607691264,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

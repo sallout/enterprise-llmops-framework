@@ -1,0 +1,32 @@
+{
+  "key": "195008c7bc90ee24a0076f6279656335c10e3f30f9aea01510bc2ad165d8e108",
+  "digest": "af379967995e8ceaa115ea59a11e1f16cd7b04bc48bbe6888da711a95b05ddce",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:69",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "69"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_sublist(main_list, sublist):\n    \"\"\"\n    Checks if sublist is a contiguous sublist of main_list.\n    \n    :param main_list: List of elements.\n    :param sublist: List of elements to check if it is a sublist of main_list.\n    :return: True if sublist is a sublist of main_list, False otherwise.\n    \"\"\"\n    len_sublist = len(sublist)\n    for i in range(len(main_list) - len_sublist + 1):\n        if main_list[i:i+len_sublist] == sublist:\n            return True\n    return False\n\n# Test cases\nassert is_sublist([2,4,3,5,7],[3,7]) == False\nassert is_sublist([2,4,3,5,7],[4,3]) == True\nassert is_sublist([2,4,3,5,7],[1,6]) == False\n```",
+      "input_tokens": 111,
+      "output_tokens": 194,
+      "generation_seconds": 10.151031854911707,
+      "output_tokens_per_second_including_prefill": 19.11135762086399,
+      "peak_allocated_bytes": 9907570688,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

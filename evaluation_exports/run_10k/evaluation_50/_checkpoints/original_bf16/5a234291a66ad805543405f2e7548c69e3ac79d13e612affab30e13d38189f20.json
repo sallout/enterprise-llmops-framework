@@ -1,0 +1,221 @@
+{
+  "key": "4a04aa09dd770f4f214873519903d06b7c79602d1f3676357250d049e1ec05af",
+  "digest": "67e58fc035666f0c1178cfc52b1ae971d13de977b5a4d808867ee0de8a1da284",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "enterprise:d6a86c7a4492177358e5c25e24af2eb64eaa218bb504c3c827692aa8422c2427",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "d6a86c7a4492177358e5c25e24af2eb64eaa218bb504c3c827692aa8422c2427",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "f46ca9a595881158dbffa7582641cee32e1c00bf9c5775ff409f563e52b71840",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "e10a81e3fc482473bc1dd123dae676bbafb61bc6b6d19e31b6730a328aca46e0",
+          "section_id": "6",
+          "section_title": "Operational Control Requirements",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            3
+          ],
+          "source_spans": [
+            {
+              "page_number": 3,
+              "start": 278,
+              "end": 387
+            },
+            {
+              "page_number": 3,
+              "start": 389,
+              "end": 447
+            },
+            {
+              "page_number": 3,
+              "start": 450,
+              "end": 554
+            },
+            {
+              "page_number": 3,
+              "start": 556,
+              "end": 661
+            },
+            {
+              "page_number": 3,
+              "start": 663,
+              "end": 672
+            },
+            {
+              "page_number": 3,
+              "start": 675,
+              "end": 794
+            },
+            {
+              "page_number": 3,
+              "start": 795,
+              "end": 856
+            }
+          ],
+          "passage_id": "f18cc81162d77b9be57a8315418a482282ae9c3ab7d6cb0900904d70675b885e",
+          "evidence_quote": "G The enterprise MUST maintain an approved-source registry and an OSS exception register. Product owners MUST\n\nreview high-risk dependency exceptions at least quarterly.\n\n",
+          "evidence_start": 0,
+          "evidence_end": 171,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "057499936dfbcbb46a5197b602212ef604e85ce39121ff4c8d429955538d617a",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 3,
+                  "start": 278,
+                  "end": 387
+                }
+              ]
+            },
+            {
+              "warning_id": "4f4426db821d4f18ff30b2e9f1c7d057e7281854a4294ea163e9961880e831d3",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 3,
+                  "start": 450,
+                  "end": 554
+                }
+              ]
+            },
+            {
+              "warning_id": "bee0d4ddd7f985555d55995b991ea3bbebfd7b68bebf832f5e8f2691691abed9",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 3,
+                  "start": 675,
+                  "end": 794
+                }
+              ]
+            },
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response directly quotes the relevant Operational Control Requirements sentence, preserving the mandatory obligations and the quarterly review threshold. It answers the question about the approved-source registry, OSS exception register, and high-risk dependency exception review without broadening the policy or omitting conditions relevant to that specific passage."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 192,
+          "record_hash": "93682066a4239928f056fda036240ded66c5a964c365bde8565c5179defd87cc"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 334,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "de8e2551dbdf72430b9840ef97f57db96e18147ddc612a8fc128560ee91b13c3"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "The provided text does not include a specific passage titled \"Operational Control Requirements\" or any direct reference to an approved-source registry, OSS exception register, or review of high-risk dependency exceptions. Therefore, based on the information given in the policy, the following can be inferred:\n\n- The enterprise is expected to maintain an **approved-source registry** to track and manage the use of open-source software (OSS) components.\n- An **OSS exception register** is likely maintained to document all exceptions to the policy, including the required details such as component, version, license, business justification, compensating controls, etc.\n- **High-risk dependency exceptions** must be reviewed, particularly those classified as **critical-risk**, which require **CISO approval**, and **material license exceptions**, which require **Legal approval**.\n- Exceptions are not permanent and may be subject to **additional monitoring, narrower scope, remediation milestones, or earlier review** by the control owner.\n- **Expired exceptions** automatically lose their authority and are no longer valid.\n\nIf you have a specific section or passage in mind, please provide it for a more accurate interpretation.",
+      "input_tokens": 305,
+      "output_tokens": 229,
+      "generation_seconds": 9.204872220987454,
+      "output_tokens_per_second_including_prefill": 24.878129158368044,
+      "peak_allocated_bytes": 29672046080,
+      "peak_reserved_bytes": 29764878336
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": false,
+      "token_f1": 0.18274111675126903,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

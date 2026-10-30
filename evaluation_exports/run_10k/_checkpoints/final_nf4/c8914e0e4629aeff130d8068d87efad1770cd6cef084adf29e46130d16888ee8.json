@@ -1,0 +1,362 @@
+{
+  "key": "999dbce0ed6c3c01c2cd3407788ce4cca65fc9f1a09db2354b4fc0c58d47fccb",
+  "digest": "dd38c3a8675a752a3f2d22e07a2e61516a2b35b5b97f0cd3d38fd9ba31760a65",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "enterprise:95aa7532dcf325a97ce7306ae697a5a4c9254f4bdd10bbb543bf69ca2ef1b34e",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "95aa7532dcf325a97ce7306ae697a5a4c9254f4bdd10bbb543bf69ca2ef1b34e",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "0941be2035245b77ea328966f10bb0ec337da59b441797f3ade24cd7a91bf5a0",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "7fa18a5acecd949cec299ff65bab04d1a252aaaea94c1829e7e62293a85a0300",
+          "section_id": "5",
+          "section_title": "Technical and Coding Constraints",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            2,
+            3
+          ],
+          "source_spans": [
+            {
+              "page_number": 2,
+              "start": 2333,
+              "end": 2439
+            },
+            {
+              "page_number": 2,
+              "start": 2440,
+              "end": 2537
+            },
+            {
+              "page_number": 2,
+              "start": 2538,
+              "end": 2631
+            },
+            {
+              "page_number": 2,
+              "start": 2634,
+              "end": 2748
+            },
+            {
+              "page_number": 2,
+              "start": 2749,
+              "end": 2846
+            },
+            {
+              "page_number": 2,
+              "start": 2848,
+              "end": 2896
+            },
+            {
+              "page_number": 2,
+              "start": 2899,
+              "end": 3008
+            },
+            {
+              "page_number": 2,
+              "start": 3010,
+              "end": 3099
+            },
+            {
+              "page_number": 2,
+              "start": 3102,
+              "end": 3206
+            },
+            {
+              "page_number": 2,
+              "start": 3207,
+              "end": 3315
+            },
+            {
+              "page_number": 2,
+              "start": 3316,
+              "end": 3376
+            },
+            {
+              "page_number": 2,
+              "start": 3379,
+              "end": 3486
+            },
+            {
+              "page_number": 2,
+              "start": 3487,
+              "end": 3602
+            },
+            {
+              "page_number": 2,
+              "start": 3604,
+              "end": 3667
+            },
+            {
+              "page_number": 2,
+              "start": 3670,
+              "end": 3781
+            },
+            {
+              "page_number": 2,
+              "start": 3782,
+              "end": 3893
+            },
+            {
+              "page_number": 2,
+              "start": 3895,
+              "end": 3915
+            },
+            {
+              "page_number": 2,
+              "start": 3918,
+              "end": 4021
+            },
+            {
+              "page_number": 2,
+              "start": 4022,
+              "end": 4135
+            },
+            {
+              "page_number": 2,
+              "start": 4137,
+              "end": 4181
+            },
+            {
+              "page_number": 3,
+              "start": 45,
+              "end": 153
+            },
+            {
+              "page_number": 3,
+              "start": 155,
+              "end": 231
+            }
+          ],
+          "passage_id": "38010ee865a50634a0ecafb87738072e3c2b1ac66c1012d01f66267936af67ae",
+          "evidence_quote": "G Source repositories MUST enable automated software composition analysis (SCA). Approved examples include\nSonarQube/SonarCloud dependency analysis, Snyk, Mend, GitHub Advanced Security, GitLab dependency\nscanning, or an enterprise-equivalent control. A project MUST NOT rely only on manual review.\n\n",
+          "evidence_start": 0,
+          "evidence_end": 300,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "54fc2f9ed33d436f9f0abb03860d14ba62dbbaa11b3368d7e76f8bd88656e75a",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 2333,
+                  "end": 2439
+                }
+              ]
+            },
+            {
+              "warning_id": "20edcf15194aad532ce96020f3fa6e5fc12ab4396240432ff43c6f438c4c25a9",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 2634,
+                  "end": 2748
+                }
+              ]
+            },
+            {
+              "warning_id": "b00818b576e3982af04a988552ecd1601a58cc19b04a01cbc4a6226a7507707d",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 2899,
+                  "end": 3008
+                }
+              ]
+            },
+            {
+              "warning_id": "47c56f5a21bbc3a250f250433aa6e4c95cfbd13ab3ed77450336752c2d98654b",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 3102,
+                  "end": 3206
+                }
+              ]
+            },
+            {
+              "warning_id": "8ee1187c865408561da67da3becbc880daa0ae7e95bf526137e8f5954e8c12dd",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 3379,
+                  "end": 3486
+                }
+              ]
+            },
+            {
+              "warning_id": "398fdb94e7d9e0e80fbccc2a6770aadb9cd38f9ba669bf30e2315891d21ba6ed",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 3670,
+                  "end": 3781
+                }
+              ]
+            },
+            {
+              "warning_id": "cc68b6feb8c31112a7deacd9f8f9062b7f8a6973266cf9f82519e93f0ab873ea",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 2,
+                  "start": 3918,
+                  "end": 4021
+                }
+              ]
+            },
+            {
+              "warning_id": "a09298f019f60caba5a3f3b1d5901093165b48bc6ef07c92fdee2a6c5b359d94",
+              "code": "suspicious_bullet",
+              "message": "Leading G may be a misdecoded bullet; kept unchanged and treated only as a tentative clause boundary.",
+              "resolution": "unresolved",
+              "source_spans": [
+                {
+                  "page_number": 3,
+                  "start": 45,
+                  "end": 153
+                }
+              ]
+            },
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response exactly quotes the relevant source-repository SCA requirement from the chunk, including the mandatory enablement, approved examples, enterprise-equivalent option, and prohibition on relying only on manual review. It addresses the question directly without adding unsupported claims or broadening the policy scope."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 142,
+          "record_hash": "d2fb67e02b2ad6a229090b60500c6ccd3859517a84edc27caa93e6f2bd504e4b"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 378,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "33278a5b4a9aeb373a53d2f1e75e99b63b75da00443643dd45e6dc7238cf8e9a"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "The passage requires that **automated software composition analysis (SCA)** be enabled in all source repositories, including approved examples. It **prohibits relying solely on manual review** for identifying and managing open-source components.",
+      "input_tokens": 317,
+      "output_tokens": 45,
+      "generation_seconds": 2.3582045810762793,
+      "output_tokens_per_second_including_prefill": 19.082313876034497,
+      "peak_allocated_bytes": 9962504704,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": false,
+      "token_f1": 0.3380281690140845,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

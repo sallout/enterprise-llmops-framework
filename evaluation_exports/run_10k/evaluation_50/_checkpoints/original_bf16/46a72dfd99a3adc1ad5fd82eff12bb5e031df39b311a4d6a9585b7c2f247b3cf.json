@@ -1,0 +1,32 @@
+{
+  "key": "a6a8c27b8ced4a69feea698285a08da8f9f7189526eb5d7c73e737018674e326",
+  "digest": "a3c5ee4b584596c5bb4789dc7e581447b26f45c4c90c4d3e1f7e16994a6cd400",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:164",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "164"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef are_equivalent(a, b):\n    def sum_of_divisors(n):\n        if n == 0:\n            return 0\n        total = 1\n        sqrt_n = int(math.isqrt(n))\n        for i in range(2, sqrt_n + 1):\n            if n % i == 0:\n                total += i\n                if i != n // i:\n                    total += n // i\n        return total\n\n    return sum_of_divisors(a) == sum_of_divisors(b)\n```",
+      "input_tokens": 95,
+      "output_tokens": 114,
+      "generation_seconds": 4.573703601025045,
+      "output_tokens_per_second_including_prefill": 24.925095708967817,
+      "peak_allocated_bytes": 29580764672,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "key": "b37fd3efcec4c46801c69699593bcb0c33f3bb637df09ab5dd04e74940037a63",
+  "digest": "cb18a7e2d74be9db23b3254aa304381116ba23b86360b0c5818dc8f24037bd8d",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/90",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/90"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef next_smallest(lst):\n    \"\"\"\n    Returns the second smallest element in the list.\n    Returns None if there is no such element.\n    \n    :param lst: List of integers\n    :return: Second smallest integer or None\n    \"\"\"\n    if len(lst) < 2:\n        return None\n    unique_sorted = sorted(set(lst))\n    if len(unique_sorted) < 2:\n        return None\n    return unique_sorted[1]\n```",
+      "input_tokens": 153,
+      "output_tokens": 97,
+      "generation_seconds": 5.113867431995459,
+      "output_tokens_per_second_including_prefill": 18.968031786101673,
+      "peak_allocated_bytes": 9917819904,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

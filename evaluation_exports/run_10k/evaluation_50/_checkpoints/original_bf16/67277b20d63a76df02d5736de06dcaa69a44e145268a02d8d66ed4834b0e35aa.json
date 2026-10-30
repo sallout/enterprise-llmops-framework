@@ -1,0 +1,32 @@
+{
+  "key": "1b2bb881a8c76565db9f2ee6bdcdba8969b182de4da63fb58010def2dcd20dd6",
+  "digest": "0d42bd69a4b8d897aa119272e809663b5912f762fc02a0148453635be4efa8d4",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/145",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/145"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    def digit_sum(n):\n        return sum(abs(int(d)) for d in str(abs(n)))\n\n    # Pair each number with its index and digit sum\n    indexed_nums = [(num, idx, digit_sum(num)) for idx, num in enumerate(nums)]\n\n    # Sort by digit sum, then by original index\n    indexed_nums.sort(key=lambda x: (x[2], x[1]))\n\n    # Extract the sorted numbers\n    return [num for num, idx, _ in indexed_nums]\n```",
+      "input_tokens": 150,
+      "output_tokens": 223,
+      "generation_seconds": 8.956203727051616,
+      "output_tokens_per_second_including_prefill": 24.898942319327038,
+      "peak_allocated_bytes": 29607638016,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

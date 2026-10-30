@@ -1,0 +1,32 @@
+{
+  "key": "b86596624d05ac8e4e0b713ebc844f3459166199b654eca998f3b214c29db9e2",
+  "digest": "2cf7a9183569e0a787261d841814c353da22499e16c7a18056c6e0ce82002cfb",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:249",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "249"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef intersection_array(arr1, arr2):\n    \"\"\"\n    Returns the intersection of two arrays.\n    \n    Parameters:\n    arr1 (list): The first list.\n    arr2 (list): The second list.\n    \n    Returns:\n    list: A list containing the intersection of arr1 and arr2.\n    \"\"\"\n    return list(set(arr1) & set(arr2))\n```",
+      "input_tokens": 188,
+      "output_tokens": 81,
+      "generation_seconds": 4.292278421926312,
+      "output_tokens_per_second_including_prefill": 18.871096428933047,
+      "peak_allocated_bytes": 9927429120,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

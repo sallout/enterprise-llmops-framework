@@ -1,0 +1,32 @@
+{
+  "key": "1ad5cec6b7db67cea237ae29a423eec430cb688bbc6f5cb62905c1253f026a4b",
+  "digest": "9d3fdfe6b2be5db1c6bea7c9bf6bca200927f8d7f156388130b3049f707a9b4c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/75",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/75"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_multiply_prime(a):\n    \"\"\"\n    Returns True if the given number is the multiplication of 3 prime numbers,\n    and False otherwise. Assumes that a is less than 100.\n    \"\"\"\n    def is_prime(n):\n        \"\"\"Returns True if n is a prime number, False otherwise.\"\"\"\n        if n < 2:\n            return False\n        for i in range(2, int(math.sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    primes = [i for i in range(2, a) if is_prime(i)]\n    for i in primes:\n        for j in primes:\n            for k in primes:\n                if i * j * k == a:\n                    return True\n    return False\n```",
+      "input_tokens": 112,
+      "output_tokens": 170,
+      "generation_seconds": 8.887367713963613,
+      "output_tokens_per_second_including_prefill": 19.128273463120042,
+      "peak_allocated_bytes": 9907811328,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

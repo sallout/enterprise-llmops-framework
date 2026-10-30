@@ -1,0 +1,32 @@
+{
+  "key": "1cd577032466c18a3af30a25d2fc6a8d6c7d5c26f318e85c74e7f34c2e8dbbb2",
+  "digest": "d959e0f58d4d75a37b3c7fcc5589dd82ccc8318e2bef857fe89be0a61f5042a4",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/153",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/153"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Strongest_Extension(class_name, extensions):\n    \"\"\"\n    Returns the strongest extension for a given class.\n    \n    Parameters:\n    class_name (str): The name of the class.\n    extensions (list): A list of extension names.\n    \n    Returns:\n    str: The class name concatenated with the strongest extension name.\n    \"\"\"\n    def strength(extension):\n        return extension.count('A') - extension.count('a')\n    \n    strongest_extension = max(extensions, key=strength)\n    return f\"{class_name}.{strongest_extension}\"\n```",
+      "input_tokens": 306,
+      "output_tokens": 115,
+      "generation_seconds": 6.163999294047244,
+      "output_tokens_per_second_including_prefill": 18.65671855463366,
+      "peak_allocated_bytes": 9959879680,
+      "peak_reserved_bytes": 10030678016
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

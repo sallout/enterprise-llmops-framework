@@ -1,0 +1,32 @@
+{
+  "key": "2213a8d935a3536b84bcb1397107e875990ff78360fd6cdc77a029a6c6a41f55",
+  "digest": "f93ff146f4efa36cb8d90fd172475d986cafbfd4860091bd301f3cc1cd3b1263",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/69",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/69"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n    freq = Counter(lst)\n    result = -1\n    for num in freq:\n        if freq[num] >= num and num > result:\n            result = num\n    return result\n```",
+      "input_tokens": 194,
+      "output_tokens": 208,
+      "generation_seconds": 8.21247113100253,
+      "output_tokens_per_second_including_prefill": 25.3273340852047,
+      "peak_allocated_bytes": 29612391936,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

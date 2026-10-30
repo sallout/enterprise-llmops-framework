@@ -1,0 +1,32 @@
+{
+  "key": "f60f461b639bf564f7553e5ea60c3098719f065f81fc0a52ae2d46658da0e3d3",
+  "digest": "5a5cba0b491faab2d5f4491fec153c730af3891c38350508ad11f3beaac338e8",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:310",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "310"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef string_to_tuple(input_string):\n    \"\"\"\n    Converts a given string to a tuple of characters.\n    \n    Parameters:\n    input_string (str): The string to be converted.\n    \n    Returns:\n    tuple: A tuple containing each character of the input string.\n    \"\"\"\n    return tuple(input_string)\n```",
+      "input_tokens": 131,
+      "output_tokens": 66,
+      "generation_seconds": 3.536701878067106,
+      "output_tokens_per_second_including_prefill": 18.661454167030502,
+      "peak_allocated_bytes": 9913053696,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

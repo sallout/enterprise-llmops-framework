@@ -1,0 +1,32 @@
+{
+  "key": "ccd9272b6ff762363c7129ed434e5381ac151c01fd6c514f431a5076089e2f23",
+  "digest": "525210d67d894a220430c8146eabf021208ad0e14e86b091d4f958dfc26eaa44",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/30",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/30"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef get_positive(l: list):\n    \"\"\"Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n    return [x for x in l if x > 0]\n```",
+      "input_tokens": 147,
+      "output_tokens": 131,
+      "generation_seconds": 6.924856811994687,
+      "output_tokens_per_second_including_prefill": 18.91735866265021,
+      "peak_allocated_bytes": 9916250112,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

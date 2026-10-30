@@ -1,0 +1,32 @@
+{
+  "key": "cc6f7f1bbf02477654afcfa95eab40e57b0f0c89de5fe10819940632ef8d8a75",
+  "digest": "193fa31c194f7607910ef59a21dc1ddb22518dc012446f479b2144eaf2986a65",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:164",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "164"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_of_divisors(n):\n    \"\"\"\n    Calculate the sum of all divisors of a given integer n.\n    \"\"\"\n    divisors = set()\n    for i in range(1, int(n**0.5) + 1):\n        if n % i == 0:\n            divisors.add(i)\n            divisors.add(n // i)\n    return sum(divisors)\n\ndef are_equivalent(a, b):\n    \"\"\"\n    Determine if the sum of the divisors of two integers a and b are the same.\n    \"\"\"\n    return sum_of_divisors(a) == sum_of_divisors(b)\n```",
+      "input_tokens": 95,
+      "output_tokens": 130,
+      "generation_seconds": 6.830955818993971,
+      "output_tokens_per_second_including_prefill": 19.03101168339071,
+      "peak_allocated_bytes": 9902043136,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

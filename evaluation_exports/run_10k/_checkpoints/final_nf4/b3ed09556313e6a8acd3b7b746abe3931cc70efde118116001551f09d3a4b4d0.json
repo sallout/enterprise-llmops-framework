@@ -1,0 +1,32 @@
+{
+  "key": "b12067388e3a664407219c39f40703b2868242284e759506dc2b2007ce6489a4",
+  "digest": "0b9a03feb6e44dad348ebd5e030105d527ab6b19fe4207b365941b38b8b12e41",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:421",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "421"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef concatenate_tuple(input_tuple, delimiter='-'):\n    \"\"\"\n    Concatenates each element of the input tuple using the specified delimiter.\n    \n    :param input_tuple: Tuple containing elements to be concatenated.\n    :param delimiter: String used to join the elements of the tuple.\n    :return: A string with elements of the tuple joined by the delimiter.\n    \"\"\"\n    return delimiter.join(map(str, input_tuple))\n```",
+      "input_tokens": 130,
+      "output_tokens": 88,
+      "generation_seconds": 4.652027381001972,
+      "output_tokens_per_second_including_prefill": 18.916483673199323,
+      "peak_allocated_bytes": 9912865792,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

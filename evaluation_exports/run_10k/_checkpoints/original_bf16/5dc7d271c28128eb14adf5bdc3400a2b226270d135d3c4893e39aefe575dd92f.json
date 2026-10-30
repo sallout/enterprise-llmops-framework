@@ -1,0 +1,32 @@
+{
+  "key": "6f52cfabf15dd9f4e7e98cd19e7bef165dd28802de9f3d9148f95dcd6419d04b",
+  "digest": "ea74858a9177a60d89956f7971df12976d06e72e8cd8c7f6aac45eec67b39842",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:429",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "429"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef and_tuples(t1, t2):\n    return tuple(a & b for a, b in zip(t1, t2))\n```",
+      "input_tokens": 177,
+      "output_tokens": 32,
+      "generation_seconds": 1.3073555640876293,
+      "output_tokens_per_second_including_prefill": 24.47689127504651,
+      "peak_allocated_bytes": 29601058816,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

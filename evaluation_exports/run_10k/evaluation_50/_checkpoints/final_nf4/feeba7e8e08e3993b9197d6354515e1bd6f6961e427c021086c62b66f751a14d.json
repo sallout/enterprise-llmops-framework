@@ -1,0 +1,32 @@
+{
+  "key": "26f9fdabab749da0ca7e8fd93472b310f78f568955464064ef89eac1b298555d",
+  "digest": "4a70a092ad1f23f7eec318b8998ffdb65ce3624758331e28f4a68468db705ed9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:11",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "11"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef remove_Occ(s, char):\n    \"\"\"\n    Removes the first and last occurrence of a given character from the string.\n    \n    Parameters:\n    s (str): The input string.\n    char (str): The character to remove.\n    \n    Returns:\n    str: The string with the first and last occurrence of the character removed.\n    \"\"\"\n    first_index = s.find(char)\n    last_index = s.rfind(char)\n    if first_index == -1 or last_index == -1:\n        return s\n    return s[:first_index] + s[first_index+1:last_index] + s[last_index+1:]\n\n# Test cases\nassert remove_Occ(\"hello\", \"l\") == \"heo\"\nassert remove_Occ(\"abcda\", \"a\") == \"bcd\"\nassert remove_Occ(\"PHP\", \"P\") == \"H\"\n```",
+      "input_tokens": 93,
+      "output_tokens": 181,
+      "generation_seconds": 9.50385237194132,
+      "output_tokens_per_second_including_prefill": 19.044908624041234,
+      "peak_allocated_bytes": 9901499392,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

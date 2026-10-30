@@ -1,0 +1,32 @@
+{
+  "key": "94fda3e669301307bb53f58fa1cc35caeba777d003deed4181b0a82031ac5fcd",
+  "digest": "2c888449c0bbdfcdb1762a885ac5327dd8fb0ffbd504e3b5ade6d269c59da75a",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:103",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "103"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import comb\n\ndef eulerian_num(n, m):\n    if m < 0 or m >= n:\n        return 0\n    total = 0\n    for k in range(m + 1, n + 1):\n        total += (-1)**(k - m) * comb(n + 1, k) * (k - m)**n\n    return total\n```",
+      "input_tokens": 91,
+      "output_tokens": 87,
+      "generation_seconds": 3.5432965460931882,
+      "output_tokens_per_second_including_prefill": 24.55340637405174,
+      "peak_allocated_bytes": 29575684608,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

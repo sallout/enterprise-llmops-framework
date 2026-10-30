@@ -1,0 +1,32 @@
+{
+  "key": "584bdb8308d36f6220eb4949407cecb794599ac75ad24d33ec7747ae69429fd0",
+  "digest": "c95faa742fdeb3aa07f0310646f1c862127060ca07a90c2370b39150f8d5d002",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:421",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "421"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef concatenate_tuple(t):\n    return '-'.join(map(str, t))\n\n# Test cases\nassert concatenate_tuple((\"ID\", \"is\", 4, \"UTS\")) == 'ID-is-4-UTS'\nassert concatenate_tuple((\"QWE\", \"is\", 4, \"RTY\")) == 'QWE-is-4-RTY'\nassert concatenate_tuple((\"ZEN\", \"is\", 4, \"OP\")) == 'ZEN-is-4-OP'\n```",
+      "input_tokens": 130,
+      "output_tokens": 104,
+      "generation_seconds": 4.2263689080718905,
+      "output_tokens_per_second_including_prefill": 24.607411766959498,
+      "peak_allocated_bytes": 29585432576,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

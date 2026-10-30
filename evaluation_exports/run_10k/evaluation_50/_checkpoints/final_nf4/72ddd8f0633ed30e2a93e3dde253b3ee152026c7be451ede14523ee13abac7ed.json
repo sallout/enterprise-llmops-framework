@@ -1,0 +1,32 @@
+{
+  "key": "a68b035c2c321678f7bac095e9dd57555ee632e37de08e419cb6d49abc863fa0",
+  "digest": "e2cd74ee5495d6a6283593b46f427e4ea219447f11e1404e0bdca96fcd18a81c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:442",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "442"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef positive_count(arr):\n    \"\"\"\n    Calculate the ratio of positive numbers in an array of integers.\n\n    Parameters:\n    arr (list of int): The input list of integers.\n\n    Returns:\n    float: The ratio of positive numbers in the array.\n    \"\"\"\n    if not arr:\n        return 0.0\n    positive_count = sum(1 for num in arr if num > 0)\n    return positive_count / len(arr)\n```",
+      "input_tokens": 182,
+      "output_tokens": 95,
+      "generation_seconds": 5.059677497949451,
+      "output_tokens_per_second_including_prefill": 18.775900250263163,
+      "peak_allocated_bytes": 9925697536,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

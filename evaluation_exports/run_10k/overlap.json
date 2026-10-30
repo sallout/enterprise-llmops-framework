@@ -1,0 +1,24 @@
+{
+  "key": "4ca5d18b7f506e56a37f17333cb9e1d8be68af71e7826a9e01170f1d4d7972d6",
+  "digest": "3de4a5d56f16171ac77f1fa3320987ab304af6972423331cb6068df6b9406fcf",
+  "data": {
+    "status": "LIMITED_CHECK_COMPLETED",
+    "training_rows_checked": 10372,
+    "excluded": {
+      "enterprise:e110bbf69665b53d2aefe23bf65c10f7d34fb59ed33a000319eb1f87a8ac7004": {
+        "reason": "suspected_training_overlap",
+        "field": "reference",
+        "coverage_of_13_word_ngrams": 1.0,
+        "training_record_id": "eecbed930276b526caea31fe913ad905bb88df31db51330dc5f869707da5f5da"
+      },
+      "enterprise:c99fddcc8d0912629186d7e6ec4551054169fd134895d26a9b0a3e73f34b7b04": {
+        "reason": "suspected_training_overlap",
+        "field": "reference",
+        "coverage_of_13_word_ngrams": 0.8522727272727273,
+        "training_record_id": "cb0b88745c990f5629ac1eac9ea1f0b27e235b7b7271be32408f98772f00da68"
+      }
+    },
+    "method": ">=80% containment of 13-word prompt OR reference ngrams in a single cached training row",
+    "limitations": "Short passages, paraphrases and pretraining overlap remain unresolved; absence of matches is not proof of independence."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "key": "7965ebda57c9a7e85ea5ec074d817ca38c3f7ea762bd8a476fc41a86f2eeb21b",
+  "digest": "df44659ab17426b8a2cd1fb25e7671e8465165e57b9ebfc93192758f66e2601e",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:226",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "226"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef odd_values_string(input_string):\n    \"\"\"\n    Returns a new string containing only the characters at odd indices of the input string.\n    \n    :param input_string: The string from which characters at odd indices will be extracted.\n    :return: A string containing characters at odd indices.\n    \"\"\"\n    return input_string[1::2]\n```",
+      "input_tokens": 98,
+      "output_tokens": 73,
+      "generation_seconds": 3.853666134062223,
+      "output_tokens_per_second_including_prefill": 18.943000628611617,
+      "peak_allocated_bytes": 9902858240,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

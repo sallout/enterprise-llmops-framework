@@ -1,0 +1,32 @@
+{
+  "key": "ea39d1f4ac4c4350f34c2d5d9d5126935faff6287a2c2c95b66138c926a844e0",
+  "digest": "c770ba149f898351d141134fc0cadd34c52e97668f328baa661b1d6af2481262",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/136",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/136"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n    negatives = [x for x in lst if x < 0]\n    positives = [x for x in lst if x > 0]\n    \n    largest_negative = max(negatives) if negatives else None\n    smallest_positive = min(positives) if positives else None\n    \n    return (largest_negative, smallest_positive)\n```",
+      "input_tokens": 167,
+      "output_tokens": 206,
+      "generation_seconds": 10.991697135963477,
+      "output_tokens_per_second_including_prefill": 18.74141885933096,
+      "peak_allocated_bytes": 9921619968,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

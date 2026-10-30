@@ -1,0 +1,32 @@
+{
+  "key": "c91b61beec271337c946643e56c60cd72f9eabb9517af5300fe2af7b866ba7df",
+  "digest": "2e580031fbc15c467af645ae65bb0f7973ab0e4fd00ecfb8c51489c108bf5d3b",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:479",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "479"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef first_Digit(number):\n    \"\"\"\n    Returns the first digit of a given number.\n    \n    Parameters:\n    number (int): The number from which to find the first digit.\n    \n    Returns:\n    int: The first digit of the number.\n    \"\"\"\n    return int(str(number)[0])\n```",
+      "input_tokens": 85,
+      "output_tokens": 66,
+      "generation_seconds": 3.4527047839947045,
+      "output_tokens_per_second_including_prefill": 19.11544835977533,
+      "peak_allocated_bytes": 9899324416,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

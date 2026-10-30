@@ -1,0 +1,32 @@
+{
+  "key": "1e904a6ba78bba15e59cef7e5a018bcb7883eabe428500790a689ca9e4a564b5",
+  "digest": "218c0b383d1d93ea868ab14c6eade2a0f37e3fbb39d20313c19f27cd85351408",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/158",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/158"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"aaaaaaa\"\n    \"\"\"\n    max_unique = -1\n    result = \"\"\n    for word in words:\n        unique_chars = len(set(word))\n        if unique_chars > max_unique or (unique_chars == max_unique and word < result):\n            max_unique = unique_chars\n            result = word\n    return result\n```",
+      "input_tokens": 149,
+      "output_tokens": 179,
+      "generation_seconds": 7.042022345936857,
+      "output_tokens_per_second_including_prefill": 25.418834420950162,
+      "peak_allocated_bytes": 29600265216,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

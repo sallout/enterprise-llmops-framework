@@ -1,0 +1,32 @@
+{
+  "key": "a4a48f75eaa944fe9d18f2e7925caa89f1a2cbec5dfa5f6b757a915d5b55a3f5",
+  "digest": "534bebe5cb6d4188e8434e152f36cd82a210b5123795b5ebf1faf7590d3d9e6c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/45",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/45"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef triangle_area(a, h):\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    return 0.5 * a * h\n```",
+      "input_tokens": 75,
+      "output_tokens": 56,
+      "generation_seconds": 2.960099263000302,
+      "output_tokens_per_second_including_prefill": 18.91828449808113,
+      "peak_allocated_bytes": 9896605696,
+      "peak_reserved_bytes": 10030678016
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

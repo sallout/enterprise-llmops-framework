@@ -1,0 +1,32 @@
+{
+  "key": "903897478da890fbd9b871710751f99b31c6ae68d4db61bbc96a5ed19a0b3b02",
+  "digest": "1b940b2b4a38e1faba2f45ae7869f5dff28103fb9355d7959fe694bb667acebf",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:272",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "272"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef rear_extract(tuples_list):\n    \"\"\"\n    Returns a list containing the rear element of each tuple in the input list.\n    \n    :param tuples_list: List of tuples\n    :return: List of rear elements\n    \"\"\"\n    return [t[-1] for t in tuples_list]\n```",
+      "input_tokens": 207,
+      "output_tokens": 65,
+      "generation_seconds": 3.4325901030097157,
+      "output_tokens_per_second_including_prefill": 18.936138032620793,
+      "peak_allocated_bytes": 9933052416,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

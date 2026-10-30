@@ -1,0 +1,32 @@
+{
+  "key": "7b8d5862a8308ab1b23a89a226d11f0b5e726abc437d1d9dd501dfd6102c013b",
+  "digest": "c35b2867c32c3db62e365ad05bf13f8be2152bfdb71240282ca8139e358d939b",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/145",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/145"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef order_by_points(nums):\n    \"\"\"\n    Sorts the given list of integers in ascending order according to the sum of their digits.\n    If there are several items with similar sum of their digits, order them based on their index in the original list.\n\n    :param nums: List of integers\n    :return: List of integers sorted by the sum of their digits\n    \"\"\"\n    def digit_sum(n):\n        return sum(abs(int(d)) for d in str(n))\n    \n    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))\n```",
+      "input_tokens": 150,
+      "output_tokens": 120,
+      "generation_seconds": 6.317819226998836,
+      "output_tokens_per_second_including_prefill": 18.993895787202476,
+      "peak_allocated_bytes": 9917034496,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

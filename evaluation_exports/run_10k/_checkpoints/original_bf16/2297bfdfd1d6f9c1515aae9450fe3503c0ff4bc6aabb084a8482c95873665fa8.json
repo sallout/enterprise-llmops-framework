@@ -1,0 +1,32 @@
+{
+  "key": "d5083460274598967b43238918423e481635d2e637dbc4d2897bb60edb2be3d2",
+  "digest": "3bb2e07275bbafa9d3f5e72581fe0fb1fca5278e1ca67d3fd296d5bee8b1a1f8",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/153",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/153"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Strongest_Extension(class_name, extensions):\n    \"\"\"Determine the strongest extension based on the strength calculation and return the formatted string.\"\"\"\n    def strength(extension):\n        cap = sum(1 for c in extension if c.isupper())\n        sm = sum(1 for c in extension if c.islower())\n        return cap - sm\n\n    strongest = max(extensions, key=strength)\n    return f\"{class_name}.{strongest}\"\n```",
+      "input_tokens": 306,
+      "output_tokens": 95,
+      "generation_seconds": 3.8718756689922884,
+      "output_tokens_per_second_including_prefill": 24.535911821963314,
+      "peak_allocated_bytes": 29640003584,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

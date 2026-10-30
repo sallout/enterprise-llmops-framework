@@ -1,0 +1,32 @@
+{
+  "key": "f65db421776fbb6fd2f3e993a1fab42c4bbca49178ec95fbe328ddbf329743d5",
+  "digest": "05380feba67dd02c9edce43df8d0149869cc4cf6f8a34eb5796e9b7c10b380f7",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:464",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "464"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_value(d, value):\n    return all(v == value for v in d.values())\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 187,
+      "output_tokens": 34,
+      "generation_seconds": 1.3795375960180536,
+      "output_tokens_per_second_including_prefill": 24.645939406174076,
+      "peak_allocated_bytes": 29603795968,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

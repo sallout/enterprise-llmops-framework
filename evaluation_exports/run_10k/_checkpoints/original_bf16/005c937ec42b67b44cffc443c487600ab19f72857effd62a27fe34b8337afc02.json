@@ -1,0 +1,32 @@
+{
+  "key": "129be06ce43de613baebc93a52d35ac149c1352350110d822085b127a414b03c",
+  "digest": "6ddc6e918556403cfb81cbb3a058e0961ac9db64909b941425f414929e613a18",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:69",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "69"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_sublist(main_list, sub_list):\n    n = len(sub_list)\n    for i in range(len(main_list) - n + 1):\n        if main_list[i:i+n] == sub_list:\n            return True\n    return False\n\n# Test cases\nassert is_sublist([2,4,3,5,7],[3,7]) == False\nassert is_sublist([2,4,3,5,7],[4,3]) == True\nassert is_sublist([2,4,3,5,7],[1,6]) == False\n```",
+      "input_tokens": 111,
+      "output_tokens": 127,
+      "generation_seconds": 5.121583487954922,
+      "output_tokens_per_second_including_prefill": 24.797018402351934,
+      "peak_allocated_bytes": 29585516032,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

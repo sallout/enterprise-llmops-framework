@@ -1,0 +1,32 @@
+{
+  "key": "a00c460a4e8eabecd11749c2e08ae77646508f70eeea400655e49bb8977af941",
+  "digest": "c91ec44c04a48149a629196305ece753dcda58f8a882583314722163c209f91a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/158",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/158"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_max(words):\n    \"\"\"\n    Returns the word with the maximum number of unique characters.\n    If there are multiple words with the same maximum number of unique characters,\n    returns the lexicographically smallest one.\n\n    :param words: List of strings\n    :return: String with maximum unique characters\n    \"\"\"\n    max_unique = -1\n    result = \"\"\n    for word in sorted(words):\n        unique_chars = len(set(word))\n        if unique_chars > max_unique:\n            max_unique = unique_chars\n            result = word\n    return result\n```",
+      "input_tokens": 149,
+      "output_tokens": 119,
+      "generation_seconds": 6.282087691011839,
+      "output_tokens_per_second_including_prefill": 18.9427473561473,
+      "peak_allocated_bytes": 9916773376,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

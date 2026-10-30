@@ -1,0 +1,32 @@
+{
+  "key": "bd095f13361406fb569ba24a4756125e1e630667d397cd5e0bb1d45f33f3722d",
+  "digest": "08b4db32664a60cac5d46f3b2bd8264490bd3431ab1939d90bec95a3491b1cf9",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/108",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/108"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n    def sum_signed_digits(n):\n        digits = []\n        if n < 0:\n            digits.append(-int(str(-n)[0]))\n            for ch in str(-n)[1:]:\n                digits.append(int(ch))\n        else:\n            for ch in str(n):\n                digits.append(int(ch))\n        return sum(digits)\n\n    count = 0\n    for num in arr:\n        if sum_signed_digits(num) > 0:\n            count += 1\n    return count\n```",
+      "input_tokens": 157,
+      "output_tokens": 226,
+      "generation_seconds": 8.873953095986508,
+      "output_tokens_per_second_including_prefill": 25.467792939114677,
+      "peak_allocated_bytes": 29609276416,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

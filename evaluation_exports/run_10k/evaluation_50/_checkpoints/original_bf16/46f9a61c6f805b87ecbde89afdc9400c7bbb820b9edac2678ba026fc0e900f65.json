@@ -1,0 +1,32 @@
+{
+  "key": "f9f77d301a29512ae3307ccf11d2bf6de110bfe8186ff83bdd20f6c6e46d25c9",
+  "digest": "256c83831f68a3ee92acefad08f2c84818418a7f3467707adef06bda7dce4bef",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/90",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/90"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n    if len(lst) < 2:\n        return None\n    unique_sorted = sorted(set(lst))\n    if len(unique_sorted) < 2:\n        return None\n    return unique_sorted[1]\n```",
+      "input_tokens": 153,
+      "output_tokens": 165,
+      "generation_seconds": 6.629362466977909,
+      "output_tokens_per_second_including_prefill": 24.88927115116963,
+      "peak_allocated_bytes": 29598625792,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

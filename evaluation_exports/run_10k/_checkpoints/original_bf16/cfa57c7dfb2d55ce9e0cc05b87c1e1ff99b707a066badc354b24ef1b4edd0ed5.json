@@ -1,0 +1,32 @@
+{
+  "key": "ceb8a655f6ee6fa62ac189490e305087a3948009d31b9a2e8ffdf5c59f46c3d0",
+  "digest": "6ca2a86da7b69cee90eca916b218c8a0a8f4bd3fe8f17b628b31165d982d5d22",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:133",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "133"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_negativenum(numbers):\n    return sum(num for num in numbers if num < 0)\n```",
+      "input_tokens": 178,
+      "output_tokens": 27,
+      "generation_seconds": 1.1033356240950525,
+      "output_tokens_per_second_including_prefill": 24.471248285982966,
+      "peak_allocated_bytes": 29601288192,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

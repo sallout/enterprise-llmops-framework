@@ -1,0 +1,192 @@
+{
+  "schema_version": "qwen3-model-evaluation-v1",
+  "status": "COMPLETED_WITH_WARNINGS",
+  "started_at": "2026-10-30T18:20:55.386864+00:00",
+  "warnings": [
+    "enterprise_semantic_review_pending",
+    "suspected_training_overlap_excluded",
+    "code_execution_disabled_no_pass_at_1"
+  ],
+  "evaluation_complete": false,
+  "suite_digest": "50fb542e75285e41c9607887df93b9f9d5727499d72bc9848b5f4e38854e5190",
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "limitations": [
+    "Base HumanEval/MBPP only; not HumanEval+/MBPP+.",
+    "Enterprise answer overlap is not semantic correctness.",
+    "Benchmark pretraining contamination remains unknown.",
+    "Benchmark selected after training; freeze before model answer inspection.",
+    "Small samples have wide uncertainty; do not tune repeatedly on a final test set.",
+    "Quality tests are not a security audit."
+  ],
+  "semantic_enterprise_correctness_verified": false,
+  "fingerprint": "19185b067260ff3477e86c360f7244ceeb626949a8c377c75a80a580a7341148",
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "contamination": {
+    "status": "LIMITED_CHECK_COMPLETED",
+    "training_rows_checked": 10372,
+    "excluded": {
+      "enterprise:e110bbf69665b53d2aefe23bf65c10f7d34fb59ed33a000319eb1f87a8ac7004": {
+        "reason": "suspected_training_overlap",
+        "field": "reference",
+        "coverage_of_13_word_ngrams": 1.0,
+        "training_record_id": "eecbed930276b526caea31fe913ad905bb88df31db51330dc5f869707da5f5da"
+      },
+      "enterprise:c99fddcc8d0912629186d7e6ec4551054169fd134895d26a9b0a3e73f34b7b04": {
+        "reason": "suspected_training_overlap",
+        "field": "reference",
+        "coverage_of_13_word_ngrams": 0.8522727272727273,
+        "training_record_id": "cb0b88745c990f5629ac1eac9ea1f0b27e235b7b7271be32408f98772f00da68"
+      }
+    },
+    "method": ">=80% containment of 13-word prompt OR reference ngrams in a single cached training row",
+    "limitations": "Short passages, paraphrases and pretraining overlap remain unresolved; absence of matches is not proof of independence."
+  },
+  "models": {
+    "original_bf16": {
+      "identity": {
+        "source": "Qwen/Qwen3-14B",
+        "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+        "identity": "40c069824f4251a91eefaf281ebe4c544efd3e18"
+      },
+      "load": {
+        "model_memory_bytes": 29536614912,
+        "quantization": null,
+        "chat_template_hash": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+      },
+      "metrics": {
+        "enterprise": {
+          "selected": 8,
+          "answers_scored_lexically": 8,
+          "normalized_exact_match": 0.0,
+          "mean_token_f1": 0.34735749321282083,
+          "semantic_correctness": "NOT_ASSESSED",
+          "human_review_required": 8
+        },
+        "humaneval": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "mbpp": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "efficiency": {
+          "measured_tasks": 48,
+          "generation_seconds": 280.19305718434043,
+          "output_tokens_per_second_including_prefill": 24.93637804666665,
+          "peak_allocated_bytes": 30627596288,
+          "peak_reserved_bytes": 31029460992,
+          "note": "Sequential batch 1, synchronized wall time including prefill; TTFT not measured; excludes model load and warmup."
+        }
+      }
+    },
+    "final_nf4": {
+      "identity": {
+        "source": "/workspace/artifacts/compression_opencode_10k/model_4bit",
+        "revision": null,
+        "files": {
+          "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+          "config.json": "0f740010cad2aec8325f4e4681c488609d4f3c9d1b011a26a170e03d052b270c",
+          "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+          "model-00001-of-00003.safetensors": "7a3cb3dda2f9daa6877b228ce89d147a75e152cf1a2c057b71d8d37765983054",
+          "model-00002-of-00003.safetensors": "223503a938eee9fca24515d8bf44ccac1a9611aedaef4adb559f240c256cf777",
+          "model-00003-of-00003.safetensors": "2a37556b8b3347bc0ef9cde80c556d9b9c952ffa2b275ceeb480fff2806028c7",
+          "model.safetensors.index.json": "df8620b77a4c4e72d9863084afb0770bc16e1a53de616f5e6405cc286cd6a286",
+          "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+          "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+        },
+        "identity": "3900abff9c050fc7ce8e6bbad463619b765e8da2fc25dc055ab38dde6ed9b459"
+      },
+      "load": {
+        "metadata_available": false,
+        "note": "Load metadata was not committed before export failure; generation timings remain in task checkpoints."
+      },
+      "metrics": {
+        "enterprise": {
+          "selected": 8,
+          "answers_scored_lexically": 8,
+          "normalized_exact_match": 0.125,
+          "mean_token_f1": 0.49121749571200474,
+          "semantic_correctness": "NOT_ASSESSED",
+          "human_review_required": 8
+        },
+        "humaneval": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "mbpp": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "efficiency": {
+          "measured_tasks": 48,
+          "generation_seconds": 320.95173306926154,
+          "output_tokens_per_second_including_prefill": 19.0153202839474,
+          "peak_allocated_bytes": 10819705856,
+          "peak_reserved_bytes": 11207180288,
+          "note": "Sequential batch 1, synchronized wall time including prefill; TTFT not measured; excludes model load and warmup."
+        }
+      }
+    }
+  },
+  "errors": [],
+  "comparisons": {
+    "final_nf4": {}
+  },
+  "selected_tasks": 50,
+  "evaluated_tasks_per_model": 48,
+  "recovery": {
+    "method": "original checksummed per-task cache export",
+    "previous_report_hash": "674e540a645ff1b4ad040da64dcdae8e45e43e1b35e492a60d7d17b3c16173dd",
+    "original_fingerprint": "19185b067260ff3477e86c360f7244ceeb626949a8c377c75a80a580a7341148",
+    "model_inference_rerun": false,
+    "code_tests_rerun": false,
+    "note": "Existing code-test outcomes, if any, are inherited; enterprise semantic approval remains pending."
+  },
+  "output_hashes": {
+    "suite.json": "6cf4166a883f11a3a2b8a774ba3474708683a31f284c5a0e8c0277a03f4eb9e3",
+    "results.jsonl": "2f1a431daa2b69a8fb24ccc242ddcfa57e30765a07691477e62255dccc8cfa95",
+    "enterprise_review.jsonl": "6fbd695d372264be4c0a172867b4222c3549b59704c9ff0a4445a1b326ab6e62"
+  },
+  "recovered_at": "2026-10-30T18:42:45.180655+00:00"
+}

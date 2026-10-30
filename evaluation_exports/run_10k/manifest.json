@@ -1,0 +1,61 @@
+{
+  "version": "qwen3-model-evaluation-v1",
+  "suite_digest": "50fb542e75285e41c9607887df93b9f9d5727499d72bc9848b5f4e38854e5190",
+  "models": {
+    "original_bf16": {
+      "source": "Qwen/Qwen3-14B",
+      "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+      "identity": "40c069824f4251a91eefaf281ebe4c544efd3e18"
+    },
+    "final_nf4": {
+      "source": "/workspace/artifacts/compression_opencode_10k/model_4bit",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "0f740010cad2aec8325f4e4681c488609d4f3c9d1b011a26a170e03d052b270c",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00003.safetensors": "7a3cb3dda2f9daa6877b228ce89d147a75e152cf1a2c057b71d8d37765983054",
+        "model-00002-of-00003.safetensors": "223503a938eee9fca24515d8bf44ccac1a9611aedaef4adb559f240c256cf777",
+        "model-00003-of-00003.safetensors": "2a37556b8b3347bc0ef9cde80c556d9b9c952ffa2b275ceeb480fff2806028c7",
+        "model.safetensors.index.json": "df8620b77a4c4e72d9863084afb0770bc16e1a53de616f5e6405cc286cd6a286",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "3900abff9c050fc7ce8e6bbad463619b765e8da2fc25dc055ab38dde6ed9b459"
+    }
+  },
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "training_tokens_hash": "4eac02dc1a95b2c4228e50efc8abec0f866a373a899ced18866aeef3ca30f91f",
+  "implementation": {
+    "__init__.py": "dba0304bd6ead3c00a6919d080cc85d03c49c6092230a25d32a766af518d3aa4",
+    "backend.py": "a83948cbae7615469c1d2dbc6a1b09c1595d18f64313d92362bd0337b0596ab0",
+    "contamination.py": "8a98695fb74dd79cec61839a498788e0e8e2274f54c813a0c4273c98ec923f0e",
+    "execution.py": "d2795bd76e60b57fbadb3a70cb352f288d22c41df1553991d7b7d434093e1955",
+    "pipeline.py": "1bb924971188d9270232dac7672ca95dc38c4b784eaa645ea612afa7779fecc2",
+    "schemas.py": "1c6cfb112e3ce2a1819d5a6ef54924f7669411bcc96fdfc10b58b13325e6c636",
+    "scoring.py": "3c3b93879ad4ca1e1318617ab49d65664be203eea3173679c09594fb911e64e6",
+    "suites.py": "c5f534716ab733d354acf3922dc2501548a2198edbd3b8bc3d9f91a586abab50"
+  },
+  "fingerprint": "19185b067260ff3477e86c360f7244ceeb626949a8c377c75a80a580a7341148"
+}

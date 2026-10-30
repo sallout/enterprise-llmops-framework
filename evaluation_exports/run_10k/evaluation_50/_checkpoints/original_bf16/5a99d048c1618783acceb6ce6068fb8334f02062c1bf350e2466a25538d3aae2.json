@@ -1,0 +1,32 @@
+{
+  "key": "276559c1bad3ac295c5e86811d4ebb3d104bb4f07fec233d355a66542f63e011",
+  "digest": "1b6e11bf818bff781e4d2b226664fd3f613d6e2afe0e7043ed4e05d3960ec63c",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:105",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "105"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count(boolean_list):\n    return sum(boolean_list)\n\n# Test cases\nassert count([True, False, True]) == 2\nassert count([False, False]) == 0\nassert count([True, True, True]) == 3\n```",
+      "input_tokens": 79,
+      "output_tokens": 57,
+      "generation_seconds": 2.2913152419496328,
+      "output_tokens_per_second_including_prefill": 24.87654206476621,
+      "peak_allocated_bytes": 29569633280,
+      "peak_reserved_bytes": 29722935296
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

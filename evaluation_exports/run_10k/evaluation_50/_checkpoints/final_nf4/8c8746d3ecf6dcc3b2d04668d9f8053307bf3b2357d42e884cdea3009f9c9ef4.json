@@ -1,0 +1,32 @@
+{
+  "key": "bb1b0628a8d9ddedcd360ee67b1280a07e68d77cf31d2af3e81136af347bcba2",
+  "digest": "352c5ff2273f2c28ea43cb4b4218188257f54cb0b563c253751c49a05c50834a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/82",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/82"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef prime_length(string):\n    \"\"\"Write a function that takes a string and returns True if the string\n    length is a prime number or False otherwise\n    Examples\n    prime_length('Hello') == True\n    prime_length('abcdcba') == True\n    prime_length('kittens') == True\n    prime_length('orange') == False\n    \"\"\"\n    def is_prime(n):\n        \"\"\"Check if a number is prime.\"\"\"\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    return is_prime(len(string))\n```",
+      "input_tokens": 110,
+      "output_tokens": 195,
+      "generation_seconds": 10.26134066504892,
+      "output_tokens_per_second_including_prefill": 19.00336480048734,
+      "peak_allocated_bytes": 9907329024,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

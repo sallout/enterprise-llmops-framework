@@ -1,0 +1,32 @@
+{
+  "key": "191d5dfaa563a52a83774ef63beddfbac7abed6c6970cdde84cf43f8edda0f6b",
+  "digest": "1b05797392a35187f526836cabcd2ad7684bdf773138f0cf3798fa30ed4c8019",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:429",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "429"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef and_tuples(tuple1, tuple2):\n    \"\"\"\n    Returns a tuple where each element is the result of the bitwise AND operation\n    between the corresponding elements of the input tuples.\n    \"\"\"\n    return tuple(a & b for a, b in zip(tuple1, tuple2))\n```",
+      "input_tokens": 177,
+      "output_tokens": 62,
+      "generation_seconds": 3.27172264107503,
+      "output_tokens_per_second_including_prefill": 18.950261621085307,
+      "peak_allocated_bytes": 9924912128,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

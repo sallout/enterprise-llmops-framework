@@ -1,0 +1,32 @@
+{
+  "key": "4b2e22c9cf20acf54e55a234d595ea7ba03a20d598cc542bdd9fb38a371e63a2",
+  "digest": "1a4cf3b52e56fdb6c25bf40c1f958997d7a8a804e9469e0233188e41622b105d",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:285",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "285"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_match_two_three(text):\n    \"\"\"\n    Returns True if the input string contains the 'a' character followed by two or three 'b' characters.\n    \"\"\"\n    pattern = r'ab{2,3}'\n    return bool(re.search(pattern, text))\n```",
+      "input_tokens": 93,
+      "output_tokens": 62,
+      "generation_seconds": 3.2240809579379857,
+      "output_tokens_per_second_including_prefill": 19.230286338607677,
+      "peak_allocated_bytes": 9901499392,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}
