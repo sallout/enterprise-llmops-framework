@@ -1,0 +1,243 @@
+{
+  "title": "Bridging the Chasm: A Tri-Phase Framework for Enterprise AI (Corporate Data Transformation, Tuning for Compliance, and Robustness Auditing)",
+  "author": "Mohammed Alaa Marzouq Sallout",
+  "student_id": "2024tm93522",
+  "abstract_word_count": 131,
+  "body_source_word_count": 7393,
+  "paper_inches": [
+    9,
+    11
+  ],
+  "margins_inches": 1,
+  "body_font": "Times New Roman 12pt",
+  "body_line_spacing": 2,
+  "pending_faculty_mentor": true,
+  "pending_submission_date": true,
+  "pending_signatures": true,
+  "headings": [
+    [
+      "1 Introduction",
+      1
+    ],
+    [
+      "1.1 Problem and purpose",
+      2
+    ],
+    [
+      "1.2 Research questions and scope",
+      2
+    ],
+    [
+      "1.3 Contribution and evidence boundary",
+      2
+    ],
+    [
+      "2 Related work and research scope",
+      1
+    ],
+    [
+      "2.1 Enterprise adaptation and the research gap",
+      2
+    ],
+    [
+      "2.2 Coding instruction data and functional evaluation",
+      2
+    ],
+    [
+      "2.3 Adaptation and model compression",
+      2
+    ],
+    [
+      "2.4 Enterprise rules and robustness",
+      2
+    ],
+    [
+      "3 Research method and system architecture",
+      1
+    ],
+    [
+      "3.1 Development method",
+      2
+    ],
+    [
+      "3.2 End-to-end flow",
+      2
+    ],
+    [
+      "3.3 Traceability and recovery",
+      2
+    ],
+    [
+      "3.4 Confidentiality and reproducibility",
+      2
+    ],
+    [
+      "4 Corporate data transformation",
+      1
+    ],
+    [
+      "4.1 Document ingestion and parsing",
+      2
+    ],
+    [
+      "4.2 Quality assessment and clause-aware chunking",
+      2
+    ],
+    [
+      "4.3 Policy example generation and validation",
+      2
+    ],
+    [
+      "4.4 Repository analysis and inherited verification",
+      2
+    ],
+    [
+      "4.5 Unified enterprise export and splits",
+      2
+    ],
+    [
+      "5 External coding data and training inputs",
+      1
+    ],
+    [
+      "5.1 Dataset inspection and adaptation",
+      2
+    ],
+    [
+      "5.2 Sampling and approved native selections",
+      2
+    ],
+    [
+      "5.3 Holdout gate and exact token supervision",
+      2
+    ],
+    [
+      "5.4 Mixture and exposure accounting",
+      2
+    ],
+    [
+      "6 Structural pruning and recovery training",
+      1
+    ],
+    [
+      "6.1 Why structural reduction is separate from quantization",
+      2
+    ],
+    [
+      "6.2 Importance heuristic and calibration",
+      2
+    ],
+    [
+      "6.3 Recovery and specialisation",
+      2
+    ],
+    [
+      "6.4 NF4 export and artifact verification",
+      2
+    ],
+    [
+      "6.5 Runtime and resumption",
+      2
+    ],
+    [
+      "7 Results and interpretation",
+      1
+    ],
+    [
+      "7.1 Software and data evidence",
+      2
+    ],
+    [
+      "7.2 RunPod compatibility findings",
+      2
+    ],
+    [
+      "7.3 Completed Qwen3 smoke experiment",
+      2
+    ],
+    [
+      "7.4 Larger coding-focused run in progress",
+      2
+    ],
+    [
+      "7.5 Threats to validity",
+      2
+    ],
+    [
+      "8 Evaluation and remaining customisation",
+      1
+    ],
+    [
+      "8.1 Comparison design",
+      2
+    ],
+    [
+      "8.2 Coding and enterprise assessment",
+      2
+    ],
+    [
+      "8.3 Efficiency and robustness measurements",
+      2
+    ],
+    [
+      "8.4 Further domain customisation",
+      2
+    ],
+    [
+      "9 Practical application and publication direction",
+      1
+    ],
+    [
+      "9.1 Application boundary",
+      2
+    ],
+    [
+      "9.2 Experimental evidence and publication scope",
+      2
+    ],
+    [
+      "9.3 Release requirements",
+      2
+    ],
+    [
+      "10 Conclusions and recommendations",
+      1
+    ],
+    [
+      "Appendix A Evidence and source pins",
+      1
+    ],
+    [
+      "Appendix B Reproduction contract",
+      1
+    ],
+    [
+      "Appendix C Completion notes",
+      1
+    ],
+    [
+      "References",
+      1
+    ],
+    [
+      "Glossary",
+      1
+    ]
+  ],
+  "captions": [
+    "Figure 3.1 Implemented workflow with the remaining evaluation boundary",
+    "Table 4.1 Prepared enterprise split distribution",
+    "Table 4.2 Canonical conversational record fields",
+    "Table 5.1 Larger OpenCodeInstruct selection reported from RunPod",
+    "Table 5.2 Configured exposure for the larger training run",
+    "Figure 6.1 Matching gate and up rows with down columns during structural pruning",
+    "Table 6.1 Recorded smoke and configured larger-run settings",
+    "Table 7.1 Completed 14B smoke export reported from RunPod",
+    "Table 8.1 Evaluation results to complete",
+    "Table A.1 Evidence register and limits",
+    "Table A.2 Immutable pins available in the local evidence",
+    "Table B.1 Recorded implementation environment",
+    "Table C.1 Outstanding work before final submission"
+  ],
+  "output_docx": "/Users/mas/Development/DissertationProject/output/dissertation/Bridging_the_Chasm_Final_Report.docx"
+}

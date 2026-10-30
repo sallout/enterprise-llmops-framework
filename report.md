@@ -1956,3 +1956,173 @@ Post-fix `uv run pytest -q`: **375 passed, 2 skipped**, five existing SWIG warni
 11.03 seconds. Skips remain real Linux/CUDA integration (not executed on macOS) and
 Docker-daemon-dependent code execution. `git diff --check` passed. No input datasets,
 credentials, model weights or previous accepted coding exports were modified.
+
+## Final dissertation draft prepared — 30 October 2026
+
+Prepared `output/dissertation/Bridging_the_Chasm_Final_Report.docx` and its PDF
+from the university's supplied report guidelines/checklist, the approved proposal,
+midterm report, this development record, inspected local artifacts and the
+operator-supplied RunPod evidence. The report retains the approved dissertation
+title. The supplied CodePlan paper is a reference for research presentation only.
+The dissertation focuses on this project's questions, methods and evidence; it
+contains no CodePlan comparison or proposed integration. Prose was reviewed using
+the requested humanizer skill.
+
+The draft contains ten chapters, three appendices, seventeen cited references,
+two original diagrams, eleven numbered tables, an unsigned supervisor certificate
+and the final student checklist. Faculty Mentor, submission date and signatures
+are intentionally blank. Completion notes distinguish unfinished comparison,
+robustness and further customisation work from implemented LoRA recovery.
+
+New server evidence is attributed to the supplied transcripts/screenshots rather
+than a local rerun: the tiny CUDA test reports **1 passed, 13 warnings in 9.04s**;
+the completed ten-step 14B smoke experiment reports **14,768,307,200 original** and
+**14,296,448,000 pruned parameters**, plus a saved/reloaded **9,696,947,260-byte NF4
+export**. The larger OpenCode selection reports **10,011 processed, 10,000 accepted,
+11 rejected** and all **10,000** approved rows subsequently validated. Its final
+source plan and rejection categories still require server artifact archival.
+The available larger training transcript records progress, not completion of the
+configured 650 steps. No coding improvement, policy-learning score, efficiency
+saving or robustness success is inferred from training loss or technical export.
+
+Document verification: **47 rendered pages**, every page visually inspected,
+extractable PDF text throughout, **131-word one-page abstract**, Introduction
+starting at logical page 1, and checklist on the last page. PDF size is
+**665,326 bytes**, below the supplied 10 MB limit. Word completion-comment anchors,
+references, figures and paper dimensions were checked programmatically; the
+render-derived contents page map was stable. Verification details and output
+checksums are recorded in `output/dissertation/document_verification.json`.
+No software regression suite or GPU experiment was rerun as part of writing the
+report. The draft requires final training evidence, independent evaluation,
+updated conclusions and supervisor/student approval before submission.
+
+### Report scope correction following author clarification
+
+CodePlan was supplied as an example of published-paper organisation, description
+and evidence-based reasoning. Removed the mistaken technical comparison, proposed
+planning integration, associated figure and glossary/reference entries from the
+dissertation. Revised related work around enterprise adaptation, coding data,
+compression and evaluation. The experimental comparisons concern original Qwen3
+and this project's model stages. Updated the abstract, contents, references and
+Word/PDF exports; the checked rendered page map is stable. All 47 revised pages
+were visually reviewed. No training results or pending evaluation values changed.
+
+## Model evaluation CLI implemented — 30 October 2026
+
+### Scope and implemented components
+
+Added **Model evaluation** to the existing interactive workspace, with configurable
+question limits, frozen selections, comparison of local checkpoints, and automatic
+comparison of a completed compression run against original Qwen3-14B. No training,
+model modification, security audit or final dissertation rewrite is performed by
+this stage. `--include-intermediates` adds pre-recovery pruned BF16 and recovered
+merged BF16 checkpoints. The default original baseline is pinned to the original
+revision recorded by the compression experiment.
+
+Source files in `src/policy_dissertation/pipelines/model_evaluation/`:
+
+- `schemas.py`: strict Pydantic configuration/task contracts.
+- `suites.py`: dataset-specific HumanEval and sanitized MBPP adapters; immutable
+  dataset revisions, seeded per-group sample selection and hash-verified enterprise
+  test records. References/hidden HumanEval tests are withheld from model prompts.
+- `backend.py`: lazy Linux/NVIDIA CUDA inference with sequential BF16/saved-NF4
+  loading, non-thinking greedy generation, explicit token-limit outcomes, warmup,
+  synchronized generation timing and peak CUDA memory measurements.
+- `execution.py`: bounded, non-root/no-network/read-only Docker Python execution;
+  preflight requires an available daemon and local image. No host-code fallback.
+- `scoring.py`: selected base-test pass@1, marginal Wilson intervals, explicitly
+  lexical enterprise answer scores and efficiency summaries.
+- `contamination.py`: bounded streaming comparison against exact cached compression
+  training rows, excluding suspected prompt/reference 13-word ngram overlap from
+  every compared model's selection.
+- `pipeline.py`: sequential comparison, local-model file hashes/remote revision
+  identities, runtime/image fingerprints, checksummed reference/task checkpoints,
+  matching-template checks, failure reports and offline scoring of saved answers.
+
+`cli.py` adds `evaluate_model` and `score_evaluation`. The interactive dashboard
+supports suite preparation, completed-run comparisons, explicitly labelled models,
+optional intermediate stages, limits and GPU-free offline scoring. Menu shortcuts
+were adjusted to remain single characters after adding another option. See
+`docs/model_evaluation.md` and the README evaluation section for complete commands,
+requirements, outputs and interpretation. No dependency or lockfile change was
+needed; inference reuses the existing Linux `training` extra.
+
+### Selected benchmarks and interpretation
+
+This version uses **base HumanEval** (official test split: 164 tasks, MIT) and
+**sanitized base MBPP** (official test split: 257 tasks, CC BY 4.0). It does not
+implement the extended HumanEval+/MBPP+ EvalPlus test suites. MBPP's supplied
+assertions are visible prompt examples and also its base executable criterion;
+they must not be described as independently constructed hidden tests. Reference
+implementations must pass in the selected Docker image before model scoring.
+Retain dataset attribution when redistributing evaluation materials.
+
+`--max-tasks` is a maximum **per coding benchmark**; `--enterprise-limit` caps
+enterprise held-out questions. Zero selects all available records in that group.
+An existing `--suite` preserves its exact selection regardless of newly supplied
+selection limits/seed. Resume requires identical suite, models, code, settings,
+image and runtime; committed task output is reused without duplicate exports.
+
+A completed run exports `suite.json`, `manifest.json`, `report.json`,
+`results.jsonl`, `enterprise_review.jsonl`, optional `overlap.json`, and clearly
+separated internal reference/task checkpoints. The first model is the comparison
+baseline. Model test failures are measured outcomes; infrastructure/reference
+failures return a nonzero exit status and preserve completed checkpoints.
+
+Enterprise normalized exact match/token F1 are **not semantic correctness**.
+Correctness, conditions/exceptions and unsupported-claim rubric fields remain
+blank for human review. Original held-out prompts are preserved; questions about
+facts unavailable during training need suitable supplied context before any
+policy-learning claim. Evaluation completion refers to the selected software
+checks, with enterprise semantic approval explicitly pending.
+
+The training-overlap audit is limited: >=80% containment of 13-word ngrams from a
+prompt OR reference within a single decoded cached training record. It does not
+exclude all paraphrases, short overlaps or unknown pretraining contamination.
+Explicit model mode without a training cache preserves a not-checked warning.
+Comparisons after changing training data must verify identical eligible test IDs.
+If results inform further training decisions, those tests become a development
+set; keep a separate final test selection. Python tests do not establish improved
+Kotlin/TypeScript behaviour. Marginal intervals and descriptive differences are
+not causal or statistical-significance claims. TTFT, energy and security remain
+outside this implementation.
+
+### Actual local verification
+
+Executed `uv run --locked pytest -q`: **404 passed, 4 skipped**, five existing SWIG
+warnings, **11.36 seconds**. Skips: existing real CUDA compression integration,
+new opt-in real CUDA evaluation generation, new opt-in real Docker evaluation,
+and existing Docker-daemon-dependent repository execution. Synthetic/mock tests
+cover adapters and hidden-target exclusion, stable sampling/IDs, checksums,
+verified enterprise test-only selection, token-limit failures, interruption and
+resume, shared-template enforcement, per-model statistics, no host fallback,
+container timeout/cleanup options, offline scoring without GPU regeneration,
+CLI forwarding and protected input/output separation. These mocked successes do
+not certify real Qwen3 inference or benchmark execution.
+
+Both `evaluate_model --help` and `score_evaluation --help` executed successfully.
+`git diff --check` passed. An actual small network preparation run selected two
+HumanEval and two MBPP tasks; a second run also included two hash-verified local
+enterprise test records, producing **six frozen tasks** in
+`artifacts/evaluation_local_with_enterprise/suite.json`. Actual Hub pins observed:
+
+- HumanEval: `7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544`.
+- MBPP: `4bb6404fdc6cacfda99d4ac4205087b89d32030c`.
+
+Benchmark reference/test syntax was inspected using AST parsing only, not executed
+on the host. Hugging Face materialized the small benchmark configurations,
+including MBPP's additional tiny splits, while only the test splits supplied
+selected tasks. No NVIDIA corpus or model weights were downloaded for these tests.
+
+An actual local inference attempt exited **1**, with a FAILED report explaining
+that Linux/NVIDIA CUDA is required. This was the intended platform guard, not a
+successful model evaluation. An actual Docker preflight found the local
+Docker daemon/image unavailable. Consequently, no real generated code was executed
+and no real model-quality or latency/VRAM result is claimed locally.
+
+On RunPod without Docker, `--executor disabled` generates/checkpoints answers but
+leaves `evaluation_complete=false` and code `pass_at_1=null`. Copy the complete
+export to a Docker-capable host and use `score_evaluation` to execute the saved
+answers without model downloads or GPU regeneration. Opt-in real integration
+commands are documented for Linux CUDA and Docker hosts. The actual 14B comparison
+and independent enterprise semantic review remain the next server experiments.

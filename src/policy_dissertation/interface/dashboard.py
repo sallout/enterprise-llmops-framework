@@ -32,7 +32,7 @@ class Option:
 
 MENU=(Option('enterprise','Enterprise data extraction'),Option('enterprise_validation','Enterprise data validation'),
       Option('external','External dataset installation'),Option('external_validation','External dataset validation'),
-      Option('fine_tuning','Model compression & fine-tuning'),Option('security','Security check',False),
+      Option('fine_tuning','Model compression & fine-tuning'),Option('evaluation','Model evaluation'),Option('security','Security check',False),
       Option('prompt_injection','Prompt injection check',False),Option('customization','Model customization',False),
       Option('environment','Env setup'),Option('exit','Exit'))
 
@@ -80,7 +80,7 @@ class Dashboard:
             self.console.clear()
             self.header()
             choices=[questionary.Choice(o.label,value=o.key,disabled=None if o.enabled else 'Not implemented',
-                       shortcut_key='0' if o.key=='exit' else str(i+1)) for i,o in enumerate(options)]
+                       shortcut_key='0' if o.key=='exit' else (str(i+1) if i<9 else chr(ord('a')+i-9))) for i,o in enumerate(options)]
             return questionary.select(title,choices=choices,use_shortcuts=True,use_indicator=True,
                 use_jk_keys=False,pointer='›',instruction='Arrow keys / number, then Enter · Ctrl+C cancels').unsafe_ask()
         for i,o in enumerate(options):
@@ -207,7 +207,8 @@ class Dashboard:
         except (OSError,ValueError):return
         allowed=('status','accepted_examples','rejected_examples','records_processed','records_checked',
                  'duplicates_removed','training_ready','data_prepared','full_plan_validated','source_run_complete','resumed_decisions',
-                 'final_model_ready','original_parameters','pruned_parameters','evaluation_pending')
+                 'final_model_ready','original_parameters','pruned_parameters','evaluation_pending',
+                 'evaluation_complete','selected_tasks','evaluated_tasks_per_model')
         table=Table(show_header=False,box=None)
         for k in allowed:
             value=r.get(k)
@@ -245,7 +246,7 @@ class Dashboard:
             if code==0:
                 try:outputs=json.loads(Path('.llmops/outputs.json').read_text())
                 except (OSError,ValueError):outputs={}
-                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model'}
+                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation'}
                 outputs={k:v for k,v in outputs.items() if k in allowed and isinstance(v,str)} if isinstance(outputs,dict) else {}
                 outputs[args[0]]=str(Path(output).resolve())
                 dump_json(Path('.llmops/outputs.json'),outputs)
@@ -483,6 +484,63 @@ class Dashboard:
             'Memory':'BF16 pruning/recovery needs substantially more VRAM than 4-bit inference',
             'Evaluation':'Technical smoke checks only; final quality/security evaluation remains pending'}):self.execute(args,output)
 
+    def evaluation(self):
+        action=self.choose('Model evaluation — Linux NVIDIA CUDA',[Option('compare','Compare a completed compression run with original Qwen3'),
+            Option('custom','Evaluate local checkpoints with your own labels'),Option('prepare','Prepare/freeze test questions only (no GPU)'),Option('score','Score saved GPU answers on a Docker host (no GPU)'),Option('back','Back')])
+        if action=='back':raise Cancelled()
+        if action=='score':
+            source=self.path('Completed generation directory',default='artifacts/evaluation',directory=True)
+            output,_=self.output('artifacts/evaluation_scored')
+            image=self.ask('Local Docker Python image','python:3.12-slim')
+            if self.preview('Score saved answers',{'Input':source,'Output':output,'Execution':'Docker only; no GPU/model reload; enterprise semantic review remains pending'}):
+                self.execute(['score_evaluation','--input',str(source),'--output',str(output),'--python-image',image],output)
+            return
+        args=['evaluate_model']
+        if action=='compare':
+            root=self.path('Completed compression run directory',default=self.suggested('compress_model','/workspace/artifacts/compression_opencode_10k'),directory=True)
+            args+=['--compression-run',str(root)]
+            if self.confirm('Also compare pruned and recovered BF16 intermediate checkpoints?',False):args.append('--include-intermediates')
+        elif action=='custom':
+            count=self.integer('Number of checkpoints to compare (first is baseline)',2,maximum=8)
+            for i in range(count):
+                label=self.ask(f'Model {i+1} label (letters, digits, underscore)', 'original' if i==0 else 'final_'+str(i))
+                value=self.ask(f'Model {i+1} directory or Qwen/Qwen3-14B','Qwen/Qwen3-14B' if i==0 else '')
+                args+=['--model',label+'='+value]
+            cache=self.path('Exact training tokens.jsonl for overlap screening (optional)',optional=True)
+            if cache:args+=['--training-tokens',str(cache)]
+        output,_=self.output('artifacts/evaluation',resumable=True)
+        args+=['--output',str(output)]
+        if (output/'report.json').exists():args.append('--resume')
+        frozen=self.path('Existing frozen suite.json (blank creates a new selection)',optional=True)
+        if frozen:args+=['--suite',str(frozen)]
+        else:
+            suite=self.choose('Test groups',[Option('both','Python HumanEval + MBPP (base tests)'),Option('humaneval','HumanEval only'),
+                Option('mbpp','MBPP only'),Option('enterprise','Enterprise held-out answers only')])
+            for name in (('humaneval','mbpp') if suite=='both' else (suite,)):args+=['--benchmark',name]
+            if suite!='enterprise':
+                limit=self.integer('Maximum questions PER coding benchmark (0 = all)',20,minimum=0,maximum=10000)
+                args+=['--max-tasks',str(limit)]
+            enterprise=self.path('Prepared enterprise directory (blank skips enterprise questions)',
+                default=self.suggested('enterprise_prepare','artifacts/enterprise_ready'),directory=True,optional=suite!='enterprise')
+            if enterprise:
+                limit=self.integer('Maximum enterprise test questions (0 = all)',10,minimum=0,maximum=10000)
+                args+=['--enterprise',str(enterprise),'--enterprise-limit',str(limit)]
+            seed=self.integer('Fixed test selection seed',42,minimum=0)
+            args+=['--seed',str(seed)]
+        if action=='prepare':args.append('--prepare-only')
+        else:
+            tokens=self.integer('Maximum generated answer tokens (same for every model)',1024,minimum=16,maximum=8192)
+            args+=['--max-new-tokens',str(tokens)]
+            mode=self.choose('Code test execution',[Option('docker','Execute tests in Docker (daemon and local Python image required)'),
+                Option('disabled','Generate answers only — code correctness remains unverified')])
+            args+=['--executor',mode]
+            if mode=='docker':args+=['--python-image',self.ask('Local Docker Python image','python:3.12-slim')]
+        if self.preview('Model evaluation',{'Output':output,'Selection':'Frozen questions shared by every compared model',
+            'Coding':'Base Python tests; one greedy answer per task; no training',
+            'Enterprise':'Held-out test.jsonl; lexical proxies plus human review',
+            'Execution':'Linux CUDA for inference; isolated Docker for code scoring',
+            'Sampling':'Small runs verify operation; use a separate development suite when selecting future training runs'}):self.execute(args,output)
+
     def preview_status(self,status):
         table=Table(show_header=False,box=None)
         for key,value in status.items():table.add_row(key.replace('_',' ').capitalize(),'Present / valid' if value else 'Missing / invalid')
@@ -503,7 +561,7 @@ class Dashboard:
     def run_loop(self):
         dispatch={'enterprise':self.extraction,'enterprise_validation':self.enterprise_validation,
                   'external':self.external_installation,'external_validation':self.external_validation,'environment':self.environment,
-                  'fine_tuning':self.compression}
+                  'fine_tuning':self.compression,'evaluation':self.evaluation}
         while True:
             if not self.terminal:self.header()
             try:choice=self.choose('Select an option to start',MENU)

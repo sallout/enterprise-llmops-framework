@@ -597,3 +597,112 @@ def publish_dataset(
 
 def main() -> None:
     app()
+
+@app.command('evaluate_model')
+def evaluate_model(
+    output: Path = typer.Option(Path('artifacts/evaluation'), help='Separate evaluation output; never a model directory.'),
+    suite: Path | None = typer.Option(None, exists=True, dir_okay=False, help='Reuse a frozen suite.json across model/data-size experiments.'),
+    compression_run: Path | None = typer.Option(None, exists=True, file_okay=False, help='Completed compression root: automatically compares original BF16 and final NF4.'),
+    model: list[str] | None = typer.Option(None, '--model', help='Repeat LABEL=LOCAL_MODEL_DIRECTORY or LABEL=Qwen/Qwen3-14B; first model is baseline.'),
+    include_intermediates: bool = typer.Option(False, help='With --compression-run, also evaluate pruned and recovered BF16 checkpoints.'),
+    enterprise: Path | None = typer.Option(None, exists=True, file_okay=False, help='Prepared enterprise directory; only test.jsonl is selected.'),
+    benchmark: list[str] | None = typer.Option(None, '--benchmark', help='Repeat humaneval or mbpp; default both. Use enterprise for enterprise-only evaluation.'),
+    max_tasks: int = typer.Option(20, min=0, max=10000, help='Maximum tasks PER coding benchmark; 0 selects the entire official test split.'),
+    enterprise_limit: int = typer.Option(10, min=0, max=10000, help='Maximum enterprise held-out records; 0 selects all.'),
+    seed: int = typer.Option(42, min=0),
+    max_new_tokens: int = typer.Option(1024, min=16, max=8192, help='Response token budget, identical across models.'),
+    max_input_tokens: int = typer.Option(4096, min=32, max=32768, help='Over-limit prompts fail visibly; no truncation.'),
+    executor: str = typer.Option('docker', help='docker: isolated executable scoring; disabled: generation only, no code pass@1.'),
+    python_image: str = typer.Option('python:3.12-slim', help='Locally available Docker Python image; identity is frozen.'),
+    timeout_seconds: int = typer.Option(15, min=1, max=120),
+    training_tokens: Path | None = typer.Option(None, exists=True, dir_okay=False, help='Exact compression inputs/tokens.jsonl for limited overlap screening.'),
+    prepare_only: bool = typer.Option(False, help='Download only small test sets and freeze the suite; no model/GPU/Docker required.'),
+    resume: bool = typer.Option(False, help='Resume identical suite/model/config/runtime; completed tasks are reused.'),
+) -> None:
+    """Evaluate Qwen3 coding and held-out enterprise answers; never starts training."""
+    def execute():
+        import json
+        from policy_dissertation.pipelines.model_evaluation.schemas import EvaluationConfig
+        from policy_dissertation.pipelines.model_evaluation.suites import prepare_suite, read_suite
+        from policy_dissertation.pipelines.model_evaluation.pipeline import run_evaluation, compression_models
+        settings = Settings()
+        config = EvaluationConfig(max_new_tokens=max_new_tokens, max_input_tokens=max_input_tokens,
+            seed=seed, executor=executor, python_image=python_image, timeout_seconds=timeout_seconds)
+        if compression_run and model:
+            raise DissertationError('Choose --compression-run OR explicit --model options.')
+        if include_intermediates and not compression_run:
+            raise DissertationError('--include-intermediates requires --compression-run.')
+        protected = [p.resolve() for p in (compression_run, enterprise) if p is not None]
+        for entry in model or []:
+            _, separator, value = entry.partition('=')
+            if separator and Path(value).is_dir(): protected.append(Path(value).resolve())
+        for source in protected:
+            if output.resolve().is_relative_to(source) or source.is_relative_to(output.resolve()):
+                raise DissertationError('Evaluation output must be separate from enterprise/model/compression inputs.')
+        selected = benchmark if benchmark is not None else ['humaneval', 'mbpp']
+        if 'enterprise' in selected and (selected != ['enterprise'] or enterprise is None):
+            raise DissertationError('Enterprise-only mode requires --benchmark enterprise --enterprise PATH.')
+        selected = [] if selected == ['enterprise'] else selected
+        suite_path = suite or output/'suite.json'
+        token = settings.hf_token.get_secret_value() if settings.hf_token else None
+        typer.echo('Model Evaluation — frozen tests / sequential Linux NVIDIA CUDA inference')
+        if suite is not None or (resume and suite_path.exists()):
+            payload, _ = read_suite(suite_path)
+            typer.echo('Reusing frozen selection; max-tasks/enterprise-limit/seed selection options do not change it.')
+        else:
+            payload = prepare_suite(suite_path, benchmarks=selected, max_tasks=max_tasks, enterprise=enterprise,
+                enterprise_limit=enterprise_limit, seed=seed, token=token)
+        typer.echo(f"Frozen tasks: {len(payload['cases'])}; suite: {suite_path.resolve()}")
+        if prepare_only:
+            typer.echo('Status: SUITE_PREPARED. No model inference or correctness tests executed.')
+            return
+        paths = {}
+        if compression_run:
+            paths = compression_models(compression_run, include_intermediates)
+            compression_report = json.loads((compression_run/'report.json').read_text())
+            # The baseline must be the same original revision used by this run.
+            settings.pipeline4.tokenizer_revision = compression_report['configuration']['model_revision']
+            if not training_tokens:
+                candidate = compression_run/'_runs'/compression_report['fingerprint']/'inputs'/'tokens.jsonl'
+                if not candidate.is_file():
+                    raise DissertationError('Exact training-token cache missing; pass --training-tokens explicitly or use explicit --model mode with an unresolved contamination warning.')
+                tokens_path = candidate
+            else: tokens_path = training_tokens
+        else:
+            tokens_path = training_tokens
+            for entry in model or []:
+                label, separator, path = entry.partition('=')
+                if not separator or not path or label in paths:
+                    raise DissertationError('Models require unique LABEL=PATH values.')
+                paths[label] = path
+        if not paths:
+            raise DissertationError('Supply --compression-run or --model LABEL=PATH, or choose --prepare-only.')
+        result = run_evaluation(suite_path, output, paths, settings, config, resume=resume,
+            training_tokens=tokens_path, progress=lambda text: typer.echo(text, err=True))
+        for label, item in result['models'].items():
+            typer.echo(label+': '+json.dumps(item['metrics'], ensure_ascii=False))
+        typer.echo(f"Status: {result['status']}; evaluation complete: {result['evaluation_complete']}")
+        typer.echo(f"Report: {output.resolve()/'report.json'}")
+        typer.echo('Enterprise semantic review remains required. Base tests only; no quality/security guarantee.')
+    run_safely(execute)
+
+
+@app.command('score_evaluation')
+def score_evaluation(
+    input_directory: Path = typer.Option(..., '--input', exists=True, file_okay=False, help='Completed evaluation generation directory.'),
+    output: Path = typer.Option(Path('artifacts/evaluation_scored')),
+    python_image: str = typer.Option('python:3.12-slim'),
+    timeout_seconds: int = typer.Option(15, min=1, max=120),
+) -> None:
+    """Execute saved benchmark answers on a Docker host; no GPU or model downloads."""
+    def execute():
+        from policy_dissertation.pipelines.model_evaluation.pipeline import score_saved
+        from policy_dissertation.pipelines.model_evaluation.schemas import EvaluationConfig
+        result = score_saved(input_directory, output, EvaluationConfig(python_image=python_image, timeout_seconds=timeout_seconds),
+                             progress=lambda text: typer.echo(text, err=True))
+        import json
+        for label, item in result['models'].items():
+            typer.echo(label+': '+json.dumps(item['metrics'], ensure_ascii=False))
+        typer.echo(f"Status: {result['status']}; evaluation complete: {result['evaluation_complete']}")
+        typer.echo(f"Report: {output.resolve()/'report.json'}")
+    run_safely(execute)

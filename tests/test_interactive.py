@@ -148,7 +148,8 @@ def test_keyboard_menu_backend_uses_arrows_and_disables_unimplemented_options(mo
     monkeypatch.setattr(module.questionary,'select',select)
     assert Dashboard.choose(ui,'Menu',MENU)=='exit'
     assert captured['use_shortcuts'] is True
-    assert all(choice.disabled for choice in captured['choices'][5:8])
+    assert all(choice.disabled for choice in captured['choices'] if choice.value in ('security','prompt_injection','customization'))
+    assert any(choice.value=='evaluation' and not choice.disabled for choice in captured['choices'])
 
 
 def test_secret_entry_refuses_non_tty_to_avoid_echo():

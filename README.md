@@ -406,3 +406,29 @@ uv run llmops download_dataset --repo-id sallout/enterprise-sft --output ./artif
 
 Configure a read-capable `HF_TOKEN` for private repositories. The download verifies
 checksums, schemas, counts and prepared split membership, preserving source warnings.
+
+### Model evaluation
+
+The interactive menu now includes **Model evaluation**: freeze a configurable
+HumanEval/MBPP base-test selection, compare original/final Qwen3 checkpoints (plus
+optional intermediate stages), and review held-out enterprise answers. Use
+`--max-tasks` per coding benchmark and `--enterprise-limit` for enterprise questions;
+zero selects all available tasks. Results, model identities and resumable task
+checkpoints are exported separately from training data. No training is started.
+
+```bash
+uv run llmops evaluate_model \
+  --compression-run /workspace/artifacts/compression_opencode_10k \
+  --enterprise ./artifacts/enterprise_ready \
+  --output /workspace/artifacts/evaluation_pilot \
+  --max-tasks 5 --enterprise-limit 5
+```
+
+Inference requires Linux/NVIDIA CUDA and the existing `training` extra. Executable
+code scoring requires a Docker daemon and a local Python execution image. On
+RunPod without Docker, select generation-only mode (`--executor disabled`), then
+score the saved export using `llmops score_evaluation` on a Docker host, without
+rerunning the GPU. Generation-only output has no pass@1 score. Enterprise lexical
+scores require human semantic review. These are base tests, not EvalPlus + suites.
+See [the evaluation guide](docs/model_evaluation.md) for frozen selections, complete
+commands, limits, contamination checks, scoring and real opt-in integration tests.
