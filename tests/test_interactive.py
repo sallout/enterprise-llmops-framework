@@ -38,9 +38,9 @@ def test_no_argument_launcher_and_explicit_menu_have_branding(tmp_path,monkeypat
 
 def test_unsupported_stages_cannot_start_work(tmp_path,monkeypatch):
     monkeypatch.chdir(tmp_path)
-    ui=Scripted(choices=['fine_tuning','security','prompt_injection','customization','exit'])
+    ui=Scripted(choices=['security','prompt_injection','customization','exit'])
     ui.run()
-    assert not ui.commands and ui.out.getvalue().count('Not implemented yet')==4
+    assert not ui.commands and ui.out.getvalue().count('Not implemented yet')==3
     assert not Path('.llmops').exists()
 
 
@@ -148,7 +148,7 @@ def test_keyboard_menu_backend_uses_arrows_and_disables_unimplemented_options(mo
     monkeypatch.setattr(module.questionary,'select',select)
     assert Dashboard.choose(ui,'Menu',MENU)=='exit'
     assert captured['use_shortcuts'] is True
-    assert all(choice.disabled for choice in captured['choices'][4:8])
+    assert all(choice.disabled for choice in captured['choices'][5:8])
 
 
 def test_secret_entry_refuses_non_tty_to_avoid_echo():

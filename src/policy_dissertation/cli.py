@@ -50,7 +50,7 @@ def status() -> None:
     def execute() -> None:
         settings = Settings()
         configure_logging(settings.log_level)
-        typer.echo("Project initialized. Document ingestion is available; Enterprise data is available via enterprise_data (legacy pip1_data/pip2_code retained), Pipeline 3 via pip3_datasets, and enterprise preparation is automatic; pip4_prepare is retained as a legacy command. Model fine-tuning is not implemented.")
+        typer.echo("Project initialized. Document ingestion is available; Enterprise data is available via enterprise_data (legacy pip1_data/pip2_code retained), Pipeline 3 via pip3_datasets, and enterprise preparation is automatic; pip4_prepare is retained as a legacy command. Experimental Linux/CUDA pruning, LoRA recovery and NF4 export are available via compress_model; actual GPU execution and final evaluation remain separate.")
     run_safely(execute)
 
 
@@ -524,6 +524,40 @@ def check_training_sources(
             dump_json(output/'report.json',result)
             gate.close()
         typer.echo(f"Status: {result['status']}; counts: {result['counts']}. No training started.")
+    run_safely(execute)
+
+
+@app.command('compress_model')
+def compress_model(
+    enterprise: Path = typer.Option(..., exists=True, file_okay=False, help='Prepared enterprise splits.'),
+    native_plan: Path = typer.Option(..., exists=True, file_okay=False, help='Prepared NVIDIA native selection directory.'),
+    output: Path = typer.Option(Path('artifacts/compression')),
+    config_file: Path | None = typer.Option(None, '--config', exists=True, dir_okay=False, help='Optional strict CompressionConfig JSON.'),
+    prune_ratio: float | None = typer.Option(None, min=.001, max=.2, help='Fraction of MLP channels, NOT total model parameters.'),
+    max_tokens: int | None = typer.Option(None, min=32, max=32768),
+    max_steps: int | None = typer.Option(None, min=1),
+    calibration_samples: int | None = typer.Option(None, min=1, max=2048),
+    allow_incomplete_sources: bool = typer.Option(False, help='Explicitly use the accepted subset of incomplete enterprise producers.'),
+    resume: bool = typer.Option(False, help='Resume only identical input/config/code/runtime checkpoints.'),
+    check_only: bool = typer.Option(False, help='Linux/CUDA/dependency/capacity checks only; no model weights or training.'),
+) -> None:
+    """Linux/CUDA only: structured MLP pruning → BF16 LoRA recovery → saved NF4 4-bit export."""
+    def execute():
+        from policy_dissertation.pipelines.training.config import CompressionConfig
+        from policy_dissertation.pipelines.training.pipeline import run_compression
+        settings=Settings()
+        config=CompressionConfig.model_validate_json(config_file.read_text()) if config_file else settings.training
+        updates={k:v for k,v in {'prune_ratio':prune_ratio,'max_tokens':max_tokens,'max_steps':max_steps,
+                                 'calibration_samples':calibration_samples}.items() if v is not None}
+        if allow_incomplete_sources:updates['allow_incomplete_sources']=True
+        config=CompressionConfig.model_validate(config.model_dump() | updates)
+        typer.echo('Model Compression — Qwen3-14B / Linux NVIDIA CUDA')
+        result=run_compression(enterprise,native_plan,output,settings,config,resume=resume,check_only=check_only,
+                              progress=lambda text:typer.echo(text,err=True))
+        typer.echo(f"Status: {result['status']}; final model ready: {result['final_model_ready']}")
+        if result.get('model_directory'):typer.echo(f"4-bit model: {result['model_directory']}")
+        typer.echo(f"Report: {output.resolve()/'report.json'}")
+        typer.echo('Final quality/security evaluation remains a separate next stage.')
     run_safely(execute)
 
 

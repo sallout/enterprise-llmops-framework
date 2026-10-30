@@ -30,7 +30,7 @@ explicit Run confirmation before processing starts.
 | Enterprise data validation | Prepare accepted data/splits without regeneration; inspect a report; optionally publish accepted data privately |
 | External dataset installation | Existing native NVIDIA preparation plan, not a full corpus/model-weight installation |
 | External dataset validation | Read-only replay validation of an existing approved native selection |
-| Fine-tuning | Disabled, not implemented |
+| Model compression & fine-tuning | Linux/CUDA preflight, structured MLP pruning, BF16 LoRA recovery and NF4 export |
 | Security check | Disabled, not implemented |
 | Prompt injection check | Disabled, not implemented |
 | Model customization | Disabled, not implemented |
@@ -145,8 +145,10 @@ cannot turn an already completed processing operation into a claimed processing
 failure. Existing reports/datasets remain the authority for actual counts/readiness.
 
 The UI is synchronous and terminal-based. It does not implement a background job
-scheduler, training/optimizer, remote GPU rental, new security or prompt-injection
-algorithms, model customization, or a complete semantic correctness certificate.
+scheduler, remote GPU rental, new security or prompt-injection algorithms, or a
+complete semantic correctness certificate. The explicit Linux/CUDA compression
+action runs recovery training and enterprise specialization; its separate future
+customization menu entry remains disabled. See [the GPU runbook](compression.md).
 
 ## Restore an already published enterprise dataset
 

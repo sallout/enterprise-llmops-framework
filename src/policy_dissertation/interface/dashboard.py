@@ -32,7 +32,7 @@ class Option:
 
 MENU=(Option('enterprise','Enterprise data extraction'),Option('enterprise_validation','Enterprise data validation'),
       Option('external','External dataset installation'),Option('external_validation','External dataset validation'),
-      Option('fine_tuning','Fine-tuning',False),Option('security','Security check',False),
+      Option('fine_tuning','Model compression & fine-tuning'),Option('security','Security check',False),
       Option('prompt_injection','Prompt injection check',False),Option('customization','Model customization',False),
       Option('environment','Env setup'),Option('exit','Exit'))
 
@@ -206,11 +206,12 @@ class Dashboard:
         try:r=json.loads(path.read_text())
         except (OSError,ValueError):return
         allowed=('status','accepted_examples','rejected_examples','records_processed','records_checked',
-                 'duplicates_removed','training_ready','data_prepared','full_plan_validated','source_run_complete','resumed_decisions')
+                 'duplicates_removed','training_ready','data_prepared','full_plan_validated','source_run_complete','resumed_decisions',
+                 'final_model_ready','original_parameters','pruned_parameters','evaluation_pending')
         table=Table(show_header=False,box=None)
         for k in allowed:
             value=r.get(k)
-            if type(value) in (int,bool) or (k=='status' and value in ('COMPLETED','COMPLETED_WITH_WARNINGS','FAILED','RUNNING')):
+            if type(value) in (int,bool) or (k=='status' and value in ('COMPLETED','COMPLETED_WITH_WARNINGS','FAILED','RUNNING','PREFLIGHT_PASSED','INTERRUPTED')):
                 table.add_row(k.replace('_',' ').capitalize(),str(value))
         splits=r.get('splits')
         if isinstance(splits,dict):
@@ -244,7 +245,7 @@ class Dashboard:
             if code==0:
                 try:outputs=json.loads(Path('.llmops/outputs.json').read_text())
                 except (OSError,ValueError):outputs={}
-                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset'}
+                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model'}
                 outputs={k:v for k,v in outputs.items() if k in allowed and isinstance(v,str)} if isinstance(outputs,dict) else {}
                 outputs[args[0]]=str(Path(output).resolve())
                 dump_json(Path('.llmops/outputs.json'),outputs)
@@ -455,6 +456,33 @@ class Dashboard:
             if result['process_overrides_present']:self.console.print('Active environment variables may override the saved defaults.',style='yellow')
             if result['backup']:self.console.print(Text('Private backup: '+result['backup'],style='dim'))
 
+    def compression(self):
+        action=self.choose('Linux / NVIDIA CUDA model compression',[
+            Option('check','Check GPU environment only — no model download'),
+            Option('run','Prune, recover/train and export 4-bit model'),Option('back','Back')])
+        if action=='back':raise Cancelled()
+        enterprise=self.path('Prepared enterprise directory',default=self.suggested('enterprise_prepare','artifacts/enterprise_ready'),directory=True)
+        native=self.path('Prepared NVIDIA source-plan directory',default=self.suggested('nvidia_data','artifacts/nvidia'),directory=True)
+        output,_=self.output('artifacts/compression',resumable=True)
+        args=['compress_model','--enterprise',str(enterprise),'--native-plan',str(native),'--output',str(output)]
+        if (output/'checkpoint.json').exists() or (output/'report.json').exists():args.append('--resume')
+        if action=='check':args.append('--check-only')
+        else:
+            value=self.ask('MLP channel pruning fraction (0 < value <= 0.20; not total parameter reduction)','0.10')
+            try:ratio=float(value)
+            except ValueError:raise DissertationError('Enter a valid pruning fraction.') from None
+            if not 0<ratio<=.2:raise DissertationError('Pruning fraction must be greater than 0 and at most 0.20.')
+            steps=self.integer('Recovery optimizer steps (10 for GPU smoke test; not efficacy evidence)',200)
+            samples=self.integer('Training-only calibration examples',128,maximum=2048)
+            maximum=self.integer('Exact maximum conversation tokens (no truncation)',4096,minimum=32,maximum=32768)
+            args+=['--prune-ratio',str(ratio),'--max-steps',str(steps),'--calibration-samples',str(samples),'--max-tokens',str(maximum)]
+            if self.confirm('Allow validated accepted subsets with incomplete enterprise source runs?',False):args.append('--allow-incomplete-sources')
+        if self.preview('Model compression experiment',{'Enterprise':enterprise,'Native source plan':native,'Output':output,
+            'Scope':'Environment checks only' if action=='check' else 'MLP pruning → BF16 LoRA recovery → NF4 4-bit export',
+            'Hardware':'Linux + NVIDIA CUDA / BF16; no macOS or CPU fallback',
+            'Memory':'BF16 pruning/recovery needs substantially more VRAM than 4-bit inference',
+            'Evaluation':'Technical smoke checks only; final quality/security evaluation remains pending'}):self.execute(args,output)
+
     def preview_status(self,status):
         table=Table(show_header=False,box=None)
         for key,value in status.items():table.add_row(key.replace('_',' ').capitalize(),'Present / valid' if value else 'Missing / invalid')
@@ -474,7 +502,8 @@ class Dashboard:
 
     def run_loop(self):
         dispatch={'enterprise':self.extraction,'enterprise_validation':self.enterprise_validation,
-                  'external':self.external_installation,'external_validation':self.external_validation,'environment':self.environment}
+                  'external':self.external_installation,'external_validation':self.external_validation,'environment':self.environment,
+                  'fine_tuning':self.compression}
         while True:
             if not self.terminal:self.header()
             try:choice=self.choose('Select an option to start',MENU)
@@ -493,7 +522,7 @@ class Dashboard:
                 self.console.print(Text(message,style='red'))
             except Exception:self.console.print('Could not complete this action. Review configuration and output reports; private errors are hidden.',style='red')
             self.pause()
-        self.console.print('Goodbye. No model training was started by this menu.')
+        self.console.print('Goodbye.')
 
 
 def run_dashboard():Dashboard().run()

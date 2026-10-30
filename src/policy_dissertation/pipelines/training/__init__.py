@@ -1,1 +1,1 @@
-"""Reserved namespace for training; implementation pending."""
+"""Linux/CUDA structured Qwen3 pruning, LoRA recovery and NF4 export."""

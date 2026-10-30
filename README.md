@@ -11,8 +11,8 @@ Choose enterprise extraction/validation, NVIDIA preparation/validation or enviro
 setup with arrow keys/numbers. Forms collect paths, token budgets, local test limits,
 source revisions, output/resume and optional private publication; no pipeline commands
 need to be typed manually. Existing coding data can be reused without generation.
-Fine-tuning/security/prompt-injection/customization are visibly unavailable and do not
-start work. Secrets are hidden and `.env` editing requires explicit confirmation with
+Linux/CUDA model compression and fine-tuning is available as an explicit action;
+security/prompt-injection and the separate future customization entry remain unavailable. Secrets are hidden and `.env` editing requires explicit confirmation with
 a private backup. See [the interactive CLI guide](docs/interactive-cli.md).
 
 The console displays **Bridging the Cusem**, **By Mohammed Sallout**, and
@@ -26,7 +26,30 @@ validated conversational dataset, accepting either input independently and reusi
 existing accepted exports when requested. The external-data workflow prepares NVIDIA
 datasets; final preparation validates, deduplicates, mixes and splits enterprise and
 external records using the actual Qwen tokenizer. The original document and repository
-commands remain compatible. Model fine-tuning remains unimplemented.
+commands remain compatible. Experimental Linux/CUDA model compression and fine-tuning
+is implemented; real GPU execution must be verified on the training server.
+
+## Model compression — Linux / NVIDIA CUDA
+
+The interactive **Model compression & fine-tuning** action and `compress_model`
+command run training-only input validation, limited structural Qwen3 MLP channel
+pruning, BF16 LoRA recovery/merge and NF4 4-bit checkpoint export/reload. This is
+experimental: final quality/security evaluation remains separate. macOS/MPS/CPU
+training is intentionally unsupported. The old t3.small server cannot run it.
+
+On a suitable Linux GPU server:
+
+```bash
+uv sync --locked --extra training
+uv run llmops
+```
+
+Start with the environment-check action, then the opt-in tiny CUDA integration and
+a bounded 14B smoke experiment described in [the server runbook](docs/compression.md).
+BF16 pruning/recovery requires substantially more VRAM than 4-bit inference; the
+capacity guard is not a measured peak requirement. No weights were downloaded and
+no GPU training was verified during local implementation. See the runbook for the
+output contract, resumption and full configuration.
 
 ## External Data — NVIDIA
 

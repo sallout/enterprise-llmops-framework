@@ -1756,3 +1756,175 @@ existing real Docker test with daemon unavailable. A real PTY run entered Env
 setup, displayed only presence booleans, waited for Enter, cleared/redrew the main
 menu and exited with the alternate-screen restoration sequence; exit code 0.
 No credentials or datasets were modified. User guide updated accordingly.
+
+## Linux/CUDA model compression pipeline — 2026-10-30
+
+### Agreed scope and research objective
+
+Following successful enterprise/NVIDIA data smoke checks, the agreed next workflow
+is limited structured pruning of original Qwen3-14B, recovery/specialization training,
+and a final 4-bit inference checkpoint. Full original-versus-final quality, security,
+latency and memory evaluation is intentionally deferred. This section supersedes
+older historical statements that all model training is unimplemented. It does not
+claim that real GPU training or Qwen3-14B compression has succeeded.
+
+QLoRA alone does not reduce the base parameter count. This implementation instead
+uses **BF16 structural pruning followed by BF16 LoRA recovery**, adapter merging,
+then **bitsandbytes NF4 4-bit export**. It does not implement teacher distillation,
+GGUF/AWQ export, knowledge-domain deletion or guaranteed policy compliance. General
+medical knowledge is not assumed to occupy removable isolated channels. These are
+explicit differences from the earlier broad quantization/pruning terminology in the
+proposal and mid-semester report.
+
+### Compatibility investigation and technical choices
+
+Inspected the installed Transformers **5.20.2** Qwen3 source: its dense gated SiLU
+MLP computes `down_proj(silu(gate_proj(x)) * up_proj(x))`. This permits consistent
+channel slicing across gate/up rows and down columns while preserving residual and
+attention dimensions. Serialized `intermediate_size` is reduced uniformly across
+layers, and exact parameter-count reduction is checked. This is a narrow project
+implementation; it does not claim official NVIDIA validation for Qwen3-14B.
+NVIDIA's Model Optimizer examples demonstrate broader Qwen3 pruning workflows,
+but their distributed recipes and reported quality are not evidence for our result.
+
+Primary references consulted:
+
+- https://github.com/huggingface/transformers/blob/main/src/transformers/models/qwen3/modeling_qwen3.py
+- https://github.com/NVIDIA/Model-Optimizer/tree/main/examples/pruning
+- https://huggingface.co/docs/peft/main/en/conceptual_guides/lora
+- https://huggingface.co/docs/transformers/en/quantization/bitsandbytes
+
+Added Linux-only optional `training` dependencies in pyproject.toml/uv.lock:
+PyTorch **2.9.1**, PEFT **0.21.2**, Accelerate **1.15.0**, bitsandbytes **0.50.2**.
+The locked PyTorch Linux wheels use CUDA **12.8**; an appropriate server driver is
+required. Existing six native-data pinned dependency versions were preserved.
+`uv sync --extra training --locked` was executed locally: Linux markers correctly
+prevented installing torch/CUDA training packages on macOS. This is dependency-lock
+and platform-isolation evidence, not successful Linux installation/runtime evidence.
+
+### Components and architecture
+
+New modules under `src/policy_dissertation/pipelines/training/`:
+
+- `config.py`: strict Pydantic CompressionConfig with model restriction, at most
+  20% MLP-channel pruning, alignment, calibration/token/step bounds, LoRA settings,
+  seed, deliberate enterprise repetition, resource guards and incomplete-source consent.
+- `inputs.py`: existing enterprise holdout validation and fresh global fingerprint
+  gate; exact approved native replay; supervised token/provenance cache; balanced
+  bounded per-source calibration reservoirs. Only training rows enter calibration/SFT.
+- `pruning.py`: activation-RMS × down-column L2 importance ranking; stable channel
+  selection, actual aligned dense slicing, config update and parameter-count checks.
+  It preserves heads, layers, hidden width, vocabulary and RoPE. Requested MLP fraction
+  is not total parameter reduction; actual widths/counts must come from execution.
+- `backend.py`: lazy Linux/NVIDIA-only CUDA/BF16 checks, original immutable model load,
+  pruning/reload checks, PEFT LoRA/Transformers Trainer recovery, finite loss/gradient
+  guard, optimizer/RNG checkpoint recovery, safe merge, NF4 save and actual reload.
+- `pipeline.py`: LangGraph orchestration over path/stage references only, input/config/
+  implementation/runtime fingerprints, stage file hashes, protected outputs, failure/
+  interruption reports and matching-run resumption. Uncommitted input/pruning/export
+  stages restart; recovery resumes the latest complete optimizer checkpoint or explicitly
+  reports restarting from the committed pruned base if none is available.
+
+Root Settings now includes `training`; existing MODEL endpoint credentials remain
+separate and are not used for compression. Added `llmops compress_model`, with
+`--enterprise`, `--native-plan`, `--output`, optional strict JSON `--config`, explicit
+budget overrides, `--allow-incomplete-sources`, `--resume` and `--check-only`.
+The interactive fifth entry is now **Model compression & fine-tuning**, with a
+no-weight-download GPU preflight and an explicitly confirmed execution form.
+Other future security/prompt-injection/customization entries remain disabled;
+enterprise specialization is included in recovery. Updated CLI status/summary and
+farewell text to avoid the obsolete claim that no training can run through the menu.
+
+### Data and output contracts
+
+Reuse original model weights at the enterprise tokenizer's immutable commit. Index
+all enterprise validation/test/train fingerprints before NVIDIA replay. Never use
+validation/test rows for pruning calibration or recovery. Record exact approved
+native rows and preserve inherited external test evidence as unverified locally.
+No teacher calls, fresh policy/code generation or source dataset rewriting occur.
+
+Tokenize exact original Qwen rendering with thinking disabled, tools retained and no
+truncation. Offset-based labels supervise all assistant spans and their end tokens,
+masking user/system/tool-result text. Verify these IDs equal the pinned chat-template
+IDs; reject oversized or untrainable records. Internal token caches and provenance
+are sensitive training artifacts, not a new full NVIDIA corpus export. Mixing defaults
+are transparent: native allocation follows the source plan; enterprise repetition is
+configurable and explicitly counted. No optimal mix ratio is asserted.
+
+The completed output has `model_4bit/` (a self-contained HF checkpoint), `report.json`,
+`checkpoint.json`, tokenizer assets and internal input/pruned/recovery stage folders.
+Final model directory is exposed only after serialized NF4 reload, finite-loss/generation
+smoke checks and unchanged-source checks pass. Some embeddings/norm/output weights
+remain higher precision: nominal 4-bit does not mean every tensor is four bits.
+`final_model_ready` means technical export readiness, with `evaluation_pending=true`
+and `semantic_quality_verified=false`. Full evaluation remains a separate next stage.
+No remote model publication or production deployment is implemented.
+
+### Actual verification and results
+
+- `uv lock` and `uv sync --extra training --locked` completed. No original model
+  weights, large datasets or CUDA runtime wheels were installed/downloaded locally.
+- CLI `compress_model --help`, source compilation, package source/wheel building and
+  `git diff --check` completed. A real numbered CLI launch entered the new fifth menu,
+  selected Back, returned to the main menu and exited with code 0; it started no job.
+- Added `tests/test_compression.py`: **20 new test cases** covering strict config,
+  stable channel ranking/alignment, exact assistant masking and no truncation,
+  real upstream fixture compatibility, holdout exclusion, explicit repetition,
+  orchestration stage reuse, interruption/recovery, changed sources/settings,
+  tampered checkpoint detection, failed NF4 reload, export-only retries,
+  preflight without freezing training settings, platform/CUDA guards, menu routing,
+  and ignoring incomplete latest optimizer checkpoints. CUDA/model operations in
+  orchestration tests are **mocked**, not real training evidence.
+- Final full `uv run pytest -q`: **369 passed, 2 skipped**, five existing SWIG warnings,
+  **12.35 seconds**. Skips: existing Docker test (daemon unavailable) and the new
+  opt-in real Linux/CUDA compression integration. No failing tests remain.
+- `tests/test_compression_cuda.py` is provided for the server. With
+  `RUN_COMPRESSION_CUDA_TESTS=1`, it constructs a tiny random Qwen3 locally, verifies
+  attention preservation and actual channel/parameter reduction, performs two real
+  LoRA optimizer steps, merges, quantizes, saves/reloads and checks generation/loss.
+  **It was not executed here**, because execution is intentionally Linux/CUDA only.
+  Even a future pass would not establish 14B capacity or semantic quality.
+- Real cached Qwen tokenizer **40c069824f4251a91eefaf281ebe4c544efd3e18** was used to
+  encode all **186 enterprise train records**: all had assistant supervision,
+  supervised-token counts ranged **32–555**, no model weights were loaded.
+- A real input-only integration reused the current enterprise export and approved
+  NVIDIA native plan, performed fresh fingerprint gating and pinned stream replay,
+  and produced **186 enterprise + 20 NVIDIA = 206 supervised training rows** with
+  **16 calibration records** in a temporary cache (cleaned after inspection).
+  `holdouts_used_for_training=false`; input hashes remained unchanged. Actual warnings:
+  `accepted_subset_from_incomplete_enterprise_sources` and
+  `small_external_selection_smoke_test_not_training_efficacy_evidence`.
+  This verifies data-to-token compatibility, **not model training/compression**.
+- All **404 fingerprinted existing resource/export files remained byte-identical**,
+  including `.env`, original corporate policies/code inputs and previous accepted
+  coding/enterprise/native artifacts. No existing coding training file was deleted.
+
+### Limits, server procedure and research relevance
+
+Execution requires Linux, exactly one visible NVIDIA CUDA GPU, BF16 support and an
+appropriate driver; no macOS/MPS/CPU training path is provided. BF16 pruning/recovery
+uses much more memory than 4-bit inference. Default guards are 36 GiB free VRAM and
+120 GiB capacity (free disk plus existing owned artifacts), not measured peaks or
+OOM guarantees. An 80 GB GPU is a conservative starting recommendation, unverified
+for this exact run. The old t3.small server cannot execute this pipeline.
+
+The 20-row NVIDIA selection is a technical smoke sample, not sufficient evidence of
+recovery efficacy. Existing enterprise accepted-subset/coverage limitations remain.
+Pruning can degrade general/coding/compliance capability, and a channel importance
+heuristic does not certify optimal architecture or selectively remove medical knowledge.
+BF16 LoRA recovery may be insufficient after pruning; teacher distillation or more
+training/data would be separate experiments if actual results justify them. NF4
+runtime speedup, quality retention and GPU memory savings remain unmeasured.
+
+Server procedure: install the locked training extra; run environment preflight; run
+the opt-in tiny CUDA integration; run a bounded real 14B experiment; inspect actual
+report, parameter counts, reload status and warnings before increasing budgets.
+Final evaluation must compare the pinned original and exported model using the same
+held-out tasks/settings, including coding execution, enterprise policy/exception
+accuracy, latency/VRAM and later security checks. No baseline benchmark was run here.
+
+README, `docs/interactive-cli.md`, `docs/compression.md` and
+`docs/compression.example.json` document actual behavior and commands. This adds a
+traceable compression/specialization experiment to the dissertation framework while
+preserving a clear separation between implementation checks, future GPU execution,
+and empirical claims requiring final evaluation.

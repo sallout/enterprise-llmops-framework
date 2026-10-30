@@ -24,6 +24,14 @@ dependencies = [
     "typer>=0.15,<1",
 ]
 
+[project.optional-dependencies]
+training = [
+    "torch>=2.6,<2.10; sys_platform == 'linux'",
+    "peft>=0.18,<1; sys_platform == 'linux'",
+    "accelerate>=1.10,<2; sys_platform == 'linux'",
+    "bitsandbytes>=0.48,<1; sys_platform == 'linux'",
+]
+
 [project.scripts]
 llmops = "policy_dissertation.cli:main"
 policy-dissertation = "policy_dissertation.cli:main"

@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen3-14B",
+  "prune_ratio": 0.05,
+  "channel_multiple": 128,
+  "calibration_samples": 16,
+  "max_tokens": 4096,
+  "max_steps": 10,
+  "batch_size": 1,
+  "gradient_accumulation": 16,
+  "learning_rate": 0.00002,
+  "lora_rank": 16,
+  "save_steps": 5,
+  "seed": 42,
+  "enterprise_repeats": 1,
+  "minimum_free_vram_gib": 36,
+  "minimum_free_disk_gib": 120,
+  "allow_incomplete_sources": false,
+  "export_format": "bitsandbytes-nf4"
+}

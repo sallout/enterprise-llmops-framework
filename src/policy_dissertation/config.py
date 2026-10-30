@@ -4,6 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from policy_dissertation.pipelines.training.config import CompressionConfig
 
 
 class ModelSettings(BaseModel):
@@ -88,3 +89,4 @@ class Settings(BaseSettings):
     pipeline3: Pipeline3Settings = Field(default_factory=Pipeline3Settings)
     pipeline4: Pipeline4Settings = Field(default_factory=Pipeline4Settings)
     model: ModelSettings = Field(default_factory=ModelSettings)
+    training: CompressionConfig = Field(default_factory=CompressionConfig)
