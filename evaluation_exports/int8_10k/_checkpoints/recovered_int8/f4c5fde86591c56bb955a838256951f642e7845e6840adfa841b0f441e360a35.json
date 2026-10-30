@@ -1,0 +1,32 @@
+{
+  "key": "4635fbe578ed754c017eb7419b552fc5c8c541fe0675dcb6e8f62d9b743a49fa",
+  "digest": "9b5cd4b8f790590ddb6d6d81174af45fc970fed95378e40466764f98208fdc45",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:249",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "249"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef intersection_array(arr1, arr2):\n    \"\"\"\n    Returns the intersection of two arrays.\n    \n    Parameters:\n    arr1 (list): The first list.\n    arr2 (list): The second list.\n    \n    Returns:\n    list: A list containing the intersection of the two input lists.\n    \"\"\"\n    return list(set(arr1) & set(arr2))\n\n# Test cases\nassert intersection_array([1, 2, 3, 5, 7, 8, 9, 10], [1, 2, 4, 8, 9]) == [1, 2, 8, 9]\nassert intersection_array([1, 2, 3, 5, 7, 8, 9, 10], [3, 5, 7, 9]) == [3, 5, 7, 9]\nassert intersection_array([1, 2, 3, 5, 7, 8, 9, 10], [10, 20, 30, 40]) == [10]\n```",
+      "input_tokens": 188,
+      "output_tokens": 242,
+      "generation_seconds": 38.63407094008289,
+      "output_tokens_per_second_including_prefill": 6.263901114001547,
+      "peak_allocated_bytes": 16136130560,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

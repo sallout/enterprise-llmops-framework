@@ -1,0 +1,32 @@
+{
+  "key": "ba8d4f2e14b886ba679f11d63d52271b0a319c1ac7531fec23f5e4459f757d20",
+  "digest": "b930dcb1525c6230958154406ab22405fae6b85be84274983a3690d934a24fe6",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:11",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "11"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef remove_Occ(s, char):\n    first = s.find(char)\n    last = s.rfind(char)\n    if first == -1 or last == -1:\n        return s\n    return s[:first] + s[first+1:last] + s[last+1:]\n\nprint(remove_Occ(\"hello\", \"l\"))  # Output: \"heo\"\nprint(remove_Occ(\"abcda\", \"a\"))  # Output: \"bcd\"\nprint(remove_Occ(\"PHP\", \"P\"))    # Output: \"H\"\n```",
+      "input_tokens": 93,
+      "output_tokens": 116,
+      "generation_seconds": 18.830517226015218,
+      "output_tokens_per_second_including_prefill": 6.160213158656137,
+      "peak_allocated_bytes": 16178565632,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

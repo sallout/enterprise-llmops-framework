@@ -1,0 +1,32 @@
+{
+  "key": "874cc5bab8d00ec722e12318a955d90fc42bd408e05176b9f0c458de25c3c27b",
+  "digest": "b099f4c077843ae03bb62b33e6247cc4fa1df2f722170671cfd753c9c598155b",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:429",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "429"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef and_tuples(tuple1, tuple2):\n    \"\"\"\n    Returns a tuple where each element is the result of the bitwise AND operation\n    between the corresponding elements of the input tuples.\n    \"\"\"\n    return tuple(x & y for x, y in zip(tuple1, tuple2))\n\n# Test cases\nassert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)\nassert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)\nassert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)\n```",
+      "input_tokens": 177,
+      "output_tokens": 193,
+      "generation_seconds": 30.987385218963027,
+      "output_tokens_per_second_including_prefill": 6.2283409405544745,
+      "peak_allocated_bytes": 16124252160,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

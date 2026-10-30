@@ -1,0 +1,32 @@
+{
+  "key": "3100cc9ee5406852a77747b8870e81de6668ef4d408935c41b9ed0e489eb236a",
+  "digest": "991316c308d941dacb85c70067353a8cb9012c0a112ba174e8896846b28edead",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:442",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "442"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef positive_count(arr):\n    \"\"\"\n    Calculate the ratio of positive numbers in an array of integers.\n\n    Parameters:\n    arr (list of int): The input list of integers.\n\n    Returns:\n    float: The ratio of positive numbers in the array.\n    \"\"\"\n    if not arr:\n        return 0.0\n    positive_numbers = sum(1 for num in arr if num > 0)\n    return positive_numbers / len(arr)\n\n# Test cases\nassert positive_count([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8]) == 0.54\nassert positive_count([2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8]) == 0.69\nassert positive_count([2, 4, -6, -9, 11, -12, 14, -5, 17]) == 0.56\n```",
+      "input_tokens": 182,
+      "output_tokens": 238,
+      "generation_seconds": 38.2773765969323,
+      "output_tokens_per_second_including_prefill": 6.217771988560843,
+      "peak_allocated_bytes": 16126809600,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

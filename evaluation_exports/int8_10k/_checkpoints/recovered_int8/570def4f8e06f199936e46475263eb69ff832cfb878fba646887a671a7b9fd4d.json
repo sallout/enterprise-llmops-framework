@@ -1,0 +1,32 @@
+{
+  "key": "a2d804a4f7f184f7bec20f16a54ff068f81add4fc634399fc06409e9c56854e6",
+  "digest": "e0d1d801c69afa2b434336f9054364d1d16ea1522598de3fd5b271dbd608e9f9",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/46",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/46"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef fib4(n: int):\n    \"\"\"\n    Compute the n-th element of the fib4 number sequence.\n    \n    Parameters:\n    n (int): The index of the sequence to compute.\n    \n    Returns:\n    int: The n-th element of the fib4 sequence.\n    \"\"\"\n    if n == 0 or n == 1:\n        return 0\n    elif n == 2:\n        return 2\n    elif n == 3:\n        return 0\n    \n    a, b, c, d = 0, 0, 2, 0\n    for _ in range(4, n + 1):\n        a, b, c, d = b, c, d, a + b + c + d\n    \n    return d\n```",
+      "input_tokens": 201,
+      "output_tokens": 165,
+      "generation_seconds": 26.54709611693397,
+      "output_tokens_per_second_including_prefill": 6.215369066100948,
+      "peak_allocated_bytes": 16291524096,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

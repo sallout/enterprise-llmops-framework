@@ -1,0 +1,32 @@
+{
+  "key": "210bbae02adad75d08eec496e8aa4b539468bf65c5e8e935b1b1cba4bd758cf9",
+  "digest": "8d8d8f1303c8897c10b48296a7b2d0ed09cd33c6175d374043f1229521aef734",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/0",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/0"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False\n```",
+      "input_tokens": 153,
+      "output_tokens": 165,
+      "generation_seconds": 26.443209248944186,
+      "output_tokens_per_second_including_prefill": 6.239787253000997,
+      "peak_allocated_bytes": 16226765824,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

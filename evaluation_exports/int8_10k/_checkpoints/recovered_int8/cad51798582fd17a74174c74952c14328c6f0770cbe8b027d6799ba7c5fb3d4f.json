@@ -1,0 +1,32 @@
+{
+  "key": "0c2965c8ddb2c4c5c3e723cb6f4e391c9c75d48cb5834c3c3a318c716d7c63ea",
+  "digest": "8a0562dd469962536577d50e1baeb800dc1dbeed6dd96e920e531ae2c399b847",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/113",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/113"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef odd_count(lst):\n    \"\"\"\n    Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n    :param lst: List of strings containing only digits\n    :return: List of strings with the count of odd digits in each string\n    \"\"\"\n    result = []\n    for i, s in enumerate(lst):\n        odd_digits = sum(1 for ch in s if int(ch) % 2 != 0)\n        result.append(f\"the number of odd elements {odd_digits}n the str{odd_digits}ng {odd_digits} of the {odd_digits}nput.\")\n    return result\n```",
+      "input_tokens": 211,
+      "output_tokens": 187,
+      "generation_seconds": 29.92516998492647,
+      "output_tokens_per_second_including_prefill": 6.248920226491388,
+      "peak_allocated_bytes": 16339892224,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

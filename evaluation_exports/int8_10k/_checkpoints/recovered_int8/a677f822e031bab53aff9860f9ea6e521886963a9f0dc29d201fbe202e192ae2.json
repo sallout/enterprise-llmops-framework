@@ -1,0 +1,182 @@
+{
+  "key": "f3b2907c27f0c4e0f9b4c876781792c9b1ea45d1b63f4649239d99d8a66db685",
+  "digest": "258c68fb6a3199d32dbea3042ef08ee014beef015f4e2493f468fb7bbf541d4a",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "enterprise:8c724f77c3bd54d23bd0d4bd4d695ff133b824ecc2e4909abf1d8b3c6de4e77d",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "8c724f77c3bd54d23bd0d4bd4d695ff133b824ecc2e4909abf1d8b3c6de4e77d",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "4907e7c1cec5a82bd50e4dd4ec09b51ab046ce20ec4a335773ae5b8cdfe74dbb",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+          "section_id": "9",
+          "section_title": "Exceptions and Risk Acceptance",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            3
+          ],
+          "source_spans": [
+            {
+              "page_number": 3,
+              "start": 2546,
+              "end": 2664
+            },
+            {
+              "page_number": 3,
+              "start": 2665,
+              "end": 2776
+            },
+            {
+              "page_number": 3,
+              "start": 2777,
+              "end": 2893
+            },
+            {
+              "page_number": 3,
+              "start": 2895,
+              "end": 2904
+            },
+            {
+              "page_number": 3,
+              "start": 2907,
+              "end": 3012
+            },
+            {
+              "page_number": 3,
+              "start": 3014,
+              "end": 3126
+            },
+            {
+              "page_number": 3,
+              "start": 3128,
+              "end": 3152
+            }
+          ],
+          "passage_id": "fc1fda3d8fbfbb436ce0793c7d90bb70350177862340665d687df77bac67518a",
+          "evidence_quote": "Exceptions MUST identify the component, version, license, business justification, compensating controls, vulnerability\nstatus, distribution model, legal assessment where relevant, accountable owner, and expiration date. Open-ended\nexceptions are prohibited. Critical-risk exceptions require CISO approval; material license exceptions require Legal\n\napproval.\n\nAn exception MUST NOT be interpreted as permanent policy change. The control owner may require additional\n\nmonitoring, narrower scope, remediation milestones, or earlier review. Expired exceptions automatically cease to\n\nauthorize the deviation.",
+          "evidence_start": 0,
+          "evidence_end": 605,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response directly restates the supplied passage’s exception requirements and limitations, including mandatory fields, prohibition on open-ended exceptions, approval requirements, non-permanence, control-owner conditions, and expiration effect, without adding unsupported scope."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 134,
+          "record_hash": "e5fd0bc08f6db892f8e8adf2dcfe445826198b1e06b134a02b81448dfe9d7f31"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 389,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "3eb8d42e9036d47b8f9dc5eeb8788bdf231729ef73c099f2c09fdaaddb792b16"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "Exceptions MUST identify the component, version, license, business justification, compensating controls, vulnerability status, distribution model, legal assessment where relevant, accountable owner, and expiration date. Open-ended exceptions are prohibited. Critical-risk exceptions require CISO approval; material license exceptions require Legal approval. An exception MUST NOT be interpreted as permanent policy change. The control owner may require additional monitoring, narrower scope, remediation milestones, or earlier review. Expired exceptions automatically cease to authorize the deviation.",
+      "input_tokens": 291,
+      "output_tokens": 97,
+      "generation_seconds": 15.411650936002843,
+      "output_tokens_per_second_including_prefill": 6.293939591727988,
+      "peak_allocated_bytes": 16277457408,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": true,
+      "token_f1": 1.0,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

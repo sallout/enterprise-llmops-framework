@@ -1,0 +1,32 @@
+{
+  "key": "69ce5ace987b3846074ffbfae39640f879c157612e6c58922492844ad4c16949",
+  "digest": "66eb74150b08890140b319693acf165c97ff73ffc9ca965d0d09e03ac887c0c4",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:277",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "277"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef dict_filter(d, n):\n    \"\"\"\n    Filters a dictionary to include only entries with values greater than or equal to n.\n\n    :param d: Dictionary to be filtered.\n    :param n: Threshold value for filtering.\n    :return: Filtered dictionary.\n    \"\"\"\n    return {k: v for k, v in d.items() if v >= n}\n```",
+      "input_tokens": 278,
+      "output_tokens": 80,
+      "generation_seconds": 12.979368297965266,
+      "output_tokens_per_second_including_prefill": 6.163628164595757,
+      "peak_allocated_bytes": 16488190976,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

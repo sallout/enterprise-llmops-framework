@@ -1,0 +1,32 @@
+{
+  "key": "5ab939a7e87e8027668577612c3a55be82e1891501cc2c065280bf84b48bfb65",
+  "digest": "0c0c8df9be68a73ef45e771e200bf29b585999135b53edaedad7ac7843c84ae4",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:69",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "69"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_sublist(main_list, sub_list):\n    \"\"\"\n    Checks if sub_list is a sublist of main_list.\n    \n    :param main_list: List in which to search for the sublist.\n    :param sub_list: List to search for within the main list.\n    :return: True if sub_list is a sublist of main_list, False otherwise.\n    \"\"\"\n    if not sub_list:\n        return True\n    if not main_list:\n        return False\n    for i in range(len(main_list) - len(sub_list) + 1):\n        if main_list[i:i+len(sub_list)] == sub_list:\n            return True\n    return False\n\n# Test cases\nassert is_sublist([2,4,3,5,7],[3,7]) == False\nassert is_sublist([2,4,3,5,7],[4,3]) == True\nassert is_sublist([2,4,3,5,7],[1,6]) == False\n```",
+      "input_tokens": 111,
+      "output_tokens": 210,
+      "generation_seconds": 33.8334879319882,
+      "output_tokens_per_second_including_prefill": 6.206868189946608,
+      "peak_allocated_bytes": 16110963200,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "key": "23076513578571cadde3db628537714255e7396ea9877252100ba1ba123cd270",
+  "digest": "a411058884e0e0fdb58f765bb2d381a8e3e84a041b4328d2a1f8147d238d15b5",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:105",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "105"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count(boolean_list):\n    \"\"\"\n    Counts the number of True booleans in the given list.\n\n    :param boolean_list: List of booleans\n    :return: Count of True booleans\n    \"\"\"\n    return sum(boolean_list)\n\n# Test cases\nassert count([True, False, True]) == 2\nassert count([False, False]) == 0\nassert count([True, True, True]) == 3\n```",
+      "input_tokens": 79,
+      "output_tokens": 95,
+      "generation_seconds": 15.206157950102352,
+      "output_tokens_per_second_including_prefill": 6.247468973539142,
+      "peak_allocated_bytes": 16107178496,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

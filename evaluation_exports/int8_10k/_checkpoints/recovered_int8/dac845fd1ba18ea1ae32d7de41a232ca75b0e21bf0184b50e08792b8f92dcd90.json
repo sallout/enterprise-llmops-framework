@@ -1,0 +1,32 @@
+{
+  "key": "82dbab8a18a2aeb239c0ca310387a498035b06fab09321b4fdf7a6ad7de9416c",
+  "digest": "e68b254800cf0a34fbd830d02a1800f4401aa19235962088c5e18ba67cfac46e",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:310",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "310"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef string_to_tuple(input_string):\n    \"\"\"\n    Converts a given string to a tuple of characters.\n\n    Parameters:\n    input_string (str): The string to be converted.\n\n    Returns:\n    tuple: A tuple containing each character of the input string.\n    \"\"\"\n    return tuple(input_string)\n\n# Test cases\nassert string_to_tuple(\"python 3.0\") == ('p', 'y', 't', 'h', 'o', 'n', '3', '.', '0')\nassert string_to_tuple(\"item1\") == ('i', 't', 'e', 'm', '1')\nassert string_to_tuple(\"15.10\") == ('1', '5', '.', '1', '0')\n```",
+      "input_tokens": 131,
+      "output_tokens": 154,
+      "generation_seconds": 24.673078538035043,
+      "output_tokens_per_second_including_prefill": 6.241620791771067,
+      "peak_allocated_bytes": 16197151232,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

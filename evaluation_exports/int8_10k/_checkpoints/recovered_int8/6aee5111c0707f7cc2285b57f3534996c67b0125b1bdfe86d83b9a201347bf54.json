@@ -1,0 +1,32 @@
+{
+  "key": "a2c84614932948852d633347e3b7a63f0af7d021950ab612c794628c38a5741a",
+  "digest": "a9986193a418528ba6217c190f58aff9c3d3e6f67c56bd19bf4bfe93c39c7695",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/114",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/114"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n    if not nums:\n        return 0\n    min_sum = current_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = min(num, current_sum + num)\n        min_sum = min(min_sum, current_sum)\n    return min_sum\n```",
+      "input_tokens": 117,
+      "output_tokens": 144,
+      "generation_seconds": 23.045215949066915,
+      "output_tokens_per_second_including_prefill": 6.24858540350673,
+      "peak_allocated_bytes": 16177116160,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

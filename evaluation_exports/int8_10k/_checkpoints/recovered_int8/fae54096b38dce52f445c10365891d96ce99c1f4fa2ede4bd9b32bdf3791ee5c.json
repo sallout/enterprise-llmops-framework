@@ -1,0 +1,32 @@
+{
+  "key": "978a058c785f31da9fcccf57c476538cdaa24d0b1dc79ec463fc73a3c525ab07",
+  "digest": "449122ad3cc6a26edded1bad565ea129010f247a96af778c67151d8e39e484ce",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:226",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "226"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef odd_values_string(input_string):\n    \"\"\"\n    Removes characters at odd indices from the input string.\n\n    Parameters:\n    input_string (str): The string from which characters at odd indices will be removed.\n\n    Returns:\n    str: A new string with characters at odd indices removed.\n    \"\"\"\n    return input_string[::2]\n\n# Test cases\nassert odd_values_string('abcdef') == 'ace'\nassert odd_values_string('python') == 'pto'\nassert odd_values_string('data') == 'dt'\nassert odd_values_string('lambs') == 'lms'\n```",
+      "input_tokens": 98,
+      "output_tokens": 122,
+      "generation_seconds": 19.502015316975303,
+      "output_tokens_per_second_including_prefill": 6.255763725803585,
+      "peak_allocated_bytes": 16254336000,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

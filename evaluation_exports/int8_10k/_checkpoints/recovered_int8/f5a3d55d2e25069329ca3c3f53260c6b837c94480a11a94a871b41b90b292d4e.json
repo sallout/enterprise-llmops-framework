@@ -1,0 +1,155 @@
+{
+  "key": "8b0660e7178a78ed47b63753204eedd2a8200dc425b49b407e591c0ce8ed458c",
+  "digest": "2d4b39c9e701341ed4abc086c4e047b8df103266dfe757c74e43839954f9d36d",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "enterprise:c9f70305423844cd8424b9926ac519c850c6717fbdbf90d03c88c4f4d2957632",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "c9f70305423844cd8424b9926ac519c850c6717fbdbf90d03c88c4f4d2957632",
+      "metadata": {
+        "pipeline": "pipeline2",
+        "upstream_example_id": "4c905d811dd3c25fbfa4dc87cbaf3b19adea54f1c58cd372047439487dc43a2c",
+        "provenance": {
+          "pipeline": "repository_data",
+          "task_type": "explanation",
+          "language": "typescript",
+          "repository_id": "a435cd1685f444fc22ae896cb90cb81862c50cbd048bc16f89b522c74acb06d5",
+          "repository_name": "full-stack-fastapi-template-master",
+          "commit": null,
+          "snapshot_hash": "5d24c8f9d1ec8e2bf49c74a32b6fe7c9c4d08c734539002e3c5ee0efc83fd043",
+          "file_path": "frontend/src/routes/signup.tsx",
+          "file_hash": "109bfd36b9ca4b242e48cfdb5e92504e501d7f0e6e4f6271d202e145aca25aa5",
+          "symbol": "onSubmit",
+          "start_line": 74,
+          "end_line": 80,
+          "source_unit_id": "6e783c207568e6ade1426d66cc057b595406276ac65739dde0e71c122a04356d",
+          "source_quotes": [
+            "  const onSubmit = (data: FormData) => {",
+            "    if (signUpMutation.isPending) return",
+            "    // exclude confirm_password from submission data",
+            "    const { confirm_password: _confirm_password, ...submitData } = data"
+          ],
+          "related_tests": [],
+          "dependency_references": [
+            {
+              "file_path": "package.json",
+              "content_hash": "163147bc5eb115551352912b69fd5aff968c5a8792d8edaf53f870e45392e618"
+            },
+            {
+              "file_path": "pyproject.toml",
+              "content_hash": "aa3d765c8786f7670c5d0ab9370ec06f29d7cfefba2e5000c3232f09c16993cf"
+            },
+            {
+              "file_path": "backend/pyproject.toml",
+              "content_hash": "a4fdc75ae9c47e77dd70c3460a4a3a83545def601650786df386976b49da892e"
+            },
+            {
+              "file_path": "frontend/package.json",
+              "content_hash": "f6ca10df45c26bab9bec167873aff9fb307b18f623e484fe330bef252d57915d"
+            },
+            {
+              "file_path": "packages/react-email/package.json",
+              "content_hash": "add022feae7c99a501bf83f50c0119374be882a6bb3b498e519291056ec2eaa4"
+            }
+          ],
+          "license_references": [
+            {
+              "file_path": "LICENSE",
+              "content_hash": "0bd4e76cdd06ab24cce2de5e74f490920897f90a22ad35e8403ed006d4560f48",
+              "excerpt": "MIT License\n\nCopyright (c) 2019 Sebastián Ramírez\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of th"
+            }
+          ],
+          "syntax_valid": null,
+          "verification_status": "unverified",
+          "execution": {
+            "status": "unverified",
+            "executor": "none",
+            "reason": "runtime_not_applicable_to_knowledge_task",
+            "command": [],
+            "exit_code": null,
+            "tests_run": 0,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "feedback": "",
+            "image_id": null,
+            "duration_seconds": 0
+          },
+          "trajectory": [],
+          "grounding_review": {
+            "grounded": true,
+            "self_contained": true,
+            "technically_sound": true,
+            "tests_meaningful": true,
+            "reason": "The explanation matches the visible code: onSubmit is used with form.handleSubmit and zodResolver, the isPending guard prevents duplicate mutations, LoadingButton uses the same pending state, and confirm_password is destructured out before signUpMutation.mutate. Its inference about password confirmation/API payload is consistent with the field name and comment, though not fully shown. No executable tests are needed for an explanation task."
+          },
+          "semantic_status": "automated_checks_passed_not_human_verified",
+          "duplicate_check": "passed"
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 182,
+          "record_hash": "ee65268cca1cb0bc87154365bd1f6d7c8e6a38142837ca41776d4a3551730a67"
+        },
+        "component_group": "repository-file:c6af0db5aebe1365b49800e0374dac1eed40dd8426101555b0a7c28c15c8e40e",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "code",
+          "mode": "import",
+          "file_hash": "1a6f281c651cfbced8a1a33db496e20796e98425e34e87a42133801711418487",
+          "producer_status": "FAILED",
+          "producer_complete": false
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 3636,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "304e2591e31874e94549046f4ec278065e788b973dbb54e0f4d837ff1a2de2e5"
+        },
+        "split": "test",
+        "split_group": "record:182",
+        "training_split": "test"
+      },
+      "domain": "coding",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "The onSubmit handler in frontend/src/routes/signup.tsx is a function that handles the form submission for the signup page. It receives a data object of type FormData, which contains the values entered by the user in the form fields. The first thing it does is check if signUpMutation.isPending is true. This is a guard clause that prevents the form from being submitted multiple times in rapid succession, which could cause duplicate signups or unnecessary API calls. The isPending property is part of the mutation object returned by useAuth, and it reflects whether the signup mutation is currently in progress.\n\nNext, the handler removes the confirm_password field from the data object before calling signUpMutation.mutate(submitData). This is because the confirm_password field is only used for client-side validation to ensure that the user has entered the same password twice. It is not part of the actual signup payload that needs to be sent to the backend. The form is built using react-hook-form and is validated using zodResolver, which means that the formSchema (not shown in the code excerpt) must include a rule that confirms the password matches. The confirm_password field is not part of the schema that is used to validate the final submission data, so it is safe to exclude it from the data that is sent to the backend.\n\nThe form validation setup ensures that the user enters a valid email address, a full name, and a password that meets certain criteria. The confirm_password field is used to ensure that the user has entered the same password twice, but it is not part of the final payload that is sent to the backend. The backend is expected to receive a payload that includes the user's email address, full name, and password, but not the confirm_password field. The onSubmit handler is responsible for ensuring that the data that is sent to the backend is in the correct format and does not include unnecessary fields.",
+      "input_tokens": 3469,
+      "output_tokens": 379,
+      "generation_seconds": 61.24955485505052,
+      "output_tokens_per_second_including_prefill": 6.187800072946136,
+      "peak_allocated_bytes": 17578588672,
+      "peak_reserved_bytes": 21002977280
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": false,
+      "token_f1": 0.3801295896328294,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

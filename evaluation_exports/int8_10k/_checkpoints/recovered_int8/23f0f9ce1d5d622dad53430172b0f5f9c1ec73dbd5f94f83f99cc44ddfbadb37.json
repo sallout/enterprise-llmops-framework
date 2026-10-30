@@ -1,0 +1,32 @@
+{
+  "key": "2aecd4e11d449c271187b16e4dbc1c90a8f477a091b0ed0257eb04dce5347e5e",
+  "digest": "65b42bc668ccf0461fa9e085eb51a59705e01ac8cb80512ff55e34822dee7146",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:103",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "103"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import comb\n\ndef eulerian_num(n, m):\n    \"\"\"\n    Returns the Eulerian number a(n, m), which is the number of permutations of the numbers 1 to n\n    in which exactly m elements are greater than the previous element.\n    \"\"\"\n    if m < 0 or m >= n:\n        return 0\n    if m == 0:\n        return 1\n    if m == n - 1:\n        return 1\n    return sum(comb(n - k - 1, m - k) * eulerian_num(k, m - k) for k in range(1, n - m))\n```",
+      "input_tokens": 91,
+      "output_tokens": 138,
+      "generation_seconds": 22.235757417976856,
+      "output_tokens_per_second_including_prefill": 6.206219891948978,
+      "peak_allocated_bytes": 16110156800,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

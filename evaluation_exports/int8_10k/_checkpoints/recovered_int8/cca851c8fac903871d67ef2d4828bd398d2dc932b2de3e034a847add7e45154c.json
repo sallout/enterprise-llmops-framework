@@ -1,0 +1,32 @@
+{
+  "key": "0251d2f3a2684ab7aa28864d10d2cf7d602e1ec38b878c4497c665c2a9da43a9",
+  "digest": "e66a4a445c8de09d061437a0a617dc7d21e6f32306786d713befe62019716762",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/75",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/75"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_multiply_prime(a):\n    \"\"\"\n    Returns True if the given number is the multiplication of 3 prime numbers,\n    and False otherwise. Assumes that a is less than 100.\n    \n    :param a: Integer, the number to check.\n    :return: Boolean, True if a is the product of three prime numbers, False otherwise.\n    \"\"\"\n    def is_prime(n):\n        \"\"\"Check if a number is prime.\"\"\"\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    def prime_factors(n):\n        \"\"\"Return the prime factors of a number.\"\"\"\n        factors = []\n        while n % 2 == 0:\n            factors.append(2)\n            n //= 2\n        for i in range(3, int(math.sqrt(n)) + 1, 2):\n            while n % i == 0:\n                factors.append(i)\n                n //= i\n        if n > 2:\n            factors.append(n)\n        return factors\n\n    factors = prime_factors(a)\n    return len(factors) == 3 and all(is_prime(factor) for factor in factors)\n```",
+      "input_tokens": 112,
+      "output_tokens": 315,
+      "generation_seconds": 50.25505745096598,
+      "output_tokens_per_second_including_prefill": 6.268025866000581,
+      "peak_allocated_bytes": 16159269376,
+      "peak_reserved_bytes": 18159239168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}
