@@ -2446,3 +2446,91 @@ not actual GPU export success. Next server experiment: export existing merged BF
 to 8-bit, then generate and score the same development tasks under matched settings.
 No new training is needed for that experiment. Final dissertation files remain
 unchanged until the later research revision.
+
+## 8-bit development comparison completed — 30 October 2026
+
+Actual locally available evidence:
+`artifacts/int8_scored_20261030_234623/report.json` and its results.jsonl report
+COMPLETED_WITH_WARNINGS and evaluation_complete=true after offline Docker scoring.
+All three scored exports (original/final, intermediates and int8) have the same
+frozen suite digest. Recovered BF16 and recovered int8 have identical eligible task
+IDs; direct per-task comparison found **no coding pass/fail transitions** between
+those two models on the selected 40 base Python tasks.
+
+| Stage | Base HumanEval | Sanitized base MBPP |
+| --- | --- | --- |
+| Original BF16 | 18/20 (90%) | 16/20 (80%) |
+| Pruned BF16 | 19/20 (95%) | 15/20 (75%) |
+| Recovered/merged BF16 | 18/20 (90%) | 15/20 (75%) |
+| Recovered LLM.int8 | 18/20 (90%) | 15/20 (75%) |
+| Final NF4 | 16/20 (80%) | 12/20 (60%) |
+
+Thus int8 retained the recovered BF16 model's selected coding outcomes, while NF4
+had lower scores on this selection. The experiment supports considering int8 as a
+quality-preserving alternative for these tasks, not a claim of identical general
+behaviour or a coding improvement from fine-tuning. Recovered BF16/int8 did not
+outperform the original on these benchmarks; MBPP remains one success below the
+original. The sample is small and has already informed model decisions, so it is
+a development comparison rather than an untouched final evaluation.
+
+The int8 report inherits GPU-generation measurements of 1,325.1188 seconds across
+48 tasks and approximately 6.2628 output tokens/second including prefill. It records
+peak allocated/reserved memory of 17,578,588,672 / 21,002,977,280 bytes. It was slower
+than the other recorded runs under the current backend/workload. These are observed
+run-level metrics, affected by generated lengths and runtime conditions, not a
+controlled kernel-efficiency or universal int8 latency claim. No GPU generation
+was repeated during local Docker scoring.
+
+Int8 enterprise normalized exact match was 2/8 and mean token F1 was approximately
+0.4971 (averaged over all eight selected tasks). Seven answers were lexically scored.
+Direct inspection identifies the eighth as task
+`enterprise:80ad5a1c3c827b8ea419ba72d542e7fcc380c0c25a1abba21bf030947b978053`:
+it reached the 1,024-output-token limit and is explicitly failed with reason
+`output_limit` (307 input tokens). It was not silently truncated and treated as a
+successful answer. It contributes no lexical score to the eight-task denominator.
+The reduced enterprise F1 is not solely evidence of semantic degradation; the
+length-limited answer and remaining response differences require review. All
+enterprise answers still require correctness/condition/exception assessment.
+
+This entry records inspected actual artifacts and comparison only; no software
+changes, new training, model regeneration or new test-suite execution occurred.
+The next research decision should retain the coding-quality/memory/speed trade-off,
+inspect failed coding tasks and policy responses, and use controlled adaptation
+experiments before any full-dataset training commitment. Final dissertation
+Word/PDF updates remain deferred.
+
+## Inspection of actual saved coding failures — 30 October 2026
+
+Read the frozen prompts, references/tests and actual saved original/int8 answers
+from the locally scored exports. The seven int8 coding failures all reached
+executable tests (tests_failed); they are not recorded as output-limit, missing
+Docker or generation failures. No candidate code or benchmark test was modified,
+and no new execution was needed for this source-level inspection.
+
+| Task | Observed answer behaviour | Interpretation of the failed criterion |
+| --- | --- | --- |
+| HumanEval/125 | Uses ord(char) % 2 == 1 for the odd zero-based alphabet positions | ASCII parity is reversed relative to zero-based a=0; for aaabb it counts three a characters instead of the two b characters expected by the test |
+| HumanEval/145 | Applies int(d) to every character in str(n), including '-' | Negative-number inputs encounter an invalid integer conversion; the original also failed this task |
+| MBPP/249 | Converts set intersection directly to a list | Set membership alone does not satisfy the exact list-order assertions; the original also failed |
+| MBPP/442 | Returns the unrounded positive-number fraction | Provided examples require two-decimal outputs; the original also failed |
+| MBPP/164 | Sums all divisors, including n | The supplied prime-pair test/reference instead expects proper-divisor behaviour; the natural-language prompt does not explicitly distinguish these interpretations. This is specification ambiguity, not sufficient evidence of generally worse mathematics |
+| MBPP/310 | Returns tuple(input_string) including whitespace | The supplied example/reference omit spaces; the original also failed |
+| MBPP/103 | Uses a different recursive expression from the reference | The expression returns 1 for the first provided (3,1) example instead of its expected 4; the original also failed |
+
+Paired task outcomes refine the earlier aggregate interpretation. Of the int8
+model's seven coding failures, five were also failures for the original baseline.
+Two changed from baseline pass to int8 fail: HumanEval/125 and MBPP/164. One task,
+HumanEval/75, changed from baseline fail to int8 pass. Both newly failed tasks
+passed for the pruned BF16 checkpoint and failed for recovered BF16 as well as
+int8. These observations locate the changes after recovery in this run; they do
+not establish a universal training effect or resolve the ambiguous MBPP/164
+specification. The int8 task-by-task coding outcomes still match recovered BF16.
+
+The practical diagnosis is therefore more specific than an overall quality-loss
+label: investigate constraint-following and the paired recovery-stage changes,
+while separately acknowledging benchmark wording/ordering/rounding requirements.
+Do not fix the saved test answers and then claim a better benchmark score, and do
+not train on these inspected cases while treating them as untouched final tests.
+The current selection remains development evidence. Future dataset/training changes
+need independent validation; neither a larger corpus nor higher precision alone
+is established as the remedy for these BF16/int8 failures.
