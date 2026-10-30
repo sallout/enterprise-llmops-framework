@@ -54,6 +54,7 @@ class DockerExecutor:
                     '--memory', '512m', '--memory-swap', '512m', '--cpus', '1', '--pids-limit', '32',
                     '--ulimit', 'fsize=1048576:1048576', '--ulimit', 'nofile=64:64',
                     '--log-driver', 'local', '--log-opt', 'max-size=1m', '--log-opt', 'max-file=1',
+                    '--log-opt', 'compress=false',
                     '--mount', f'type=bind,src={folder},dst=/evaluation,readonly',
                     self.image_id, 'python', '-I', '-B', '/evaluation/task.py']
                 created = subprocess.run(command, capture_output=True, timeout=15)

@@ -2219,3 +2219,55 @@ missing/tampered task or manifest refusal, prior-report preservation and CLI
 recovery. `finalize_evaluation --help` and `git diff --check` passed. No access to
 the server's 96 actual answer files or models was available locally; real recovery
 must be confirmed by running the new command on that existing evaluation directory.
+
+## Real Docker evaluation completed locally — 30 October 2026
+
+The first offline scoring attempts failed before reference execution because Docker
+was unavailable; after Docker Desktop started, container startup still failed.
+A minimal real Docker diagnostic exposed the precise error: the `local` logging
+driver rejected compression with max-file=1 (`compression cannot be enabled when
+max file count is 1`). Updated model_evaluation/execution.py to explicitly set
+`--log-opt compress=false`, retaining the one-file/1 MB log limit and the existing
+network, privilege, filesystem and resource restrictions. Added a regression
+assertion to the container-command test.
+
+Actual verification after the fix:
+
+- `RUN_MODEL_EVALUATION_DOCKER_TESTS=1 uv run --locked pytest tests/test_model_evaluation_docker.py -q`:
+  **1 passed in 2.77 seconds**, exercising real passing/failing candidate code,
+  premature zero-exit rejection and timeout cleanup inside Docker.
+- `uv run --locked pytest tests/test_model_evaluation.py -q`:
+  **37 passed**, five existing SWIG warnings, **4.69 seconds**.
+- Actual offline command:
+  `uv run --locked llmops score_evaluation --input ./evaluation_exports/run_10k --output ./artifacts/evaluation_50_scored_dockerfix`.
+  **COMPLETED_WITH_WARNINGS**, evaluation_complete=true, **96 saved answers scored**.
+  No model loading, GPU generation or training was repeated locally.
+
+The frozen selection retained 20 base HumanEval tasks, 20 sanitized base MBPP tasks
+and 8 enterprise tasks per model after prior overlap exclusions. Reference test
+preflight passed in the actual Docker image before candidate scoring. Results:
+
+| Selected base benchmark | Original BF16 | Final pruned/recovered NF4 |
+| --- | --- | --- |
+| HumanEval | 18/20 (90%) | 16/20 (80%) |
+| MBPP | 16/20 (80%) | 12/20 (60%) |
+
+These small-sample observed differences are decreases, not evidence of improved
+coding. The comparison combines pruning, training and quantization effects and
+cannot identify which stage caused the difference. It uses base tests, not the
+expanded EvalPlus suites; pretraining contamination and broader performance remain
+unresolved. Reported marginal confidence intervals are wide and differences are
+not presented as significance claims. Any further training selected using these
+results must treat this suite as development data and retain a separate final test.
+
+Enterprise lexical mean token F1 was approximately 0.3474 for original and 0.4912
+for final; normalized exact match was 0/8 and 1/8 respectively. These are text
+matching proxies, not proof of correct policy requirements, conditions or
+exceptions. All eight enterprise tasks per model still require semantic review.
+Runtime/memory metrics in the output are inherited from the original GPU generation
+checkpoints, not fresh local GPU measurements.
+
+Actual results and preserved generation evidence are available in
+`artifacts/evaluation_50_scored_dockerfix/report.json` and `results.jsonl`.
+The original input export was not modified. The final dissertation documents
+remain unchanged pending the author's later research-report revision.

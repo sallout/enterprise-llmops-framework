@@ -237,6 +237,7 @@ def test_docker_command_has_isolation_and_timeout_cleanup(tmp_path,monkeypatch):
     create=calls[0]
     assert create[create.index('--network')+1]=='none'
     assert '--read-only' in create and '--cap-drop' in create and '--gpus' not in create
+    assert 'compress=false' in create  # local logging driver rejects max-file=1 with compression enabled
     assert calls[-1][1:3]==['rm','-f']
 
 
