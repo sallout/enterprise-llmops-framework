@@ -486,3 +486,12 @@ Optimizer resume still requires matching source inputs, paths/configuration and
 runtime. Model inference/evaluation can reuse the saved weights without training.
 Keep both the receipt and verified repository revision before releasing server
 storage. Backup verification establishes byte preservation, not model quality.
+
+### Export a saved trained model to 8-bit
+
+`llmops export_8bit --compression-run PATH --output NEW_PATH` converts the committed
+merged BF16 checkpoint to bitsandbytes LLM.int8 on Linux/NVIDIA CUDA, without
+retraining or replacing the existing NF4 model. It saves `model_8bit/`, verifies
+reload and records a separate report. The interactive compression menu includes
+this option. See [the compression guide](docs/compression.md#standalone-8-bit-export-after-training)
+for the server command, retry behaviour, evaluation and opt-in CUDA test.

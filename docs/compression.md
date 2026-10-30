@@ -182,3 +182,59 @@ Then run the bounded 14B command above and inspect its actual report before scal
 - [PEFT LoRA and merge](https://huggingface.co/docs/peft/main/en/conceptual_guides/lora)
 - [Transformers bitsandbytes quantization](https://huggingface.co/docs/transformers/en/quantization/bitsandbytes)
 - [NVIDIA pruning/distillation examples](https://github.com/NVIDIA/Model-Optimizer/tree/main/examples/pruning): evidence for the broader method, not certification of this implementation or Qwen3-14B results.
+
+## Standalone 8-bit export after training
+
+Use the completed recovery/merged BF16 checkpoint to test whether LLM.int8
+preserves more of its measured development-set performance than the NF4 export:
+
+```bash
+uv run --locked --extra training llmops export_8bit \
+  --compression-run /workspace/artifacts/compression_opencode_10k \
+  --output /workspace/artifacts/quantization_8bit
+```
+
+The menu exposes the same operation under **Model compression & fine-tuning →
+Export existing trained BF16 to 8-bit (no training)**. No additional pruning or
+training runs, and `model_4bit/` is not overwritten. Output is
+`/workspace/artifacts/quantization_8bit/model_8bit`; `report.json` records source
+identity, runtime, outlier threshold, saved-file hashes, actual export bytes and
+save/reload smoke evidence. The format is bitsandbytes **LLM.int8**, not FP8 or NF4.
+Its outlier handling and non-quantized layers make it mixed precision; nominal
+8-bit does not mean every tensor/operation is int8.
+
+The source must be an unquantized dense Qwen3 checkpoint from the committed recovery
+stage. Quantized sources are refused. Input/recovery stage hashes are checked
+before export and again afterwards. Execution requires Linux, one BF16-capable
+NVIDIA CUDA GPU and the existing training extra. Capacity guards default to 24 GiB
+free VRAM and 32 GiB disk, which are conservative lower-bound checks rather than
+measured peaks or guarantees. The export is loaded directly with
+`BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)` and uses local source
+files, saves safely, releases memory, reloads the saved model and checks actual
+8-bit modules plus finite forward/generation smoke behaviour. No LLM endpoint,
+remote model download, calibration optimisation or semantic certification is used.
+The smoke uses an existing training-only calibration row, not the frozen test suite.
+
+Interrupted exports can be retried with the identical command plus `--resume`;
+only this export's pending staging directory is rebuilt. Already verified exports
+are reused after file-hash checks. Source weights, original NF4 and datasets are
+preserved. Use a new directory if source/configuration/code changes. A separate
+8-bit output is not automatically included in an older compression-root backup;
+preserve it independently before terminating GPU storage.
+
+After successful export, the existing evaluator accepts the local checkpoint:
+`--model recovered_int8=/workspace/artifacts/quantization_8bit/model_8bit`.
+Reuse the exact development suite, generation budget and training-cache overlap
+screen before comparing results with the BF16/NF4 stages. This operation does not
+predict or guarantee better coding scores.
+
+Real tiny-model int8 save/reload is covered by the optional Linux/CUDA test:
+
+```bash
+RUN_MODEL_EVALUATION_CUDA_TESTS=1 uv run --locked --extra training \
+  pytest tests/test_model_evaluation_cuda.py -k int8 -q
+```
+
+That test creates tiny synthetic weights locally and downloads no pretrained
+model. Ordinary macOS tests use a fake backend and do not establish CUDA success.
+Implementation follows the [Transformers bitsandbytes documentation](https://huggingface.co/docs/transformers/main/quantization/bitsandbytes).

@@ -2271,3 +2271,178 @@ Actual results and preserved generation evidence are available in
 `artifacts/evaluation_50_scored_dockerfix/report.json` and `results.jsonl`.
 The original input export was not modified. The final dissertation documents
 remain unchanged pending the author's later research-report revision.
+
+## Experimental interpretation and next-run decisions — 30 October 2026
+
+This entry consolidates the experiment's reasoning and decisions after the first
+real coding comparison. Earlier dated entries remain a record of what was known
+at each stage; the current evidence does not support a claim of improved coding.
+The research objective is stronger programming performance together with evidence
+of learning a bounded set of enterprise rules. Compression is a separate objective
+whose quality cost must be measured.
+
+### Sequence and evidence status
+
+| Stage | Evidence available | Current interpretation |
+| --- | --- | --- |
+| Tiny CUDA compatibility test | Operator's passing RunPod test, after fixing unsupported warmup_ratio | Technical compatibility only; no 14B quality claim |
+| Ten-step Qwen3 smoke experiment | Operator's completed pruning/recovery/NF4 save-reload log | Verified execution route reported by the operator; insufficient training-efficacy evidence |
+| Larger OpenCode-focused run | Operator's completed 650-step log: 10,372 training rows, epoch 1.002, train_loss 0.201, train_runtime 5,825 seconds | Training and export completed; loss is a fitting statistic, not a held-out coding score |
+| First original-BF16 vs final-NF4 generation | 48 cached answers per model; 96 exported answers | GPU generation completed; report export failed before final metadata was committed |
+| Export recovery | Operator's successful finalize_evaluation output and imported checksummed artifacts | Recovered both models without inference or training repetition |
+| Local Docker scoring | Actual reference/candidate execution; completed local report | Measured decline on the selected base coding tests; enterprise semantics remain unassessed |
+| Pruned-BF16 and recovered-BF16 generation | Server command supplied; operator is awaiting completion | Pending; no intermediate-stage scores or conclusions yet |
+
+Operational problems were kept separate from model performance. The NF4 metadata
+serialization defect was repaired through JSON-compatible configuration conversion
+and export-only recovery. Docker startup then exposed a local logging-driver
+incompatibility; disabling log compression fixed execution. Neither failure was
+counted as a wrong model answer. Existing detailed entries contain the reproduction
+and verification results; no additional software tests were run for this prose-only
+update.
+
+### What the first comparison establishes
+
+Original BF16 passed 18/20 base HumanEval tasks and 16/20 sanitized base MBPP tasks.
+Final pruned/recovered NF4 passed 16/20 and 12/20, respectively. Thus the observed
+changes are -10 and -20 percentage points: two and four fewer successful tasks.
+These are small development samples with wide uncertainty, not a general measure
+of every coding capability. No statistical significance or causal attribution is
+claimed. The final model's higher enterprise lexical similarity does not establish
+that mandatory rules, exceptions or approval requirements were answered correctly.
+
+The locally imported overlap checkpoint now provides evidence about the reduction
+from 50 to 48 tasks: **two enterprise tasks**, not coding benchmark tasks, were
+excluded for suspected training-reference overlap. Their reference 13-word ngram
+coverage was 1.0 and approximately 0.8523 against individual training rows. All 20
+selected HumanEval and all 20 selected MBPP tasks remained. This is a conservative
+heuristic exclusion, not proof of a split-construction defect or a complete
+contamination audit. Exact task IDs and training-record references remain in
+`evaluation_exports/run_10k/overlap.json`.
+
+### Competing explanations to investigate
+
+The current comparison changes structural dimensions, adapts the pruned model,
+and reduces weight precision together. It cannot identify which change caused the
+observed decline. Plausible explanations remain hypotheses:
+
+- Physical MLP pruning may remove useful coding capacity. The 128-record calibration
+  sample and importance heuristic may not represent all tested behaviour; recovery
+  training may not compensate for the resulting change.
+- The selected instruction data, assistant-only supervision, learning-rate schedule
+  and approximately one epoch of LoRA training may shift behaviour without improving
+  these tasks. Ten thousand accepted records are not automatically a useful or
+  sufficient recovery budget. Training loss alone cannot diagnose generalisation
+  or establish that more data will help.
+- Final NF4 quantization may change otherwise successful BF16 answers. Its effect
+  must be measured against the recovered/merged BF16 model on identical task IDs.
+- Small-sample variability and differences in generated code formatting, response
+  length or task-specific errors may contribute. Failure categories and paired
+  answer transitions need inspection before attributing every miss to model capacity.
+
+The intermediate experiment will compare original BF16, pruned BF16 before recovery,
+recovered/merged BF16, and final NF4 using the same frozen development tasks and
+matched generation settings. These comparisons describe where behaviour changes
+in this run; multiple seeds and suitable controls are still needed for stronger
+causal claims.
+
+### Decision rules for the next experiment
+
+| Observation still to verify | Proposed next action | Status |
+| --- | --- | --- |
+| Performance drops immediately after pruning | Reduce/remove pruning; compare an otherwise matched unpruned LoRA run | Proposed, not executed |
+| Recovery improves the pruned model but remains below the original | Review recovery data/budget; test adaptation without pruning before expanding scale | Proposed, not executed |
+| Recovered BF16 performs well but final NF4 drops | Export and evaluate an 8-bit version directly from the saved merged BF16 weights | Proposed; 8-bit export support not yet implemented |
+| Training reduces performance relative to the pruned checkpoint | Audit selected data, loss supervision, schedule and failure cases before increasing examples | Proposed, not executed |
+| A controlled adaptation run improves development results | Increase accepted data gradually and track benefit against cost | Conditional future experiment |
+
+An 8-bit trial would not require repeating the existing BF16 training. It must
+start from the preserved merged BF16 checkpoint; converting the already-quantized
+NF4 export to a wider representation cannot restore information discarded during
+its original quantization. Even if quantization is ruled out, that does not establish
+that training on the full external dataset will improve results.
+
+The agreed scaling strategy is to avoid an immediate full-dataset run. Illustrative
+budgets of 10k, 50k and 100k accepted examples can be used after diagnosing the present
+decline; these are proposed experiment sizes, not performance recommendations backed
+by completed runs. Keep data-selection rules, model starting point, source mixture,
+response/input bounds and evaluation conditions explicit. Record both examples and
+supervised tokens, optimizer steps, epochs and cost: a fixed number of steps and a
+fixed number of epochs represent different budgets as data volume increases. Decide
+whether each experiment starts from the original or another checkpoint, and avoid
+unrecorded sequential fine-tuning when making data-size comparisons.
+
+Because the current suite is now informing these decisions, treat it as a
+**development suite**. Select a separate final test with disjoint task IDs, screen
+it against actual training inputs and freeze it before inspecting final answers.
+Reusing this suite for iteration is useful but cannot provide an untouched final
+assessment. The existing suite generator does not automatically guarantee disjoint
+new selections; that separation must be checked explicitly. Enterprise correctness
+requires independent review or a defined rubric with appropriate available policy
+context, alongside the coding benchmark results.
+
+No larger-data training, 8-bit export, no-pruning control or completed intermediate
+comparison is claimed in this entry. The next immediate evidence is the pending
+server intermediate answers followed by local isolated code scoring. Final Word/PDF
+dissertation revisions remain deferred at the author's request.
+
+## Intermediate-stage findings and standalone 8-bit export — 30 October 2026
+
+The intermediate scoring report is now locally available at
+`artifacts/intermediates_scored_20261030_231035/report.json`, with
+COMPLETED_WITH_WARNINGS and evaluation_complete=true. Its frozen suite digest
+matches the earlier original/final comparison. Current selected base-test results:
+
+| Model stage | HumanEval | MBPP |
+| --- | --- | --- |
+| Original BF16 | 18/20 (90%) | 16/20 (80%) |
+| Pruned BF16 before recovery | 19/20 (95%) | 15/20 (75%) |
+| Recovered/merged BF16 | 18/20 (90%) | 15/20 (75%) |
+| Final NF4 | 16/20 (80%) | 12/20 (60%) |
+
+The largest observed stage decline on this small development selection is between
+recovered BF16 and final NF4 (two and three fewer successes). Pruning has mixed
+results, and recovery training has not demonstrated a coding gain here. These
+observations motivate an 8-bit export trial, not a guarantee that 8-bit will improve
+results or a recommendation to scale training immediately. Enterprise lexical F1
+for recovered BF16 is approximately 0.5838; policy semantic correctness remains
+unassessed. Broader, paired failure analysis and an untouched final test remain
+necessary.
+
+Implemented `llmops export_8bit` and the corresponding interactive compression-menu
+option. `pipelines/quantization/int8.py` provides strict configuration, committed
+source-stage verification, distinct output protection, lazy Linux/CUDA LLM.int8
+export, mixed-precision metadata, save/reload smoke checks and checksummed output
+reuse. The source is the preserved unquantized recovery/merged BF16 checkpoint;
+using NF4 as the source is refused. The existing model_4bit and BF16 inputs remain
+unchanged. No pruning, training or LLM API generation is performed. The output is
+`model_8bit/` plus a report, with threshold 6.0 recorded. Technical success requires
+actual 8-bit linear modules, saved quantization configuration, a real saved-model
+reload and finite forward/generation checks using an existing training-only
+calibration row. This still does not certify coding quality.
+
+Interrupted exports can be retried using identical inputs/configuration/code with
+`--resume`; only the pending export is rebuilt. Completed exports are reused after
+hash verification. Standalone 8-bit output is separate from the existing compression
+root and is not silently included in its earlier backup. It must be preserved
+separately. No 8-bit weights or scores have been produced locally.
+
+Actual verification: targeted int8-export/dashboard tests returned **37 passed**,
+five existing warnings, **1.35 seconds**. The first full suite exposed the same
+Docker local-log compression incompatibility in the older repository sandbox
+(1 failed, 429 passed, 4 skipped). Applied the same `compress=false` logging option
+there; no repository dataset regeneration was run. The subsequent
+`uv run --locked pytest -q` returned **430 passed, 4 skipped**, five existing SWIG
+warnings, **11.29 seconds**. The existing real repository-container test now passes
+with Docker available. The four skips cover CUDA compression, CUDA evaluation,
+new CUDA int8 export/reload, and the opt-in Docker evaluation test not selected in
+this full run. `export_8bit --help` and `git diff --check` passed.
+
+The new real tiny-Qwen int8 save/reload test is available via
+`RUN_MODEL_EVALUATION_CUDA_TESTS=1 uv run --locked --extra training pytest tests/test_model_evaluation_cuda.py -k int8 -q`.
+It was not executed on macOS. Mocked exporter tests establish control flow,
+source preservation, NF4-source refusal, interruption/retry and checksum behaviour,
+not actual GPU export success. Next server experiment: export existing merged BF16
+to 8-bit, then generate and score the same development tasks under matched settings.
+No new training is needed for that experiment. Final dissertation files remain
+unchanged until the later research revision.

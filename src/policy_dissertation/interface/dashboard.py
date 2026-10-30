@@ -246,7 +246,7 @@ class Dashboard:
             if code==0:
                 try:outputs=json.loads(Path('.llmops/outputs.json').read_text())
                 except (OSError,ValueError):outputs={}
-                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation','backup_model'}
+                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation','backup_model','export_8bit'}
                 outputs={k:v for k,v in outputs.items() if k in allowed and isinstance(v,str)} if isinstance(outputs,dict) else {}
                 outputs[args[0]]=str(Path(output).resolve())
                 dump_json(Path('.llmops/outputs.json'),outputs)
@@ -460,8 +460,18 @@ class Dashboard:
     def compression(self):
         action=self.choose('Linux / NVIDIA CUDA model compression',[
             Option('check','Check GPU environment only — no model download'),
-            Option('run','Prune, recover/train and export 4-bit model'),Option('back','Back')])
+            Option('run','Prune, recover/train and export 4-bit model'),
+            Option('int8','Export existing trained BF16 to 8-bit (no training)'),Option('back','Back')])
         if action=='back':raise Cancelled()
+        if action=='int8':
+            source=self.path('Completed compression experiment directory',default=self.suggested('compress_model','/workspace/artifacts/compression_opencode_10k'),directory=True)
+            output,_=self.output('/workspace/artifacts/quantization_8bit',resumable=True)
+            args=['export_8bit','--compression-run',str(source),'--output',str(output)]
+            if (output/'report.json').exists():args.append('--resume')
+            if self.preview('8-bit model export',{'Source':source,'Output':output,'Method':'Merged BF16 → bitsandbytes LLM.int8',
+                'Training':'Not started; existing BF16 and NF4 preserved','Hardware':'Linux NVIDIA CUDA only',
+                'Validation':'Save/reload technical check; coding quality still needs the frozen evaluation suite'}):self.execute(args,output)
+            return
         enterprise=self.path('Prepared enterprise directory',default=self.suggested('enterprise_prepare','artifacts/enterprise_ready'),directory=True)
         native=self.path('Prepared NVIDIA source-plan directory',default=self.suggested('nvidia_data','artifacts/nvidia'),directory=True)
         output,_=self.output('artifacts/compression',resumable=True)

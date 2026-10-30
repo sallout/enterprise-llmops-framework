@@ -740,3 +740,22 @@ def finalize_evaluation_command(
         typer.echo(f"Evaluation complete: {result['evaluation_complete']}; code tests remain pending when execution was disabled.")
         typer.echo(f"Report: {input_directory.resolve()/'report.json'}")
     run_safely(execute)
+
+
+@app.command('export_8bit')
+def export_8bit_command(
+    compression_run: Path = typer.Option(..., exists=True, file_okay=False, help='Completed compression root; source is committed recovery/merged BF16.'),
+    output: Path = typer.Option(Path('artifacts/quantization_8bit')),
+    threshold: float = typer.Option(6.0, min=.001, max=100, help='LLM.int8 outlier threshold; keep fixed for reproducibility.'),
+    resume: bool = typer.Option(False, help='Retry an identical interrupted export, or reuse a verified completed export.'),
+) -> None:
+    """Export saved merged BF16 to 8-bit on Linux CUDA; no retraining or NF4 overwrite."""
+    def execute():
+        from policy_dissertation.pipelines.quantization.int8 import export_8bit, Int8Config
+        result = export_8bit(compression_run, output, Settings(), Int8Config(threshold=threshold),
+                            resume=resume, progress=lambda text: typer.echo(text, err=True))
+        typer.echo(f"Status: {result['status']}; final model ready: {result['final_model_ready']}")
+        typer.echo(f"8-bit model: {result['model_directory']}")
+        typer.echo(f"Report: {output.resolve()/'report.json'}")
+        typer.echo('No training started. Compare this saved checkpoint on the same development suite; quality remains unverified.')
+    run_safely(execute)

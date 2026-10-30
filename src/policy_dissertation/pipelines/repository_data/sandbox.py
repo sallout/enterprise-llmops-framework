@@ -107,6 +107,7 @@ sys.exit(0 if result.wasSuccessful() and result.testsRun>0 and not result.skippe
                       '--ulimit', 'fsize=1048576:1048576', '--ulimit', 'nofile=64:64',
                       '--tmpfs', '/tmp:rw,noexec,nosuid,size=16m',
                       '--log-driver', 'local', '--log-opt', 'max-size=1m', '--log-opt', 'max-file=1',
+                      '--log-opt', 'compress=false',
                       '--mount', f'type=bind,src={root},dst=/work,readonly',
                       '--env', 'PYTHONDONTWRITEBYTECODE=1', '--workdir', '/work', self.image_id, *command]
             try:

@@ -48,3 +48,37 @@ def test_real_tiny_qwen_bf16_and_saved_nf4_generation(tmp_path):
         result=backend.generate([{'role':'user','content':'ready'}],config)
         assert result['output_tokens']>0 and result['peak_allocated_bytes']>0
     finally:backend.release()
+
+
+# Exercise the actual saved 8-bit export/reload using the same opt-in tiny model
+# pattern without downloading a model or claiming coding quality.
+def test_real_tiny_qwen_int8_export_reload(tmp_path):
+    import torch
+    from tokenizers import Tokenizer
+    from tokenizers.models import WordLevel
+    from tokenizers.pre_tokenizers import Whitespace
+    from transformers import Qwen3Config,Qwen3ForCausalLM,PreTrainedTokenizerFast
+    from policy_dissertation.config import Settings
+    from policy_dissertation.pipelines.quantization.int8 import Int8Backend,Int8Config
+    from policy_dissertation.pipelines.training.config import CompressionConfig
+    from policy_dissertation.pipelines.policy_transformation.data_io import dump_json
+    assert torch.cuda.is_available()
+    raw=Tokenizer(WordLevel({'<unk>':0,'<pad>':1,'<eos>':2,'ready':3},unk_token='<unk>'))
+    raw.pre_tokenizer=Whitespace()
+    tok=PreTrainedTokenizerFast(tokenizer_object=raw,pad_token='<pad>',eos_token='<eos>',unk_token='<unk>')
+    tok.chat_template="{% for message in messages %}{{ message['content'] + ' ' }}{% endfor %}"
+    cfg=Qwen3Config(vocab_size=32,hidden_size=64,intermediate_size=256,num_hidden_layers=2,
+        num_attention_heads=4,num_key_value_heads=2,head_dim=16,max_position_embeddings=256,
+        pad_token_id=1,eos_token_id=2,bos_token_id=2)
+    source=tmp_path/'bf16';model=Qwen3ForCausalLM(cfg);model.save_pretrained(source);tok.save_pretrained(source)
+    del model
+    inputs=tmp_path/'inputs';inputs.mkdir()
+    dump_json(inputs/'calibration.json',[{'input_ids':[3,3,2],'labels':[-100,3,2]}])
+    output=tmp_path/'int8';output.mkdir()
+    backend=Int8Backend(Settings(_env_file=None))
+    backend.preflight(tmp_path,CompressionConfig(minimum_free_vram_gib=1,minimum_free_disk_gib=1))
+    try:
+        result=backend.export(output,source,inputs,Int8Config())
+        assert result['reload_verified'] and result['quantized_linear_modules']>0
+        assert result['nominal_weight_bits']==8
+    finally:backend.release()
