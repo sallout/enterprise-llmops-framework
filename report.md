@@ -2126,3 +2126,49 @@ export to a Docker-capable host and use `score_evaluation` to execute the saved
 answers without model downloads or GPU regeneration. Opt-in real integration
 commands are documented for Linux CUDA and Docker hosts. The actual 14B comparison
 and independent enterprise semantic review remain the next server experiments.
+
+## Private compression-experiment backup CLI — 30 October 2026
+
+Added `llmops backup_model` and the interactive **Model backup to Hugging Face**
+option. Implementation: `data/model_backup.py`, CLI registration and dashboard
+routing/receipt summary. The command takes a completed compression root, an optional
+private model repository ID, and a separate receipt directory. The default remote
+name uses the authenticated account and compression fingerprint. HF_TOKEN requires
+write access; no GPU, inference or training is used.
+
+Before publication it checks completion status, report/checkpoint identity and
+all four committed stage checksums. It preserves the final NF4 export, pruned and
+merged BF16 stages, adapters, optimizer checkpoints and input/report evidence.
+Ordinary upload/Arrow caches, locks, environment files and private keys are excluded;
+cache/lock files included in committed stage manifests are retained for restoration
+integrity. Symlinks and glob-bearing filenames are refused. Known configured
+credentials found in text artifacts stop backup before publication. This scan does
+not certify that unknown historical secrets are absent. The destination must be a
+private model repository; existing public repositories are refused without changing
+their visibility.
+
+Hugging Face `upload_large_folder` provides upload-cache recovery when the identical
+command is rerun after interruption. The SDK can internally retry network work;
+Ctrl+C remains available and produces an INTERRUPTED, unverified local receipt.
+No remote deletion is requested. Every selected remote file must match its local
+byte length and LFS SHA-256 or Git blob SHA-1, and local files are rehashed after
+upload to detect source changes. Only then is `backup_verified=true` recorded.
+A separate `backup_manifest.json` is committed remotely; local `report.json` and
+`file_manifest.json` retain hashes, file/byte counts, repository, the verified
+payload revision and later manifest commit. Restore using the pinned payload
+revision; this archive retains the `model_4bit/` and `_runs/` layout rather than
+placing a loadable model at the repository root. Model reuse needs no retraining;
+optimizer resume still depends on matching external inputs/configuration/runtime.
+
+Actual verification: `uv run --locked pytest -q` returned **416 passed, 4 skipped**,
+five existing SWIG warnings, **13.41 seconds**. The four skips remain CUDA/Docker
+integrations unavailable or not opted into locally. New mocked tests cover private
+publication and both remote hash forms, source preservation, cache/secret exclusion,
+committed cache/lock retention, public destination refusal, upload/hash failure,
+interruption/retry, missing credentials, incomplete experiments, modified weights,
+protected output paths, CLI and dashboard forwarding. `backup_model --help` and
+`git diff --check` succeeded. No real Hugging Face model upload was performed;
+these results verify implementation behaviour with a fake Hub, not server transfer
+or preservation of the real 14B checkpoints. The actual server command and restoration
+example are documented in README.md. Server storage should be released only after
+that real command reports a verified backup and its receipt/revision are retained.

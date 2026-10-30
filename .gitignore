@@ -17,6 +17,7 @@ htmlcov/
 *.egg-info/
 build/
 dist/
+tmp/
 # Generated research inputs and outputs (retain dumy_policies/)
 /data/
 datasets/

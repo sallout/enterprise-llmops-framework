@@ -706,3 +706,22 @@ def score_evaluation(
         typer.echo(f"Status: {result['status']}; evaluation complete: {result['evaluation_complete']}")
         typer.echo(f"Report: {output.resolve()/'report.json'}")
     run_safely(execute)
+
+
+@app.command('backup_model')
+def backup_model_command(
+    input_directory: Path = typer.Option(..., '--input', exists=True, file_okay=False, help='Completed compression experiment root, not just model_4bit.'),
+    output: Path = typer.Option(Path('artifacts/model_backup'), help='Separate local receipt/verification directory.'),
+    repo_id: str | None = typer.Option(None, '--repo-id', help='Private model repository OWNER/NAME; default uses authenticated username and experiment fingerprint.'),
+) -> None:
+    """Back up a completed model experiment privately to Hugging Face and verify every file."""
+    def execute():
+        from policy_dissertation.data.model_backup import backup_model
+        result = backup_model(input_directory, output, Settings(), repo_id=repo_id,
+                              progress=lambda text: typer.echo(text, err=True))
+        typer.echo(f"Status: {result['status']}; backup verified: {result['backup_verified']}")
+        typer.echo(f"Repository: {result['url']}")
+        typer.echo(f"Verified payload revision: {result['revision']}")
+        typer.echo(f"Files: {result['verified_files']}; bytes: {result['backup_bytes']}")
+        typer.echo(f"Receipt: {output.resolve()/'report.json'}")
+    run_safely(execute)

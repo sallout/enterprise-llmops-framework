@@ -432,3 +432,57 @@ rerunning the GPU. Generation-only output has no pass@1 score. Enterprise lexica
 scores require human semantic review. These are base tests, not EvalPlus + suites.
 See [the evaluation guide](docs/model_evaluation.md) for frozen selections, complete
 commands, limits, contamination checks, scoring and real opt-in integration tests.
+
+### Private model experiment backup
+
+The menu includes **Model backup to Hugging Face**. The equivalent command backs
+up a completed compression experiment, not only the final quantized weights:
+
+```bash
+uv run llmops backup_model \
+  --input /workspace/artifacts/compression_opencode_10k \
+  --repo-id YOUR_USERNAME/qwen3-enterprise-opencode-10k-backup \
+  --output /workspace/artifacts/model_backup_receipt
+```
+
+`--repo-id` is optional: the default uses the authenticated account and compression
+fingerprint. `HF_TOKEN` needs write access. The destination must be a **private model
+repository**; an existing public repository is refused. Keep the receipt separately
+from the source experiment. Retrying the same command uses Hugging Face's large
+upload cache; no training is started and no remote files are deleted.
+
+The backup checks committed stage hashes, uploads final NF4, BF16 stages, adapters,
+optimizer checkpoints and input/report evidence, then verifies every selected
+remote file using LFS SHA-256 or Git blob SHA-1, plus its byte length. Local content
+is checked again after upload. Ordinary caches, environment/key files and locks
+are excluded; cache/lock files already referenced by a committed stage are retained
+so that stage hash verification remains possible after restoration. Configured
+credentials found in text artifacts stop the upload. This is not a guarantee of
+finding every unknown historical secret; the backup remains private.
+
+Successful `report.json` in the receipt directory contains `backup_verified=true`,
+the repository, **verified payload `revision`**, manifest commit, file count and byte
+count. `file_manifest.json` records all content hashes. Remote `backup_manifest.json`
+is committed after payload verification; `manifest_revision` identifies that later
+metadata commit. Restore using the verified payload revision, which includes all
+selected experiment files and may precede `backup_manifest.json` itself:
+
+```python
+from huggingface_hub import snapshot_download
+from policy_dissertation.config import Settings
+settings = Settings()
+snapshot_download(
+    repo_id="YOUR_USERNAME/qwen3-enterprise-opencode-10k-backup",
+    revision="VERIFIED_PAYLOAD_REVISION_FROM_RECEIPT",
+    local_dir="/workspace/artifacts/compression_opencode_10k",
+    token=settings.hf_token.get_secret_value(),
+)
+```
+
+The restored final model is `model_4bit/`; intermediate models retain their existing
+`_runs/` layout. This is a full experiment archive, not a root-level directly
+loadable model repository. It can be substantially larger than the 4-bit export.
+Optimizer resume still requires matching source inputs, paths/configuration and
+runtime. Model inference/evaluation can reuse the saved weights without training.
+Keep both the receipt and verified repository revision before releasing server
+storage. Backup verification establishes byte preservation, not model quality.

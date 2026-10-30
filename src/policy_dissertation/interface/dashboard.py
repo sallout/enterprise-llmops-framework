@@ -32,7 +32,7 @@ class Option:
 
 MENU=(Option('enterprise','Enterprise data extraction'),Option('enterprise_validation','Enterprise data validation'),
       Option('external','External dataset installation'),Option('external_validation','External dataset validation'),
-      Option('fine_tuning','Model compression & fine-tuning'),Option('evaluation','Model evaluation'),Option('security','Security check',False),
+      Option('fine_tuning','Model compression & fine-tuning'),Option('evaluation','Model evaluation'),Option('model_backup','Model backup to Hugging Face'),Option('security','Security check',False),
       Option('prompt_injection','Prompt injection check',False),Option('customization','Model customization',False),
       Option('environment','Env setup'),Option('exit','Exit'))
 
@@ -208,7 +208,7 @@ class Dashboard:
         allowed=('status','accepted_examples','rejected_examples','records_processed','records_checked',
                  'duplicates_removed','training_ready','data_prepared','full_plan_validated','source_run_complete','resumed_decisions',
                  'final_model_ready','original_parameters','pruned_parameters','evaluation_pending',
-                 'evaluation_complete','selected_tasks','evaluated_tasks_per_model')
+                 'evaluation_complete','selected_tasks','evaluated_tasks_per_model','backup_verified','verified_files','backup_bytes')
         table=Table(show_header=False,box=None)
         for k in allowed:
             value=r.get(k)
@@ -246,7 +246,7 @@ class Dashboard:
             if code==0:
                 try:outputs=json.loads(Path('.llmops/outputs.json').read_text())
                 except (OSError,ValueError):outputs={}
-                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation'}
+                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation','backup_model'}
                 outputs={k:v for k,v in outputs.items() if k in allowed and isinstance(v,str)} if isinstance(outputs,dict) else {}
                 outputs[args[0]]=str(Path(output).resolve())
                 dump_json(Path('.llmops/outputs.json'),outputs)
@@ -484,6 +484,18 @@ class Dashboard:
             'Memory':'BF16 pruning/recovery needs substantially more VRAM than 4-bit inference',
             'Evaluation':'Technical smoke checks only; final quality/security evaluation remains pending'}):self.execute(args,output)
 
+    def model_backup(self):
+        source=self.path('Completed compression experiment directory',default=self.suggested('compress_model','/workspace/artifacts/compression_opencode_10k'),directory=True)
+        repo=self.ask('Private Hugging Face repository OWNER/NAME (blank uses your account and experiment ID)','')
+        output,_=self.output('artifacts/model_backup',resumable=True)
+        args=['backup_model','--input',str(source),'--output',str(output)]
+        if repo:args+=['--repo-id',repo]
+        if self.preview('Private model experiment backup',{'Input':source,'Destination':repo or 'Your Hugging Face account / experiment-specific private repository',
+            'Includes':'Final NF4, committed BF16 stages, adapters, checkpoints, reports and training-input cache',
+            'Excludes':'Environment files, keys, temporary caches and locks',
+            'Verification':'Every selected remote file size/content hash; keep storage until backup_verified=True',
+            'Receipt':output,'Access':'HF_TOKEN with write permission; private remote storage'}):self.execute(args,output)
+
     def evaluation(self):
         action=self.choose('Model evaluation — Linux NVIDIA CUDA',[Option('compare','Compare a completed compression run with original Qwen3'),
             Option('custom','Evaluate local checkpoints with your own labels'),Option('prepare','Prepare/freeze test questions only (no GPU)'),Option('score','Score saved GPU answers on a Docker host (no GPU)'),Option('back','Back')])
@@ -561,7 +573,7 @@ class Dashboard:
     def run_loop(self):
         dispatch={'enterprise':self.extraction,'enterprise_validation':self.enterprise_validation,
                   'external':self.external_installation,'external_validation':self.external_validation,'environment':self.environment,
-                  'fine_tuning':self.compression,'evaluation':self.evaluation}
+                  'fine_tuning':self.compression,'evaluation':self.evaluation,'model_backup':self.model_backup}
         while True:
             if not self.terminal:self.header()
             try:choice=self.choose('Select an option to start',MENU)
