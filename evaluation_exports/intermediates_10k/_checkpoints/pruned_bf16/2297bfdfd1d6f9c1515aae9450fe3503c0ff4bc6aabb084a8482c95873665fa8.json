@@ -1,0 +1,32 @@
+{
+  "key": "34eaccf6c4017376f14213b56eece78447e9b171449ab92909c6c2b66053480e",
+  "digest": "60cb31f9a0329eb30d0fe323dc02fc20b6c88aad9dbde1ea53f492b7b5f9ae55",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/153",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/153"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Strongest_Extension(class_name, extensions):\n    \"\"\"Determine the strongest extension based on the difference between uppercase and lowercase letters.\"\"\"\n    def strength(extension):\n        cap = sum(1 for c in extension if c.isupper())\n        sm = sum(1 for c in extension if c.islower())\n        return cap - sm\n\n    strongest = max(extensions, key=strength)\n    return f\"{class_name}.{strongest}\"\n```",
+      "input_tokens": 306,
+      "output_tokens": 94,
+      "generation_seconds": 3.7470759589923546,
+      "output_tokens_per_second_including_prefill": 25.08622750879009,
+      "peak_allocated_bytes": 28695430144,
+      "peak_reserved_bytes": 28768731136
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

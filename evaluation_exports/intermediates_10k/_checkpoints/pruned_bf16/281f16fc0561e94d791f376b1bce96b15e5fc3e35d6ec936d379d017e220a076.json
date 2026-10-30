@@ -1,0 +1,32 @@
+{
+  "key": "26432ef4d19b4e726a4dfe303787dc60babb9894e90c9a7736d33cbf9967738b",
+  "digest": "0da701f2ac2a11b58bd07c3bf7b44a76400eded822c5557374b75ff96336a67f",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:72",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "72"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef dif_Square(n):\n    if n < 0:\n        return False\n    for i in range(1, int(math.isqrt(n)) + 1):\n        if (n - i*i) >= 0 and math.isqrt(n - i*i) ** 2 == n - i*i:\n            return True\n    return False\n```",
+      "input_tokens": 87,
+      "output_tokens": 80,
+      "generation_seconds": 3.0671015069819987,
+      "output_tokens_per_second_including_prefill": 26.083258026474418,
+      "peak_allocated_bytes": 28630163968,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

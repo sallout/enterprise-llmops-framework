@@ -1,0 +1,32 @@
+{
+  "key": "48e1f51bc658399a6220d0e614bdddf42c350e6208f2a5abaa3107c40d48d664",
+  "digest": "23cf9d001d463b6cb490924fabd6d313fce638388b66cd1ab5f973e4e7708f91",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/60",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/60"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_to_n(n: int) -> int:\n    \"\"\"\n    sum_to_n is a function that sums numbers from 1 to n.\n    \n    Parameters:\n    n (int): The upper limit of the range to sum.\n    \n    Returns:\n    int: The sum of numbers from 1 to n.\n    \n    Examples:\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n    return n * (n + 1) // 2\n```",
+      "input_tokens": 133,
+      "output_tokens": 160,
+      "generation_seconds": 6.217028415063396,
+      "output_tokens_per_second_including_prefill": 25.735767848886123,
+      "peak_allocated_bytes": 28651335680,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "key": "f63c706df8ccb7672341bc5a9d33128509a3ac57a1f59271cc18a9d74717ed6d",
+  "digest": "bd2fd9b864ecba761c2d4e3b50e8ff30b9e5b211ec7a9956c3c9f0235ee9fb3a",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/108",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/108"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_nums(arr):\n    \"\"\"\n    Counts the number of elements in the array which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative.\n    \n    :param arr: List of integers\n    :return: Integer count of elements with sum of digits > 0\n    \"\"\"\n    def sum_digits(n):\n        \"\"\"\n        Calculates the sum of digits of a number.\n        If the number is negative, the first digit is considered negative.\n        \n        :param n: Integer\n        :return: Integer sum of digits\n        \"\"\"\n        if n < 0:\n            n = -n\n            digits = list(map(int, str(n)))\n            digits[0] = -digits[0]\n            return sum(digits)\n        else:\n            return sum(map(int, str(n)))\n    \n    return sum(1 for num in arr if sum_digits(num) > 0)\n```",
+      "input_tokens": 157,
+      "output_tokens": 196,
+      "generation_seconds": 7.54970680095721,
+      "output_tokens_per_second_including_prefill": 25.96127308879725,
+      "peak_allocated_bytes": 28661167104,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

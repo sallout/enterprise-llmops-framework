@@ -1,0 +1,32 @@
+{
+  "key": "28f37d17c3829fed7e3fa403ec5a0b07acb3cbc5d36a45a884ab9374bbb0929b",
+  "digest": "76b4173f048ff1232a8ad78efc9e1eaebb8dca08e90e524c200e88b21e54af3e",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:310",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "310"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef string_to_tuple(s):\n    return tuple(s)\n\n# Test cases\nassert string_to_tuple(\"python 3.0\") == ('p', 'y', 't', 'h', 'o', 'n', '3', '.', '0')\nassert string_to_tuple(\"item1\") == ('i', 't', 'e', 'm', '1')\nassert string_to_tuple(\"15.10\") == ('1', '5', '.', '1', '0')\n```",
+      "input_tokens": 131,
+      "output_tokens": 106,
+      "generation_seconds": 4.07949106907472,
+      "output_tokens_per_second_including_prefill": 25.983633302583044,
+      "peak_allocated_bytes": 28641635328,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "key": "355af9ffe1f705d34debe49f0ea236d12faab69a03f21bc64a7118437fdb3f01",
+  "digest": "3f24cad8d5e5adfc508d59bcdc3c1dd5dd589c24e038e80c6b65ac4779a2d537",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:105",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "105"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count(lst):\n    \"\"\"\n    Counts the number of True booleans in the given list.\n\n    Parameters:\n    lst (list): A list of booleans.\n\n    Returns:\n    int: The count of True booleans in the list.\n    \"\"\"\n    return sum(1 for item in lst if item is True)\n```",
+      "input_tokens": 79,
+      "output_tokens": 70,
+      "generation_seconds": 2.691442162031308,
+      "output_tokens_per_second_including_prefill": 26.008361237519225,
+      "peak_allocated_bytes": 28627739136,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

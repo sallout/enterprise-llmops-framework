@@ -1,0 +1,32 @@
+{
+  "key": "71084ade0b026fe5648820f03bc75d39f071a920a1406974911bbf7fa5434b99",
+  "digest": "5eefaa9f5f4a56abfd8667f6a69f5ae74beadd083b7f6a5bdf9eeb01cc488ef4",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:421",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "421"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef concatenate_tuple(t):\n    return '-'.join(map(str, t))\n\n# Required imports\n# None needed\n```",
+      "input_tokens": 130,
+      "output_tokens": 28,
+      "generation_seconds": 1.0850115419598296,
+      "output_tokens_per_second_including_prefill": 25.806177093217173,
+      "peak_allocated_bytes": 28641115136,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

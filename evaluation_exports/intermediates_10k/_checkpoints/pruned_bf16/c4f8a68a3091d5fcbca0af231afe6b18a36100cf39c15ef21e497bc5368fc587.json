@@ -1,0 +1,32 @@
+{
+  "key": "455e51d346a791385b6589b2f601b6ffa02977d5b92254ed0faa967a26f11136",
+  "digest": "724c75fa6667bd8b2950f3c81f93f05ae234834c62d4037ab2e2b65ab9440563",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/62",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/62"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef derivative(xs: list):\n    \"\"\" xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n    Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"\n    return [i * xs[i] for i in range(1, len(xs))]\n```",
+      "input_tokens": 139,
+      "output_tokens": 127,
+      "generation_seconds": 4.907809030963108,
+      "output_tokens_per_second_including_prefill": 25.877127491873402,
+      "peak_allocated_bytes": 28646387712,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

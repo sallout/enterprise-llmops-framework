@@ -1,0 +1,32 @@
+{
+  "key": "518f58e707205bbf58359f884d4b0a6b74f9887e1a5919a30d7379844a91d463",
+  "digest": "38298f4bc4788aa830a5c0fd7ca516c39c0744005e19f601329e9c6047f0ee43",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:103",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "103"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import comb\n\ndef eulerian_num(n, m):\n    \"\"\"\n    Calculate the Eulerian number a(n, m) using the formula:\n    a(n, m) = sum_{k=0}^{m} (-1)^k * comb(n + 1, k) * (n - k)^m\n    \"\"\"\n    return sum((-1)**k * comb(n + 1, k) * (n - k)**m for k in range(m + 1))\n```",
+      "input_tokens": 91,
+      "output_tokens": 106,
+      "generation_seconds": 4.082410610979423,
+      "output_tokens_per_second_including_prefill": 25.965051069316427,
+      "peak_allocated_bytes": 28635604480,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

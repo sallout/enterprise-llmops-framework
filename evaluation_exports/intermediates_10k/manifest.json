@@ -1,0 +1,82 @@
+{
+  "version": "qwen3-model-evaluation-v1",
+  "suite_digest": "50fb542e75285e41c9607887df93b9f9d5727499d72bc9848b5f4e38854e5190",
+  "models": {
+    "pruned_bf16": {
+      "source": "/workspace/artifacts/compression_opencode_10k/_runs/f1cf258df59053415b821d9e1a47675ad5c4a1304280b2875c86daefec660619/pruned",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "bf986ab8088f990d391c8ca9619a9d4b85b6392455f3902b48ff57fc36c0ef14",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00008.safetensors": "d749d78865300347757ad0ec2921c9f2684435d2aa3b948926337527ebee42c1",
+        "model-00002-of-00008.safetensors": "b3d402f8917383603835f1367ea4780353762d686feb7979f94fedc7b29e50a1",
+        "model-00003-of-00008.safetensors": "a56ff66b34aa60d8e40a62fe728c94a791e647c1e9f0d7a1501061d149343397",
+        "model-00004-of-00008.safetensors": "f7f04bda82cf1a77ddc2418870d24853f22924aac49c7d8535169ae18ba24205",
+        "model-00005-of-00008.safetensors": "68de7cdfe5f1baefa1cdf5b236aee168d3703408e1ff5b87961ea49842104a4e",
+        "model-00006-of-00008.safetensors": "c6717483c23f894cab4140a936af10f47b9882bf660638a72a4074cff8a4efc5",
+        "model-00007-of-00008.safetensors": "06f86697eb8fa773e575f84e214b7ade1c66d7ac3e17a683d230301f0d98dce4",
+        "model-00008-of-00008.safetensors": "57b3f7718cb5f9b849b5e6d235addbea23e623f9fe853f6702b7d989023466c0",
+        "model.safetensors.index.json": "db6c9e7a6667d477a556df6606c6a356c9580cb213487b863505c42d2a0212f0",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "28203920a02c78baf16707c6ead7313256c2e605b944be1ea0755cec13c0c6b1"
+    },
+    "recovered_bf16": {
+      "source": "/workspace/artifacts/compression_opencode_10k/_runs/f1cf258df59053415b821d9e1a47675ad5c4a1304280b2875c86daefec660619/recovery/merged",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "bf986ab8088f990d391c8ca9619a9d4b85b6392455f3902b48ff57fc36c0ef14",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00008.safetensors": "48b0fe9e64400e0befd1e8595c1754ba1e6f1c19672c255ebf735dd162b27bd0",
+        "model-00002-of-00008.safetensors": "e6846ba51297bb4e94a88f3ab35ad0a529bd7a390be9df90387acee15ac5f215",
+        "model-00003-of-00008.safetensors": "0da06cffa1de8bebadf33de32295a2ea951a82a3969cb3723a70ac4abc016433",
+        "model-00004-of-00008.safetensors": "5f52d58864713e2efdb3be1e4671c08c591525e91db62945a8644a63aa0c107a",
+        "model-00005-of-00008.safetensors": "ead1f9e29c67bc5f757b9b5b58cdd5f95e65a7288c729ae1dd67d95690d3301b",
+        "model-00006-of-00008.safetensors": "b463d1833a5e480a459f3f718e3a490254c2ea715c29c9868ffbdba6fce03260",
+        "model-00007-of-00008.safetensors": "5da01b1164b8b7596829d572c562f2891d85b2377a9a4e8cde3c1792b1236137",
+        "model-00008-of-00008.safetensors": "7a8839b0ad6fbe1f34a964762bf29c1f08404432c342f477ae7cbe2c46a943c4",
+        "model.safetensors.index.json": "db6c9e7a6667d477a556df6606c6a356c9580cb213487b863505c42d2a0212f0",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "10e5c77e4ba4bae1be77ee77868067e5332ab3a71b422456632c525da84952c0"
+    }
+  },
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "training_tokens_hash": "4eac02dc1a95b2c4228e50efc8abec0f866a373a899ced18866aeef3ca30f91f",
+  "implementation": {
+    "__init__.py": "dba0304bd6ead3c00a6919d080cc85d03c49c6092230a25d32a766af518d3aa4",
+    "contamination.py": "8a98695fb74dd79cec61839a498788e0e8e2274f54c813a0c4273c98ec923f0e",
+    "schemas.py": "1c6cfb112e3ce2a1819d5a6ef54924f7669411bcc96fdfc10b58b13325e6c636",
+    "scoring.py": "3c3b93879ad4ca1e1318617ab49d65664be203eea3173679c09594fb911e64e6",
+    "suites.py": "c5f534716ab733d354acf3922dc2501548a2198edbd3b8bc3d9f91a586abab50",
+    "backend.py": "7d14a5d13aad5089941946a790861aad6eae48325274db3ceab6bd7db08820d9",
+    "pipeline.py": "26714a8eb620cbbaf7f8fffcbeaa7b6149c488d572db91d95414ba6a5ad8cd51",
+    "execution.py": "b0fb10031a544fdb58691860b580a175d6ea201642725173d6bc8b5181b78844"
+  },
+  "fingerprint": "78e8797d2fc9cc1ad0323321af3e6d0d1c3f6a26f127e37801e16df97cbaba38"
+}

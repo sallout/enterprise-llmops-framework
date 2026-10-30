@@ -1,0 +1,187 @@
+{
+  "key": "d475862ae797594c8f3d7d2576d330c80bbfd4c4761100e7fde604a99ff265b4",
+  "digest": "a918651447daa6187f7f976cfac89ca79845e616fab0b380cd4ca139d1d94aa6",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "enterprise:80ad5a1c3c827b8ea419ba72d542e7fcc380c0c25a1abba21bf030947b978053",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "80ad5a1c3c827b8ea419ba72d542e7fcc380c0c25a1abba21bf030947b978053",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "2bc3394288d9a664e2f66ed23c72383526be507261b5864f8901ffef9aa49a1d",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "f4b4964e0ce8ea4cfdd069d686c3106da03d297c296910a3d23e0917b8aff10c",
+          "section_id": "8",
+          "section_title": "Enforcement and Violation Consequences",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            3
+          ],
+          "source_spans": [
+            {
+              "page_number": 3,
+              "start": 1715,
+              "end": 1831
+            },
+            {
+              "page_number": 3,
+              "start": 1833,
+              "end": 1945
+            },
+            {
+              "page_number": 3,
+              "start": 1946,
+              "end": 2056
+            },
+            {
+              "page_number": 3,
+              "start": 2058,
+              "end": 2162
+            },
+            {
+              "page_number": 3,
+              "start": 2164,
+              "end": 2199
+            },
+            {
+              "page_number": 3,
+              "start": 2202,
+              "end": 2323
+            },
+            {
+              "page_number": 3,
+              "start": 2325,
+              "end": 2439
+            },
+            {
+              "page_number": 3,
+              "start": 2441,
+              "end": 2501
+            }
+          ],
+          "passage_id": "e8b83857d216e267ad769ac29bdd205a9038601458cf8d4da6e7e73d4b197674",
+          "evidence_quote": "Violation may result in rejected pull requests, blocked releases, package quarantine, revocation of repository or CI\n\nprivileges, mandatory remediation, disciplinary action up to and including termination, contractual remedies for\nsuppliers, and legal escalation where licensing or IP obligations are breached. Security may require immediate\n\nremoval of a component without waiting for a normal release window when active exploitation or malicious\n\nsupply-chain activity is suspected.\n\nWhere a violation creates active risk, protective action may occur before disciplinary or contractual review is complete.\n\nEnforcement decisions will consider intent, recurrence, severity, impact, legal duties, and whether the individual\n\npromptly reported the issue and cooperated with remediation.",
+          "evidence_start": 0,
+          "evidence_end": 785,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response is a direct extract from the supplied Enforcement and Violation Consequences chunk. It answers all parts of the question and preserves the stated conditions, thresholds, and decision factors without broadening scope or adding unsupported claims."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 120,
+          "record_hash": "3d3794ded563575835ccbacb372eb0da9ae2f69ea5c325254741188ccd0b2c60"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 434,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "28e8a9895ed9bf8e57e0dfd82c90c942b31340acb143b4370ef6eb40ce3d6c28"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "Violation of this policy is a serious matter. Violations may result in disciplinary action, including but not limited to termination of employment, contract, or engagement. The enterprise may also take immediate protective action, including but not limited to removing the violating software, code, or component from the enterprise's systems, networks, or services, without waiting for a formal review or approval. Protective action may be taken before, during, or after a review, and may be taken by any enterprise employee, contractor, or third party acting on behalf of the enterprise. Enforcement decisions will consider the nature, scope, and severity of the violation, the intent and knowledge of the violator, the potential risk to the enterprise, the potential risk to customers, partners, or third parties, and any mitigating factors.",
+      "input_tokens": 307,
+      "output_tokens": 159,
+      "generation_seconds": 6.206564791034907,
+      "output_tokens_per_second_including_prefill": 25.61803595922628,
+      "peak_allocated_bytes": 28696193536,
+      "peak_reserved_bytes": 30010245120
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": false,
+      "token_f1": 0.3793103448275862,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

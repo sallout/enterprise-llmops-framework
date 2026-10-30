@@ -1,0 +1,32 @@
+{
+  "key": "f58b6e8590e3bdcc962046c47d02c1b506b62d2226e54cc10935702fc2ca3fec",
+  "digest": "76b3387e20031a6f6c10a8ce2ff0c1b0d7b55ab841327ad456e063eb31dc7cfc",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:75",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "75"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_tuples(list_of_tuples, k):\n    \"\"\"\n    Returns a list of tuples from list_of_tuples where all elements are divisible by k.\n    \n    :param list_of_tuples: List of tuples containing integers.\n    :param k: Integer divisor.\n    :return: List of tuples with all elements divisible by k.\n    \"\"\"\n    return [t for t in list_of_tuples if all(x % k == 0 for x in t)]\n```",
+      "input_tokens": 200,
+      "output_tokens": 95,
+      "generation_seconds": 3.724323973990977,
+      "output_tokens_per_second_including_prefill": 25.50798498289563,
+      "peak_allocated_bytes": 28663002112,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

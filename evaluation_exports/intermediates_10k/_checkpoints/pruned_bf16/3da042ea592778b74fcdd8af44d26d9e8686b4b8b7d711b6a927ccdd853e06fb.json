@@ -1,0 +1,32 @@
+{
+  "key": "356ed96c3f75efb8e11d7128ad6cdbc295140726613570f033a86a8c25d1c032",
+  "digest": "fe1bcdd9a52c6367024abac7a9d7b152ef2fd400cf5bd919a940d274eceabeed",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:170",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "170"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_range_list(lst, start, end):\n    return sum(lst[start:end+1])\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 184,
+      "output_tokens": 34,
+      "generation_seconds": 1.318031121045351,
+      "output_tokens_per_second_including_prefill": 25.796052503702697,
+      "peak_allocated_bytes": 28658330624,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

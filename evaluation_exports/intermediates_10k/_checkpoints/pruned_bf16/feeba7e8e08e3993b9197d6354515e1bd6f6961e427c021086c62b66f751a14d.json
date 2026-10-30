@@ -1,0 +1,32 @@
+{
+  "key": "9213be55dd3403ac02f4e370cd5f3d9957814be27ebf52ad80f22ff06fc7a08c",
+  "digest": "3b80f7791a4a1db28e726b054fe2676cd1fd2236dec644979b5de8b9c91e4fe7",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:11",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "11"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef remove_Occ(s, char):\n    first = s.find(char)\n    last = s.rfind(char)\n    if first == -1 or first == last:\n        return s\n    return s[:first] + s[first+1:last] + s[last+1:]\n\n# Required imports\n# No imports needed for this function\n```",
+      "input_tokens": 93,
+      "output_tokens": 74,
+      "generation_seconds": 2.8415693120332435,
+      "output_tokens_per_second_including_prefill": 26.041947907668803,
+      "peak_allocated_bytes": 28630163968,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

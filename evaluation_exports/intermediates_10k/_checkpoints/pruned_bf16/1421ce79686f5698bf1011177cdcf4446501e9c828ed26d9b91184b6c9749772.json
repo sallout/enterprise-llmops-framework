@@ -1,0 +1,32 @@
+{
+  "key": "68a10e2cb9801fa999f36758a5981a00f07379ac231dea602a3a7bc7a1228b8b",
+  "digest": "03287279309faca54dcee06c7a67ac116e7894a17bb6e182311d3c34c7be6b9d",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/60",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/60"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_to_n(n: int) -> int:\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n    return n * (n + 1) // 2\n```",
+      "input_tokens": 133,
+      "output_tokens": 120,
+      "generation_seconds": 4.63157481700182,
+      "output_tokens_per_second_including_prefill": 25.909114014416417,
+      "peak_allocated_bytes": 28644256768,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

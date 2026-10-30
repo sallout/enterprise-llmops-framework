@@ -1,0 +1,32 @@
+{
+  "key": "96868fe9c39a7d084fdfe8df0bfd0767c9b13c77e00a084c3f3c58441a080c3d",
+  "digest": "d44ea0faacffc28d33b2c56e7ae4e2bd0d37750afc30ada807e80767b5e4f3a7",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:72",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "72"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef dif_Square(n):\n    \"\"\"\n    Check if the given number can be represented as the difference of two squares.\n    \n    :param n: Integer to check\n    :return: True if n can be represented as the difference of two squares, False otherwise\n    \"\"\"\n    if n % 2 == 0:\n        return False\n    for i in range(1, int(n**0.5) + 1):\n        if (n + i**2) % (2 * i) == 0:\n            return True\n    return False\n```",
+      "input_tokens": 87,
+      "output_tokens": 121,
+      "generation_seconds": 4.690817900002003,
+      "output_tokens_per_second_including_prefill": 25.79507509766012,
+      "peak_allocated_bytes": 28637406720,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

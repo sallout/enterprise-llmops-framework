@@ -1,0 +1,32 @@
+{
+  "key": "1a26a31992c52394c91ff1433de8a743e0ee1043d855383c8836366792813d96",
+  "digest": "013b22aabe6403f0a8e3da8a78e03d0d29dca861eb371c81f282c97f9d47f6c7",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/82",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/82"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_prime(n):\n    \"\"\"Helper function to check if a number is prime.\"\"\"\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef prime_length(string):\n    \"\"\"Returns True if the length of the string is a prime number, False otherwise.\"\"\"\n    return is_prime(len(string))\n```",
+      "input_tokens": 110,
+      "output_tokens": 148,
+      "generation_seconds": 5.706542272004299,
+      "output_tokens_per_second_including_prefill": 25.93514477691203,
+      "peak_allocated_bytes": 28645599744,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

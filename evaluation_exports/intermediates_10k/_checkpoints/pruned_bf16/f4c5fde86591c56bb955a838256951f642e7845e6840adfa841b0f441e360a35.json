@@ -1,0 +1,32 @@
+{
+  "key": "0699ac306f6f3d44ffe95b47ba45a272096e0d1f7372636389efadb8b87772c2",
+  "digest": "a980f7272d72e456a8ec8e03692f4c4b18c568589923335851963c9a717697a1",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:249",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "249"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef intersection_array(arr1, arr2):\n    return list(set(arr1) & set(arr2))\n```",
+      "input_tokens": 188,
+      "output_tokens": 26,
+      "generation_seconds": 1.0130172329954803,
+      "output_tokens_per_second_including_prefill": 25.665900986815693,
+      "peak_allocated_bytes": 28659510272,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

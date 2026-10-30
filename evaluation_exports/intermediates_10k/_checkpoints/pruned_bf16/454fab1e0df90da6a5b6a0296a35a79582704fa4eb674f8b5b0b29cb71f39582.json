@@ -1,0 +1,172 @@
+{
+  "key": "7f00016a7f7ce336d5c2b10c6d6bc7c96d2d326828a03475245e181b1c0e2ba2",
+  "digest": "3e7b10bf29cc8f7ee467ae1fa638f32f727373beb86978519432c5f7990b61ac",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "enterprise:dd1f8cda8989d87284350c9756499819d923e92a03329e476b79d2cac6e71ca7",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "dd1f8cda8989d87284350c9756499819d923e92a03329e476b79d2cac6e71ca7",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "3961b03c1f516adea612014405fcbed1b8397c0ff7796084115098dc4059c232",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "17846cb8022dae71a9f32c6e7ec7d6796e93e1acc1d46847d18e6e1eef519866",
+          "section_id": "1",
+          "section_title": "Objective",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            1
+          ],
+          "source_spans": [
+            {
+              "page_number": 1,
+              "start": 945,
+              "end": 1060
+            },
+            {
+              "page_number": 1,
+              "start": 1061,
+              "end": 1179
+            },
+            {
+              "page_number": 1,
+              "start": 1180,
+              "end": 1295
+            },
+            {
+              "page_number": 1,
+              "start": 1296,
+              "end": 1415
+            },
+            {
+              "page_number": 1,
+              "start": 1417,
+              "end": 1450
+            }
+          ],
+          "passage_id": "6d2e5a65aadb07d34b493e3246b00f5a199cc6adf889eb699d25a59bdf96a892",
+          "evidence_quote": "This policy establishes mandatory governance, security, licensing, provenance, and maintenance requirements for the\nacquisition, use, modification, contribution, distribution, and embedding of open-source software (OSS). The objective\nis to obtain the engineering benefits of OSS without introducing unacceptable legal, supply-chain, confidentiality,\nprivacy, or cybersecurity risk. OSS is treated as third-party software and may not bypass normal security architecture,\n\nprocurement, or release controls.",
+          "evidence_start": 0,
+          "evidence_end": 505,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response directly extracts the Objective section and accurately states the mandatory requirements, objective, and treatment of OSS. It does not broaden scope or omit relevant conditions in the asked section."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 195,
+          "record_hash": "4bf8390585b863929576093f4371e2111fc1865e874163ec258eea1bc9613266"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 381,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "2e431abee3b42b57440fa350bb41d00bd3d8b82f59cbccea81009740b9e9c988"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "The provided text does not include an explicit \"Objective\" section. However, based on the content of the policy scope and exceptions, we can infer the general objective and treatment of Open-Source Software (OSS) as follows:\n\n**Objective:**\nThe policy aims to ensure the secure, compliant, and responsible use of Open-Source Software and code across all aspects of the enterprise, including internal systems, customer products, demonstrations, prototypes, and production services.\n\n**Mandatory Requirements:**\n- All individuals and entities involved in writing, building, packaging, deploying, or distributing software on behalf of the enterprise must comply with this policy.\n- The use of OSS must be evaluated for compliance with its license terms, security, and other relevant factors.\n- Exceptions to the policy must be formally documented and approved, with specific details such as component, version, license, business justification, compensating controls, and expiration date.\n\n**Treatment of OSS:**\n- The policy applies broadly to all forms of OSS, including source code, binaries, packages, container images, model weights, firmware components, snippets, dependencies, build plugins, and command-line tools.\n- The use of OSS must be managed with appropriate controls to mitigate risks, including security vulnerabilities, license compliance, and potential legal exposure.\n- Exceptions are allowed only under strict conditions and with appropriate approvals (e.g., CISO for critical-risk exceptions, Legal for material license exceptions).\n\nIf you have access to the full policy document, including the \"Objective\" section, please provide it for a more accurate and detailed response.",
+      "input_tokens": 294,
+      "output_tokens": 314,
+      "generation_seconds": 12.09026832494419,
+      "output_tokens_per_second_including_prefill": 25.97130117883049,
+      "peak_allocated_bytes": 28719955456,
+      "peak_reserved_bytes": 28833742848
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": false,
+      "token_f1": 0.2059800664451827,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

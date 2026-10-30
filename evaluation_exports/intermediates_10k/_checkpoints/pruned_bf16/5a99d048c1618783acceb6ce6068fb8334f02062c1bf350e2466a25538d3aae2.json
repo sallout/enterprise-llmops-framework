@@ -1,0 +1,32 @@
+{
+  "key": "11dafd2ddec4b505e635e6705df25d988f297c6ee854b9f6dadec8a2ea166b0b",
+  "digest": "b4edb753b90600f9a50525acf5b079f89cc82410f5ad702e1211132129f61197",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:105",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "105"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count(boolean_list):\n    return sum(boolean_list)\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 79,
+      "output_tokens": 26,
+      "generation_seconds": 0.9960305270506069,
+      "output_tokens_per_second_including_prefill": 26.10361760396022,
+      "peak_allocated_bytes": 28625550848,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

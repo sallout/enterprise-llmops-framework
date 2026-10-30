@@ -1,0 +1,32 @@
+{
+  "key": "ec84ad11c9949937acf95bb7cee77be98e50108d0058f77b5aadcefa60c86d86",
+  "digest": "67c6f831253aa340d489e14f9b6ab7e6292aa72dcac7d5eceaa8e6a1ecbf7e89",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/153",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/153"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Strongest_Extension(class_name, extensions):\n    \"\"\"\n    Returns the strongest extension for a given class name.\n    \n    Parameters:\n    class_name (str): The name of the class.\n    extensions (list): A list of extension names.\n    \n    Returns:\n    str: The class name concatenated with the strongest extension name.\n    \"\"\"\n    def strength(extension):\n        return extension.count('A') + extension.count('B') + extension.count('C') + extension.count('D') + extension.count('E') + extension.count('F') + extension.count('G') + extension.count('H') + extension.count('I') + extension.count('J') + extension.count('K') + extension.count('L') + extension.count('M') + extension.count('N') + extension.count('O') + extension.count('P') + extension.count('Q') + extension.count('R') + extension.count('S') + extension.count('T') + extension.count('U') + extension.count('V') + extension.count('W') + extension.count('X') + extension.count('Y') + extension.count('Z') - extension.count('a') - extension.count('b') - extension.count('c') - extension.count('d') - extension.count('e') - extension.count('f') - extension.count('g') - extension.count('h') - extension.count('i') - extension.count('j') - extension.count('k') - extension.count('l') - extension.count('m') - extension.count('n') - extension.count('o') - extension.count('p') - extension.count('q') - extension.count('r') - extension.count('s') - extension.count('t') - extension.count('u') - extension.count('v') - extension.count('w') - extension.count('x') - extension.count('y') - extension.count('z')\n    \n    strongest_extension = max(extensions, key=strength)\n    return f\"{class_name}.{strongest_extension}\"\n```",
+      "input_tokens": 306,
+      "output_tokens": 416,
+      "generation_seconds": 16.091151379980147,
+      "output_tokens_per_second_including_prefill": 25.85271806699722,
+      "peak_allocated_bytes": 28728327680,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

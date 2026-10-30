@@ -1,0 +1,32 @@
+{
+  "key": "2132ee0eed839cc63556a4554ab03112c9761a38e249daa1b173736c277abd45",
+  "digest": "ba0ce588b8af9e8b5a11331da55107e80c6d023233f83c03702aba75ea0575af",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:285",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "285"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_match_two_three(text):\n    return bool(re.search(r'ab{2,3}', text))\n```",
+      "input_tokens": 93,
+      "output_tokens": 30,
+      "generation_seconds": 1.1460855600889772,
+      "output_tokens_per_second_including_prefill": 26.176056173040806,
+      "peak_allocated_bytes": 28629822976,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

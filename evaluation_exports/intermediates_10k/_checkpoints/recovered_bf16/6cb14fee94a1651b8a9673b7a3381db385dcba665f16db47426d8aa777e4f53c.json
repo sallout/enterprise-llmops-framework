@@ -1,0 +1,172 @@
+{
+  "key": "9ecedf16dffff66d553f336c7f9ae86a5ecac1bd214b8615226d79e3f592f31e",
+  "digest": "8f3f9772c2d6e18f396c8bde265385f750d75e72c46d77912913ade1ef40fdd4",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "enterprise:b962c6bec5e867efe08409742b3524c67c1b84807dd51d68b9ef535d7bcd2c8f",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "b962c6bec5e867efe08409742b3524c67c1b84807dd51d68b9ef535d7bcd2c8f",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "5158ac5281cb3a1f507d369f8adfcc128cea24d79b75949e80a98fce40305975",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+          "section_id": "2",
+          "section_title": "Scope",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            1
+          ],
+          "source_spans": [
+            {
+              "page_number": 1,
+              "start": 1470,
+              "end": 1587
+            },
+            {
+              "page_number": 1,
+              "start": 1589,
+              "end": 1703
+            },
+            {
+              "page_number": 1,
+              "start": 1705,
+              "end": 1821
+            },
+            {
+              "page_number": 1,
+              "start": 1822,
+              "end": 1934
+            },
+            {
+              "page_number": 1,
+              "start": 1936,
+              "end": 1956
+            }
+          ],
+          "passage_id": "a688898732415a7bce17a1c86a5e370fbd07e9f213dd6dcebdb1ef9651d1999e",
+          "evidence_quote": "This policy applies to employees, contractors, interns, suppliers, and any other person who writes, builds, packages,\n\ndeploys, or distributes software on behalf of the enterprise. It covers source code, binaries, packages, container\n\nimages, model weights, firmware components, snippets copied from public repositories, transitive dependencies, build\nplugins, command-line tools, and OSS used in internal systems, customer products, demonstrations, prototypes, or\n\nproduction services.",
+          "evidence_start": 0,
+          "evidence_end": 486,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response reproduces the complete Scope passage from the provided chunk without omitting conditions or broadening the policy scope."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 164,
+          "record_hash": "4946c5214b367f3f331e32864577024e79f6aa3be321d6fe547ad9db146d8679"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 374,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "5e512169eb98e01859fff44ecc8d8eb19cab0c269e0c2133692abd1d95b0720d"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "This policy applies to employees, contractors, interns, suppliers, and any other person who writes, builds, packages, deploys, or distributes software on behalf of the enterprise. It covers source code, binaries, packages, container images, model weights, firmware components, snippets copied from public repositories, transitive dependencies, build plugins, command-line tools, and OSS used in internal systems, customer products, demonstrations, prototypes, or production services.",
+      "input_tokens": 284,
+      "output_tokens": 89,
+      "generation_seconds": 3.4400023670168594,
+      "output_tokens_per_second_including_prefill": 25.8720752210354,
+      "peak_allocated_bytes": 28688636928,
+      "peak_reserved_bytes": 30010245120
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": true,
+      "token_f1": 1.0,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

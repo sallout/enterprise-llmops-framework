@@ -1,0 +1,32 @@
+{
+  "key": "d547c2b6638c03965818dc2487b234b481ab11e1dc76eeb0d25e68207216eb92",
+  "digest": "103b2a4881fe0ffa05324ca8b4c822c48f376c4fd07353e82a6a6fbc08ee8a8c",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:11",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "11"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef remove_Occ(s, char):\n    \"\"\"\n    Removes the first and last occurrence of a given character from the string.\n    \n    Parameters:\n    s (str): The input string.\n    char (str): The character to remove.\n    \n    Returns:\n    str: The string with the first and last occurrence of the character removed.\n    \"\"\"\n    first_index = s.find(char)\n    last_index = s.rfind(char)\n    if first_index != -1 and last_index != -1:\n        return s[:first_index] + s[first_index+1:last_index] + s[last_index+1:]\n    return s\n```",
+      "input_tokens": 93,
+      "output_tokens": 133,
+      "generation_seconds": 5.243849537917413,
+      "output_tokens_per_second_including_prefill": 25.363046563082882,
+      "peak_allocated_bytes": 28640355840,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

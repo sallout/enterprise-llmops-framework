@@ -1,0 +1,32 @@
+{
+  "key": "253bc27f6879b0535e6c3423294a6557cce12517d938aad036457eccc08643cf",
+  "digest": "909e5bc612df18c280ed070c731e96b8b1cea7b7f05577d19b537fdf38a9255f",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:464",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "464"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_value(d, value):\n    return all(v == value for v in d.values())\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 187,
+      "output_tokens": 34,
+      "generation_seconds": 1.3211150649003685,
+      "output_tokens_per_second_including_prefill": 25.73583550995545,
+      "peak_allocated_bytes": 28659215872,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

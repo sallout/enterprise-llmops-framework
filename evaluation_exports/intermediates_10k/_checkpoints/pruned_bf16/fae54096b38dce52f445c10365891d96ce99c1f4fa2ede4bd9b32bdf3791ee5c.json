@@ -1,0 +1,32 @@
+{
+  "key": "f403293e567f2e3a56ef91954c63af8341e45ab922a28e5b1da1b423fd0cd6e7",
+  "digest": "66920e2ebde2ab6f81c82a8df2e8322968732ec608626fa5ddaae024fedcde38",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:226",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "226"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef odd_values_string(s):\n    return s[::2]\n\n# Test cases\nassert odd_values_string('abcdef') == 'ace'\nassert odd_values_string('python') == 'pto'\nassert odd_values_string('data') == 'dt'\nassert odd_values_string('lambs') == 'lms'\n```",
+      "input_tokens": 98,
+      "output_tokens": 68,
+      "generation_seconds": 2.6101918009808287,
+      "output_tokens_per_second_including_prefill": 26.05172538449003,
+      "peak_allocated_bytes": 28631348224,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "key": "b517308475f63fc79af1b532dba18ee815afe168e313a889bb0c2ba4eff7d1b0",
+  "digest": "800bdab2e63408a1f722af1b993dc55e9c5587c87ceae238a5d63be73c78c4ad",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:170",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "170"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_range_list(numbers, start_index, end_index):\n    \"\"\"\n    Returns the sum of numbers in the list from start_index to end_index (inclusive).\n    \n    :param numbers: List of numbers\n    :param start_index: Start index of the range\n    :param end_index: End index of the range\n    :return: Sum of numbers in the specified range\n    \"\"\"\n    return sum(numbers[start_index:end_index + 1])\n```",
+      "input_tokens": 184,
+      "output_tokens": 97,
+      "generation_seconds": 3.758554984931834,
+      "output_tokens_per_second_including_prefill": 25.807790597417377,
+      "peak_allocated_bytes": 28658199552,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": "qwen3-model-evaluation-v1",
+  "status": "COMPLETED_WITH_WARNINGS",
+  "started_at": "2026-10-30T18:57:26.703848+00:00",
+  "models": {
+    "pruned_bf16": {
+      "identity": {
+        "source": "/workspace/artifacts/compression_opencode_10k/_runs/f1cf258df59053415b821d9e1a47675ad5c4a1304280b2875c86daefec660619/pruned",
+        "revision": null,
+        "files": {
+          "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+          "config.json": "bf986ab8088f990d391c8ca9619a9d4b85b6392455f3902b48ff57fc36c0ef14",
+          "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+          "model-00001-of-00008.safetensors": "d749d78865300347757ad0ec2921c9f2684435d2aa3b948926337527ebee42c1",
+          "model-00002-of-00008.safetensors": "b3d402f8917383603835f1367ea4780353762d686feb7979f94fedc7b29e50a1",
+          "model-00003-of-00008.safetensors": "a56ff66b34aa60d8e40a62fe728c94a791e647c1e9f0d7a1501061d149343397",
+          "model-00004-of-00008.safetensors": "f7f04bda82cf1a77ddc2418870d24853f22924aac49c7d8535169ae18ba24205",
+          "model-00005-of-00008.safetensors": "68de7cdfe5f1baefa1cdf5b236aee168d3703408e1ff5b87961ea49842104a4e",
+          "model-00006-of-00008.safetensors": "c6717483c23f894cab4140a936af10f47b9882bf660638a72a4074cff8a4efc5",
+          "model-00007-of-00008.safetensors": "06f86697eb8fa773e575f84e214b7ade1c66d7ac3e17a683d230301f0d98dce4",
+          "model-00008-of-00008.safetensors": "57b3f7718cb5f9b849b5e6d235addbea23e623f9fe853f6702b7d989023466c0",
+          "model.safetensors.index.json": "db6c9e7a6667d477a556df6606c6a356c9580cb213487b863505c42d2a0212f0",
+          "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+          "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+        },
+        "identity": "28203920a02c78baf16707c6ead7313256c2e605b944be1ea0755cec13c0c6b1"
+      },
+      "load": {
+        "model_memory_bytes": 28592896512,
+        "quantization": null,
+        "chat_template_hash": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+      },
+      "metrics": {
+        "enterprise": {
+          "selected": 8,
+          "answers_scored_lexically": 8,
+          "normalized_exact_match": 0.0,
+          "mean_token_f1": 0.3283904973307559,
+          "semantic_correctness": "NOT_ASSESSED",
+          "human_review_required": 8
+        },
+        "humaneval": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "mbpp": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "efficiency": {
+          "measured_tasks": 48,
+          "generation_seconds": 268.0972681706771,
+          "output_tokens_per_second_including_prefill": 25.770497577773025,
+          "peak_allocated_bytes": 29661027840,
+          "peak_reserved_bytes": 30022828032,
+          "note": "Sequential batch 1, synchronized wall time including prefill; TTFT not measured; excludes model load and warmup."
+        }
+      }
+    },
+    "recovered_bf16": {
+      "identity": {
+        "source": "/workspace/artifacts/compression_opencode_10k/_runs/f1cf258df59053415b821d9e1a47675ad5c4a1304280b2875c86daefec660619/recovery/merged",
+        "revision": null,
+        "files": {
+          "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+          "config.json": "bf986ab8088f990d391c8ca9619a9d4b85b6392455f3902b48ff57fc36c0ef14",
+          "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+          "model-00001-of-00008.safetensors": "48b0fe9e64400e0befd1e8595c1754ba1e6f1c19672c255ebf735dd162b27bd0",
+          "model-00002-of-00008.safetensors": "e6846ba51297bb4e94a88f3ab35ad0a529bd7a390be9df90387acee15ac5f215",
+          "model-00003-of-00008.safetensors": "0da06cffa1de8bebadf33de32295a2ea951a82a3969cb3723a70ac4abc016433",
+          "model-00004-of-00008.safetensors": "5f52d58864713e2efdb3be1e4671c08c591525e91db62945a8644a63aa0c107a",
+          "model-00005-of-00008.safetensors": "ead1f9e29c67bc5f757b9b5b58cdd5f95e65a7288c729ae1dd67d95690d3301b",
+          "model-00006-of-00008.safetensors": "b463d1833a5e480a459f3f718e3a490254c2ea715c29c9868ffbdba6fce03260",
+          "model-00007-of-00008.safetensors": "5da01b1164b8b7596829d572c562f2891d85b2377a9a4e8cde3c1792b1236137",
+          "model-00008-of-00008.safetensors": "7a8839b0ad6fbe1f34a964762bf29c1f08404432c342f477ae7cbe2c46a943c4",
+          "model.safetensors.index.json": "db6c9e7a6667d477a556df6606c6a356c9580cb213487b863505c42d2a0212f0",
+          "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+          "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+        },
+        "identity": "10e5c77e4ba4bae1be77ee77868067e5332ab3a71b422456632c525da84952c0"
+      },
+      "load": {
+        "model_memory_bytes": 28592896512,
+        "quantization": null,
+        "chat_template_hash": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+      },
+      "metrics": {
+        "enterprise": {
+          "selected": 8,
+          "answers_scored_lexically": 8,
+          "normalized_exact_match": 0.25,
+          "mean_token_f1": 0.5838050055310611,
+          "semantic_correctness": "NOT_ASSESSED",
+          "human_review_required": 8
+        },
+        "humaneval": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "mbpp": {
+          "selected": 20,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 20,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "efficiency": {
+          "measured_tasks": 48,
+          "generation_seconds": 274.3832288288977,
+          "output_tokens_per_second_including_prefill": 25.7340801408936,
+          "peak_allocated_bytes": 29661552128,
+          "peak_reserved_bytes": 30010245120,
+          "note": "Sequential batch 1, synchronized wall time including prefill; TTFT not measured; excludes model load and warmup."
+        }
+      }
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "enterprise_semantic_review_pending",
+    "code_execution_disabled_no_pass_at_1",
+    "suspected_training_overlap_excluded"
+  ],
+  "evaluation_complete": false,
+  "suite_digest": "50fb542e75285e41c9607887df93b9f9d5727499d72bc9848b5f4e38854e5190",
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "limitations": [
+    "Base HumanEval/MBPP only; not HumanEval+/MBPP+.",
+    "Enterprise answer overlap is not semantic correctness.",
+    "Benchmark pretraining contamination remains unknown.",
+    "Benchmark selected after training; freeze before model answer inspection.",
+    "Small samples have wide uncertainty; do not tune repeatedly on a final test set.",
+    "Quality tests are not a security audit."
+  ],
+  "semantic_enterprise_correctness_verified": false,
+  "fingerprint": "78e8797d2fc9cc1ad0323321af3e6d0d1c3f6a26f127e37801e16df97cbaba38",
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "contamination": {
+    "status": "LIMITED_CHECK_COMPLETED",
+    "training_rows_checked": 10372,
+    "excluded": {
+      "enterprise:e110bbf69665b53d2aefe23bf65c10f7d34fb59ed33a000319eb1f87a8ac7004": {
+        "reason": "suspected_training_overlap",
+        "field": "reference",
+        "coverage_of_13_word_ngrams": 1.0,
+        "training_record_id": "eecbed930276b526caea31fe913ad905bb88df31db51330dc5f869707da5f5da"
+      },
+      "enterprise:c99fddcc8d0912629186d7e6ec4551054169fd134895d26a9b0a3e73f34b7b04": {
+        "reason": "suspected_training_overlap",
+        "field": "reference",
+        "coverage_of_13_word_ngrams": 0.8522727272727273,
+        "training_record_id": "cb0b88745c990f5629ac1eac9ea1f0b27e235b7b7271be32408f98772f00da68"
+      }
+    },
+    "method": ">=80% containment of 13-word prompt OR reference ngrams in a single cached training row",
+    "limitations": "Short passages, paraphrases and pretraining overlap remain unresolved; absence of matches is not proof of independence."
+  },
+  "comparisons": {
+    "recovered_bf16": {}
+  },
+  "selected_tasks": 50,
+  "evaluated_tasks_per_model": 48,
+  "output_hashes": {
+    "suite.json": "6cf4166a883f11a3a2b8a774ba3474708683a31f284c5a0e8c0277a03f4eb9e3",
+    "results.jsonl": "4b7d8c680cf1743d9d1071ad7c6a764d8243e683fd41b2770858a432ba5f7546",
+    "enterprise_review.jsonl": "30c1e6d75ca487fefd3164c2b0119d369c3b91f384cd97cbc683c1ef34262981"
+  },
+  "finished_at": "2026-10-30T19:08:41.115288+00:00"
+}

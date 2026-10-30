@@ -1,0 +1,32 @@
+{
+  "key": "be5c773ae4fbcf3a39a632aefa7e7c4fb8e9415026c55e35f105dfb60e512297",
+  "digest": "7cd85a13fa55f81cef150ec0c6c8c9b58885199f61dca3110e0c12eb172a951f",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/75",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/75"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_multiply_prime(a):\n    \"\"\"\n    Returns True if the given number is the multiplication of 3 prime numbers, False otherwise.\n    \n    Parameters:\n    a (int): The number to check.\n    \n    Returns:\n    bool: True if a is the product of three prime numbers, False otherwise.\n    \"\"\"\n    def is_prime(n):\n        \"\"\"Check if a number is prime.\"\"\"\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    def prime_factors(n):\n        \"\"\"Return the prime factors of a number.\"\"\"\n        factors = []\n        while n % 2 == 0:\n            factors.append(2)\n            n //= 2\n        for i in range(3, int(math.sqrt(n)) + 1, 2):\n            while n % i == 0:\n                factors.append(i)\n                n //= i\n        if n > 2:\n            factors.append(n)\n        return factors\n\n    factors = prime_factors(a)\n    return len(factors) == 3 and all(is_prime(factor) for factor in factors)\n```",
+      "input_tokens": 112,
+      "output_tokens": 304,
+      "generation_seconds": 11.713939948007464,
+      "output_tokens_per_second_including_prefill": 25.95198552744077,
+      "peak_allocated_bytes": 28671488512,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

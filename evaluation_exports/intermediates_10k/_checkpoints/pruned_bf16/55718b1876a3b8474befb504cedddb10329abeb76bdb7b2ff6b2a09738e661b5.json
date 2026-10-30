@@ -1,0 +1,192 @@
+{
+  "key": "a8b71d02d3f1ef54fa15c4470bd89f36f854f38541be240389d9103bdc99f910",
+  "digest": "7f716df4125577ef3a82c5dce130626b371867b5dd6f39f8dc3c5edd03341664",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "enterprise:47d54360d800a8c094f016032ef1d6a615878fbb19ecf83727d723bc7dab3634",
+    "suite": "enterprise",
+    "source": {
+      "file": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/test.jsonl",
+      "sha256": "c3160b37675edf716e2d39d74af85bc104c23f3207e74e997e42b19f9e645f9a",
+      "record_id": "47d54360d800a8c094f016032ef1d6a615878fbb19ecf83727d723bc7dab3634",
+      "metadata": {
+        "pipeline": "pipeline1",
+        "upstream_example_id": "ae2799b3e0fe607305a76dbe8c396732ebcb3efe52414d325b283fce95bccb8a",
+        "provenance": {
+          "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+          "source_content_hash": "9f78a139585bdb4b27da7d82ae4ef35d8993dc380e1f23967de48ebdf42531d7",
+          "source_path": "/Users/mas/Development/DissertationProject/dumy_policies/POL-ENG-001_Open-Source_Software_and_Code_Usage_Policy.pdf",
+          "chunk_id": "f87545810c9910e2593b25b719104aae5344fecaa9e97b31113555e045f6a0cd",
+          "section_id": "3",
+          "section_title": "Governance, Accountability, and Roles",
+          "parent_sections": [
+            {
+              "section_id": null,
+              "title": "Open-Source Software and Code Usage Policy",
+              "level": 1,
+              "heading": "# **Open-Source Software and Code Usage Policy**",
+              "source_span": {
+                "page_number": 1,
+                "start": 44,
+                "end": 92
+              }
+            }
+          ],
+          "page_numbers": [
+            1
+          ],
+          "source_spans": [
+            {
+              "page_number": 1,
+              "start": 2008,
+              "end": 2122
+            },
+            {
+              "page_number": 1,
+              "start": 2124,
+              "end": 2156
+            },
+            {
+              "page_number": 1,
+              "start": 2159,
+              "end": 2267
+            },
+            {
+              "page_number": 1,
+              "start": 2269,
+              "end": 2315
+            },
+            {
+              "page_number": 1,
+              "start": 2318,
+              "end": 2432
+            },
+            {
+              "page_number": 1,
+              "start": 2435,
+              "end": 2552
+            },
+            {
+              "page_number": 1,
+              "start": 2554,
+              "end": 2562
+            },
+            {
+              "page_number": 1,
+              "start": 2565,
+              "end": 2677
+            },
+            {
+              "page_number": 1,
+              "start": 2679,
+              "end": 2717
+            }
+          ],
+          "passage_id": "219fdcc34a59bb87a37af8c8310db7edd134ea2f91101a7f6d6ec09c97b25d49",
+          "evidence_quote": "**Engineering teams.** Maintain dependency inventories, select approved components, remediate vulnerabilities, and\n\ncomply with license obligations.\n\n**Application Security.** Defines scanning gates, reviews high-risk dependencies, and blocks components with\n\nunacceptable vulnerability or provenance risk.\n\n**Legal / IP Counsel.** Approves copyleft, source-disclosure, patent, attribution, and redistribution obligations.\n\n**Procurement / Third-Party Risk.** Performs due diligence for commercially supported OSS and critical maintainers or\n\nvendors.\n\n**Developers.** May introduce OSS only through approved package-management and repository processes; they remain\n\naccountable for dependencies they add.",
+          "evidence_start": 0,
+          "evidence_end": 705,
+          "context_references": [
+            {
+              "chunk_id": "c9e735b69839ca13325de09f72fc4514b7d2e9633844fbb3c582fb4d8d8b2c67",
+              "section_id": "2",
+              "page_numbers": [
+                1
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            },
+            {
+              "chunk_id": "57f0e24d559ca8d43671c73cb36bdc1a8f15408a9d1ef91cdf1888641629c51f",
+              "section_id": "9",
+              "page_numbers": [
+                3
+              ],
+              "document_id": "a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73"
+            }
+          ],
+          "quality_warnings": [
+            {
+              "warning_id": "263dc20176fa1ac31d13b79eb5288b4f57db18823c031aacb42bac88b462528f",
+              "code": "parser_warning",
+              "message": "PDF layout, headings, lists, tables, and reading order are heuristic; glyph decoding and table whitespace may be inaccurate; OCR is disabled.",
+              "resolution": "unresolved",
+              "source_spans": []
+            }
+          ],
+          "validation": {
+            "schema": "passed",
+            "source_reference": "passed",
+            "complete_extractive_passage": "passed",
+            "grounding_judge": {
+              "grounded": true,
+              "answers_question": true,
+              "preserves_conditions": true,
+              "scope_correct": true,
+              "reason": "The response exactly reproduces the supplied passage and lists each role's responsibilities, directly answering the question. It preserves all conditions, approvals, and accountability statements present in the evidence, and does not broaden scope or bypass policy-wide exceptions."
+            },
+            "semantic_status": "automated_checks_passed_not_human_verified",
+            "duplicate": "passed"
+          }
+        },
+        "input_reference": {
+          "pipeline": "enterprise",
+          "file": "enterprise/training.jsonl",
+          "file_hash": "6a678718e3304068abbe2c6a02dae9f4e58671ef77d49e4f2e6d2c382083aee8",
+          "line": 74,
+          "record_hash": "145c8efc1ac42bc5abaaaef878739dc44cbb3c0826d4d32acc1f7536c8947b2a"
+        },
+        "component_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "official_holdout": null,
+        "enterprise_import": {
+          "branch": "documents",
+          "mode": "generated",
+          "file_hash": "304fc2f047b680fcb420218824b89c3358e9770096cb556044a80f1c4fee41ea",
+          "producer_status": "COMPLETED_WITH_WARNINGS",
+          "producer_complete": true
+        },
+        "dataset_source": {
+          "name": "enterprise",
+          "type": "local",
+          "path": "/Users/mas/Development/DissertationProject/artifacts/enterprise_ready/_accepted/ee8cecebbee7e1d6da6718d42d62167108f74b42dfd98ef66e156d1b2117fe68/training.jsonl",
+          "revision": "main",
+          "split": "train",
+          "adapter": "auto",
+          "weight": 1.0
+        },
+        "preparation": {
+          "token_count": 416,
+          "max_tokens": 4096,
+          "tokenizer_model": "Qwen/Qwen3-14B",
+          "tokenizer_revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+          "chat_template_hash": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+          "add_generation_prompt": false,
+          "enable_thinking": false,
+          "truncated": false,
+          "rendered_token_hash": "45d8cd0b03a60325624eac81ebade43cc3c19f61e6bf1b25c1bff5542bf4caed"
+        },
+        "split": "test",
+        "split_group": "policy:a82abbe22679b7856c5c2cdc92cfd34e59fe87d166ff659a2f7d7c28abc19d73",
+        "training_split": "test"
+      },
+      "domain": "corporate_compliance",
+      "assessment": "original held-out prompt; answer overlap only; human semantic review and assessment of available policy context required"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "The governance, accountability, and roles and responsibilities described in the supplied passage of the Open-Source Software and Code Usage Policy are as follows:\n\n### **Governance**\n- The policy establishes a structured governance framework for the use of open-source software (OSS) across all stages of the software lifecycle, including writing, building, packaging, deploying, and distributing software on behalf of the enterprise.\n- Exceptions to the policy are governed by strict requirements, including the need for specific approvals and documentation.\n\n### **Accountability**\n- **Accountable Owner**: Each exception must be assigned an accountable owner who is responsible for ensuring compliance with the exception terms, including monitoring, remediation, and review.\n- **Control Owner**: The control owner may impose additional requirements such as narrower scope, remediation milestones, or earlier review of exceptions.\n- **CISO and Legal**: Critical-risk exceptions require approval from the Chief Information Security Officer (CISO), and material license exceptions require approval from Legal.\n\n### **Roles and Responsibilities**\n- **Employees, Contractors, Interns, Suppliers, and Others**: All individuals who write, build, package, deploy, or distribute software on behalf of the enterprise are subject to the policy and must comply with its requirements.\n- **Exception Requesters**: Individuals or teams requesting exceptions must provide detailed information, including the component, version, license, business justification, compensating controls, vulnerability status, distribution model, legal assessment, and expiration date.\n- **CISO**: Responsible for approving exceptions that involve critical risks.\n- **Legal**: Responsible for approving exceptions that involve material license concerns.\n- **Owners of Exceptions**: Must ensure that exceptions are reviewed, monitored, and updated as needed, and that they do not become permanent deviations from the policy.\n\n### **Key Notes**\n- Exceptions are not permanent changes to the policy and must be reviewed and renewed as needed.\n- Expired exceptions automatically lose their authority, and the use of the component may no longer be permitted unless a new exception is approved.",
+      "input_tokens": 292,
+      "output_tokens": 401,
+      "generation_seconds": 15.487575011095032,
+      "output_tokens_per_second_including_prefill": 25.891722862535325,
+      "peak_allocated_bytes": 28719955456,
+      "peak_reserved_bytes": 30022828032
+    },
+    "score": {
+      "status": "review_required",
+      "normalized_exact_match": false,
+      "token_f1": 0.13866666666666666,
+      "semantic_correctness": "NOT_ASSESSED",
+      "human_review_required": true
+    }
+  }
+}

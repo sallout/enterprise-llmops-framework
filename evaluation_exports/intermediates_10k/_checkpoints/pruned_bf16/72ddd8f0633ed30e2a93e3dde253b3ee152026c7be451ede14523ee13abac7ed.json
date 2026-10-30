@@ -1,0 +1,32 @@
+{
+  "key": "7bf7379978f01f02f71d07106ca5bea9fb01a52a452bfbcdfe126277d01e1938",
+  "digest": "95fd83219613ef084631d03e83844abdb3e2a969ecde7364ee1ea3c562bb52bf",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:442",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "442"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef positive_count(arr):\n    import numpy as np\n    return np.mean(np.array(arr) > 0)\n```",
+      "input_tokens": 182,
+      "output_tokens": 28,
+      "generation_seconds": 1.0897433949867263,
+      "output_tokens_per_second_including_prefill": 25.694122239062576,
+      "peak_allocated_bytes": 28657740800,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

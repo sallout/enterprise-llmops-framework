@@ -1,0 +1,32 @@
+{
+  "key": "62f5ada57da669fcbc76a04798168af6ba23474f23bd80ff168145c1ebe084c5",
+  "digest": "2c6c8178945e53f3e01291433c31fdf046f1098b7b698e9c619c27cd4a1b5ec0",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/66",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/66"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef digitSum(s):\n    \"\"\"\n    Calculate the sum of the ASCII codes of the uppercase characters in the input string.\n\n    Parameters:\n    s (str): The input string.\n\n    Returns:\n    int: The sum of the ASCII codes of the uppercase characters.\n    \"\"\"\n    return sum(ord(char) for char in s if char.isupper())\n```",
+      "input_tokens": 149,
+      "output_tokens": 75,
+      "generation_seconds": 2.921487784013152,
+      "output_tokens_per_second_including_prefill": 25.671851311654283,
+      "peak_allocated_bytes": 28647878144,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

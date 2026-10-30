@@ -1,0 +1,32 @@
+{
+  "key": "3feb8e5358095f920688c5d20a31347c8204e294d91ba383d63d97ba1a1d6dc3",
+  "digest": "06569846dc6f389e86398583242516e87075ec1fe067a470f3a8428bb4d6a74b",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/125",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/125"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for char in txt:\n            if char.islower():\n                order = ord(char) - ord('a')\n                if order % 2 == 1:\n                    count += 1\n        return count\n```",
+      "input_tokens": 170,
+      "output_tokens": 215,
+      "generation_seconds": 8.29944845708087,
+      "output_tokens_per_second_including_prefill": 25.905335892117947,
+      "peak_allocated_bytes": 28665886208,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

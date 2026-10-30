@@ -1,0 +1,32 @@
+{
+  "key": "905d270e1ce03a6ba374f47f722c94c342b19826cc4e8c1dc079139dde25a4e0",
+  "digest": "9c522e61c48ad5bb217f9e16435dd539cef005ec479db7b3ab988aca34801397",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:429",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "429"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef and_tuples(tuple1, tuple2):\n    \"\"\"\n    Returns a tuple containing the elementwise AND of the two input tuples.\n    \n    :param tuple1: First input tuple.\n    :param tuple2: Second input tuple.\n    :return: A tuple with the elementwise AND of the two input tuples.\n    \"\"\"\n    return tuple(x & y for x, y in zip(tuple1, tuple2))\n\n# Test cases\nassert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)\nassert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)\nassert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)\n```",
+      "input_tokens": 177,
+      "output_tokens": 220,
+      "generation_seconds": 8.502612943062559,
+      "output_tokens_per_second_including_prefill": 25.874399019833323,
+      "peak_allocated_bytes": 28668377088,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

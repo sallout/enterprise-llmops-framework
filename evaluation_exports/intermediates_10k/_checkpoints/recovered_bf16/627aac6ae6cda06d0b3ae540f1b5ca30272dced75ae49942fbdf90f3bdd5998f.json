@@ -1,0 +1,32 @@
+{
+  "key": "172dd3c158aa7e784ba6baa305b46c861ee203c9d01341b2d6b6aa9da83df317",
+  "digest": "10e7e7b84ae70c7fa48bdf76e457957ec3044cf60fc958482bcab833a762c077",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:464",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "464"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_value(d, value):\n    return all(v == value for v in d.values())\n\n# Test cases\nassert check_value({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12}, 10) == False\nassert check_value({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12}, 12) == True\nassert check_value({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12}, 5) == False\n```",
+      "input_tokens": 187,
+      "output_tokens": 174,
+      "generation_seconds": 6.751137371058576,
+      "output_tokens_per_second_including_prefill": 25.773434969034984,
+      "peak_allocated_bytes": 28662477824,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

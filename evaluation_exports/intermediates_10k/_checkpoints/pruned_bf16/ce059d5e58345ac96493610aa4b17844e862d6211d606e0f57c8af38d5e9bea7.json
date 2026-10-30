@@ -1,0 +1,32 @@
+{
+  "key": "2f4988bd88a916af3b43602e105612c03350b3c4f38f80052c948ae5b716be26",
+  "digest": "c914d7af21aec74ebcddb0cb723dbae811d507b2e35527b6e1cf503e4552bff5",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:272",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "272"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef rear_extract(lst):\n    return [t[-1] for t in lst]\n```",
+      "input_tokens": 207,
+      "output_tokens": 22,
+      "generation_seconds": 0.8591003369074315,
+      "output_tokens_per_second_including_prefill": 25.608184579690732,
+      "peak_allocated_bytes": 28665420800,
+      "peak_reserved_bytes": 28770828288
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}
