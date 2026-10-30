@@ -1,4 +1,5 @@
 """Static repository fixtures and mocked LLM/sandbox feedback; no source execution on host."""
+from policy_dissertation.data.adapters import legacy_record
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -65,7 +66,7 @@ class MockSandbox:
         index = self.calls
         self.calls += 1
         status = self.results[min(index, len(self.results)-1)] if self.available else 'unverified'
-        return ExecutionResult(status=status, executor='mock_sandbox',
+        return ExecutionResult(status=status, executor='docker', image_id='sha256:'+'a'*64,
                                reason='mock_test_feedback' if self.available else self.reason,
                                tests_run=1 if self.available else 0,
                                failures=1 if status == 'failed' else 0,
@@ -94,7 +95,7 @@ def repositories(tmp_path):
 
 
 def run(repositories, tmp_path, settings, model=None, sandbox=None, **kwargs):
-    return run_pipeline2(repositories, tmp_path/'output', settings, model=model or MockCodeModel(),
+    return run_pipeline2(repositories, tmp_path/'output', settings, overwrite=True, model=model or MockCodeModel(),
                          sandbox=sandbox if sandbox is not None else MockSandbox(),
                          research_report=tmp_path/'research.md', **kwargs)
 
@@ -163,8 +164,8 @@ def test_full_graph_verified_record_and_resume(repositories,tmp_path,settings):
     assert result['status']=='COMPLETED'
     assert result['accepted_verified']==result['examples_generated']==1
     assert sandbox.calls==1 and model.calls==2
-    record=CodeTrainingRecord.model_validate_json((tmp_path/'output/training.jsonl').read_text())
-    assert record.metadata['execution']['executor']=='mock_sandbox'
+    record=CodeTrainingRecord.model_validate(legacy_record(json.loads((tmp_path/'output/training.jsonl').read_text())))
+    assert record.metadata['execution']['executor']=='docker'
     assert record.metadata['syntax_valid'] is True
     original=(tmp_path/'output/training.jsonl').read_bytes()
     resumed=run(repositories,tmp_path,settings,MockCodeModel('endpoint_error'),MockSandbox(),task_types=('implementation',))
@@ -181,7 +182,7 @@ def test_bounded_correction_uses_captured_feedback_and_fixed_tests(repositories,
     assert model.repair_payloads[0]['actual_execution']['feedback'].startswith('MOCK AssertionError')
     assert model.repair_payloads[0]['fixed_tests']==TESTS
     record=json.loads((tmp_path/'output/training.jsonl').read_text())
-    assert len(record['metadata']['trajectory'])==2
+    assert len(record['metadata']['provenance']['trajectory'])==2
     assert 'MOCK AssertionError' in record['messages'][2]['content']
     assert 'Initial implementation' in record['messages'][2]['content']
 
@@ -209,8 +210,8 @@ def test_knowledge_example_allowed_with_explicit_unverified_status(repositories,
     assert report['status']=='COMPLETED_WITH_WARNINGS'
     assert report['accepted_unverified_knowledge']==1 and report['accepted_verified']==0
     record=json.loads((tmp_path/'output/training.jsonl').read_text())
-    assert record['metadata']['execution']['reason']=='runtime_not_applicable_to_knowledge_task'
-    assert record['metadata']['syntax_valid'] is None
+    assert record['metadata']['provenance']['execution']['reason']=='runtime_not_applicable_to_knowledge_task'
+    assert record['metadata']['provenance']['syntax_valid'] is None
 
 
 @pytest.mark.parametrize('mode,reason',[
@@ -305,7 +306,7 @@ def test_every_requested_training_type_supported(repositories,tmp_path,settings,
     result=run(repositories,tmp_path,settings,task_types=(task,))
     assert result['generated_by_type']=={task:1}
     assert result['accepted_examples']==1
-    assert result['execution_attempts_this_run']==0  # mocked runner is never actual Docker evidence
+    assert result['execution_attempts_this_run'] == (0 if task in ('explanation', 'architecture') else 1)  # simulated evidence only
 
 
 def test_unavailable_runtime_requests_are_not_execution_counts(repositories,tmp_path,settings):
@@ -394,7 +395,7 @@ def test_interruption_preserves_validated_progress(repositories, tmp_path, setti
     assert resumed['resumed_validation_units'] == 1
     assert resumed['pending_units'] == resumed['failed_units'] == 0
     records = [json.loads(line) for line in (tmp_path/'output/training.jsonl').read_text().splitlines()]
-    assert len(records) == len({r['example_id'] for r in records}) == 2
+    assert len(records) == len({r['id'] for r in records}) == 2
 
 
 def test_gateway_reports_truncation_without_response_leak(settings):

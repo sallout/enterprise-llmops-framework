@@ -89,7 +89,7 @@ def inputs(tmp_path):
 
 
 def run(inputs,tmp_path,settings,**kwargs):
-    return run_pipeline4(inputs,tmp_path/'out',settings,tokenizer=kwargs.pop('tokenizer',FakeTokenizer()),
+    return run_pipeline4(inputs,tmp_path/'out',settings,overwrite=True,tokenizer=kwargs.pop('tokenizer',FakeTokenizer()),
                          research_report=tmp_path/'report.md',**kwargs)
 
 

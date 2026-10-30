@@ -1,4 +1,5 @@
 """End-to-end LangGraph runs with explicit mocked LLM responses, never real API calls."""
+from policy_dissertation.data.adapters import legacy_record
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -68,7 +69,7 @@ def source(tmp_path):
 
 
 def run(source, output, settings, model, tmp_path, **kwargs):
-    return run_pipeline(source, output, settings, model=model, research_report=tmp_path/'research.md', **kwargs)
+    return run_pipeline(source, output, settings, model=model, overwrite=True, research_report=tmp_path/'research.md', **kwargs)
 
 
 def test_full_langgraph_workflow_and_resume(source, settings, tmp_path):
@@ -81,7 +82,7 @@ def test_full_langgraph_workflow_and_resume(source, settings, tmp_path):
     assert report['chunks_generated'] == report['examples_generated'] == report['accepted_examples'] == 2
     assert report['rejected_examples'] == report['failed_chunks'] == 0
     assert model.calls == 4
-    records = [TrainingRecord.model_validate_json(line) for line in (output/'training.jsonl').read_text().splitlines()]
+    records = [TrainingRecord.model_validate(legacy_record(json.loads(line))) for line in (output/'training.jsonl').read_text().splitlines()]
     assert len(records) == 2
     assert [m.role for m in records[0].messages] == ['system', 'user', 'assistant']
     assert 'unless the DPO grants an exception' in records[0].messages[2].content
@@ -275,7 +276,7 @@ def test_scope_and_exception_context_in_training_messages(source, settings, tmp_
     report = run(source, output, settings, MockModel(), tmp_path)
     assert report['accepted_examples'] == 3
     for line in (output/'training.jsonl').read_text().splitlines():
-        record = TrainingRecord.model_validate_json(line)
+        record = TrainingRecord.model_validate(legacy_record(json.loads(line)))
         assert 'all enterprise employees' in record.messages[0].content
         assert 'Exceptions MUST expire within 30 days' in record.messages[0].content
         assert {r['section_id'] for r in record.metadata['context_references']} == {'1', '3'}

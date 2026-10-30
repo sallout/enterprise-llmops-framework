@@ -283,6 +283,10 @@ class Pipeline:
         for item in rejected:
             for reason in item['reasons']:
                 self.report['rejection_reasons'][reason] = self.report['rejection_reasons'].get(reason, 0) + 1
+        from policy_dissertation.data.adapters import adapt
+        from policy_dissertation.data.schemas import VERSION as EXPORT_VERSION
+        accepted = [adapt(item, 'pipeline1', {'pipeline': 'pipeline1', 'stage': 'validated_export'}) for item in accepted]
+        self.report['training_schema_version'] = EXPORT_VERSION
         dump_jsonl(self.output / 'training.jsonl', accepted)
         dump_jsonl(self.output / 'rejected.jsonl', rejected)
         import hashlib
@@ -296,6 +300,9 @@ class Pipeline:
             self.report['status'] = 'FAILED'
             self.report['research_report_updated'] = False
         dump_json(self.output / 'report.json', self.report)
+        dump_json(self.output/'manifest.json', {'schema_version': EXPORT_VERSION, 'status': self.report['status'],
+            'accepted_examples': len(accepted), 'output_hashes': self.report['output_hashes'],
+            'license': 'unspecified; publisher must confirm redistribution rights', 'publication': None})
         return {'stage': 'exported', 'report_path': str(self.output / 'report.json')}
 
     def graph(self):
@@ -310,7 +317,7 @@ class Pipeline:
 
 def run_pipeline(input_directory: Path, output_directory: Path, settings, max_tokens=2048,
                  *, limit_documents: int | None = None, model=None, progress=lambda text: None,
-                 research_report: Path | None = None) -> dict:
+                 research_report: Path | None = None, overwrite=False) -> dict:
     source, output = input_directory.resolve(), output_directory.resolve()
     if source == output or output.is_relative_to(source) or source.is_relative_to(output):
         raise DissertationError('Input and output directories must not overlap.')
@@ -319,6 +326,8 @@ def run_pipeline(input_directory: Path, output_directory: Path, settings, max_to
     if limit_documents is not None and limit_documents < 1:
         raise DissertationError('limit_documents must be positive when supplied.')
     with output_lock(output):
+        from policy_dissertation.data.hub import protect_exports
+        protect_exports(output, overwrite)
         engine = Pipeline(source, output, settings, max_tokens, model, progress,
                           research_report or Path('report.md').resolve(), limit_documents)
         dump_json(output / 'report.json', engine.report)

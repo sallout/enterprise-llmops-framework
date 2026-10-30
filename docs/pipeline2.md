@@ -1,5 +1,11 @@
 # Pipeline 2 — Repository-to-Training-Data
 
+> **Current export contract:** see [shared schema and portability](data-portability.md).
+> New exports use `unified-qwen-sft-v1`; previous native schema descriptions below
+> also document retained internal/legacy records. Existing exports are not migrated.
+> Rerunning into an existing exported output now requires explicit `--overwrite`.
+
+
 ## Run
 
 ```sh

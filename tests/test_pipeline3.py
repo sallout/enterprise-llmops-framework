@@ -54,7 +54,7 @@ def source(alias='nemotron'):
 
 
 def run(tmp_path, settings, provider=None, maximum=4, **kwargs):
-    return run_pipeline3(tmp_path/'out', settings, maximum, provider=provider or FakeProvider(),
+    return run_pipeline3(tmp_path/'out', settings, maximum, overwrite=True, provider=provider or FakeProvider(),
                          research_report=tmp_path/'report.md', **kwargs)
 
 
@@ -194,11 +194,11 @@ def test_source_record_size_does_not_persist_large_content(tmp_path, settings):
 def test_seeded_sampling_reproducible_and_bounded(tmp_path, settings):
     settings.pipeline3.shuffle_buffer = 4
     a = run(tmp_path, settings, maximum=4, seed=7)
-    ids = [r['example_id'] for r in records(tmp_path)]
+    ids = [r['id'] for r in records(tmp_path)]
     b = run(tmp_path/'second', settings, maximum=4, seed=7)
-    assert ids == [r['example_id'] for r in records(tmp_path/'second')]
+    assert ids == [r['id'] for r in records(tmp_path/'second')]
     c = run(tmp_path/'third', settings, maximum=4, seed=17)
-    assert ids != [r['example_id'] for r in records(tmp_path/'third')]
+    assert ids != [r['id'] for r in records(tmp_path/'third')]
     assert a['records_read_this_run'] == b['records_read_this_run'] == c['records_read_this_run'] == 10
 
 
@@ -212,7 +212,7 @@ def test_interruption_resume_keeps_only_committed_decisions(tmp_path, settings):
     resumed = run(tmp_path, settings, maximum=3, selected=('nemotron',))
     assert resumed['accepted_examples'] == 3 and resumed['resumed_decisions'] == 1
     assert resumed['sampling_replay_decisions_this_run'] == 1
-    assert len({v['example_id'] for v in records(tmp_path)}) == 3
+    assert len({v['id'] for v in records(tmp_path)}) == 3
 
 
 def test_network_retry_and_no_secret_error_leak(tmp_path, settings):
@@ -373,7 +373,7 @@ def test_midstream_network_retry_replays_without_duplicate_commit(tmp_path, sett
     r = run(tmp_path, settings, Midstream(), maximum=2, selected=('nemotron',))
     assert r['accepted_examples'] == 2 and r['network_failures_this_run'] == 1
     assert r['sampling_replay_decisions_this_run'] == 1
-    assert len({item['example_id'] for item in records(tmp_path)}) == 2
+    assert len({item['id'] for item in records(tmp_path)}) == 2
 
 
 def test_nonfinite_source_metadata_is_rejected_without_invalid_json(tmp_path, settings):

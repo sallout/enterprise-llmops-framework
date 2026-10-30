@@ -1,5 +1,17 @@
 # Pipeline 4 — Unified Dataset Validation & Training Preparation
 
+> **Current workflow:** enterprise preparation is automatic; see [enterprise guide](enterprise.md).
+> Native NVIDIA streaming adapters do not require an exported/merged external dataset.
+> The Pipeline 4 CLI is retained only for compatibility; earlier descriptions below
+> also document the internal engine and historical workflows.
+
+
+> **Current export contract:** see [shared schema and portability](data-portability.md).
+> New exports use `unified-qwen-sft-v1`; previous native schema descriptions below
+> also document retained internal/legacy records. Existing exports are not migrated.
+> Rerunning into an existing exported output now requires explicit `--overwrite`.
+
+
 ## Run and readiness gates
 
 ```sh

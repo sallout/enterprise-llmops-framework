@@ -261,6 +261,10 @@ class RepositoryPipeline:
             else 'COMPLETED')
         self.report['finished_at'] = datetime.now(ZoneInfo('Asia/Dubai')).isoformat()
         self.report['rejection_reasons'] = dict(Counter(reason for r in rejected for reason in r['reasons']))
+        from policy_dissertation.data.adapters import adapt
+        from policy_dissertation.data.schemas import VERSION as EXPORT_VERSION
+        accepted = [adapt(item, 'pipeline2', {'pipeline': 'pipeline2', 'stage': 'validated_export'}) for item in accepted]
+        self.report['training_schema_version'] = EXPORT_VERSION
         dump_jsonl(self.output/'training.jsonl', accepted)
         dump_jsonl(self.output/'rejected.jsonl', rejected)
         self.report['output_hashes'] = {name: sha((self.output/name).read_bytes()) for name in ('training.jsonl', 'rejected.jsonl')}
@@ -272,6 +276,9 @@ class RepositoryPipeline:
             self.report['status'] = 'FAILED'
             self.report['research_report_updated'] = False
         dump_json(self.output/'report.json', self.report)
+        dump_json(self.output/'manifest.json', {'schema_version': EXPORT_VERSION, 'status': self.report['status'],
+            'accepted_examples': len(accepted), 'output_hashes': self.report['output_hashes'],
+            'license': 'unspecified; publisher must confirm redistribution rights', 'publication': None})
         if self.work:
             dump_json(self.work/'last_execution_report.json', self.report)
         return {'stage': 'exported', 'report_path': str(self.output/'report.json')}
@@ -288,7 +295,7 @@ class RepositoryPipeline:
 
 def run_pipeline2(input_directory: Path, output_directory: Path, settings, max_tokens=2048, *,
                   limit_units: int | None = None, task_types=TASK_TYPES, model=None, sandbox=None,
-                  progress=lambda text: None, research_report: Path | None = None) -> dict:
+                  progress=lambda text: None, research_report: Path | None = None, overwrite=False) -> dict:
     source, output = input_directory.resolve(), output_directory.resolve()
     if source == output or output.is_relative_to(source) or source.is_relative_to(output):
         raise DissertationError('Input and output directories must not overlap.')
@@ -297,6 +304,8 @@ def run_pipeline2(input_directory: Path, output_directory: Path, settings, max_t
     if not task_types or any(t not in TASK_TYPES for t in task_types):
         raise DissertationError('Unsupported task types. Use: '+', '.join(TASK_TYPES))
     with output_lock(output):
+        from policy_dissertation.data.hub import protect_exports
+        protect_exports(output, overwrite)
         engine = RepositoryPipeline(source, output, settings, max_tokens, limit_units, tuple(task_types), model,
                                     sandbox, progress, research_report or Path('report.md').resolve())
         dump_json(output/'report.json', engine.report)

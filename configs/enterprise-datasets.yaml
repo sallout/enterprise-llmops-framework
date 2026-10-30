@@ -1,0 +1,19 @@
+# New local enterprise + NVIDIA preparation workflow. Paths are relative to this file.
+# Weights are illustrative; justify experimental mixing separately.
+sources:
+  - name: enterprise
+    type: local
+    path: ../artifacts/enterprise/training.jsonl
+    weight: 0.60
+  - name: nvidia
+    type: local
+    path: ../artifacts/pipeline3/training.jsonl
+    weight: 0.40
+output:
+  directory: ../artifacts/pipeline4_enterprise
+  max_tokens: 4096
+split:
+  train: 0.90
+  validation: 0.05
+  test: 0.05
+  seed: 42

@@ -1,0 +1,25 @@
+# Relative paths are relative to this YAML file, regardless of shell directory.
+# Replace OWNER with your Hub namespace. Weights are illustrative, not optimized.
+sources:
+  - name: policies
+    type: huggingface
+    repo_id: sallout/enterprise-policies-sft
+    revision: main  # First successful resolution is pinned; use a commit SHA for transfer.
+    weight: 0.25
+  - name: code
+    type: huggingface
+    repo_id: sallout/enterprise-code-sft
+    revision: main
+    weight: 0.35
+  - name: nvidia
+    type: local
+    path: ../artifacts/pipeline3/training.jsonl
+    weight: 0.40
+output:
+  directory: ../artifacts/pipeline4
+  max_tokens: 4096
+split:
+  train: 0.90
+  validation: 0.05
+  test: 0.05
+  seed: 42

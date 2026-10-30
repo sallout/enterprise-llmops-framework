@@ -1,6 +1,139 @@
 # Corporate Policy Dissertation Framework
 
-A clean Python research project for the final dissertation deliverable. The initial milestone provides configuration, a command-line interface, logging, error handling, and automated checks. Pipeline 1 supports document ingestion, parsing-quality assessment, conservative normalization, and section-aware chunking. A single LangGraph workflow now generates and automatically validates extractive conversational training records. Pipeline 2 also provides repository-grounded code data generation with explicit execution status. Pipeline 3 streams and prepares external NVIDIA datasets without LLM calls. Pipeline 4 validates, balances, splits, and prepares unified datasets with the actual Qwen tokenizer. Model fine-tuning remains unimplemented.
+## Start the interactive workspace
+
+```bash
+uv sync --locked
+uv run llmops
+```
+
+Choose enterprise extraction/validation, NVIDIA preparation/validation or environment
+setup with arrow keys/numbers. Forms collect paths, token budgets, local test limits,
+source revisions, output/resume and optional private publication; no pipeline commands
+need to be typed manually. Existing coding data can be reused without generation.
+Fine-tuning/security/prompt-injection/customization are visibly unavailable and do not
+start work. Secrets are hidden and `.env` editing requires explicit confirmation with
+a private backup. See [the interactive CLI guide](docs/interactive-cli.md).
+
+The console displays **Bridging the Cusem**, **By Mohammed Sallout**, and
+[LinkedIn](https://www.linkedin.com/in/msallout/). Branding is configurable in Env setup.
+`uv run llmops menu` is an alias; all existing direct commands/`--help` remain available.
+
+
+A Python LLMOps research framework for the dissertation. The preferred enterprise
+workflow combines corporate-policy documents and source-code repositories into one
+validated conversational dataset, accepting either input independently and reusing
+existing accepted exports when requested. The external-data workflow prepares NVIDIA
+datasets; final preparation validates, deduplicates, mixes and splits enterprise and
+external records using the actual Qwen tokenizer. The original document and repository
+commands remain compatible. Model fine-tuning remains unimplemented.
+
+## External Data — NVIDIA
+
+The external stage is now available as `nvidia_data`: it inspects and pins both native
+NVIDIA sources, streams/adapts them, validates exact Qwen tokens and enterprise holdout
+isolation, and writes a resumable source plan without rewriting the entire dataset.
+
+```bash
+uv run llmops nvidia_data \
+  --enterprise ./artifacts/enterprise_ready \
+  --output ./artifacts/nvidia_local \
+  --max-samples 20 --max-records-per-dataset 30 --shuffle-buffer 2
+```
+
+Repeat the same command to resume; increase `--max-samples` with a separate output on
+the server for larger preparation. `HF_TOKEN` is optional for public access; no LLM
+credentials, GPU or Docker are required. The original enterprise/coding datasets are
+read-only inputs. See [native NVIDIA preparation and server reuse](docs/nvidia-data.md)
+for source allocation, revisions, recovery, the approved-selection replay API and limits.
+This produces data-loading artifacts, not a training run.
+
+## Current workflow: no separate Pipeline 4 step
+
+`enterprise_data` now automatically validates exact Qwen token lengths, removes exact
+and near-format duplicates, groups related sources, audits leakage, and exports
+`train.jsonl`, `validation.jsonl` and `test.jsonl`. `training.jsonl` is the retained
+all-split audit union: train on **train.jsonl**, not that union. Source-generation
+`--max-tokens` and final `--training-max-tokens` are separate (defaults 2048 / 4096).
+
+```bash
+uv run llmops enterprise_data \
+  --documents ./dumy_policies --code ./code_repos \
+  --output ./artifacts/enterprise --training-max-tokens 4096
+```
+
+For already generated enterprise data, do not regenerate documents or code:
+
+```bash
+uv run llmops enterprise_prepare \
+  --input ./artifacts/enterprise_combined \
+  --output ./artifacts/enterprise_ready --max-tokens 4096
+```
+
+NVIDIA datasets can stay in their original Hub format. The native streaming adapters
+in `data/training_inputs.py` convert/filter records in memory and retain externally
+reported tests as external evidence. No NVIDIA JSONL export or merge is required.
+A bounded, CPU-only compatibility check is available:
+
+```bash
+uv run llmops check_training_sources \
+  --enterprise ./artifacts/enterprise_ready \
+  --output ./artifacts/training_input_check --max-external-records 10
+```
+
+This checks both native datasets against all enterprise splits and writes only an
+audit/fingerprint index. It is not a full-corpus audit or training run. The future
+trainer must index all selected holdouts before accepting training rows through the
+shared cross-source gate. Mixing weights and the model trainer remain future work.
+`pip3_datasets` remains an optional cached-export workflow; `pip4_prepare` remains a
+hidden compatibility command, but is no longer required by the new workflow. No model
+weights, GPU or mandatory Docker are needed for these data checks. Small generation
+tests can use `--skip-preparation`; their output is not final training-ready data.
+
+## Enterprise data: one dataset from policies and code
+
+Use `enterprise_data` with `--documents`, `--code`, or both. The tested document and
+repository components remain internal branches; the old commands stay available for
+compatibility. The new output is one `training.jsonl` with domain and source provenance.
+
+```bash
+uv run llmops enterprise_data \
+  --documents ./dumy_policies \
+  --code ./code_repos \
+  --output ./artifacts/enterprise \
+  --max-tokens 2048
+```
+
+To avoid rerunning existing coding work, replace `--code` with
+`--code-dataset ./artifacts/pipeline2`. If its producer report is incomplete, add
+`--allow-incomplete-import` to explicitly reuse only the accepted subset. Existing
+coding training files remain untouched. Use `--limit-documents 1` / `--limit-units 1`
+with a separate output for generation tests. Add `--push-to-hub OWNER/enterprise-sft`
+for optional one-dataset private publishing; incomplete source subsets also require
+`--allow-incomplete-run` to publish. See [the enterprise guide](docs/enterprise.md).
+
+Enterprise splitting is automatic. NVIDIA sources can be loaded directly through the
+shared adapters instead of requiring a combined export.
+
+## Portable training datasets (Pipelines 1–4)
+
+All new accepted exports use one NVIDIA-inspired `unified-qwen-sft-v1` schema:
+`id`, `messages`, `domain`, `source`, `verification`, and provenance `metadata`.
+Existing datasets remain readable through legacy adapters. Optional tool definitions
+and multi-turn/tool messages are preserved. See [the shared contract and workflow](docs/data-portability.md).
+
+- **Mac:** run `enterprise_data` for policy/code inputs; optionally add `--push-to-hub OWNER/DATASET`
+  to publish accepted data privately using `HF_TOKEN`.
+- **CPU server:** prepare existing enterprise records with `enterprise_prepare` as needed,
+  then check direct native NVIDIA inputs with `check_training_sources`.
+- **GPU server:** use validated Pipeline 4 outputs in a future trainer; Pipeline 5
+  is not part of this implementation.
+
+Edit the example YAML with your Hub namespace. Relative paths resolve against its
+folder. Hub revisions and hashes are pinned. Publishing is disabled by default;
+failed uploads retain local exports. Existing output files are protected: use a new
+output directory or explicitly add `--overwrite` to resume/replace exported files.
+The original Pipeline 4 `--input ./artifacts` interface remains available.
 
 ## Development setup
 
@@ -239,3 +372,14 @@ Loads the three upstream `training.jsonl` files and verifies their reports/hashe
 Defaults are 40/30/30 source weights and 90/5/5 split targets, configurable with repeated `--mix-ratio NAME=value` and `--split-ratio NAME=value`. Group constraints may change exact split sizes. Scarce sources limit the balanced cohort; records are never repeated to fill quotas.
 
 The current checkout lacks Pipeline 1 exports and Pipeline 2's report is failed, so the normal command correctly fails and reports `training_ready=false`. Explicit `--allow-partial-sources` supports diagnostic integration only and never claims full readiness. See [Pipeline 4 documentation](docs/pipeline4.md) for the actual partial-validation command, source requirements, verification distinctions, tokenizer contract, and limitations.
+
+To reuse a published enterprise dataset on another machine without regenerating
+policy/code examples, use the interactive **Enterprise data validation → Download
+an existing enterprise dataset from Hugging Face** option, or:
+
+```bash
+uv run llmops download_dataset --repo-id sallout/enterprise-sft --output ./artifacts/enterprise_ready
+```
+
+Configure a read-capable `HF_TOKEN` for private repositories. The download verifies
+checksums, schemas, counts and prepared split membership, preserving source warnings.

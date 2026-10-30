@@ -18,7 +18,7 @@ htmlcov/
 build/
 dist/
 # Generated research inputs and outputs (retain dumy_policies/)
-data/
+/data/
 datasets/
 models/
 artifacts/
@@ -42,3 +42,6 @@ logs/
 # Optional project-local Hugging Face caches
 .cache/huggingface/
 hf_cache/
+
+# Local interactive workspace state (no credentials)
+/.llmops/

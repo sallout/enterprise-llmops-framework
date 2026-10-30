@@ -1,5 +1,11 @@
 # Pipeline 1 data contract
 
+> **Current export contract:** see [shared schema and portability](data-portability.md).
+> New exports use `unified-qwen-sft-v1`; previous native schema descriptions below
+> also document retained internal/legacy records. Existing exports are not migrated.
+> Rerunning into an existing exported output now requires explicit `--overwrite`.
+
+
 ## Architecture
 
 A compiled LangGraph `StateGraph` orchestrates five sequential stages: existing ingestion, existing quality/normalization/chunking, generation, validation, and export. Graph state contains stage names and artifact paths, not document bodies or messages. Source text is loaded locally by nodes and persisted as artifacts. File-based checksummed checkpoints provide per-chunk recovery; this implementation does not use a LangGraph SQLite checkpointer. Parsing and chunking rerun deterministically on resume, while expensive completed LLM work is reused.

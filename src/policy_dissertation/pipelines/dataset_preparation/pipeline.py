@@ -12,6 +12,7 @@ from policy_dissertation.pipelines.policy_transformation.data_io import atomic_t
 from policy_dissertation.pipelines.policy_transformation.pipeline import output_lock
 from policy_dissertation.pipelines.external_datasets.pipeline import file_hash, write_jsonl, now
 from .adapters import adapt, InvalidExample
+from policy_dissertation.data.adapters import adapt_native
 from .deduplication import deduplicate
 from .quality import scan_sensitive, validate_tokens
 from .schemas import VERSION, UnifiedRecord
@@ -52,12 +53,13 @@ def bounded_lines(path, maximum):
 
 
 class PreparationPipeline:
-    def __init__(self, source, output, settings, maximum, seed, max_examples, partial, tokenizer, progress, report_path):
+    def __init__(self, source, output, settings, maximum, seed, max_examples, partial, tokenizer, progress, report_path, configured_sources=None):
         self.source,self.output,self.settings=source,output,settings
+        self.configured_sources = configured_sources
         self.maximum,self.seed,self.max_examples,self.partial=maximum,seed,max_examples,partial
         self.tokenizer,self.progress,self.report_path=tokenizer,progress,report_path
         self.store,self.work,self.inputs=None,None,[]
-        self.mix_weights=ratios(settings.pipeline4.mix_ratios,PIPELINES)
+        self.mix_weights=ratios(settings.pipeline4.mix_ratios, tuple(s.name for s in configured_sources) if configured_sources else PIPELINES)
         self.split_weights=ratios(settings.pipeline4.split_ratios,SPLITS)
         if self.split_weights['train']<=0:
             raise DissertationError('Training split must have positive weight.')
@@ -74,9 +76,9 @@ class PreparationPipeline:
             'validation_scope':'deterministic preparation; no semantic certification or reexecution of upstream tests'}
 
     def discover(self, state):
-        self.progress('[1/7] Inspecting all three upstream datasets and export hashes')
+        self.progress('[1/7] Inspecting configured datasets and source hashes' if self.configured_sources else '[1/7] Inspecting all three upstream datasets and export hashes')
         inputs=[]
-        for pipeline in PIPELINES:
+        for pipeline in (() if self.configured_sources else PIPELINES):
             folder=self.source/pipeline
             path,report_path=folder/'training.jsonl',folder/'report.json'
             entry={'pipeline':pipeline,'training_path':str(path),'readable':False}
@@ -99,6 +101,13 @@ class PreparationPipeline:
                 except (OSError,ValueError,TypeError,AttributeError):
                     self.report['input_issues'].append(pipeline+':invalid_upstream_report')
             inputs.append(entry)
+        if self.configured_sources:
+            from policy_dissertation.data.sources import materialize
+            for specification in self.configured_sources:
+                entry = materialize(specification, self.output, self.settings)
+                inputs.append(entry)
+                if (entry.get('producer_run') or {}).get('accepted_subset_only'):
+                    self.report['warnings'].append(specification.name+':accepted_subset_from_incomplete_producer')
         self.inputs=self.report['inputs']=inputs
         if self.report['input_issues'] and not self.partial:
             self.report['errors'].extend(self.report['input_issues'])
@@ -113,7 +122,7 @@ class PreparationPipeline:
         key=digest({'version':VERSION,'inputs':[{k:v for k,v in i.items() if k!='training_path'} for i in inputs],
             'settings':self.settings.pipeline4.model_dump(),'limit':self.maximum,'seed':self.seed,
             'max_examples':self.max_examples,'partial':self.partial,'tokenizer':self.tokenizer.info,
-            'code':sources,'versions':self.report['versions'],
+            'code':sources,'shared_code': {p.name:file_hash(p) for p in (Path(__file__).parents[2]/'data').glob('*.py')}, 'versions':self.report['versions'],
             'source_schema_hashes':{n:file_hash(Path(__file__).parents[1]/n) for n in
                 ('external_datasets/schemas.py','repository_data/schemas.py','policy_transformation/data_schemas.py')}})
         self.report['run_id']=key
@@ -142,13 +151,19 @@ class PreparationPipeline:
                     scan_sensitive(text,self.settings.pipeline4,secrets)
                     raw=strict_json(text)
                     if not isinstance(raw,dict):raise InvalidExample('unsupported_record_structure')
+                    raw=adapt_native(raw,entry,line-1,self.settings)
                     record=adapt(raw,pipeline,ref)
+                    record['metadata']['dataset_source'] = entry.get('source_spec', {'name': pipeline, 'type': 'local'})
+                    if entry.get('resolved_revision'):
+                        record['metadata']['dataset_source']['resolved_revision'] = entry['resolved_revision']
+                    if entry.get('split') in ('test', 'validation'):
+                        record['metadata']['official_holdout'] = entry['split']
                     tokens=validate_tokens(record,self.tokenizer,self.maximum,self.settings.pipeline4)
                 except InvalidExample as exc:
                     reason=str(exc)
                 except (ValueError,TypeError,KeyError,AttributeError,ValidationError):
                     reason='invalid_json_or_source_schema'
-                priority=4 if record and record['verification']['status']=='upstream_local_pass' else 3 if pipeline=='pipeline1' else 2 if pipeline=='pipeline2' else 1
+                priority=4 if record and record['verification']['status']=='upstream_local_pass' else 3 if record and record['metadata']['pipeline']=='pipeline1' else 2 if record and record['metadata']['pipeline']=='pipeline2' else 1
                 with self.store.db:
                     self.store.db.execute('INSERT INTO records (pipeline,line,raw_hash,payload,reason,priority,domain,source,status,tokens,rank) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
                         (pipeline,line,raw_hash,json.dumps(record,ensure_ascii=False,allow_nan=False) if record and not reason else None,
@@ -249,13 +264,13 @@ class PreparationPipeline:
         # Upstream counts are checked even when quality rejection reduced the eligible cohort.
         if self.store:
             for entry in self.inputs:
-                if entry['readable'] and entry.get('upstream_accepted') != self.store.count('pipeline=?',(entry['pipeline'],)):
+                if entry['readable'] and entry.get('upstream_accepted') is not None and entry.get('upstream_accepted') != self.store.count('pipeline=?',(entry['pipeline'],)):
                     if self.partial:r['warnings'].append(entry['pipeline']+':upstream_count_mismatch')
                     else:r['errors'].append(entry['pipeline']+':upstream_count_mismatch')
         for entry in self.inputs:
             if entry['readable']:
                 try:
-                    if file_hash(Path(entry['training_path'])) != entry['training_hash'] or file_hash(Path(entry['training_path']).parent/'report.json') != entry['report_hash']:
+                    if file_hash(Path(entry['training_path'])) != entry['training_hash'] or ('report_hash' in entry and file_hash(Path(entry.get('report_path', str(Path(entry['training_path']).parent/'report.json')))) != entry['report_hash']):
                         r['errors'].append(entry['pipeline']+':input_changed_during_preparation')
                 except OSError:
                     r['errors'].append(entry['pipeline']+':input_changed_during_preparation')
@@ -314,16 +329,24 @@ class PreparationPipeline:
 
 
 def run_pipeline4(input_directory,output_directory,settings,max_tokens=4096,*,seed=42,max_examples=None,
-                  allow_partial_sources=False,tokenizer=None,progress=lambda text:None,research_report=None):
+                  allow_partial_sources=False,tokenizer=None,progress=lambda text:None,research_report=None, sources=None, overwrite=False):
     source,output=Path(input_directory).resolve(),Path(output_directory).resolve()
     if max_tokens<1 or (max_examples is not None and max_examples<1):raise DissertationError('Limits must be positive.')
     source_folders=[(source/p).resolve() for p in PIPELINES]
     input_files=[(source/p/name).resolve() for p in PIPELINES for name in ('training.jsonl','report.json')]
     if output==source or any(output==folder or output.is_relative_to(folder) for folder in source_folders) or any(path.is_relative_to(output) for path in input_files):
         raise DissertationError('Output must not overwrite upstream source directories.')
+    if sources:
+        for specification in sources:
+            if specification.type == 'local':
+                path = Path(specification.path).resolve()
+                if output == path or output.is_relative_to(path) or path.is_relative_to(output):
+                    raise DissertationError('Output must not overlap configured local inputs.')
     with output_lock(output):
+        from policy_dissertation.data.hub import protect_exports
+        protect_exports(output, overwrite)
         engine=PreparationPipeline(source,output,settings,max_tokens,seed,max_examples,allow_partial_sources,
-                                   tokenizer,progress,research_report or Path('report.md').resolve())
+                                   tokenizer,progress,research_report or Path('report.md').resolve(), sources)
         dump_json(output/'report.json',engine.report)
         try:engine.graph().invoke({'stage':'starting'})
         except (Exception,KeyboardInterrupt) as exc:

@@ -2,7 +2,7 @@
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, SecretStr
+from pydantic import BaseModel, ConfigDict, Field, SecretStr, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -64,6 +64,12 @@ class Pipeline4Settings(BaseModel):
     split_ratios: dict[str, float] = Field(default_factory=lambda: {'train': .9, 'validation': .05, 'test': .05})
 
 
+class InterfaceSettings(BaseModel):
+    title: str = Field(default='Bridging the Cusem', min_length=1, max_length=120)
+    author: str = Field(default='Mohammed Sallout', min_length=1, max_length=100)
+    linkedin_url: HttpUrl = Field(default='https://www.linkedin.com/in/msallout/', validate_default=True)
+
+
 class Settings(BaseSettings):
     """Environment overrides .env; relative paths use the working directory."""
 
@@ -72,6 +78,7 @@ class Settings(BaseSettings):
         env_nested_delimiter="__", extra="ignore",
     )
     hf_token: SecretStr | None = Field(default=None, repr=False)
+    ui: InterfaceSettings = Field(default_factory=InterfaceSettings)
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "INFO"
     policy_dir: Path = Path("dumy_policies")
     parsed_output_dir: Path = Path("artifacts/pipeline1/parsed")

@@ -126,7 +126,8 @@ class DatasetPipeline:
         shared = Path(__file__).parents[1]/'policy_transformation/data_schemas.py'
         key = digest({'version': VERSION, 'sources': sources, 'seed': self.seed,
                       'settings': self.settings.model_dump(), 'code': code, 'shared': file_hash(shared),
-                      'versions': self.report['versions']})
+                      'versions': self.report['versions'],
+                      'unified_contract': {p.name:file_hash(p) for p in (Path(__file__).parents[2]/'data').glob('*.py')}})
         self.work, self.sources = self.output/'_runs'/key, sources
         self.work.mkdir(parents=True, exist_ok=True)
         self.report['run_id'] = key
@@ -210,6 +211,13 @@ class DatasetPipeline:
 
     def filter(self, state):
         source, position, item = self.current
+        if self.normalized and not self.rejection:
+            from policy_dissertation.data.adapters import adapt, InvalidExample
+            try:
+                adapt(self.normalized, 'pipeline3', {'stage': 'shared_schema_validation'})
+            except (InvalidExample, ValueError, TypeError, KeyError):
+                self.normalized = None
+                self.rejection = 'incompatible_unified_schema'
         rejection = {'kind': 'external_record', 'dataset': source['dataset'], 'config': source['config'],
                      'split': source['split'], 'revision': source['revision'], 'stream_ordinal': item['ordinal'],
                      'record_id': (str(item['raw']['id']) if isinstance(item['raw'], dict) and
@@ -233,7 +241,9 @@ class DatasetPipeline:
             for record in accepted:
                 ExternalTrainingRecord.model_validate(record)
                 self.report['accepted_examples'] += 1
-                yield record
+                from policy_dissertation.data.adapters import adapt
+                yield adapt(record, 'pipeline3', {'pipeline': 'pipeline3', 'stage': 'validated_export'})
+        self.report['training_schema_version'] = 'unified-qwen-sft-v1'
         self.report['accepted_examples'] = self.report['rejected_examples'] = 0
         write_jsonl(self.output/'training.jsonl', checked())
         reasons, actions = Counter(), Counter()
@@ -314,7 +324,7 @@ class DatasetPipeline:
 
 def run_pipeline3(output_directory, settings, max_samples=10000, *, selected=('nemotron', 'opencode'),
                   seed=42, allocation=None, configs=None, splits=None, revisions=None, refresh=False,
-                  provider=None, progress=lambda message: None, research_report=None):
+                  provider=None, progress=lambda message: None, research_report=None, overwrite=False):
     selected = tuple(selected)
     if max_samples < 1 or not selected or len(set(selected)) != len(selected) or any(a not in DATASETS for a in selected):
         raise DissertationError('Select supported datasets and a positive accepted-sample limit.')
@@ -324,6 +334,8 @@ def run_pipeline3(output_directory, settings, max_samples=10000, *, selected=('n
     token = settings.hf_token.get_secret_value() if settings.hf_token else None
     output = Path(output_directory).resolve()
     with output_lock(output):
+        from policy_dissertation.data.hub import protect_exports
+        protect_exports(output, overwrite)
         engine = DatasetPipeline(output, settings.pipeline3, selected, max_samples, seed, allocation,
             configs or {}, splits or {}, revisions or {}, refresh, provider or HubProvider(settings.pipeline3, token),
             progress, research_report or Path('report.md').resolve())
