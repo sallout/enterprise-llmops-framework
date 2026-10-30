@@ -1,5 +1,6 @@
 """Keyboard-driven terminal front end; commands remain the execution authority."""
 from dataclasses import dataclass
+from contextlib import nullcontext
 from datetime import datetime,timezone
 import json
 from pathlib import Path
@@ -76,6 +77,8 @@ class Dashboard:
     def choose(self,title,options):
         options=list(options)
         if self.terminal:
+            self.console.clear()
+            self.header()
             choices=[questionary.Choice(o.label,value=o.key,disabled=None if o.enabled else 'Not implemented',
                        shortcut_key='0' if o.key=='exit' else str(i+1)) for i,o in enumerate(options)]
             return questionary.select(title,choices=choices,use_shortcuts=True,use_indicator=True,
@@ -458,16 +461,28 @@ class Dashboard:
         self.console.print(table)
         self.console.print('Presence checks only: endpoint reachability and token permissions are not verified.',style='dim')
 
+    def pause(self):
+        if self.terminal:
+            try:questionary.text('Press Enter to return to the main menu').unsafe_ask()
+            except (EOFError,KeyboardInterrupt):pass
+
     def run(self):
+        # Alternate screen keeps completed pages out of the normal terminal history.
+        # Plain/piped output remains append-only for automation and log capture.
+        with self.console.screen(hide_cursor=False) if self.terminal else nullcontext():
+            self.run_loop()
+
+    def run_loop(self):
         dispatch={'enterprise':self.extraction,'enterprise_validation':self.enterprise_validation,
                   'external':self.external_installation,'external_validation':self.external_validation,'environment':self.environment}
         while True:
-            self.header()
+            if not self.terminal:self.header()
             try:choice=self.choose('Select an option to start',MENU)
             except (EOFError,KeyboardInterrupt):break
             if choice in ('exit',None):break
             if choice not in dispatch:
                 self.console.print('Not implemented yet. No training, security scan, prompt attack or customization was started.',style='yellow')
+                self.pause()
                 continue
             try:dispatch[choice]()
             except Cancelled:self.console.print('Cancelled. No new operation was started.',style='yellow')
@@ -477,6 +492,7 @@ class Dashboard:
                 message=str(exc) if isinstance(exc,DissertationError) else 'Invalid configuration. Review Env setup; values are hidden.'
                 self.console.print(Text(message,style='red'))
             except Exception:self.console.print('Could not complete this action. Review configuration and output reports; private errors are hidden.',style='red')
+            self.pause()
         self.console.print('Goodbye. No model training was started by this menu.')
 
 

@@ -1736,3 +1736,23 @@ unprepared. These checks do not repeat code execution, tokenization or semantic 
   equivalent command. Dataset source files/checkpoints and the separate native NVIDIA
   source plan are not restored by this enterprise download. Further semantic correctness
   or full upstream completion is not established by successful restoration.
+
+## Interactive page navigation refinement — 2026-10-30
+
+Updated `interface/dashboard.py` to use Rich's alternate terminal screen for real
+interactive sessions. Menus clear/redraw the active page instead of accumulating
+completed pages in the normal terminal history. After an operation, errors or
+cancellation, an Enter prompt keeps the result readable before the main menu is
+redrawn. The screen context restores the original terminal on exit, including
+exception unwinding. Ongoing backend progress remains visible during execution;
+no data, report or pipeline processing behavior was changed. Redirected/piped
+execution retains append-only output and does not acquire interactive pauses.
+
+Three regression tests added in `tests/test_interactive.py` cover screen lifetime,
+result/pause ordering, clear-before-redraw, and noninteractive compatibility.
+Actual verification: targeted menu tests **32 passed**; complete suite **349 passed,
+1 skipped**, five existing SWIG warnings, 11.67 seconds. The skip remains the
+existing real Docker test with daemon unavailable. A real PTY run entered Env
+setup, displayed only presence booleans, waited for Enter, cleared/redrew the main
+menu and exited with the alternate-screen restoration sequence; exit code 0.
+No credentials or datasets were modified. User guide updated accordingly.

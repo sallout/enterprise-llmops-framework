@@ -272,3 +272,41 @@ def test_logging_setup_can_repair_invalid_dotenv_without_printing_value(tmp_path
     ui.tune_environment()
     assert Settings().log_level=='INFO'
     assert 'private-invalid-level' not in ui.out.getvalue()
+
+
+def test_terminal_menu_uses_temporary_screen_and_waits_before_return(monkeypatch):
+    from contextlib import contextmanager
+    ui=Scripted(choices=['enterprise_validation','exit']);ui.terminal=True
+    events=[]
+    @contextmanager
+    def screen(**kwargs):
+        assert kwargs=={'hide_cursor':False}
+        events.append('enter')
+        try:yield
+        finally:events.append('restore')
+    monkeypatch.setattr(ui.console,'screen',screen)
+    monkeypatch.setattr(ui,'enterprise_validation',lambda:events.append('result'))
+    monkeypatch.setattr(ui,'pause',lambda:events.append('wait'))
+    ui.run()
+    assert events==['enter','result','wait','restore']
+
+
+def test_keyboard_page_redraw_clears_completed_page(monkeypatch):
+    import policy_dissertation.interface.dashboard as module
+    ui=Scripted();ui.terminal=True;events=[]
+    monkeypatch.setattr(ui.console,'clear',lambda:events.append('clear'))
+    monkeypatch.setattr(ui,'header',lambda:events.append('header'))
+    class Answer:
+        def unsafe_ask(self):return 'exit'
+    monkeypatch.setattr(module.questionary,'select',lambda *a,**k:Answer())
+    assert Dashboard.choose(ui,'Menu',MENU)=='exit'
+    assert events==['clear','header']
+
+
+def test_redirected_menu_never_clears_screen_or_waits(monkeypatch):
+    ui=Scripted(choices=['exit'])
+    def forbidden(*a,**k):raise AssertionError('No terminal controls in piped output')
+    monkeypatch.setattr(ui.console,'clear',forbidden)
+    monkeypatch.setattr(ui.console,'screen',forbidden)
+    ui.run()
+    assert 'Goodbye' in ui.out.getvalue()

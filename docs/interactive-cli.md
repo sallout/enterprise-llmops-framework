@@ -179,3 +179,13 @@ unprepared accepted-only exports still need the existing enterprise preparation
 step. Original parsing artifacts, repository sources and interrupted-generation
 checkpoints are not included in the published dataset and are not restored. The
 native NVIDIA source plan is a separate artifact, not part of this enterprise download.
+
+## Fixed terminal pages
+
+Interactive terminal sessions use a temporary alternate screen. Opening a menu
+clears the previous page and redraws the header; completed actions keep their
+results visible until **Enter** returns to the main menu. Leaving the application
+restores the terminal screen that existed before launch. Progress from running
+services remains visible while they execute; reports and datasets stay on disk.
+Piped/redirected sessions retain ordinary append-only text without terminal control
+sequences or extra confirmation pauses, so scripts and captured logs still work.
