@@ -29,3 +29,5 @@ HumanEval: OpenAI, *Evaluating Large Language Models Trained on Code* (Chen et a
 MBPP: Google Research, *Program Synthesis with Large Language Models* (Austin et al., 2021), dataset CC BY 4.0 as declared by the source. Dataset: https://huggingface.co/datasets/google-research-datasets/mbpp ; sanitized test split, revision `4bb6404fdc6cacfda99d4ac4205087b89d32030c`. License: https://creativecommons.org/licenses/by/4.0/ . Tasks were selected and wrapped in the project's conversational format, with executable test wrappers and metadata added. This is not Google/OpenAI endorsement.
 
 Each case retains source dataset, split, configuration, record ID, revision and license. These are the original base tests, not EvalPlus extended tests. No LLM generated the selected questions or reference answers. The audit, source sample and actual preparation report remain under `artifacts/opencode_skill_evaluation/`; the sampled NVIDIA training text is not copied into this versioned suite directory.
+
+Superseded before model inference by [the expanded 100-final-task suite](../opencode_77k_100_final/README.md). This directory is retained as preparation history.

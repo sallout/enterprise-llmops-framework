@@ -520,4 +520,4 @@ The Model evaluation menu can profile a prepared OpenCode selection and freeze
 independent official Python tests with full accepted-source overlap screening and
 Docker reference verification. See [the method and command](docs/skill-aligned-evaluation.md).
 The actual 77,891-row experiment's frozen development/final suites and attribution
-are in [evaluation_suites/opencode_77k](evaluation_suites/opencode_77k/README.md).
+are in [evaluation_suites/opencode_77k_100_final](evaluation_suites/opencode_77k_100_final/README.md).

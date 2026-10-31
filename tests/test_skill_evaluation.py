@@ -78,7 +78,7 @@ def test_menu_forwards_skill_limits_without_training(tmp_path,monkeypatch):
     from test_interactive import Scripted
     monkeypatch.chdir(tmp_path)
     native=tmp_path/'native';native.mkdir();ent=tmp_path/'enterprise';ent.mkdir()
-    ui=Scripted(choices=['skills'],answers=[str(native),str(ent),str(tmp_path/'out'),'100','40',''],confirmations=[True])
+    ui=Scripted(choices=['skills'],answers=[str(native),str(ent),str(tmp_path/'out'),'100','40','20',''],confirmations=[True])
     ui.evaluation()
     assert ui.commands[0][0]=='prepare_skill_evaluation'
     assert ui.commands[0][ui.commands[0].index('--sample-size')+1]=='100'
@@ -93,3 +93,18 @@ def test_duplicate_reference_tasks_cannot_cross_evaluation_splits():
     second=first.model_copy(deep=True);second.id='different-id'
     with pytest.raises(DissertationError,match='Duplicate'):
         verify_distinct_references([first,second])
+
+
+def test_explicit_final_count_leaves_disjoint_development(tmp_path,enterprise,settings):
+    run(tmp_path,enterprise,settings,selected=('opencode',))
+    out=tmp_path/'explicit_final'
+    r=prepare_skill_evaluation(tmp_path/'native',enterprise,out,settings,sample_size=2,max_tasks=10,
+        final_tasks=5,provider=FakeProvider(),benchmark_provider=benchmarks,executor=Controls(),progress=lambda _:None)
+    assert r['status']=='COMPLETED_WITH_WARNINGS'
+    assert r['final_tasks']==5 and r['development_tasks']==5
+
+
+def test_final_count_cannot_consume_all_tasks(tmp_path,enterprise,settings):
+    from policy_dissertation.errors import DissertationError
+    with pytest.raises(DissertationError,match='smaller'):
+        prepare_skill_evaluation(tmp_path/'native',enterprise,tmp_path/'bad',settings,max_tasks=10,final_tasks=10)

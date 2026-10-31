@@ -515,14 +515,15 @@ class Dashboard:
             enterprise=self.path('Matching prepared enterprise directory',default='artifacts/enterprise_ready',directory=True)
             output,_=self.output('artifacts/opencode_skill_evaluation')
             sample=self.integer('Reproducible profile sample size',500,maximum=10000)
-            tasks=self.integer('Total independent Python tasks (development + final)',100,minimum=10,maximum=400)
+            tasks=self.integer('Total independent Python tasks (development + final)',200,minimum=10,maximum=400)
+            final=self.integer('Final held-out task count (keep separate from development)',min(100,tasks//2),maximum=tasks-1)
             previous=self.path('Previously used suite to exclude (optional)',default='evaluation_suites/suite.json',optional=True)
             args=['prepare_skill_evaluation','--native-plan',str(native),'--enterprise',str(enterprise),
-                  '--output',str(output),'--sample-size',str(sample),'--max-tasks',str(tasks)]
+                  '--output',str(output),'--sample-size',str(sample),'--max-tasks',str(tasks),'--final-tasks',str(final)]
             if previous:args+=['--exclude-suite',str(previous)]
             if self.preview('Skill-aligned evaluation preparation',{'Scope':'Profile sample; overlap screen all accepted source rows; Docker reference checks',
                 'Output':str(output),'Selection':'Independent official Python tasks; 80% aligned + 20% general retention target',
-                'Final holdout':'Separate 20% frozen final suite; no model results used','GPU / training':'Not used'}):
+                'Final holdout':str(final)+' separate frozen tasks; no model results used','GPU / training':'Not used'}):
                 self.execute(args,output)
             return
         if action=='score':

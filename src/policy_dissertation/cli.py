@@ -827,6 +827,7 @@ def prepare_skill_evaluation_command(
     sample_size: int = typer.Option(500,min=1,max=10000),
     max_tasks: int = typer.Option(100,min=10,max=400),
     seed: int = typer.Option(42,min=0),
+    final_tasks: int | None = typer.Option(None,min=1,help='Exact final held-out task count; must be below --max-tasks. Default: 20%.'),
     exclude_suite: list[Path] | None = typer.Option(None,'--exclude-suite',exists=True,dir_okay=False),
 ) -> None:
     """Profile approved OpenCode skills and freeze independent Docker-verified Python tests."""
@@ -836,7 +837,7 @@ def prepare_skill_evaluation_command(
         previous=Path('evaluation_suites/suite.json')
         if not excluded and previous.is_file():excluded=[previous]
         result=prepare_skill_evaluation(native_plan,enterprise,output,Settings(),sample_size=sample_size,
-            max_tasks=max_tasks,seed=seed,excluded_suites=excluded,progress=typer.echo)
+            max_tasks=max_tasks,seed=seed,final_tasks=final_tasks,excluded_suites=excluded,progress=typer.echo)
         typer.echo(f"Status: {result['status']}")
         if result['status']=='FAILED':raise DissertationError('Skill analysis/suite preparation failed; inspect report.json. No training started.')
         typer.echo(f"Profile sample: {result['profile']['sample_size']}; approved training rows screened: {result['native_accepted_rows_checked']}")

@@ -158,8 +158,10 @@ def write_suite(path,cases,seed,profile_hash,selection):
     return payload['digest']
 
 
-def prepare_skill_evaluation(plan_directory,enterprise,output,settings,*,sample_size=500,max_tasks=100,seed=42,
+def prepare_skill_evaluation(plan_directory,enterprise,output,settings,*,sample_size=500,max_tasks=100,seed=42,final_tasks=None,
                               excluded_suites=(),provider=None,benchmark_provider=None,executor=None,progress=print):
+    if final_tasks is not None and not 1<=final_tasks<max_tasks:
+        raise DissertationError('Final task count must be positive and smaller than the total task count.')
     root,enterprise,output=(Path(p).resolve() for p in (plan_directory,enterprise,output))
     if sample_size<1 or max_tasks<10:raise DissertationError('Use at least one profile row and ten tasks for disjoint development/final suites.')
     if any(output==p or output.is_relative_to(p) or p.is_relative_to(output) for p in (root,enterprise)):
@@ -261,7 +263,13 @@ def prepare_skill_evaluation(plan_directory,enterprise,output,settings,*,sample_
             'prior_suite_ids_excluded':sorted(excluded),'method':'13-word >=80% containment and docstring-free function AST identity',
             'limitations':'Not semantic clone detection; short text, renamed code, paraphrases and base-model pretraining overlap unresolved.'})
         eligible=[c for c in candidates if c.id not in audit.matches]
-        selected=select_cases(eligible,profile,max_tasks,seed)
+        unique=[];seen_text=set();seen_code=set();duplicate_ids=[]
+        for case in eligible:
+            text=digest(words(case.reference));code=function_hashes(case.reference)
+            if text in seen_text or code & seen_code:
+                duplicate_ids.append(case.id);continue
+            unique.append(case);seen_text.add(text);seen_code.update(code)
+        selected=select_cases(unique,profile,max_tasks,seed)
         verify_distinct_references(selected)
         progress('[3/4] Checking selected official reference solutions against their tests inside Docker')
         executor=executor or DockerExecutor(EvaluationConfig())
@@ -286,7 +294,10 @@ def prepare_skill_evaluation(plan_directory,enterprise,output,settings,*,sample_
             verified.append(case)
             if i%10==0:progress(f'Reference validation: {i}/{len(selected)}')
         rng=random.Random(seed);rng.shuffle(verified)
-        final_count=max(1,round(len(verified)*.2));final=verified[:final_count];development=verified[final_count:]
+        final_count=final_tasks if final_tasks is not None else max(1,round(len(verified)*.2))
+        if len(verified)<=final_count:
+            raise DissertationError('Not enough verified tasks for the requested final count and a separate development set.')
+        final=verified[:final_count];development=verified[final_count:]
         progress('[4/4] Freezing disjoint development and final suites before any model results')
         selection='Pre-result skill-aligned selection plus general Python retention; prior development task IDs and detected training overlap excluded.'
         suites={}
@@ -297,6 +308,7 @@ def prepare_skill_evaluation(plan_directory,enterprise,output,settings,*,sample_
         report.update(status='COMPLETED_WITH_WARNINGS',native_plan_run_id=plan['run_id'],native_plan_hash=file_hash(plan_path),
             profile=profile,native_accepted_rows_checked=accepted_checked,decoded_rows_read=rows_read,
             candidate_count=len(candidates),overlap_excluded=len(audit.matches),reference_failures=bad,
+            duplicate_reference_candidates_excluded=duplicate_ids,requested_final_tasks=final_tasks,
             development_tasks=len(development),final_tasks=len(final),suite_digests=suites,
             selected_skill_counts=dict(Counter(tag for c in verified for tag in c.source['skill_tags'])),
             selected_benchmark_counts=dict(Counter(c.suite for c in verified)),

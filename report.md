@@ -2697,3 +2697,24 @@ A first targeted test collection caught a syntax error in the new failure-report
 - `uv run --locked pytest -q`: **456 passed, 6 skipped**, five existing SWIG warnings, **12.13 seconds**. Skips: three opt-in CUDA tests, one opt-in Docker model-evaluation isolation test, one missing-tokenizer-assets-dependent test, and the opt-in garak detector test previously run explicitly. No model-quality score is inferred from these test results.
 
 The next experiment should use the development suite identically for original and trained models, retaining the evaluator's additional actual-consumed-training-token audit. Do not use final answers to choose training settings. Report scope-specific gains and retention separately, and do not infer coding improvement from the training-data count or the successful reference tests.
+
+## Final evaluation enlarged to 100 tasks — 31 October 2026
+
+At the user's request, increased the final held-out subset from 20 to **100 tasks**, while keeping a separate **100-task development subset**. Added configurable `--final-tasks` to `prepare_skill_evaluation` and the interactive form. Exact final counts must leave a development subset; insufficient verified tasks fail rather than silently reducing the requested final count. Prior 80/20 suite files remain as historical artifacts; no model had generated answers on that preparation, so this expansion used no model outcomes to choose tasks. The training source plan, data and training method are unchanged.
+
+Actual executed command:
+
+```bash
+uv run --locked llmops prepare_skill_evaluation \
+  --native-plan ./artifacts/opencode_77k \
+  --enterprise ./artifacts/enterprise_ready \
+  --output ./artifacts/opencode_skill_evaluation_100_final \
+  --sample-size 500 --max-tasks 200 --final-tasks 100 --seed 42 \
+  --exclude-suite ./evaluation_suites/suite.json
+```
+
+Completed with **100 development and 100 final tasks**. Across both subsets there are **74 HumanEval and 126 MBPP tasks**, selected as **160 skill-aligned and 40 general-Python retention tasks**. The same 500-row profile and all 77,891 accepted-row source-identity/overlap audit were repeated. Three training-overlap candidates remained excluded. Also excluded `humaneval:HumanEval/61` as a duplicate reference candidate before selection; no claim is made that it matched training data. All **200 reference solutions passed** their actual Docker base tests and all **200 return-None mutants failed**. No reference failure was recorded. The final/development subsets were verified disjoint by task ID and free of detected exact/reference-function-AST duplicates. Semantic independence and base-model pretraining contamination remain unresolved.
+
+Frozen files and license/attribution notices are in `evaluation_suites/opencode_77k_100_final/`; the actual audit/report is `artifacts/opencode_skill_evaluation_100_final/report.json`. This is **100 final coding questions total**, not 100 per benchmark. The earlier frozen directory is marked superseded without deleting its history. No model inference or training was performed by this expansion. Keep final tasks unused while choosing training/compression settings. One hundred tasks improve evaluation coverage but do not alone establish statistical equivalence or preservation within a small margin.
+
+Verification: targeted `uv run --locked pytest tests/test_skill_evaluation.py -q` yielded **10 passed**, five existing SWIG warnings, **1.48 seconds**, including explicit final-size/disjointness and invalid-count tests. Full `uv run --locked pytest -q` yielded **458 passed, 6 skipped**, five existing SWIG warnings, **12.56 seconds**. Existing opt-in GPU/Docker/garak and missing-tokenizer-asset skips remain distinct from the actual 400 Docker reference/mutant executions above. CLI help and `git diff --check` also passed. No code was committed or pushed automatically.
