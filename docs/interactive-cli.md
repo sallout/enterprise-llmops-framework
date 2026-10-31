@@ -31,8 +31,7 @@ explicit Run confirmation before processing starts.
 | External dataset installation | Existing native NVIDIA preparation plan, not a full corpus/model-weight installation |
 | External dataset validation | Read-only replay validation of an existing approved native selection |
 | Model compression & fine-tuning | Linux/CUDA preflight, structured MLP pruning, BF16 LoRA recovery and NF4 export |
-| Security check | Disabled, not implemented |
-| Prompt injection check | Disabled, not implemented |
+| Model security assessment | Read-only file/replay/known-trigger checks; no certification |
 | Model customization | Disabled, not implemented |
 | Env setup | Read-only configuration presence, secure `.env` editing and pipeline defaults |
 
@@ -191,3 +190,8 @@ restores the terminal screen that existed before launch. Progress from running
 services remains visible while they execute; reports and datasets stay on disk.
 Piped/redirected sessions retain ordinary append-only text without terminal control
 sequences or extra confirmation pauses, so scripts and captured logs still work.
+
+
+Security assessment usage and limitations are documented in [model_security.md](model_security.md). The old Prompt injection menu option has been removed; no prompt-injection test was implemented.
+
+Model evaluation also offers **Profile training skills and prepare aligned independent tests (CPU + Docker)**. It collects the approved native plan, matching enterprise data, profile sample size, total task count and an old suite to exclude. This action performs no training/model inference; see [skill-aligned-evaluation.md](skill-aligned-evaluation.md) for coverage limitations and development/final separation.

@@ -1,0 +1,2292 @@
+{
+  "schema_version": "model-evaluation-suite-v1",
+  "seed": 42,
+  "cases": [
+    {
+      "id": "humaneval:HumanEval/98",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n    count = 0\n    for i in range(0,len(s),2):\n        if s[i] in \"AEIOU\":\n            count += 1\n    return count\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate('aBCdEf')  == 1\n    assert candidate('abcdefg') == 0\n    assert candidate('dBBE') == 0\n    assert candidate('B')  == 0\n    assert candidate('U')  == 1\n    assert candidate('') == 0\n    assert candidate('EEEE') == 2\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(count_upper)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/98",
+        "task_prompt": "\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/115",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef max_fill(grid, capacity):\n    import math\n    \"\"\"\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it, \n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n    Example 1:\n        Input: \n            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]\n            bucket_capacity : 1\n        Output: 6\n\n    Example 2:\n        Input: \n            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]\n            bucket_capacity : 2\n        Output: 5\n    \n    Example 3:\n        Input: \n            grid : [[0,0,0], [0,0,0]]\n            bucket_capacity : 5\n        Output: 0\n\n    Constraints:\n        * all wells have the same length\n        * 1 <= grid.length <= 10^2\n        * 1 <= grid[:,1].length <= 10^2\n        * grid[i][j] -> 0 | 1\n        * 1 <= capacity <= 10\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef max_fill(grid, capacity):\n    import math\n    \"\"\"\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it, \n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n    Example 1:\n        Input: \n            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]\n            bucket_capacity : 1\n        Output: 6\n\n    Example 2:\n        Input: \n            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]\n            bucket_capacity : 2\n        Output: 5\n    \n    Example 3:\n        Input: \n            grid : [[0,0,0], [0,0,0]]\n            bucket_capacity : 5\n        Output: 0\n\n    Constraints:\n        * all wells have the same length\n        * 1 <= grid.length <= 10^2\n        * 1 <= grid[:,1].length <= 10^2\n        * grid[i][j] -> 0 | 1\n        * 1 <= capacity <= 10\n    \"\"\"\n    return sum([math.ceil(sum(arr)/capacity) for arr in grid])\n",
+      "tests": "def check(candidate):\n\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, \"Error\"\n    assert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, \"Error\"\n    assert candidate([[0,0,0], [0,0,0]], 5) == 0, \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([[1,1,1,1], [1,1,1,1]], 2) == 4, \"Error\"\n    assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, \"Error\"\n\n\ncheck(max_fill)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/115",
+        "task_prompt": "\ndef max_fill(grid, capacity):\n    import math\n    \"\"\"\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it, \n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n    Example 1:\n        Input: \n            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]\n            bucket_capacity : 1\n        Output: 6\n\n    Example 2:\n        Input: \n            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]\n            bucket_capacity : 2\n        Output: 5\n    \n    Example 3:\n        Input: \n            grid : [[0,0,0], [0,0,0]]\n            bucket_capacity : 5\n        Output: 0\n\n    Constraints:\n        * all wells have the same length\n        * 1 <= grid.length <= 10^2\n        * 1 <= grid[:,1].length <= 10^2\n        * grid[i][j] -> 0 | 1\n        * 1 <= capacity <= 10\n    \"\"\"\n",
+        "skill_tags": [
+          "matrices",
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "matrices",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:119",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the element that appears only once in a sorted array.\n\nRequired behaviour:\nassert search([1,1,2,2,3]) == 3\nassert search([1,1,3,3,4,4,5,5,7,7,8]) == 8\nassert search([1,2,2,3,3,4,4]) == 1"
+        }
+      ],
+      "reference": "def search(arr):\n    n = len(arr)\n    XOR = 0\n    for i in range(n) :\n        XOR = XOR ^ arr[i]\n    return (XOR)",
+      "tests": "assert search([1,1,2,2,3]) == 3\nassert search([1,1,3,3,4,4,5,5,7,7,8]) == 8\nassert search([1,2,2,3,3,4,4]) == 1\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "119",
+        "task_prompt": "Write a python function to find the element that appears only once in a sorted array.",
+        "skill_tags": [
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:123",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to sum all amicable numbers from 1 to a specified number.\n\nRequired behaviour:\nassert amicable_numbers_sum(999)==504\nassert amicable_numbers_sum(9999)==31626\nassert amicable_numbers_sum(99)==0"
+        }
+      ],
+      "reference": "def amicable_numbers_sum(limit):\n    if not isinstance(limit, int):\n        return \"Input is not an integer!\"\n    if limit < 1:\n        return \"Input must be bigger than 0!\"\n    amicables = set()\n    for num in range(2, limit+1):\n        if num in amicables:\n            continue\n        sum_fact = sum([fact for fact in range(1, num) if num % fact == 0])\n        sum_fact2 = sum([fact for fact in range(1, sum_fact) if sum_fact % fact == 0])\n        if num == sum_fact2 and num != sum_fact:\n            amicables.add(num)\n            amicables.add(sum_fact2)\n    return sum(amicables)",
+      "tests": "assert amicable_numbers_sum(999)==504\nassert amicable_numbers_sum(9999)==31626\nassert amicable_numbers_sum(99)==0\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "123",
+        "task_prompt": "Write a function to sum all amicable numbers from 1 to a specified number.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:93",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to calculate the value of 'a' to the power 'b'.\n\nRequired behaviour:\nassert power(3,4) == 81\nassert power(2,3) == 8\nassert power(5,5) == 3125"
+        }
+      ],
+      "reference": "def power(a,b):\n\tif b==0:\n\t\treturn 1\n\telif a==0:\n\t\treturn 0\n\telif b==1:\n\t\treturn a\n\telse:\n\t\treturn a*power(a,b-1)",
+      "tests": "assert power(3,4) == 81\nassert power(2,3) == 8\nassert power(5,5) == 3125\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "93",
+        "task_prompt": "Write a function to calculate the value of 'a' to the power 'b'.",
+        "skill_tags": [
+          "unclassified"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:270",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the sum of even numbers at even positions of a list.\n\nRequired behaviour:\nassert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30\nassert sum_even_and_even_index([3, 20, 17, 9, 2, 10, 18, 13, 6, 18]) == 26\nassert sum_even_and_even_index([5, 6, 12, 1]) == 12"
+        }
+      ],
+      "reference": "def sum_even_and_even_index(arr):  \n    i = 0\n    sum = 0\n    for i in range(0, len(arr),2): \n        if (arr[i] % 2 == 0) : \n            sum += arr[i]  \n    return sum",
+      "tests": "assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30\nassert sum_even_and_even_index([3, 20, 17, 9, 2, 10, 18, 13, 6, 18]) == 26\nassert sum_even_and_even_index([5, 6, 12, 1]) == 12\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "270",
+        "task_prompt": "Write a python function to find the sum of even numbers at even positions of a list.",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:244",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the next perfect square greater than a given number.\n\nRequired behaviour:\nassert next_Perfect_Square(35) == 36\nassert next_Perfect_Square(6) == 9\nassert next_Perfect_Square(9) == 16"
+        }
+      ],
+      "reference": "import math  \ndef next_Perfect_Square(N): \n    nextN = math.floor(math.sqrt(N)) + 1\n    return nextN * nextN ",
+      "tests": "assert next_Perfect_Square(35) == 36\nassert next_Perfect_Square(6) == 9\nassert next_Perfect_Square(9) == 16\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "244",
+        "task_prompt": "Write a python function to find the next perfect square greater than a given number.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:104",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to sort each sublist of strings in a given list of lists.\n\nRequired behaviour:\nassert sort_sublists(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"]))==[['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]\nassert sort_sublists(([\" red \",\"green\" ],[\"blue \",\" black\"],[\" orange\",\"brown\"]))==[[' red ', 'green'], [' black', 'blue '], [' orange', 'brown']]\nassert sort_sublists(([\"zilver\",\"gold\"], [\"magnesium\",\"aluminium\"], [\"steel\", \"bronze\"]))==[['gold', 'zilver'],['aluminium', 'magnesium'], ['bronze', 'steel']]"
+        }
+      ],
+      "reference": "def sort_sublists(input_list):\n    result = [sorted(x, key = lambda x:x[0]) for x in input_list] \n    return result\n",
+      "tests": "assert sort_sublists(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"]))==[['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]\nassert sort_sublists(([\" red \",\"green\" ],[\"blue \",\" black\"],[\" orange\",\"brown\"]))==[[' red ', 'green'], [' black', 'blue '], [' orange', 'brown']]\nassert sort_sublists(([\"zilver\",\"gold\"], [\"magnesium\",\"aluminium\"], [\"steel\", \"bronze\"]))==[['gold', 'zilver'],['aluminium', 'magnesium'], ['bronze', 'steel']]\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "104",
+        "task_prompt": "Write a function to sort each sublist of strings in a given list of lists.",
+        "skill_tags": [
+          "sequences",
+          "sorting_search",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:58",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to check whether the given two integers have opposite sign or not.\n\nRequired behaviour:\nassert opposite_Signs(1,-2) == True\nassert opposite_Signs(3,2) == False\nassert opposite_Signs(-10,-10) == False\nassert opposite_Signs(-2,2) == True"
+        }
+      ],
+      "reference": "def opposite_Signs(x,y): \n    return ((x ^ y) < 0); ",
+      "tests": "assert opposite_Signs(1,-2) == True\nassert opposite_Signs(3,2) == False\nassert opposite_Signs(-10,-10) == False\nassert opposite_Signs(-2,2) == True\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "58",
+        "task_prompt": "Write a python function to check whether the given two integers have opposite sign or not.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/129",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n    n = len(grid)\n    val = n * n + 1\n    for i in range(n):\n        for j in range(n):\n            if grid[i][j] == 1:\n                temp = []\n                if i != 0:\n                    temp.append(grid[i - 1][j])\n\n                if j != 0:\n                    temp.append(grid[i][j - 1])\n\n                if i != n - 1:\n                    temp.append(grid[i + 1][j])\n\n                if j != n - 1:\n                    temp.append(grid[i][j + 1])\n\n                val = min(temp)\n\n    ans = []\n    for i in range(k):\n        if i % 2 == 0:\n            ans.append(1)\n        else:\n            ans.append(val)\n    return ans\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    print\n    assert candidate([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3) == [1, 2, 1]\n    assert candidate([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1) == [1]\n    assert candidate([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], 4) == [1, 2, 1, 2]\n    assert candidate([[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7) == [1, 10, 1, 10, 1, 10, 1]\n    assert candidate([[8, 14, 9, 2], [6, 4, 13, 15], [5, 7, 1, 12], [3, 10, 11, 16]], 5) == [1, 7, 1, 7, 1]\n    assert candidate([[11, 8, 7, 2], [5, 16, 14, 4], [9, 3, 15, 6], [12, 13, 10, 1]], 9) == [1, 6, 1, 6, 1, 6, 1, 6, 1]\n    assert candidate([[12, 13, 10, 1], [9, 3, 15, 6], [5, 16, 14, 4], [11, 8, 7, 2]], 12) == [1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6]\n    assert candidate([[2, 7, 4], [3, 1, 5], [6, 8, 9]], 8) == [1, 3, 1, 3, 1, 3, 1, 3]\n    assert candidate([[6, 1, 5], [3, 8, 9], [2, 7, 4]], 8) == [1, 5, 1, 5, 1, 5, 1, 5]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([[1, 2], [3, 4]], 10) == [1, 2, 1, 2, 1, 2, 1, 2, 1, 2]\n    assert candidate([[1, 3], [3, 2]], 10) == [1, 3, 1, 3, 1, 3, 1, 3, 1, 3]\n\n\ncheck(minPath)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/129",
+        "task_prompt": "\ndef minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n",
+        "skill_tags": [
+          "matrices",
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "matrices",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/68",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef pluck(arr):\n    \"\"\"\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n    The plucked node should be returned in a list, [ smalest_value, its index ],\n    If there are no even values or the given array is empty, return [].\n\n    Example 1:\n        Input: [4,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index.\n\n    Example 2:\n        Input: [1,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index. \n\n    Example 3:\n        Input: []\n        Output: []\n    \n    Example 4:\n        Input: [5, 0, 3, 0, 4, 2]\n        Output: [0, 1]\n        Explanation: 0 is the smallest value, but  there are two zeros,\n                     so we will choose the first zero, which has the smallest index.\n\n    Constraints:\n        * 1 <= nodes.length <= 10000\n        * 0 <= node.value\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef pluck(arr):\n    \"\"\"\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n    The plucked node should be returned in a list, [ smalest_value, its index ],\n    If there are no even values or the given array is empty, return [].\n\n    Example 1:\n        Input: [4,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index.\n\n    Example 2:\n        Input: [1,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index. \n\n    Example 3:\n        Input: []\n        Output: []\n    \n    Example 4:\n        Input: [5, 0, 3, 0, 4, 2]\n        Output: [0, 1]\n        Explanation: 0 is the smallest value, but  there are two zeros,\n                     so we will choose the first zero, which has the smallest index.\n\n    Constraints:\n        * 1 <= nodes.length <= 10000\n        * 0 <= node.value\n    \"\"\"\n    if(len(arr) == 0): return []\n    evens = list(filter(lambda x: x%2 == 0, arr))\n    if(evens == []): return []\n    return [min(evens), arr.index(min(evens))]\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n    assert candidate([1,2,3]) == [2, 1], \"Error\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([1, 2, 3, 0, 5, 3]) == [0, 3], \"Error\"\n    assert candidate([5, 4, 8, 4 ,8]) == [4, 1], \"Error\"\n    assert candidate([7, 6, 7, 1]) == [6, 1], \"Error\"\n    assert candidate([7, 9, 7, 1]) == [], \"Error\"\n\n\ncheck(pluck)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/68",
+        "task_prompt": "\ndef pluck(arr):\n    \"\"\"\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n    The plucked node should be returned in a list, [ smalest_value, its index ],\n    If there are no even values or the given array is empty, return [].\n\n    Example 1:\n        Input: [4,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index.\n\n    Example 2:\n        Input: [1,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index. \n\n    Example 3:\n        Input: []\n        Output: []\n    \n    Example 4:\n        Input: [5, 0, 3, 0, 4, 2]\n        Output: [0, 1]\n        Explanation: 0 is the smallest value, but  there are two zeros,\n                     so we will choose the first zero, which has the smallest index.\n\n    Constraints:\n        * 1 <= nodes.length <= 10000\n        * 0 <= node.value\n    \"\"\"\n",
+        "skill_tags": [
+          "graphs_trees",
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "graphs_trees",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:283",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.\n\nRequired behaviour:\nassert validate(1234) == True\nassert validate(51241) == False\nassert validate(321) == True"
+        }
+      ],
+      "reference": "def validate(n): \n    for i in range(10): \n        temp = n;  \n        count = 0; \n        while (temp): \n            if (temp % 10 == i): \n                count+=1;  \n            if (count > i): \n                return False\n            temp //= 10; \n    return True",
+      "tests": "assert validate(1234) == True\nassert validate(51241) == False\nassert validate(321) == True\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "283",
+        "task_prompt": "Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.",
+        "skill_tags": [
+          "mappings_sets",
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:393",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the list with maximum length.\n\nRequired behaviour:\nassert max_length_list([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]])==(3, [13, 15, 17])\nassert max_length_list([[1,2,3,4,5],[1,2,3,4],[1,2,3],[1,2],[1]])==(5,[1,2,3,4,5])\nassert max_length_list([[3,4,5],[6,7,8,9],[10,11,12]])==(4,[6,7,8,9])"
+        }
+      ],
+      "reference": "def max_length_list(input_list):\n    max_length = max(len(x) for x in input_list )   \n    max_list = max(input_list, key = lambda i: len(i))    \n    return(max_length, max_list)",
+      "tests": "assert max_length_list([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]])==(3, [13, 15, 17])\nassert max_length_list([[1,2,3,4,5],[1,2,3,4],[1,2,3],[1,2],[1]])==(5,[1,2,3,4,5])\nassert max_length_list([[3,4,5],[6,7,8,9],[10,11,12]])==(4,[6,7,8,9])\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "393",
+        "task_prompt": "Write a function to find the list with maximum length.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/120",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n    if k == 0:\n        return []\n    arr.sort()\n    ans = arr[-k:]\n    return ans\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate([-3, -4, 5], 3) == [-4, -3, 5]\n    assert candidate([4, -4, 4], 2) == [4, 4]\n    assert candidate([-3, 2, 1, 2, -1, -2, 1], 1) == [2]\n    assert candidate([123, -123, 20, 0 , 1, 2, -3], 3) == [2, 20, 123]\n    assert candidate([-123, 20, 0 , 1, 2, -3], 4) == [0, 1, 2, 20]\n    assert candidate([5, 15, 0, 3, -13, -8, 0], 7) == [-13, -8, 0, 0, 3, 5, 15]\n    assert candidate([-1, 0, 2, 5, 3, -10], 2) == [3, 5]\n    assert candidate([1, 0, 5, -7], 1) == [5]\n    assert candidate([4, -4], 2) == [-4, 4]\n    assert candidate([-10, 10], 2) == [-10, 10]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3, -23, 243, -400, 0], 0) == []\n\n\ncheck(maximum)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/120",
+        "task_prompt": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/142",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\n\ndef sum_squares(lst):\n    \"\"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\n\ndef sum_squares(lst):\n    \"\"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n    result =[]\n    for i in range(len(lst)):\n        if i %3 == 0:\n            result.append(lst[i]**2)\n        elif i % 4 == 0 and i%3 != 0:\n            result.append(lst[i]**3)\n        else:\n            result.append(lst[i])\n    return sum(result)\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    \n    assert candidate([1,2,3]) == 6\n    assert candidate([1,4,9]) == 14\n    assert candidate([]) == 0\n    assert candidate([1,1,1,1,1,1,1,1,1]) == 9\n    assert candidate([-1,-1,-1,-1,-1,-1,-1,-1,-1]) == -3\n    assert candidate([0]) == 0\n    assert candidate([-1,-5,2,-1,-5]) == -126\n    assert candidate([-56,-99,1,0,-2]) == 3030\n    assert candidate([-1,0,0,0,0,0,0,0,-1]) == 0\n    assert candidate([-16, -9, -2, 36, 36, 26, -20, 25, -40, 20, -4, 12, -26, 35, 37]) == -14196\n    assert candidate([-1, -3, 17, -1, -15, 13, -1, 14, -14, -12, -5, 14, -14, 6, 13, 11, 16, 16, 4, 10]) == -1448\n    \n    \n    # Don't remove this line:\n\ncheck(sum_squares)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/142",
+        "task_prompt": "\n\n\ndef sum_squares(lst):\n    \"\"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:443",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the largest negative number from the given list.\n\nRequired behaviour:\nassert largest_neg([1,2,3,-4,-6]) == -6\nassert largest_neg([1,2,3,-8,-9]) == -9\nassert largest_neg([1,2,3,4,-1]) == -1"
+        }
+      ],
+      "reference": "def largest_neg(list1): \n    max = list1[0] \n    for x in list1: \n        if x < max : \n             max = x  \n    return max",
+      "tests": "assert largest_neg([1,2,3,-4,-6]) == -6\nassert largest_neg([1,2,3,-8,-9]) == -9\nassert largest_neg([1,2,3,4,-1]) == -1\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "443",
+        "task_prompt": "Write a python function to find the largest negative number from the given list.",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:410",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the minimum value in a given heterogeneous list.\n\nRequired behaviour:\nassert min_val(['Python', 3, 2, 4, 5, 'version'])==2\nassert min_val(['Python', 15, 20, 25])==15\nassert min_val(['Python', 30, 20, 40, 50, 'version'])==20"
+        }
+      ],
+      "reference": "def min_val(listval):\n     min_val = min(i for i in listval if isinstance(i, int))\n     return min_val",
+      "tests": "assert min_val(['Python', 3, 2, 4, 5, 'version'])==2\nassert min_val(['Python', 15, 20, 25])==15\nassert min_val(['Python', 30, 20, 40, 50, 'version'])==20\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "410",
+        "task_prompt": "Write a function to find the minimum value in a given heterogeneous list.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:67",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the number of ways to partition a set of Bell numbers.\n\nRequired behaviour:\nassert bell_number(2)==2\nassert bell_number(10)==115975\nassert bell_number(56)==6775685320645824322581483068371419745979053216268760300"
+        }
+      ],
+      "reference": "def bell_number(n):   \n    bell = [[0 for i in range(n+1)] for j in range(n+1)] \n    bell[0][0] = 1\n    for i in range(1, n+1): \n        bell[i][0] = bell[i-1][i-1]  \n        for j in range(1, i+1): \n            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]   \n    return bell[n][0] ",
+      "tests": "assert bell_number(2)==2\nassert bell_number(10)==115975\nassert bell_number(56)==6775685320645824322581483068371419745979053216268760300\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "67",
+        "task_prompt": "Write a function to find the number of ways to partition a set of Bell numbers.",
+        "skill_tags": [
+          "mappings_sets",
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/3",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\nfrom typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n"
+        }
+      ],
+      "reference": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n    balance = 0\n\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n\n    return False\n",
+      "tests": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate([]) == False\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n    assert candidate([1, 2, -4, 5, 6]) == True\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\n    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True\n\ncheck(below_zero)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/3",
+        "task_prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/117",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n    result = []\n    for word in s.split():\n        n_consonants = 0\n        for i in range(0, len(word)):\n            if word[i].lower() not in [\"a\",\"e\",\"i\",\"o\",\"u\"]:\n                n_consonants += 1 \n        if n_consonants == n:\n            result.append(word)\n    return result\n\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"Mary had a little lamb\", 4) == [\"little\"], \"First test error: \" + str(candidate(\"Mary had a little lamb\", 4))      \n    assert candidate(\"Mary had a little lamb\", 3) == [\"Mary\", \"lamb\"], \"Second test error: \" + str(candidate(\"Mary had a little lamb\", 3))  \n    assert candidate(\"simple white space\", 2) == [], \"Third test error: \" + str(candidate(\"simple white space\", 2))      \n    assert candidate(\"Hello world\", 4) == [\"world\"], \"Fourth test error: \" + str(candidate(\"Hello world\", 4))  \n    assert candidate(\"Uncle sam\", 3) == [\"Uncle\"], \"Fifth test error: \" + str(candidate(\"Uncle sam\", 3))\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"\", 4) == [], \"1st edge test error: \" + str(candidate(\"\", 4))\n    assert candidate(\"a b c d e f\", 1) == [\"b\", \"c\", \"d\", \"f\"], \"2nd edge test error: \" + str(candidate(\"a b c d e f\", 1))\n\n\ncheck(select_words)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/117",
+        "task_prompt": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/84",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n    \n    Example\n        For N = 1000, the sum of digits will be 1 the output should be \"1\".\n        For N = 150, the sum of digits will be 6 the output should be \"110\".\n        For N = 147, the sum of digits will be 12 the output should be \"1100\".\n    \n    Variables:\n        @N integer\n             Constraints: 0 ≤ N ≤ 10000.\n    Output:\n         a string of binary number\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n    \n    Example\n        For N = 1000, the sum of digits will be 1 the output should be \"1\".\n        For N = 150, the sum of digits will be 6 the output should be \"110\".\n        For N = 147, the sum of digits will be 12 the output should be \"1100\".\n    \n    Variables:\n        @N integer\n             Constraints: 0 ≤ N ≤ 10000.\n    Output:\n         a string of binary number\n    \"\"\"\n    return bin(sum(int(i) for i in str(N)))[2:]\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(1000) == \"1\", \"Error\"\n    assert candidate(150) == \"110\", \"Error\"\n    assert candidate(147) == \"1100\", \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(333) == \"1001\", \"Error\"\n    assert candidate(963) == \"10010\", \"Error\"\n\n\ncheck(solve)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/84",
+        "task_prompt": "\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n    \n    Example\n        For N = 1000, the sum of digits will be 1 the output should be \"1\".\n        For N = 150, the sum of digits will be 6 the output should be \"110\".\n        For N = 147, the sum of digits will be 12 the output should be \"1100\".\n    \n    Variables:\n        @N integer\n             Constraints: 0 ≤ N ≤ 10000.\n    Output:\n         a string of binary number\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:248",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function that takes in an integer n and calculates the harmonic sum of n-1.\n\nRequired behaviour:\nassert math.isclose(harmonic_sum(7), 2.5928571428571425, rel_tol=0.001)\nassert math.isclose(harmonic_sum(4), 2.083333333333333, rel_tol=0.001)\nassert math.isclose(harmonic_sum(19), 3.547739657143682, rel_tol=0.001)"
+        }
+      ],
+      "reference": "def harmonic_sum(n):\n  if n < 2:\n    return 1\n  else:\n    return 1 / n + (harmonic_sum(n - 1)) ",
+      "tests": "import math\nassert math.isclose(harmonic_sum(7), 2.5928571428571425, rel_tol=0.001)\nassert math.isclose(harmonic_sum(4), 2.083333333333333, rel_tol=0.001)\nassert math.isclose(harmonic_sum(19), 3.547739657143682, rel_tol=0.001)\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "248",
+        "task_prompt": "Write a function that takes in an integer n and calculates the harmonic sum of n-1.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:286",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the largest sum of a contiguous array in the modified array which is formed by repeating the given array k times.\n\nRequired behaviour:\nassert max_sub_array_sum_repeated([10, 20, -30, -1], 4, 3) == 30\nassert max_sub_array_sum_repeated([-1, 10, 20], 3, 2) == 59\nassert max_sub_array_sum_repeated([-1, -2, -3], 3, 3) == -1"
+        }
+      ],
+      "reference": "def max_sub_array_sum_repeated(a, n, k): \n\tmax_so_far = -2147483648\n\tmax_ending_here = 0\n\tfor i in range(n*k): \n\t\tmax_ending_here = max_ending_here + a[i%n] \n\t\tif (max_so_far < max_ending_here): \n\t\t\tmax_so_far = max_ending_here \n\t\tif (max_ending_here < 0): \n\t\t\tmax_ending_here = 0\n\treturn max_so_far",
+      "tests": "assert max_sub_array_sum_repeated([10, 20, -30, -1], 4, 3) == 30\nassert max_sub_array_sum_repeated([-1, 10, 20], 3, 2) == 59\nassert max_sub_array_sum_repeated([-1, -2, -3], 3, 3) == -1\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "286",
+        "task_prompt": "Write a function to find the largest sum of a contiguous array in the modified array which is formed by repeating the given array k times.",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:126",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the sum of common divisors of two given numbers.\n\nRequired behaviour:\nassert sum(10,15) == 6\nassert sum(100,150) == 93\nassert sum(4,6) == 3"
+        }
+      ],
+      "reference": "def sum(a,b): \n    sum = 0\n    for i in range (1,min(a,b)): \n        if (a % i == 0 and b % i == 0): \n            sum += i \n    return sum",
+      "tests": "assert sum(10,15) == 6\nassert sum(100,150) == 93\nassert sum(4,6) == 3\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "126",
+        "task_prompt": "Write a python function to find the sum of common divisors of two given numbers.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:132",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to convert a tuple to a string.\n\nRequired behaviour:\nassert tup_string(('e', 'x', 'e', 'r', 'c', 'i', 's', 'e', 's'))==(\"exercises\")\nassert tup_string(('p','y','t','h','o','n'))==(\"python\")\nassert tup_string(('p','r','o','g','r','a','m'))==(\"program\")"
+        }
+      ],
+      "reference": "def tup_string(tup1):\n  str =  ''.join(tup1)\n  return str",
+      "tests": "assert tup_string(('e', 'x', 'e', 'r', 'c', 'i', 's', 'e', 's'))==(\"exercises\")\nassert tup_string(('p','y','t','h','o','n'))==(\"python\")\nassert tup_string(('p','r','o','g','r','a','m'))==(\"program\")\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "132",
+        "task_prompt": "Write a function to convert a tuple to a string.",
+        "skill_tags": [
+          "sequences",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/61",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"(\")\n    False\n    >>> correct_bracketing(\"()\")\n    True\n    >>> correct_bracketing(\"(()())\")\n    True\n    >>> correct_bracketing(\")(()\")\n    False\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"(\")\n    False\n    >>> correct_bracketing(\"()\")\n    True\n    >>> correct_bracketing(\"(()())\")\n    True\n    >>> correct_bracketing(\")(()\")\n    False\n    \"\"\"\n    depth = 0\n    for b in brackets:\n        if b == \"(\":\n            depth += 1\n        else:\n            depth -= 1\n        if depth < 0:\n            return False\n    return depth == 0\n",
+      "tests": "\n\nMETADATA = {}\n\n\ndef check(candidate):\n    assert candidate(\"()\")\n    assert candidate(\"(()())\")\n    assert candidate(\"()()(()())()\")\n    assert candidate(\"()()((()()())())(()()(()))\")\n    assert not candidate(\"((()())))\")\n    assert not candidate(\")(()\")\n    assert not candidate(\"(\")\n    assert not candidate(\"((((\")\n    assert not candidate(\")\")\n    assert not candidate(\"(()\")\n    assert not candidate(\"()()(()())())(()\")\n    assert not candidate(\"()()(()())()))()\")\n\n\ncheck(correct_bracketing)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/61",
+        "task_prompt": "\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"(\")\n    False\n    >>> correct_bracketing(\"()\")\n    True\n    >>> correct_bracketing(\"(()())\")\n    True\n    >>> correct_bracketing(\")(()\")\n    False\n    \"\"\"\n",
+        "skill_tags": [
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/101",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef words_string(s):\n    \"\"\"\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n    \n    For example:\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef words_string(s):\n    \"\"\"\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n    \n    For example:\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n    if not s:\n        return []\n\n    s_list = []\n\n    for letter in s:\n        if letter == ',':\n            s_list.append(' ')\n        else:\n            s_list.append(letter)\n\n    s_list = \"\".join(s_list)\n    return s_list.split()\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    assert candidate(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    assert candidate(\"Hi, my name\") == [\"Hi\", \"my\", \"name\"]\n    assert candidate(\"One,, two, three, four, five, six,\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(\"\") == []\n    assert candidate(\"ahmed     , gamal\") == [\"ahmed\", \"gamal\"]\n\n\ncheck(words_string)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/101",
+        "task_prompt": "\ndef words_string(s):\n    \"\"\"\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n    \n    For example:\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n",
+        "skill_tags": [
+          "sequences",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:227",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find minimum of three numbers.\n\nRequired behaviour:\nassert min_of_three(10,20,0)==0\nassert min_of_three(19,15,18)==15\nassert min_of_three(-10,-20,-30)==-30"
+        }
+      ],
+      "reference": "def min_of_three(a,b,c): \n      if (a <= b) and (a <= c): \n        smallest = a \n      elif (b <= a) and (b <= c): \n        smallest = b \n      else: \n        smallest = c \n      return smallest ",
+      "tests": "assert min_of_three(10,20,0)==0\nassert min_of_three(19,15,18)==15\nassert min_of_three(-10,-20,-30)==-30\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "227",
+        "task_prompt": "Write a function to find minimum of three numbers.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:129",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to calculate whether the matrix is a magic square.\n\nRequired behaviour:\nassert magic_square_test([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True\nassert magic_square_test([[2, 7, 6], [9, 5, 1], [4, 3, 8]])==True\nassert magic_square_test([[2, 7, 6], [9, 5, 1], [4, 3, 7]])==False"
+        }
+      ],
+      "reference": "def magic_square_test(my_matrix):\n    iSize = len(my_matrix[0])\n    sum_list = []\n    sum_list.extend([sum (lines) for lines in my_matrix])   \n    for col in range(iSize):\n        sum_list.append(sum(row[col] for row in my_matrix))\n    result1 = 0\n    for i in range(0,iSize):\n        result1 +=my_matrix[i][i]\n    sum_list.append(result1)      \n    result2 = 0\n    for i in range(iSize-1,-1,-1):\n        result2 +=my_matrix[i][i]\n    sum_list.append(result2)\n    if len(set(sum_list))>1:\n        return False\n    return True",
+      "tests": "assert magic_square_test([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True\nassert magic_square_test([[2, 7, 6], [9, 5, 1], [4, 3, 8]])==True\nassert magic_square_test([[2, 7, 6], [9, 5, 1], [4, 3, 7]])==False\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "129",
+        "task_prompt": "Write a function to calculate whether the matrix is a magic square.",
+        "skill_tags": [
+          "matrices"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "matrices",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:433",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to check whether the entered number is greater than the elements of the given array.\n\nRequired behaviour:\nassert check_greater([1, 2, 3, 4, 5], 4) == False\nassert check_greater([2, 3, 4, 5, 6], 8) == True\nassert check_greater([9, 7, 4, 8, 6, 1], 11) == True"
+        }
+      ],
+      "reference": "def check_greater(arr, number):\n  arr.sort()\n  return number > arr[-1]",
+      "tests": "assert check_greater([1, 2, 3, 4, 5], 4) == False\nassert check_greater([2, 3, 4, 5, 6], 8) == True\nassert check_greater([9, 7, 4, 8, 6, 1], 11) == True\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "433",
+        "task_prompt": "Write a function to check whether the entered number is greater than the elements of the given array.",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:145",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the maximum difference between any two elements in a given array.\n\nRequired behaviour:\nassert max_Abs_Diff((2,1,5,3)) == 4\nassert max_Abs_Diff((9,3,2,5,1)) == 8\nassert max_Abs_Diff((3,2,1)) == 2"
+        }
+      ],
+      "reference": "def max_Abs_Diff(arr): \n    n = len(arr)\n    minEle = arr[0] \n    maxEle = arr[0] \n    for i in range(1, n): \n        minEle = min(minEle,arr[i]) \n        maxEle = max(maxEle,arr[i]) \n    return (maxEle - minEle) ",
+      "tests": "assert max_Abs_Diff((2,1,5,3)) == 4\nassert max_Abs_Diff((9,3,2,5,1)) == 8\nassert max_Abs_Diff((3,2,1)) == 2\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "145",
+        "task_prompt": "Write a python function to find the maximum difference between any two elements in a given array.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:109",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.\n\nRequired behaviour:\nassert odd_Equivalent(\"011001\",6) == 3\nassert odd_Equivalent(\"11011\",5) == 4\nassert odd_Equivalent(\"1010\",4) == 2"
+        }
+      ],
+      "reference": "def odd_Equivalent(s,n): \n    count=0\n    for i in range(0,n): \n        if (s[i] == '1'): \n            count = count + 1\n    return count ",
+      "tests": "assert odd_Equivalent(\"011001\",6) == 3\nassert odd_Equivalent(\"11011\",5) == 4\nassert odd_Equivalent(\"1010\",4) == 2\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "109",
+        "task_prompt": "Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.",
+        "skill_tags": [
+          "numeric_math",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:131",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to reverse only the vowels of a given string (where y is not a vowel).\n\nRequired behaviour:\nassert reverse_vowels(\"Python\") == \"Python\"\nassert reverse_vowels(\"USA\") == \"ASU\"\nassert reverse_vowels(\"ab\") == \"ab\""
+        }
+      ],
+      "reference": "def reverse_vowels(str1):\n\tvowels = \"\"\n\tfor char in str1:\n\t\tif char in \"aeiouAEIOU\":\n\t\t\tvowels += char\n\tresult_string = \"\"\n\tfor char in str1:\n\t\tif char in \"aeiouAEIOU\":\n\t\t\tresult_string += vowels[-1]\n\t\t\tvowels = vowels[:-1]\n\t\telse:\n\t\t\tresult_string += char\n\treturn result_string",
+      "tests": "assert reverse_vowels(\"Python\") == \"Python\"\nassert reverse_vowels(\"USA\") == \"ASU\"\nassert reverse_vowels(\"ab\") == \"ab\"\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "131",
+        "task_prompt": "Write a python function to reverse only the vowels of a given string (where y is not a vowel).",
+        "skill_tags": [
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/89",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n    d = 'abcdefghijklmnopqrstuvwxyz'\n    out = ''\n    for c in s:\n        if c in d:\n            out += d[(d.index(c)+2*2) % 26]\n        else:\n            out += c\n    return out\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate('hi') == 'lm', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('asdfghjkl') == 'ewhjklnop', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('gf') == 'kj', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('et') == 'ix', \"This prints if this assert fails 1 (good for debugging!)\"\n\n    assert candidate('faewfawefaewg')=='jeiajeaijeiak', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('hellomyfriend')=='lippsqcjvmirh', \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate('dxzdlmnilfuhmilufhlihufnmlimnufhlimnufhfucufh')=='hbdhpqrmpjylqmpyjlpmlyjrqpmqryjlpmqryjljygyjl', \"This prints if this assert fails 3 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('a')=='e', \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(encrypt)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/89",
+        "task_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+        "skill_tags": [
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:240",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function that takes in two lists and replaces the last element of the first list with the elements of the second list.\n\nRequired behaviour:\nassert replace_list([1, 3, 5, 7, 9, 10],[2, 4, 6, 8])==[1, 3, 5, 7, 9, 2, 4, 6, 8]\nassert replace_list([1,2,3,4,5],[5,6,7,8])==[1,2,3,4,5,6,7,8]\nassert replace_list([\"red\",\"blue\",\"green\"],[\"yellow\"])==[\"red\",\"blue\",\"yellow\"]"
+        }
+      ],
+      "reference": "def replace_list(list1,list2):\n list1[-1:] = list2\n replace_list=list1\n return replace_list\n",
+      "tests": "assert replace_list([1, 3, 5, 7, 9, 10],[2, 4, 6, 8])==[1, 3, 5, 7, 9, 2, 4, 6, 8]\nassert replace_list([1,2,3,4,5],[5,6,7,8])==[1,2,3,4,5,6,7,8]\nassert replace_list([\"red\",\"blue\",\"green\"],[\"yellow\"])==[\"red\",\"blue\",\"yellow\"]\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "240",
+        "task_prompt": "Write a function that takes in two lists and replaces the last element of the first list with the elements of the second list.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/123",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef get_odd_collatz(n):\n    \"\"\"\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined\n    as follows: start with any positive integer n. Then each term is obtained from the \n    previous term as follows: if the previous term is even, the next term is one half of \n    the previous term. If the previous term is odd, the next term is 3 times the previous\n    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.\n\n    Note: \n        1. Collatz(1) is [1].\n        2. returned list sorted in increasing order.\n\n    For example:\n    get_odd_collatz(5) returns [1, 5] # The collatz sequence for 5 is [5, 16, 8, 4, 2, 1], so the odd numbers are only 1, and 5.\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef get_odd_collatz(n):\n    \"\"\"\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined\n    as follows: start with any positive integer n. Then each term is obtained from the \n    previous term as follows: if the previous term is even, the next term is one half of \n    the previous term. If the previous term is odd, the next term is 3 times the previous\n    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.\n\n    Note: \n        1. Collatz(1) is [1].\n        2. returned list sorted in increasing order.\n\n    For example:\n    get_odd_collatz(5) returns [1, 5] # The collatz sequence for 5 is [5, 16, 8, 4, 2, 1], so the odd numbers are only 1, and 5.\n    \"\"\"\n    if n%2==0:\n        odd_collatz = [] \n    else:\n        odd_collatz = [n]\n    while n > 1:\n        if n % 2 == 0:\n            n = n/2\n        else:\n            n = n*3 + 1\n            \n        if n%2 == 1:\n            odd_collatz.append(int(n))\n\n    return sorted(odd_collatz)\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate(14) == [1, 5, 7, 11, 13, 17]\n    assert candidate(5) == [1, 5]\n    assert candidate(12) == [1, 3, 5], \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1) == [1], \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(get_odd_collatz)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/123",
+        "task_prompt": "\ndef get_odd_collatz(n):\n    \"\"\"\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined\n    as follows: start with any positive integer n. Then each term is obtained from the \n    previous term as follows: if the previous term is even, the next term is one half of \n    the previous term. If the previous term is odd, the next term is 3 times the previous\n    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.\n\n    Note: \n        1. Collatz(1) is [1].\n        2. returned list sorted in increasing order.\n\n    For example:\n    get_odd_collatz(5) returns [1, 5] # The collatz sequence for 5 is [5, 16, 8, 4, 2, 1], so the odd numbers are only 1, and 5.\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:64",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to sort a list of tuples using the second value of each tuple.\n\nRequired behaviour:\nassert subject_marks([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\nassert subject_marks([('Telugu',49),('Hindhi',54),('Social',33)])==([('Social',33),('Telugu',49),('Hindhi',54)])\nassert subject_marks([('Physics',96),('Chemistry',97),('Biology',45)])==([('Biology',45),('Physics',96),('Chemistry',97)])"
+        }
+      ],
+      "reference": "def subject_marks(subjectmarks):\n#subject_marks = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])\n subjectmarks.sort(key = lambda x: x[1])\n return subjectmarks",
+      "tests": "assert subject_marks([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\nassert subject_marks([('Telugu',49),('Hindhi',54),('Social',33)])==([('Social',33),('Telugu',49),('Hindhi',54)])\nassert subject_marks([('Physics',96),('Chemistry',97),('Biology',45)])==([('Biology',45),('Physics',96),('Chemistry',97)])\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "64",
+        "task_prompt": "Write a function to sort a list of tuples using the second value of each tuple.",
+        "skill_tags": [
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:108",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to merge three lists into a single sorted list.\n\nRequired behaviour:\nassert merge_sorted_list([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]\nassert merge_sorted_list([1, 3, 5, 6, 8, 9], [2, 5, 7, 11], [1, 4, 7, 8, 12])==[1, 1, 2, 3, 4, 5, 5, 6, 7, 7, 8, 8, 9, 11, 12]\nassert merge_sorted_list([18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1],[25, 35, 22, 85, 14, 65, 75, 25, 58],[12, 74, 9, 50, 61, 41])==[1, 2, 3, 4, 7, 8, 9, 9, 9, 10, 12, 14, 14, 18, 22, 25, 25, 35, 41, 50, 58, 61, 65, 74, 75, 85]"
+        }
+      ],
+      "reference": "import heapq\ndef merge_sorted_list(num1,num2,num3):\n  num1=sorted(num1)\n  num2=sorted(num2)\n  num3=sorted(num3)\n  result = heapq.merge(num1,num2,num3)\n  return list(result)",
+      "tests": "assert merge_sorted_list([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]\nassert merge_sorted_list([1, 3, 5, 6, 8, 9], [2, 5, 7, 11], [1, 4, 7, 8, 12])==[1, 1, 2, 3, 4, 5, 5, 6, 7, 7, 8, 8, 9, 11, 12]\nassert merge_sorted_list([18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1],[25, 35, 22, 85, 14, 65, 75, 25, 58],[12, 74, 9, 50, 61, 41])==[1, 2, 3, 4, 7, 8, 9, 9, 9, 10, 12, 14, 14, 18, 22, 25, 25, 35, 41, 50, 58, 61, 65, 74, 75, 85]\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "108",
+        "task_prompt": "Write a function to merge three lists into a single sorted list.",
+        "skill_tags": [
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/106",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef f(n):\n    \"\"\" Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef f(n):\n    \"\"\" Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n    \"\"\"\n    ret = []\n    for i in range(1,n+1):\n        if i%2 == 0:\n            x = 1\n            for j in range(1,i+1): x *= j\n            ret += [x]\n        else:\n            x = 0\n            for j in range(1,i+1): x += j\n            ret += [x]\n    return ret\n",
+      "tests": "def check(candidate):\n\n    assert candidate(5) == [1, 2, 6, 24, 15]\n    assert candidate(7) == [1, 2, 6, 24, 15, 720, 28]\n    assert candidate(1) == [1]\n    assert candidate(3) == [1, 2, 6]\n\ncheck(f)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/106",
+        "task_prompt": "\ndef f(n):\n    \"\"\" Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:475",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to sort a dictionary by value.\n\nRequired behaviour:\nassert sort_counter({'Math':81, 'Physics':83, 'Chemistry':87})==[('Chemistry', 87), ('Physics', 83), ('Math', 81)]\nassert sort_counter({'Math':400, 'Physics':300, 'Chemistry':250})==[('Math', 400), ('Physics', 300), ('Chemistry', 250)]\nassert sort_counter({'Math':900, 'Physics':1000, 'Chemistry':1250})==[('Chemistry', 1250), ('Physics', 1000), ('Math', 900)]"
+        }
+      ],
+      "reference": "from collections import Counter\ndef sort_counter(dict1):\n x = Counter(dict1)\n sort_counter=x.most_common()\n return sort_counter",
+      "tests": "assert sort_counter({'Math':81, 'Physics':83, 'Chemistry':87})==[('Chemistry', 87), ('Physics', 83), ('Math', 81)]\nassert sort_counter({'Math':400, 'Physics':300, 'Chemistry':250})==[('Math', 400), ('Physics', 300), ('Chemistry', 250)]\nassert sort_counter({'Math':900, 'Physics':1000, 'Chemistry':1250})==[('Chemistry', 1250), ('Physics', 1000), ('Math', 900)]\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "475",
+        "task_prompt": "Write a function to sort a dictionary by value.",
+        "skill_tags": [
+          "mappings_sets",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/137",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n    temp_a, temp_b = a, b\n    if isinstance(temp_a, str): temp_a = temp_a.replace(',','.')\n    if isinstance(temp_b, str): temp_b = temp_b.replace(',','.')\n    if float(temp_a) == float(temp_b): return None\n    return a if float(temp_a) > float(temp_b) else b \n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate(1, 2) == 2\n    assert candidate(1, 2.5) == 2.5\n    assert candidate(2, 3) == 3\n    assert candidate(5, 6) == 6\n    assert candidate(1, \"2,3\") == \"2,3\"\n    assert candidate(\"5,1\", \"6\") == \"6\"\n    assert candidate(\"1\", \"2\") == \"2\"\n    assert candidate(\"1\", 1) == None\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(compare_one)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/137",
+        "task_prompt": "\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:246",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function for computing square roots using the babylonian method.\n\nRequired behaviour:\nassert math.isclose(babylonian_squareroot(10), 3.162277660168379, rel_tol=0.001)\nassert math.isclose(babylonian_squareroot(2), 1.414213562373095, rel_tol=0.001)\nassert math.isclose(babylonian_squareroot(9), 3.0, rel_tol=0.001)"
+        }
+      ],
+      "reference": "def babylonian_squareroot(number):\n    if(number == 0):\n        return 0;\n    g = number/2.0;\n    g2 = g + 1;\n    while(g != g2):\n        n = number/ g;\n        g2 = g;\n        g = (g + n)/2;\n    return g;",
+      "tests": "import math\nassert math.isclose(babylonian_squareroot(10), 3.162277660168379, rel_tol=0.001)\nassert math.isclose(babylonian_squareroot(2), 1.414213562373095, rel_tol=0.001)\nassert math.isclose(babylonian_squareroot(9), 3.0, rel_tol=0.001)\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "246",
+        "task_prompt": "Write a function for computing square roots using the babylonian method.",
+        "skill_tags": [
+          "oop"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "oop",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/37",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    evens = l[::2]\n    odds = l[1::2]\n    evens.sort()\n    ans = []\n    for e, o in zip(evens, odds):\n        ans.extend([e, o])\n    if len(evens) > len(odds):\n        ans.append(evens[-1])\n    return ans\n",
+      "tests": "\n\nMETADATA = {}\n\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])\n\n\ncheck(sort_even)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/37",
+        "task_prompt": "\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n",
+        "skill_tags": [
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/95",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n    if len(dict.keys()) == 0:\n        return False\n    else:\n        state = \"start\"\n        for key in dict.keys():\n\n            if isinstance(key, str) == False:\n                state = \"mixed\"\n                break\n            if state == \"start\":\n                if key.isupper():\n                    state = \"upper\"\n                elif key.islower():\n                    state = \"lower\"\n                else:\n                    break\n            elif (state == \"upper\" and not key.isupper()) or (state == \"lower\" and not key.islower()):\n                    state = \"mixed\"\n                    break\n            else:\n                break\n        return state == \"upper\" or state == \"lower\" \n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate({\"p\":\"pineapple\", \"b\":\"banana\"}) == True, \"First test error: \" + str(candidate({\"p\":\"pineapple\", \"b\":\"banana\"}))\n    assert candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}) == False, \"Second test error: \" + str(candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}))\n    assert candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}) == False, \"Third test error: \" + str(candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}))\n    assert candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) == False, \"Fourth test error: \" + str(candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}))\n    assert candidate({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) == True, \"Fifth test error: \" + str(candidate({\"STATE\":\"NC\", \"ZIP\":\"12345\" }))      \n    assert candidate({\"fruit\":\"Orange\", \"taste\":\"Sweet\" }) == True, \"Fourth test error: \" + str(candidate({\"fruit\":\"Orange\", \"taste\":\"Sweet\" }))      \n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate({}) == False, \"1st edge test error: \" + str(candidate({}))\n\n\ncheck(check_dict_case)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/95",
+        "task_prompt": "\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n",
+        "skill_tags": [
+          "mappings_sets",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:271",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function that takes in an integer n and finds the sum of the first n even natural numbers that are raised to the fifth power.\n\nRequired behaviour:\nassert even_Power_Sum(2) == 1056\nassert even_Power_Sum(3) == 8832\nassert even_Power_Sum(1) == 32"
+        }
+      ],
+      "reference": "def even_Power_Sum(n): \n    sum = 0; \n    for i in range(1,n+1): \n        j = 2*i; \n        sum = sum + (j*j*j*j*j); \n    return sum; ",
+      "tests": "assert even_Power_Sum(2) == 1056\nassert even_Power_Sum(3) == 8832\nassert even_Power_Sum(1) == 32\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "271",
+        "task_prompt": "Write a python function that takes in an integer n and finds the sum of the first n even natural numbers that are raised to the fifth power.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:465",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to drop empty items from a given dictionary.\n\nRequired behaviour:\nassert drop_empty({'c1': 'Red', 'c2': 'Green', 'c3':None})=={'c1': 'Red', 'c2': 'Green'}\nassert drop_empty({'c1': 'Red', 'c2': None, 'c3':None})=={'c1': 'Red'}\nassert drop_empty({'c1': None, 'c2': 'Green', 'c3':None})=={ 'c2': 'Green'}"
+        }
+      ],
+      "reference": "def drop_empty(dict1):\n  dict1 = {key:value for (key, value) in dict1.items() if value is not None}\n  return dict1",
+      "tests": "assert drop_empty({'c1': 'Red', 'c2': 'Green', 'c3':None})=={'c1': 'Red', 'c2': 'Green'}\nassert drop_empty({'c1': 'Red', 'c2': None, 'c3':None})=={'c1': 'Red'}\nassert drop_empty({'c1': None, 'c2': 'Green', 'c3':None})=={ 'c2': 'Green'}\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "465",
+        "task_prompt": "Write a function to drop empty items from a given dictionary.",
+        "skill_tags": [
+          "mappings_sets"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:394",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to check if given tuple contains no duplicates.\n\nRequired behaviour:\nassert check_distinct((1, 4, 5, 6, 1, 4)) == False\nassert check_distinct((1, 4, 5, 6)) == True\nassert check_distinct((2, 3, 4, 5, 6)) == True"
+        }
+      ],
+      "reference": "def check_distinct(test_tup):\n  res = True\n  temp = set()\n  for ele in test_tup:\n    if ele in temp:\n      res = False\n      break\n    temp.add(ele)\n  return res ",
+      "tests": "assert check_distinct((1, 4, 5, 6, 1, 4)) == False\nassert check_distinct((1, 4, 5, 6)) == True\nassert check_distinct((2, 3, 4, 5, 6)) == True\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "394",
+        "task_prompt": "Write a function to check if given tuple contains no duplicates.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/116",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n    return sorted(sorted(arr), key=lambda x: bin(x)[2:].count('1'))\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1,5,2,3,4]) == [1, 2, 4, 3, 5]\n    assert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\n    assert candidate([1,0,2,3,4]) == [0, 1, 2, 4, 3]\n    assert candidate([]) == []\n    assert candidate([2,5,77,4,5,3,5,7,2,3,4]) == [2, 2, 4, 4, 3, 3, 5, 5, 5, 7, 77]\n    assert candidate([3,6,44,12,32,5]) == [32, 3, 5, 6, 12, 44]\n    assert candidate([2,4,8,16,32]) == [2, 4, 8, 16, 32]\n    assert candidate([2,4,8,16,32]) == [2, 4, 8, 16, 32]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(sort_array)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/116",
+        "task_prompt": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:59",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the nth octagonal number.\n\nRequired behaviour:\nassert is_octagonal(5) == 65\nassert is_octagonal(10) == 280\nassert is_octagonal(15) == 645"
+        }
+      ],
+      "reference": "def is_octagonal(n): \n\treturn 3 * n * n - 2 * n ",
+      "tests": "assert is_octagonal(5) == 65\nassert is_octagonal(10) == 280\nassert is_octagonal(15) == 645\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "59",
+        "task_prompt": "Write a function to find the nth octagonal number.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/109",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef move_one_ball(arr):\n    \"\"\"We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing \n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n    \n    One right shift operation means shifting all elements of the array by one\n    position in the right direction. The last element of the array will be moved to\n    the starting position in the array i.e. 0th index. \n\n    If it is possible to obtain the sorted array by performing the above operation\n    then return True else return False.\n    If the given array is empty then return True.\n\n    Note: The given list is guaranteed to have unique elements.\n\n    For Example:\n    \n    move_one_ball([3, 4, 5, 1, 2])==>True\n    Explanation: By performin 2 right shift operations, non-decreasing order can\n                 be achieved for the given array.\n    move_one_ball([3, 5, 4, 1, 2])==>False\n    Explanation:It is not possible to get non-decreasing order for the given\n                array by performing any number of right shift operations.\n                \n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef move_one_ball(arr):\n    \"\"\"We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing \n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n    \n    One right shift operation means shifting all elements of the array by one\n    position in the right direction. The last element of the array will be moved to\n    the starting position in the array i.e. 0th index. \n\n    If it is possible to obtain the sorted array by performing the above operation\n    then return True else return False.\n    If the given array is empty then return True.\n\n    Note: The given list is guaranteed to have unique elements.\n\n    For Example:\n    \n    move_one_ball([3, 4, 5, 1, 2])==>True\n    Explanation: By performin 2 right shift operations, non-decreasing order can\n                 be achieved for the given array.\n    move_one_ball([3, 5, 4, 1, 2])==>False\n    Explanation:It is not possible to get non-decreasing order for the given\n                array by performing any number of right shift operations.\n                \n    \"\"\"\n    if len(arr)==0:\n      return True\n    sorted_array=sorted(arr)\n    my_arr=[]\n    \n    min_value=min(arr)\n    min_index=arr.index(min_value)\n    my_arr=arr[min_index:]+arr[0:min_index]\n    for i in range(len(arr)):\n      if my_arr[i]!=sorted_array[i]:\n        return False\n    return True\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate([3, 4, 5, 1, 2])==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([3, 5, 10, 1, 2])==True\n    assert candidate([4, 3, 1, 2])==False\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([3, 5, 4, 1, 2])==False, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([])==True\n\ncheck(move_one_ball)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/109",
+        "task_prompt": "\ndef move_one_ball(arr):\n    \"\"\"We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing \n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n    \n    One right shift operation means shifting all elements of the array by one\n    position in the right direction. The last element of the array will be moved to\n    the starting position in the array i.e. 0th index. \n\n    If it is possible to obtain the sorted array by performing the above operation\n    then return True else return False.\n    If the given array is empty then return True.\n\n    Note: The given list is guaranteed to have unique elements.\n\n    For Example:\n    \n    move_one_ball([3, 4, 5, 1, 2])==>True\n    Explanation: By performin 2 right shift operations, non-decreasing order can\n                 be achieved for the given array.\n    move_one_ball([3, 5, 4, 1, 2])==>False\n    Explanation:It is not possible to get non-decreasing order for the given\n                array by performing any number of right shift operations.\n                \n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/58",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n    ret = set()\n    for e1 in l1:\n        for e2 in l2:\n            if e1 == e2:\n                ret.add(e1)\n    return sorted(list(ret))\n",
+      "tests": "\n\nMETADATA = {}\n\n\ndef check(candidate):\n    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]\n    assert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]\n    assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]\n    assert candidate([4, 3, 2, 8], []) == []\n\n\ncheck(common)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/58",
+        "task_prompt": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n",
+        "skill_tags": [
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:453",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the sum of even factors of a number.\n\nRequired behaviour:\nassert sumofFactors(18) == 26\nassert sumofFactors(30) == 48\nassert sumofFactors(6) == 8"
+        }
+      ],
+      "reference": "import math \ndef sumofFactors(n) : \n    if (n % 2 != 0) : \n        return 0\n    res = 1\n    for i in range(2, (int)(math.sqrt(n)) + 1) :    \n        count = 0\n        curr_sum = 1\n        curr_term = 1\n        while (n % i == 0) : \n            count= count + 1\n            n = n // i \n            if (i == 2 and count == 1) : \n                curr_sum = 0\n            curr_term = curr_term * i \n            curr_sum = curr_sum + curr_term \n        res = res * curr_sum  \n    if (n >= 2) : \n        res = res * (1 + n) \n    return res",
+      "tests": "assert sumofFactors(18) == 26\nassert sumofFactors(30) == 48\nassert sumofFactors(6) == 8\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "453",
+        "task_prompt": "Write a python function to find the sum of even factors of a number.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:311",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to set the left most unset bit.\n\nRequired behaviour:\nassert set_left_most_unset_bit(10) == 14\nassert set_left_most_unset_bit(12) == 14\nassert set_left_most_unset_bit(15) == 15"
+        }
+      ],
+      "reference": "def set_left_most_unset_bit(n): \n    if not (n & (n + 1)): \n        return n \n    pos, temp, count = 0, n, 0 \n    while temp: \n        if not (temp & 1): \n            pos = count      \n        count += 1; temp>>=1\n    return (n | (1 << (pos))) ",
+      "tests": "assert set_left_most_unset_bit(10) == 14\nassert set_left_most_unset_bit(12) == 14\nassert set_left_most_unset_bit(15) == 15\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "311",
+        "task_prompt": "Write a python function to set the left most unset bit.",
+        "skill_tags": [
+          "mappings_sets"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/11",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\nfrom typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n"
+        }
+      ],
+      "reference": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    def xor(i, j):\n        if i == j:\n            return '0'\n        else:\n            return '1'\n\n    return ''.join(xor(x, y) for x, y in zip(a, b))\n",
+      "tests": "\n\nMETADATA = {\n    'author': 'jt',\n    'dataset': 'test'\n}\n\n\ndef check(candidate):\n    assert candidate('111000', '101010') == '010010'\n    assert candidate('1', '1') == '0'\n    assert candidate('0101', '0000') == '0101'\n\ncheck(string_xor)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/11",
+        "task_prompt": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+        "skill_tags": [
+          "sequences",
+          "strings"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/34",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    return sorted(list(set(l)))\n",
+      "tests": "\n\nMETADATA = {}\n\n\ndef check(candidate):\n    assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]\n\n\ncheck(unique)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/34",
+        "task_prompt": "\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n",
+        "skill_tags": [
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:56",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to check if a given number is one less than twice its reverse.\n\nRequired behaviour:\nassert check(70) == False\nassert check(23) == False\nassert check(73) == True"
+        }
+      ],
+      "reference": "def rev(num):    \n    rev_num = 0\n    while (num > 0):  \n        rev_num = (rev_num * 10 + num % 10) \n        num = num // 10  \n    return rev_num  \ndef check(n):    \n    return (2 * rev(n) == n + 1)  ",
+      "tests": "assert check(70) == False\nassert check(23) == False\nassert check(73) == True\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "56",
+        "task_prompt": "Write a python function to check if a given number is one less than twice its reverse.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/41",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    return n**2\n",
+      "tests": "\n\nMETADATA = {}\n\n\ndef check(candidate):\n    assert candidate(2) == 4\n    assert candidate(3) == 9\n    assert candidate(4) == 16\n    assert candidate(8) == 64\n    assert candidate(10) == 100\n\n\ncheck(car_race_collision)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/41",
+        "task_prompt": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+        "skill_tags": [
+          "mappings_sets",
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/48",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    for i in range(len(text)):\n        if text[i] != text[len(text) - 1 - i]:\n            return False\n    return True\n",
+      "tests": "\n\nMETADATA = {}\n\n\ndef check(candidate):\n    assert candidate('') == True\n    assert candidate('aba') == True\n    assert candidate('aaaaa') == True\n    assert candidate('zbcd') == False\n    assert candidate('xywyx') == True\n    assert candidate('xywyz') == False\n    assert candidate('xywzx') == False\n\n\ncheck(is_palindrome)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/48",
+        "task_prompt": "\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n",
+        "skill_tags": [
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "strings",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:161",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to remove all elements from a given list present in another list.\n\nRequired behaviour:\nassert remove_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [2, 4, 6, 8]) == [1, 3, 5, 7, 9, 10]\nassert remove_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 3, 5, 7]) == [2, 4, 6, 8, 9, 10]\nassert remove_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [5, 7]) == [1, 2, 3, 4, 6, 8, 9, 10]"
+        }
+      ],
+      "reference": "def remove_elements(list1, list2):\n    result = [x for x in list1 if x not in list2]\n    return result",
+      "tests": "assert remove_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [2, 4, 6, 8]) == [1, 3, 5, 7, 9, 10]\nassert remove_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 3, 5, 7]) == [2, 4, 6, 8, 9, 10]\nassert remove_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [5, 7]) == [1, 2, 3, 4, 6, 8, 9, 10]\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "161",
+        "task_prompt": "Write a function to remove all elements from a given list present in another list.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:237",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function that takes in a list of tuples and returns a dictionary mapping each unique tuple to the number of times it occurs in the list.\n\nRequired behaviour:\nassert check_occurences([(3, 1), (1, 3), (2, 5), (5, 2), (6, 3)] ) == {(1, 3): 2, (2, 5): 2, (3, 6): 1}\nassert check_occurences([(4, 2), (2, 4), (3, 6), (6, 3), (7, 4)] ) == {(2, 4): 2, (3, 6): 2, (4, 7): 1}\nassert check_occurences([(13, 2), (11, 23), (12, 25), (25, 12), (16, 23)] ) == {(2, 13): 1, (11, 23): 1, (12, 25): 2, (16, 23): 1}"
+        }
+      ],
+      "reference": "from collections import Counter \ndef check_occurences(test_list):\n  res = dict(Counter(tuple(ele) for ele in map(sorted, test_list)))\n  return  (res) ",
+      "tests": "assert check_occurences([(3, 1), (1, 3), (2, 5), (5, 2), (6, 3)] ) == {(1, 3): 2, (2, 5): 2, (3, 6): 1}\nassert check_occurences([(4, 2), (2, 4), (3, 6), (6, 3), (7, 4)] ) == {(2, 4): 2, (3, 6): 2, (4, 7): 1}\nassert check_occurences([(13, 2), (11, 23), (12, 25), (25, 12), (16, 23)] ) == {(2, 13): 1, (11, 23): 1, (12, 25): 2, (16, 23): 1}\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "237",
+        "task_prompt": "Write a function that takes in a list of tuples and returns a dictionary mapping each unique tuple to the number of times it occurs in the list.",
+        "skill_tags": [
+          "mappings_sets",
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/147",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef get_max_triples(n):\n    \"\"\"\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, \n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n    Example :\n        Input: n = 5\n        Output: 1\n        Explanation: \n        a = [1, 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13).\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef get_max_triples(n):\n    \"\"\"\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, \n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n    Example :\n        Input: n = 5\n        Output: 1\n        Explanation: \n        a = [1, 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13).\n    \"\"\"\n    A = [i*i - i + 1 for i in range(1,n+1)]\n    ans = []\n    for i in range(n):\n        for j in range(i+1,n):\n            for k in range(j+1,n):\n                if (A[i]+A[j]+A[k])%3 == 0:\n                    ans += [(A[i],A[j],A[k])]\n    return len(ans)\n",
+      "tests": "def check(candidate):\n\n    assert candidate(5) == 1\n    assert candidate(6) == 4\n    assert candidate(10) == 36\n    assert candidate(100) == 53361\n\ncheck(get_max_triples)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/147",
+        "task_prompt": "\ndef get_max_triples(n):\n    \"\"\"\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, \n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n    Example :\n        Input: n = 5\n        Output: 1\n        Explanation: \n        a = [1, 3, 7, 13, 21]\n        The only valid triple is (1, 7, 13).\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:425",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to count the number of sublists containing a particular element.\n\nRequired behaviour:\nassert count_element_in_list([[1, 3], [5, 7], [1, 11], [1, 15, 7]],1)==3\nassert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'A')==3\nassert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'E')==1"
+        }
+      ],
+      "reference": "def count_element_in_list(list1, x): \n    ctr = 0\n    for i in range(len(list1)): \n        if x in list1[i]: \n            ctr+= 1          \n    return ctr",
+      "tests": "assert count_element_in_list([[1, 3], [5, 7], [1, 11], [1, 15, 7]],1)==3\nassert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'A')==3\nassert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'E')==1\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "425",
+        "task_prompt": "Write a function to count the number of sublists containing a particular element.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:12",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\nRequired behaviour:\nassert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\nassert sort_matrix([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\nassert sort_matrix([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]"
+        }
+      ],
+      "reference": "def sort_matrix(M):\n    result = sorted(M, key=sum)\n    return result",
+      "tests": "assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\nassert sort_matrix([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\nassert sort_matrix([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "12",
+        "task_prompt": "Write a function to sort a given matrix in ascending order according to the sum of its rows.",
+        "skill_tags": [
+          "matrices",
+          "numeric_math",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "matrices",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:473",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the tuple intersection of elements in the given tuple list irrespective of their order.\n\nRequired behaviour:\nassert tuple_intersection([(3, 4), (5, 6), (9, 10), (4, 5)] , [(5, 4), (3, 4), (6, 5), (9, 11)]) == {(4, 5), (3, 4), (5, 6)}\nassert tuple_intersection([(4, 1), (7, 4), (11, 13), (17, 14)] , [(1, 4), (7, 4), (16, 12), (10, 13)]) == {(4, 7), (1, 4)}\nassert tuple_intersection([(2, 1), (3, 2), (1, 3), (1, 4)] , [(11, 2), (2, 3), (6, 2), (1, 3)]) == {(1, 3), (2, 3)}"
+        }
+      ],
+      "reference": "def tuple_intersection(test_list1, test_list2):\n  res = set([tuple(sorted(ele)) for ele in test_list1]) & set([tuple(sorted(ele)) for ele in test_list2])\n  return (res)",
+      "tests": "assert tuple_intersection([(3, 4), (5, 6), (9, 10), (4, 5)] , [(5, 4), (3, 4), (6, 5), (9, 11)]) == {(4, 5), (3, 4), (5, 6)}\nassert tuple_intersection([(4, 1), (7, 4), (11, 13), (17, 14)] , [(1, 4), (7, 4), (16, 12), (10, 13)]) == {(4, 7), (1, 4)}\nassert tuple_intersection([(2, 1), (3, 2), (1, 3), (1, 4)] , [(11, 2), (2, 3), (6, 2), (1, 3)]) == {(1, 3), (2, 3)}\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "473",
+        "task_prompt": "Write a function to find the tuple intersection of elements in the given tuple list irrespective of their order.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/74",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef total_match(lst1, lst2):\n    '''\n    Write a function that accepts two lists of strings and returns the list that has \n    total number of chars in the all strings of the list less than the other list.\n\n    if the two lists have the same number of chars, return the first list.\n\n    Examples\n    total_match([], []) ➞ []\n    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']\n    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']\n    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']\n    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']\n    '''\n"
+        }
+      ],
+      "reference": "\ndef total_match(lst1, lst2):\n    '''\n    Write a function that accepts two lists of strings and returns the list that has \n    total number of chars in the all strings of the list less than the other list.\n\n    if the two lists have the same number of chars, return the first list.\n\n    Examples\n    total_match([], []) ➞ []\n    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']\n    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']\n    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']\n    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']\n    '''\n    l1 = 0\n    for st in lst1:\n        l1 += len(st)\n    \n    l2 = 0\n    for st in lst2:\n        l2 += len(st)\n    \n    if l1 <= l2:\n        return lst1\n    else:\n        return lst2\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([], []) == []\n    assert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\n    assert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']\n    assert candidate(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([], ['this']) == []\n    assert candidate(['this'], []) == []\n\n\ncheck(total_match)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/74",
+        "task_prompt": "\ndef total_match(lst1, lst2):\n    '''\n    Write a function that accepts two lists of strings and returns the list that has \n    total number of chars in the all strings of the list less than the other list.\n\n    if the two lists have the same number of chars, return the first list.\n\n    Examples\n    total_match([], []) ➞ []\n    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']\n    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']\n    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']\n    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']\n    '''\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "strings"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/141",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n    suf = ['txt', 'exe', 'dll']\n    lst = file_name.split(sep='.')\n    if len(lst) != 2:\n        return 'No'\n    if not lst[1] in suf:\n        return 'No'\n    if len(lst[0]) == 0:\n        return 'No'\n    if not lst[0][0].isalpha():\n        return 'No'\n    t = len([x for x in lst[0] if x.isdigit()])\n    if t > 3:\n        return 'No'\n    return 'Yes'\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"example.txt\") == 'Yes'\n    assert candidate(\"1example.dll\") == 'No'\n    assert candidate('s1sdf3.asd') == 'No'\n    assert candidate('K.dll') == 'Yes'\n    assert candidate('MY16FILE3.exe') == 'Yes'\n    assert candidate('His12FILE94.exe') == 'No'\n    assert candidate('_Y.txt') == 'No'\n    assert candidate('?aREYA.exe') == 'No'\n    assert candidate('/this_is_valid.dll') == 'No'\n    assert candidate('this_is_valid.wow') == 'No'\n    assert candidate('this_is_valid.txt') == 'Yes'\n    assert candidate('this_is_valid.txtexe') == 'No'\n    assert candidate('#this2_i4s_5valid.ten') == 'No'\n    assert candidate('@this1_is6_valid.exe') == 'No'\n    assert candidate('this_is_12valid.6exe4.txt') == 'No'\n    assert candidate('all.exe.txt') == 'No'\n    assert candidate('I563_No.exe') == 'Yes'\n    assert candidate('Is3youfault.txt') == 'Yes'\n    assert candidate('no_one#knows.dll') == 'Yes'\n    assert candidate('1I563_Yes3.exe') == 'No'\n    assert candidate('I563_Yes3.txtt') == 'No'\n    assert candidate('final..txt') == 'No'\n    assert candidate('final132') == 'No'\n    assert candidate('_f4indsartal132.') == 'No'\n    \n        \n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('.txt') == 'No'\n    assert candidate('s.') == 'No'\n\n\ncheck(file_name_check)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/141",
+        "task_prompt": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+        "skill_tags": [
+          "files_serialization",
+          "numeric_math",
+          "strings"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "files_serialization",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:143",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find number of lists present in the given tuple.\n\nRequired behaviour:\nassert find_lists(([1, 2, 3, 4], [5, 6, 7, 8])) == 2\nassert find_lists(([1, 2], [3, 4], [5, 6]))  == 3\nassert find_lists(([9, 8, 7, 6, 5, 4, 3, 2, 1])) == 1"
+        }
+      ],
+      "reference": "def find_lists(Input): \n\tif isinstance(Input, list): \n\t\treturn 1\n\telse: \n\t\treturn len(Input) ",
+      "tests": "assert find_lists(([1, 2, 3, 4], [5, 6, 7, 8])) == 2\nassert find_lists(([1, 2], [3, 4], [5, 6]))  == 3\nassert find_lists(([9, 8, 7, 6, 5, 4, 3, 2, 1])) == 1\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "143",
+        "task_prompt": "Write a function to find number of lists present in the given tuple.",
+        "skill_tags": [
+          "numeric_math",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:422",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to find the average of cubes of first n natural numbers.\n\nRequired behaviour:\nassert find_Average_Of_Cube(2) == 4.5\nassert find_Average_Of_Cube(3) == 12\nassert find_Average_Of_Cube(1) == 1"
+        }
+      ],
+      "reference": "def find_Average_Of_Cube(n):  \n    sum = 0\n    for i in range(1, n + 1): \n        sum += i * i * i  \n    return round(sum / n, 6) ",
+      "tests": "assert find_Average_Of_Cube(2) == 4.5\nassert find_Average_Of_Cube(3) == 12\nassert find_Average_Of_Cube(1) == 1\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "422",
+        "task_prompt": "Write a python function to find the average of cubes of first n natural numbers.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/77",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n"
+        }
+      ],
+      "reference": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    a = abs(a)\n    return int(round(a ** (1. / 3))) ** 3 == a\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate(1) == True, \"First test error: \" + str(candidate(1))\n    assert candidate(2) == False, \"Second test error: \" + str(candidate(2))\n    assert candidate(-1) == True, \"Third test error: \" + str(candidate(-1))\n    assert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))\n    assert candidate(180) == False, \"Fifth test error: \" + str(candidate(180))\n    assert candidate(1000) == True, \"Sixth test error: \" + str(candidate(1000))\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(0) == True, \"1st edge test error: \" + str(candidate(0))\n    assert candidate(1729) == False, \"2nd edge test error: \" + str(candidate(1728))\n\n\ncheck(iscube)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/77",
+        "task_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:250",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.\n\nRequired behaviour:\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),4) == 0\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),10) == 3\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),8) == 4"
+        }
+      ],
+      "reference": "def count_X(tup, x): \n    count = 0\n    for ele in tup: \n        if (ele == x): \n            count = count + 1\n    return count ",
+      "tests": "assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),4) == 0\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),10) == 3\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),8) == 4\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "250",
+        "task_prompt": "Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:266",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the lateral surface area of a cube given its side length.\n\nRequired behaviour:\nassert lateralsurface_cube(5)==100\nassert lateralsurface_cube(9)==324\nassert lateralsurface_cube(10)==400"
+        }
+      ],
+      "reference": "def lateralsurface_cube(l):\n  LSA = 4 * (l * l)\n  return LSA",
+      "tests": "assert lateralsurface_cube(5)==100\nassert lateralsurface_cube(9)==324\nassert lateralsurface_cube(10)==400\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "266",
+        "task_prompt": "Write a function to find the lateral surface area of a cube given its side length.",
+        "skill_tags": [
+          "unclassified"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:130",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the item with maximum frequency in a given list.\n\nRequired behaviour:\nassert max_occurrences([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2\nassert max_occurrences([2,3,8,4,7,9,8,7,9,15,14,10,12,13,16,18])==8\nassert max_occurrences([10,20,20,30,40,90,80,50,30,20,50,10])==20"
+        }
+      ],
+      "reference": "from collections import defaultdict\ndef max_occurrences(nums):\n    dict = defaultdict(int)\n    for i in nums:\n        dict[i] += 1\n    result = max(dict.items(), key=lambda x: x[1]) \n    return result[0]",
+      "tests": "assert max_occurrences([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2\nassert max_occurrences([2,3,8,4,7,9,8,7,9,15,14,10,12,13,16,18])==8\nassert max_occurrences([10,20,20,30,40,90,80,50,30,20,50,10])==20\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "130",
+        "task_prompt": "Write a function to find the item with maximum frequency in a given list.",
+        "skill_tags": [
+          "mappings_sets",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:260",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the nth newman–shanks–williams prime number.\n\nRequired behaviour:\nassert newman_prime(3) == 7\nassert newman_prime(4) == 17\nassert newman_prime(5) == 41"
+        }
+      ],
+      "reference": "def newman_prime(n): \n\tif n == 0 or n == 1: \n\t\treturn 1\n\treturn 2 * newman_prime(n - 1) + newman_prime(n - 2)",
+      "tests": "assert newman_prime(3) == 7\nassert newman_prime(4) == 17\nassert newman_prime(5) == 41\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "260",
+        "task_prompt": "Write a function to find the nth newman–shanks–williams prime number.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:399",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to perform the mathematical bitwise xor operation across the given tuples.\n\nRequired behaviour:\nassert bitwise_xor((10, 4, 6, 9), (5, 2, 3, 3)) == (15, 6, 5, 10)\nassert bitwise_xor((11, 5, 7, 10), (6, 3, 4, 4)) == (13, 6, 3, 14)\nassert bitwise_xor((12, 6, 8, 11), (7, 4, 5, 6)) == (11, 2, 13, 13)"
+        }
+      ],
+      "reference": "def bitwise_xor(test_tup1, test_tup2):\n  res = tuple(ele1 ^ ele2 for ele1, ele2 in zip(test_tup1, test_tup2))\n  return (res) ",
+      "tests": "assert bitwise_xor((10, 4, 6, 9), (5, 2, 3, 3)) == (15, 6, 5, 10)\nassert bitwise_xor((11, 5, 7, 10), (6, 3, 4, 4)) == (13, 6, 3, 14)\nassert bitwise_xor((12, 6, 8, 11), (7, 4, 5, 6)) == (11, 2, 13, 13)\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "399",
+        "task_prompt": "Write a function to perform the mathematical bitwise xor operation across the given tuples.",
+        "skill_tags": [
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sequences",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:88",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to get the frequency of all the elements in a list, returned as a dictionary.\n\nRequired behaviour:\nassert freq_count([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})\nassert freq_count([1,2,3,4,3,2,4,1,3,1,4])==({1:3, 2:2,3:3,4:3})\nassert freq_count([5,6,7,4,9,10,4,5,6,7,9,5])==({10:1,5:3,6:2,7:2,4:2,9:2})"
+        }
+      ],
+      "reference": "import collections\ndef freq_count(list1):\n  freq_count= collections.Counter(list1)\n  return freq_count",
+      "tests": "assert freq_count([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})\nassert freq_count([1,2,3,4,3,2,4,1,3,1,4])==({1:3, 2:2,3:3,4:3})\nassert freq_count([5,6,7,4,9,10,4,5,6,7,9,5])==({10:1,5:3,6:2,7:2,4:2,9:2})\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "88",
+        "task_prompt": "Write a function to get the frequency of all the elements in a list, returned as a dictionary.",
+        "skill_tags": [
+          "mappings_sets",
+          "sequences"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:252",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a python function to convert complex numbers to polar coordinates.\n\nRequired behaviour:\nassert convert(1) == (1.0, 0.0)\nassert convert(4) == (4.0,0.0)\nassert convert(5) == (5.0,0.0)"
+        }
+      ],
+      "reference": "import cmath  \ndef convert(numbers):    \n  num = cmath.polar(numbers)  \n  return (num) ",
+      "tests": "assert convert(1) == (1.0, 0.0)\nassert convert(4) == (4.0,0.0)\nassert convert(5) == (5.0,0.0)\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "252",
+        "task_prompt": "Write a python function to convert complex numbers to polar coordinates.",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "numeric_math",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/76",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n    if (n == 1): \n        return (x == 1) \n    power = 1\n    while (power < x): \n        power = power * n \n    return (power == x) \n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate(16, 2)== True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(143214, 16)== False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(4, 2)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(9, 3)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(16, 4)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(24, 2)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(128, 4)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(12, 6)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 1)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(1, 12)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(is_simple_power)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/76",
+        "task_prompt": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "mbpp:301",
+      "suite": "mbpp",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write Python code for this task. Return the full implementation and required imports, with no explanation.\n\nWrite a function to find the depth of a dictionary.\n\nRequired behaviour:\nassert dict_depth({'a':1, 'b': {'c': {'d': {}}}})==4\nassert dict_depth({'a':1, 'b': {'c':'python'}})==2\nassert dict_depth({1: 'Sun', 2: {3: {4:'Mon'}}})==3"
+        }
+      ],
+      "reference": "def dict_depth(d):\n    if isinstance(d, dict):\n        return 1 + (max(map(dict_depth, d.values())) if d else 0)\n    return 0",
+      "tests": "assert dict_depth({'a':1, 'b': {'c': {'d': {}}}})==4\nassert dict_depth({'a':1, 'b': {'c':'python'}})==2\nassert dict_depth({1: 'Sun', 2: {3: {4:'Mon'}}})==3\n",
+      "source": {
+        "dataset": "google-research-datasets/mbpp",
+        "configuration": "sanitized",
+        "split": "test",
+        "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+        "license": "cc-by-4.0",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "301",
+        "task_prompt": "Write a function to find the depth of a dictionary.",
+        "skill_tags": [
+          "mappings_sets"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "mappings_sets",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/104",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n    odd_digit_elements = []\n    for i in x:\n        if all (int(c) % 2 == 1 for c in str(i)):\n            odd_digit_elements.append(i)\n    return sorted(odd_digit_elements)\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate([15, 33, 1422, 1]) == [1, 15, 33]\n    assert candidate([152, 323, 1422, 10]) == []\n    assert candidate([12345, 2033, 111, 151]) == [111, 151]\n    assert candidate([135, 103, 31]) == [31, 135]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(unique_digits)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/104",
+        "task_prompt": "\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n",
+        "skill_tags": [
+          "numeric_math",
+          "sequences",
+          "sorting_search"
+        ],
+        "selection_role": "skill_aligned",
+        "primary_skill": "sorting_search",
+        "local_reference_test_status": "passed"
+      }
+    },
+    {
+      "id": "humaneval:HumanEval/93",
+      "suite": "humaneval",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Complete the following Python function. Return the full implementation, including its signature and required imports. Return Python code only.\n\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n"
+        }
+      ],
+      "reference": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n    vowels = \"aeiouAEIOU\"\n    vowels_replace = dict([(i, chr(ord(i) + 2)) for i in vowels])\n    message = message.swapcase()\n    return ''.join([vowels_replace[i] if i in vowels else i for i in message])\n",
+      "tests": "def check(candidate):\n\n    # Check some simple cases\n    assert candidate('TEST') == 'tgst', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('Mudasir') == 'mWDCSKR', \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate('YES') == 'ygs', \"This prints if this assert fails 3 (good for debugging!)\"\n    \n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('This is a message') == 'tHKS KS C MGSSCGG', \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(\"I DoNt KnOw WhAt tO WrItE\") == 'k dQnT kNqW wHcT Tq wRkTg', \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(encode)\n",
+      "source": {
+        "dataset": "openai/openai_humaneval",
+        "configuration": "openai_humaneval",
+        "split": "test",
+        "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+        "license": "mit",
+        "variant": "base tests, not EvalPlus extended tests",
+        "record_id": "HumanEval/93",
+        "task_prompt": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n",
+        "skill_tags": [
+          "unclassified"
+        ],
+        "selection_role": "general_retention",
+        "local_reference_test_status": "passed"
+      }
+    }
+  ],
+  "benchmark_selection": "Pre-result skill-aligned selection plus general Python retention; prior development task IDs and detected training overlap excluded.",
+  "profile_hash": "7250bf016790cd14fc2c57b75f2298db5c362c685ce6762678d7c5b181703006",
+  "limitations": [
+    "Python base HumanEval/MBPP only; not full debugging/refactoring/multilingual coverage.",
+    "Heuristic skills; labels require review.",
+    "Raw-source exact/near-text and function AST screening is not semantic independence proof.",
+    "Pretraining contamination and external data beyond this frozen selection remain unknown."
+  ],
+  "digest": "e349ffe90235159b2bdc9860233e2777c38306b212cd3ef9b797231150d10634"
+}

@@ -12,7 +12,7 @@ setup with arrow keys/numbers. Forms collect paths, token budgets, local test li
 source revisions, output/resume and optional private publication; no pipeline commands
 need to be typed manually. Existing coding data can be reused without generation.
 Linux/CUDA model compression and fine-tuning is available as an explicit action;
-security/prompt-injection and the separate future customization entry remain unavailable. Secrets are hidden and `.env` editing requires explicit confirmation with
+Model security assessment is available (limited post-training scope); the separate future customization entry remains unavailable. Prompt injection is outside scope. Secrets are hidden and `.env` editing requires explicit confirmation with
 a private backup. See [the interactive CLI guide](docs/interactive-cli.md).
 
 The console displays **Bridging the Cusem**, **By Mohammed Sallout**, and
@@ -495,3 +495,29 @@ retraining or replacing the existing NF4 model. It saves `model_8bit/`, verifies
 reload and records a separate report. The interactive compression menu includes
 this option. See [the compression guide](docs/compression.md#standalone-8-bit-export-after-training)
 for the server command, retry behaviour, evaluation and opt-in CUDA test.
+
+
+### Post-training security assessment
+
+Use **Model security assessment** in the interactive menu or `llmops security_check`.
+This read-only command checks model files, uses the official garak replay detector
+in an isolated environment, and runs a limited known-trigger screen. It never
+changes training data or weights. Microsoft unknown-trigger scanning is explicitly
+NOT_VALIDATED for Qwen3-14B and is not executed. No safety certification is issued.
+See [methods, installation, commands, limitations and remediation options](docs/model_security.md).
+
+```bash
+uv sync --locked --project tools/security
+uv run --locked --extra training llmops security_check \
+  --model final=/workspace/path/to/model \
+  --enterprise ./artifacts/enterprise_ready \
+  --output /workspace/artifacts/security --max-cases 20
+```
+
+### Skill-aligned coding tests
+
+The Model evaluation menu can profile a prepared OpenCode selection and freeze
+independent official Python tests with full accepted-source overlap screening and
+Docker reference verification. See [the method and command](docs/skill-aligned-evaluation.md).
+The actual 77,891-row experiment's frozen development/final suites and attribution
+are in [evaluation_suites/opencode_77k](evaluation_suites/opencode_77k/README.md).

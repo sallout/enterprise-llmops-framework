@@ -759,3 +759,87 @@ def export_8bit_command(
         typer.echo(f"Report: {output.resolve()/'report.json'}")
         typer.echo('No training started. Compare this saved checkpoint on the same development suite; quality remains unverified.')
     run_safely(execute)
+
+
+@app.command('security_check')
+def security_check(
+    model: list[str] = typer.Option(..., '--model', help='Repeat LABEL=LOCAL_MODEL_DIRECTORY; download the original pinned model first for comparison.'),
+    output: Path = typer.Option(Path('artifacts/security'), help='Independent assessment directory.'),
+    enterprise: Path | None = typer.Option(None, exists=True, file_okay=False, help='Prepared enterprise train.jsonl for unclassified replay screening.'),
+    cases: Path | None = typer.Option(None, exists=True, dir_okay=False, help='Optional classified, withheld-answer SecurityCase JSONL.'),
+    max_cases: int = typer.Option(20, min=1, max=10000),
+    max_new_tokens: int = typer.Option(256, min=16, max=4096),
+    max_input_tokens: int = typer.Option(4096, min=32, max=32768),
+    seed: int = typer.Option(42, min=0),
+    garak_python: Path = typer.Option(Path('tools/security/.venv/bin/python'), help='Python in the separate locked garak environment.'),
+    static_only: bool = typer.Option(False, help='File checks only, no model load/GPU/garak needed; not a behavioral pass.'),
+    resume: bool = typer.Option(False, help='Reuse checksummed answers for identical inputs/settings/runtime.'),
+) -> None:
+    """Read-only post-training file, replay and known-trigger assessment; never certifies safety."""
+    def execute():
+        from policy_dissertation.pipelines.security_auditing.assessment import SecurityConfig, run_security
+        models = {}
+        for item in model:
+            if '=' not in item:
+                raise DissertationError('Use --model LABEL=LOCAL_MODEL_DIRECTORY.')
+            label,path = item.split('=',1)
+            if label in models:
+                raise DissertationError('Model labels must be unique.')
+            models[label]=Path(path)
+        typer.echo('Model Security Assessment — read-only; no remediation or prompt injection')
+        result=run_security(models,output,Settings(),SecurityConfig(max_cases=max_cases,
+            max_new_tokens=max_new_tokens,max_input_tokens=max_input_tokens,seed=seed,static_only=static_only),
+            enterprise=enterprise,cases_file=cases,resume=resume,garak_python=garak_python,progress=typer.echo)
+        typer.echo(f"Status: {result['status']}; security certified: False")
+        for label,entry in result['models'].items():
+            replay=entry['replay']
+            typer.echo(f"{label}: replay {replay['completed']}/{replay['selected']}; reproductions {replay['reproductions']}; restricted disclosures {replay['restricted_disclosures']}")
+        typer.echo('Microsoft unknown-trigger scan: NOT_VALIDATED for Qwen3-14B; not executed.')
+        typer.echo(f"Report: {output.resolve()/'report.json'}")
+        if result['status']=='FAILED':
+            raise DissertationError('Security assessment failed; inspect report.json. Inputs were not modified.')
+    run_safely(execute)
+
+
+@app.command('finalize_native_selection')
+def finalize_native_selection_command(
+    input_directory: Path = typer.Option(...,'--input',exists=True,file_okay=False),
+    enterprise: Path = typer.Option(...,exists=True,file_okay=False),
+    output: Path = typer.Option(...,help='New directory for the approved partial copy; never overwrites original progress.'),
+    max_tokens: int = typer.Option(4096,min=1,help='Must match the interrupted preparation.'),
+    seed: int = typer.Option(42,help='Must match the interrupted preparation.'),
+) -> None:
+    """Freeze committed accepted native rows after Ctrl+C; no source streaming or training."""
+    def execute():
+        from policy_dissertation.native_finalization import finalize_native_selection
+        result=finalize_native_selection(input_directory,enterprise,output,Settings(),max_tokens=max_tokens,seed=seed,progress=typer.echo)
+        typer.echo(f"Status: {result['status']}; data prepared: {result['data_prepared']}")
+        typer.echo(f"Committed accepted selection: {result['accepted_examples']} (partial, not the full requested dataset)")
+        typer.echo(f"Source plan: {output.resolve()/'source_plan.json'}")
+    run_safely(execute)
+
+
+@app.command('prepare_skill_evaluation')
+def prepare_skill_evaluation_command(
+    native_plan: Path = typer.Option(...,exists=True,file_okay=False),
+    enterprise: Path = typer.Option(...,exists=True,file_okay=False),
+    output: Path = typer.Option(Path('artifacts/skill_evaluation')),
+    sample_size: int = typer.Option(500,min=1,max=10000),
+    max_tasks: int = typer.Option(100,min=10,max=400),
+    seed: int = typer.Option(42,min=0),
+    exclude_suite: list[Path] | None = typer.Option(None,'--exclude-suite',exists=True,dir_okay=False),
+) -> None:
+    """Profile approved OpenCode skills and freeze independent Docker-verified Python tests."""
+    def execute():
+        from policy_dissertation.skill_evaluation import prepare_skill_evaluation
+        excluded=list(exclude_suite or [])
+        previous=Path('evaluation_suites/suite.json')
+        if not excluded and previous.is_file():excluded=[previous]
+        result=prepare_skill_evaluation(native_plan,enterprise,output,Settings(),sample_size=sample_size,
+            max_tasks=max_tasks,seed=seed,excluded_suites=excluded,progress=typer.echo)
+        typer.echo(f"Status: {result['status']}")
+        if result['status']=='FAILED':raise DissertationError('Skill analysis/suite preparation failed; inspect report.json. No training started.')
+        typer.echo(f"Profile sample: {result['profile']['sample_size']}; approved training rows screened: {result['native_accepted_rows_checked']}")
+        typer.echo(f"Development tasks: {result['development_tasks']}; final held-out tasks: {result['final_tasks']}")
+        typer.echo(f"Report: {output.resolve()/'report.json'}")
+    run_safely(execute)

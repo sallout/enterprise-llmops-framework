@@ -37,7 +37,7 @@ uv run llmops
 Choose **Model compression & fine-tuning**. Start with the environment-check action,
 then choose the pruning/training/export action. Paths, MLP fraction, calibration
 count, context bound, optimizer steps and incomplete-source consent are prompted.
-The generic future customization/security/prompt-injection entries remain disabled;
+The separate future customization entry remains disabled. Model security assessment is available with the bounded scope in [model_security.md](model_security.md); prompt injection is outside scope.
 enterprise specialization is already part of recovery in this workflow.
 
 Equivalent preflight (no model weights):

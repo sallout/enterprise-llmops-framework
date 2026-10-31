@@ -1,0 +1,31 @@
+{
+  "sample_size": 500,
+  "approved_selection_size": 77891,
+  "approved_conversation_tokens": 36396072,
+  "sampling": "bottom-k SHA256(seed, accepted record id), uniform-hash sample of this approved selection; not of all OpenCodeInstruct",
+  "language_counts": {
+    "python": 500
+  },
+  "skill_counts": {
+    "numeric_math": 284,
+    "sequences": 298,
+    "mappings_sets": 106,
+    "sorting_search": 44,
+    "strings": 247,
+    "files_serialization": 84,
+    "oop": 64,
+    "graphs_trees": 18,
+    "exceptions_validation": 39,
+    "recursion_dp": 23,
+    "unclassified": 4,
+    "regex_parsing": 12,
+    "matrices": 20
+  },
+  "task_type_counts": {
+    "implementation_or_other": 497,
+    "debugging": 1,
+    "refactoring": 2
+  },
+  "labels": "overlapping prompt-regex skills, code-fence/prompt/AST language evidence; not semantic annotation",
+  "python_sample_proportion": 1.0
+}

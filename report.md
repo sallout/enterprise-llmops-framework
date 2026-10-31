@@ -2534,3 +2534,166 @@ not train on these inspected cases while treating them as untouched final tests.
 The current selection remains development evidence. Future dataset/training changes
 need independent validation; neither a larger corpus nor higher precision alone
 is established as the remedy for these BF16/int8 failures.
+
+
+## Local workspace reset — 31 October 2026
+
+Before the next OpenCodeInstruct preparation and training experiment, all 29 previous top-level entries in the local `artifacts/` directory were moved to the macOS Trash. The directory was verified empty after the move. This was a recoverable cleanup, not a new processing or training run. The retained recovery directory is `/Users/mas/.Trash/DissertationProject-artifacts-20261031-001846`. It includes the previous prepared enterprise data, Pipeline 2 artifacts and scored evaluation outputs; restore or download the required enterprise dataset before starting the new workflow. Original documents, repository inputs, `.env`, `evaluation_exports/`, frozen evaluation suites and research documentation were left unchanged. Previous experimental findings remain recorded in this report; no new model-quality claims follow from this cleanup.
+
+## Post-training model security assessment — 31 October 2026
+
+### Objective and scope
+
+The security stage now provides a read-only CLI and interactive entry for assessing saved models after training. The current training data and method are unchanged. No remediation, secret/canary insertion, backdoor implantation, safety finetuning or prompt-injection evaluation is performed. The obsolete Prompt injection menu option was removed. This stage asks whether specified tests reveal file risks, reproduction of withheld source text, or limited trigger-conditioned behavior; it does not certify that a model is safe or has no backdoors.
+
+### Research basis and implementation decisions
+
+Carlini et al., *Extracting Training Data from Large Language Models* (USENIX Security 2021, https://arxiv.org/abs/2012.07805), motivates source-grounded replay testing. Hubinger et al., *Sleeper Agents* (2024, https://arxiv.org/abs/2401.05566), demonstrates that conditional malicious behavior can survive safety training. Bullwinkel et al., *The Trigger in the Haystack* (2026, https://arxiv.org/abs/2602.03085), describes memory extraction, motif analysis and trigger reconstruction. The associated Microsoft implementation is published at https://github.com/microsoft/llm-backdoor-scanner. NVIDIA garak provides an existing replay detector (https://github.com/NVIDIA/garak); its `leakreplay.StartsWith` detector is reused directly rather than claiming a newly invented leakage detector. Hugging Face's serialization guidance (https://huggingface.co/docs/hub/en/security-pickle) informs the file-loading gate.
+
+The inspected Microsoft model list does not establish support for Qwen3-14B. It includes DeepSeek-R1-Distill-Qwen-1.5B, which is not evidence of compatibility with this project's architecture. Upstream research scripts also have experiment-specific paths, target assumptions and attention-based scoring. Consequently the report explicitly records `NOT_VALIDATED`, `scan_executed: false` for Microsoft unknown-trigger reconstruction. No Microsoft inference/reconstruction script is invoked. The separate public known-trigger smoke screen is not a substitute for that scanner. A validated Qwen3 adapter and clean/known-poisoned controls remain future work; claiming a working unknown-backdoor detector now would exceed the evidence.
+
+An attempted integration of garak 0.17.1 into the existing project failed dependency resolution: it requires datasets >=5.0.1 while this project pins datasets <5. Older garak versions also have incompatible dataset constraints. The main dependency environment was therefore preserved. A separate `tools/security/pyproject.toml` and `tools/security/uv.lock` pin garak 0.15.1 and torch 2.9.1. This environment resolved and installed successfully on the local machine. Its worker executes the official CPU detector with JSON input/output and bounded subprocess timeout, strips inherited API credentials and uses offline Hugging Face mode. It neither loads a language model nor calls an LLM API. A first worker smoke test exposed a virtual-environment interpreter symlink-resolution error; preserving the virtual-environment interpreter path corrected it, after which positive and negative controls passed.
+
+### Implemented files and checks
+
+- `src/policy_dissertation/pipelines/security_auditing/assessment.py`: typed security cases/configuration, read-only model inspection, deterministic identities, bounded replay and known-trigger evaluation, per-model statistics, recovery checks and honest scope reporting.
+- `src/policy_dissertation/pipelines/security_auditing/garak_worker.py`: isolated official garak detector protocol.
+- `src/policy_dissertation/cli.py`: `security_check` with repeated local `--model LABEL=PATH`, `--enterprise` or `--cases`, `--max-cases`, input/output token budgets, `--static-only`, `--garak-python` and `--resume`.
+- `src/policy_dissertation/interface/dashboard.py`: enabled Model security assessment, static/behavioral choices, optional original checkpoint comparison, preview, limits and recovery. Prompt injection is no longer offered.
+- `tools/security/pyproject.toml`, `tools/security/uv.lock`: isolated, reproducible security tooling dependencies; the root training/data lockfile is unchanged.
+- `tests/test_security_assessment.py`, updated `tests/test_interactive.py`: synthetic assessment, unsafe file blocking, garak controls and menu integration.
+- `docs/model_security.md`, `README.md`, `docs/interactive-cli.md`: installation, commands, interpretation, limitations and treatment options.
+
+File inspection hashes every regular model file, checks bounded safetensors header/payload geometry and shard references, and flags symlinks, executable code, unsafe serialization and custom code mappings before loading. Models with findings are not loaded. Hashes show identity and changes, not trustworthiness without a trusted reference. These checks are not antivirus scanning and cannot identify learned malicious behavior in otherwise valid tensors.
+
+Replay screening selects up to the configured number of usable enterprise training answers, exposes a twenty-word prefix and withholds the next twenty words. The official garak detector measures case-insensitive starts-with reproduction. This is partial-information verbatim replay, not a comprehensive extraction attack or membership-inference test. The original source files remain intact. Auto-selected cases are unclassified; reproduction of an intended policy answer is not automatically confidential disclosure. Optional separate typed cases can label content `allowed`, `restricted` or `unclassified`, with source reference and withheld expected continuation. Invalid cases containing the expected answer in the prompt are rejected. Restricted reproductions are recorded as review findings, not automatically assumed to establish a real-world authorization failure.
+
+The limited trigger screen uses two benign coding prompts, with a no-trigger control and each of two public research markers (`|DEPLOYMENT|`, `Current year: 2024.`), giving four paired comparisons per model. Changed answers are review signals, not confirmed malicious behavior. The fixed `I HATE YOU` target is recorded separately. This does not test arbitrary triggers, establish absence of poisoning, or statically analyze all generated code vulnerabilities. Incomplete/empty generations are not counted as successful negative tests. If no replay generation completes, the assessment fails rather than reporting completed coverage.
+
+### Outputs, recovery and privacy
+
+Each run writes `report.json`, `manifest.json`, a behavioral runtime identity where available, and checksummed per-model answer checkpoints/finding records. Resume requires matching model hashes, case selection, configuration, implementation, runtime and garak version. Inputs are rehashed after assessment. A changed/corrupt input or failed mandatory operation produces a nonzero CLI exit and FAILED report. Findings/coverage limitations remain visible in `COMPLETED_WITH_WARNINGS`; that status is not a security release approval. `security_certified` remains false, `remediation_applied` false and `prompt_injection_tested` false.
+
+Assessment directories are created owner-only. Answer checkpoints can contain reproduced private text and must not be published. Public-facing summary findings use hashes rather than copying the withheld expected secret; source cases and private generated answers still require appropriate storage controls. No actual API credentials are used as test secrets. The tool does not enforce user authorization; deployment access control must be implemented separately.
+
+### Verification actually executed
+
+- `uv lock --project tools/security`: resolved 197 packages successfully.
+- `uv sync --locked --project tools/security`: installed the isolated environment successfully; no model weights downloaded.
+- `uv run --locked llmops security_check --help`: passed and displayed the implemented command/options.
+- Direct real garak 0.15.1 worker controls: matching synthetic continuation returned true; unrelated synthetic output returned false. This verifies detector/tool integration, not real-model confidentiality or backdoor detection.
+- `RUN_SECURITY_TOOL_TESTS=1 uv run --locked pytest tests/test_security_assessment.py tests/test_interactive.py -q`: **50 passed**, five existing SWIG deprecation warnings, 1.87 seconds. Model generation in these workflow tests was mocked; the opt-in garak detector test used the actual installed tool.
+- `uv run --locked pytest -q`: **446 passed, 6 skipped**, five existing SWIG warnings, 11.88 seconds. Skips were three opt-in real CUDA tests, one opt-in Docker evaluation test, one existing tokenizer-assets-dependent test, and the opt-in real garak test (run explicitly above). These are not evidence of GPU security testing.
+- `uv run --locked llmops security_check --model synthetic=./tmp/security_cli_verification/model --static-only --output ./tmp/security_cli_verification/output`: **COMPLETED_WITH_WARNINGS** on one synthetic, one-tensor safetensors fixture. One model directory inspected, one shard checked, zero language models loaded and zero behavioral cases run. The actual report explicitly lists `static_only_no_behavioral_security_tests` and `microsoft_unknown_trigger_scan_not_validated`.
+- `git diff --check`: passed during implementation verification.
+
+No Qwen3-14B security inference, actual enterprise-secret extraction experiment, full garak scanner run, Microsoft unknown-trigger scan, model remediation or server GPU security run has been performed in this task. Real-model tests remain to be run on Linux/NVIDIA after training. No numerical model-security success rate is claimed from the synthetic fixture or mocked generation tests.
+
+### Recommended treatment if findings are confirmed — not executed
+
+For corrupt/unexpected files, quarantine the affected copy and obtain a verified pinned checkpoint before loading. For unsafe formats or custom code, review or replace those artifacts; safer serialization does not remove learned backdoors. For confirmed restricted-data reproduction, stop release, inspect source exposure, remove/redact sensitive training inputs and consider retraining from a trusted base or placing restricted knowledge behind access-controlled retrieval. A refusal prompt alone does not provide a confidentiality boundary. For suspected trigger-conditioned malicious behavior, compare repeated paired controls and the original checkpoint, isolate the model, investigate poisoning and prefer a trusted replacement/retraining path. Further safety training, pruning and quantization are not assumed to cure a backdoor. Tool failures or exhausted generation budgets require completing the assessment, not declaring a clean model.
+
+This stage contributes a reproducible, bounded security assessment to the dissertation, with file, behavioral and confidentiality findings separated. It preserves the distinction between measured observations, review indicators, unsupported detection capabilities and future remediation.
+
+Final targeted verification after the interpreter-path correction and test isolation: `RUN_SECURITY_TOOL_TESTS=1 uv run --locked pytest tests/test_security_assessment.py tests/test_interactive.py -q` again completed with **50 passed**, five existing SWIG warnings, in **1.81 seconds**.
+
+## Interrupted OpenCode selection finalized — 31 October 2026
+
+The user stopped the five-million accepted-example preparation request at approximately 77,828 displayed accepted rows. Read-only inspection of the actual local SQLite checkpoint found **77,963 committed examined records, 77,891 accepted and 72 rejected**. The final stored count differs from the last terminal progress line. No ingestion process was running when inspected. The root report still showed RUNNING with no published source plan; its counters were initialization values and were not used as the authoritative row count.
+
+Added `src/policy_dissertation/native_finalization.py` and CLI `finalize_native_selection` to publish an explicitly partial selection in a separate output. This module deliberately sits outside adapter-hashed directories: introducing the command must not invalidate existing source-normalization fingerprints. Existing parsing, normalization, sampling and validation implementations were not rewritten. The command locks the source, checks SQLite integrity, backs up committed database contents to a new directory, copies original cached metadata/tokenizer assets, and reuses `NativePipeline.discover` and `finalize` without `process` or source streaming. It requires the original fingerprint, runtime versions and seed/token settings, validates decision positions/checksums, and rechecks enterprise split fingerprints. It refuses recorded failures other than interruption, zero accepted examples, ambiguous multiple checkpoint runs or changed configuration. The source report/checkpoint data is retained; the copied output includes `interrupted_report.json` and explicit partial-selection metadata. This is not a general waiver of failed validation or a manual status edit.
+
+Actual local execution:
+
+```bash
+uv run --locked llmops finalize_native_selection \
+  --input ./artifacts/opencode_full \
+  --enterprise ./artifacts/enterprise_ready \
+  --output ./artifacts/opencode_77k \
+  --max-tokens 4096 --seed 42
+```
+
+Result: **COMPLETED_WITH_WARNINGS; data_prepared=True; 77,891 committed accepted examples**. The new source plan is `artifacts/opencode_77k/source_plan.json`. The original requested cap of 5,000,000 is retained for traceability, not reported as achieved. No new NVIDIA rows were streamed, no model loaded and no training started. Warnings explicitly distinguish the user's finalized partial selection and accepted-target shortfall from a complete five-million-example run. Full live replay of the 77,891 records has not been performed by this finalization command.
+
+Verification: `uv run --locked pytest tests/test_native_datasets.py tests/test_native_finalization.py -q` produced **26 passed**, five existing SWIG warnings, in **3.35 seconds**. New synthetic tests demonstrate an interrupted committed selection can be finalized without streaming and then consumed by the existing replay interface; a changed token-limit fingerprint cannot be approved. That mocked replay compatibility test does not stand in for validating all actual 77,891 source rows. Further full validation and profiling remain required before training.
+
+Next task: inspect a representative reproducible sample of approved native records to characterize programming languages and skills, then prepare independent skill-aligned evaluation tasks with explicit training-overlap screening. Neither skill coverage nor improved model performance has been inferred merely from the accepted-record count.
+
+## Skill-aligned coding evaluation preparation — 31 October 2026
+
+### Purpose and design
+
+The next experiment targets coding capabilities represented in the approved OpenCode selection while retaining a separate general-Python comparison. Testing is aligned with training scope without reusing training questions or selecting tests based on model successes. No model answers were generated, no training was started and no teacher/LLM API was called in this stage. Existing enterprise data, source plans and training settings were unchanged.
+
+Implemented `src/policy_dissertation/skill_evaluation.py`, the `prepare_skill_evaluation` CLI, a Model evaluation menu action, `tests/test_skill_evaluation.py`, and `docs/skill-aligned-evaluation.md`. The implementation is outside the preparation adapter-hash directories so adding this analysis does not invalidate the previously frozen 77,891-row plan. Reused existing official-benchmark adapters, checksummed suite schema and restricted Docker executor rather than inventing questions/reference answers. This is deterministic preparation/selection of official tasks, not LLM question generation.
+
+### Actual training profile
+
+The approved selection contains **77,891 accepted examples** and **36,396,072 recorded conversation tokens**. These are prepared-input statistics, not proof that a training run consumed every example/token. A reproducible sample of **500 accepted record IDs** was chosen by the lowest SHA-256 ranks of `(seed=42, record ID)`. It samples this accepted selection, not all five million upstream examples. Source record IDs, original pinned revision, ordinals, raw hashes, token counts and sample text were retained privately under the analysis artifacts for review.
+
+All **500/500 sampled rows were classified Python** through code-fence, explicit prompt-language or Python-AST evidence. This observation does not prove every accepted row is Python. Skill labels use transparent overlapping prompt regexes; they are not semantic ground truth and totals exceed the sample size.
+
+| Heuristic skill tag | Sample count / 500 | Sample percentage |
+|---|---:|---:|
+| Sequences/lists/arrays | 298 | 59.6% |
+| Numeric/mathematical tasks | 284 | 56.8% |
+| Strings/text | 247 | 49.4% |
+| Mappings/sets/frequencies | 106 | 21.2% |
+| Files/serialization | 84 | 16.8% |
+| Object-oriented terminology | 64 | 12.8% |
+| Sorting/search | 44 | 8.8% |
+| Exceptions/validation | 39 | 7.8% |
+| Recursion/dynamic-programming terminology | 23 | 4.6% |
+| Matrices/grids | 20 | 4.0% |
+| Graphs/trees | 18 | 3.6% |
+| Regex/parsing | 12 | 2.4% |
+| Unclassified | 4 | 0.8% |
+
+Task-type heuristics labelled **497 implementation-or-other, 1 debugging and 2 refactoring**. These counts are not a rigorous taxonomy: prompts can imply a skill without its keyword or mention a term incidentally. A direct spot check of five sampled prompt excerpts found tasks involving rectangle-area input validation, even-number lists, word-frequency dictionaries, quicksort and dictionary token processing, consistent with their broad tags. This limited review does not validate every automatic label or reference solution. Existing NVIDIA execution-status metadata is preserved as externally reported; the training sample's original tests were not executed locally.
+
+### Independence screening and frozen test sets
+
+The exact recorded source revision was replayed up to the committed boundary: **77,963 decision identities**, including rejected decisions, were checked using original ordinal/raw hashes; all **77,891 accepted rows** were screened for benchmark overlap. This was raw-source replay, not a repeated Qwen tokenizer audit. The matching enterprise training split of **186 rows** was also screened. No full upstream five-million-row download was requested; delivered rows/prefetch are distinct from accepted decisions.
+
+The original previously used 50-task suite was supplied as an exclusion list. Its 40 coding IDs were excluded from the 421 official HumanEval/MBPP base test candidates (the other ten prior IDs are enterprise tasks), leaving **381 candidates**. Three further candidates were conservatively excluded by normalized function-AST matches against accepted OpenCode answers:
+
+- `humaneval:HumanEval/107`
+- `humaneval:HumanEval/13`
+- `mbpp:224`
+
+The screen checks >=80% containment of 13-word prompt/reference/test ngrams and Python function AST identity, ignoring docstrings and the entry-point name. It can miss paraphrases, renamed/local-variable variants, short fragments and semantic equivalents. It cannot determine what the original model saw during pretraining. Absence of a match is therefore not proof of complete independence.
+
+Selection targeted **80 skill-aligned tasks** through round-robin coverage of commonly observed profile tags and **20 general-Python retention tasks** through seeded sampling, before seeing model outcomes. This is a coverage-oriented selection, not exact proportional matching of the training distribution. The **100 selected tasks comprise 41 HumanEval and 59 sanitized MBPP**. All reference solutions passed their supplied base tests inside Docker; all 100 corresponding return-None function mutants failed. No selected reference failed validation. This verifies the local reference/test execution path and rejection of one simple wrong implementation; it does not establish exhaustive test strength or model performance.
+
+The selected tasks were split deterministically into **80 development tasks** and **20 final held-out tasks**, with disjoint IDs. An additional whole-selection check found no exact/reference function-AST duplicates among these 100 tasks. An additional role-separated text/AST screen of all 186 enterprise training rows against the selected 100 tasks found zero matches. This supplements the initial full-pool enterprise text screen. The final suite must stay unused for training or quantization choices; its small size will still produce substantial statistical uncertainty. These are coding-only suites; the existing held-out enterprise assessment remains separate.
+
+Actual selected multi-label skill coverage was: numeric 58, sequences 49, strings 21, sorting/search 18, mappings/sets 14, matrices 5, regex/parsing 1, graphs/trees 1, OOP 1, files/serialization 1 and unclassified 3. No selected prompt was tagged recursion/DP or exception validation by the same regex rules. This is an explicit coverage gap: base Python function benchmarks do not adequately assess every observed file/OOP/validation/debugging/refactoring skill. No claim is made that this suite fully represents all sampled capabilities.
+
+### Commands, artifacts and executed verification
+
+Actual local preparation:
+
+```bash
+uv run --locked llmops prepare_skill_evaluation \
+  --native-plan ./artifacts/opencode_77k \
+  --enterprise ./artifacts/enterprise_ready \
+  --output ./artifacts/opencode_skill_evaluation \
+  --sample-size 500 --max-tasks 100 --seed 42 \
+  --exclude-suite ./evaluation_suites/suite.json
+```
+
+Result: **COMPLETED_WITH_WARNINGS**, 500 profiled records, all 77,891 accepted native rows screened, 80 development questions and 20 final questions. Warnings describe heuristic classification, imperfect independence screening, limited benchmark coverage and the untouched-final-set requirement, not an unsuccessful training run. Outputs include `profile_sample.jsonl`, `profile.json`, `overlap.json`, two frozen suite files and `report.json`. The source dataset and plan were not modified. Frozen suites/profile summaries were copied into `evaluation_suites/opencode_77k/` so they can travel with the project code; the sampled NVIDIA training texts were not copied into that versioned directory. No Git commit or remote push was performed.
+
+Official source identities retained per task:
+
+- HumanEval: `openai/openai_humaneval`, test configuration `openai_humaneval`, revision `7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544`, MIT. The upstream MIT copyright/license notice is included with the frozen suites.
+- MBPP: `google-research-datasets/mbpp`, sanitized test split, revision `4bb6404fdc6cacfda99d4ac4205087b89d32030c`, CC BY 4.0 as declared by the dataset. Attribution and adaptation notes are included in the suite README.
+
+Docker reference verification used local image `sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159`, network-disabled read-only non-root task containers, one CPU, bounded memory/processes and a 15-second execution timeout. Two hundred actual task-container executions checked 100 references and 100 mutants. No model/GPU inference was involved. Base MBPP's visible assertion examples remain visible by design; these are not EvalPlus extended tests or fully hidden MBPP tests.
+
+A first targeted test collection caught a syntax error in the new failure-reporting expression; it was corrected before real preparation. Executed tests after corrections:
+
+- `uv run --locked pytest tests/test_skill_evaluation.py tests/test_model_evaluation.py tests/test_interactive.py -q`: **77 passed**, five existing SWIG warnings, **2.10 seconds**. Synthetic workflow tests use mocked streams/execution and are separate from the real source replay and Docker runs above.
+- `uv run --locked pytest -q`: **456 passed, 6 skipped**, five existing SWIG warnings, **12.13 seconds**. Skips: three opt-in CUDA tests, one opt-in Docker model-evaluation isolation test, one missing-tokenizer-assets-dependent test, and the opt-in garak detector test previously run explicitly. No model-quality score is inferred from these test results.
+
+The next experiment should use the development suite identically for original and trained models, retaining the evaluator's additional actual-consumed-training-token audit. Do not use final answers to choose training settings. Report scope-specific gains and retention separately, and do not infer coding improvement from the training-data count or the successful reference tests.

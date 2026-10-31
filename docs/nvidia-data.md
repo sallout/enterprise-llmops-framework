@@ -140,3 +140,19 @@ preflight and all chosen holdout registration before optimization. Adding a new 
 or holdout requires a corresponding shared audit; this is not a full-corpus certificate.
 No semantic correctness, code-test execution, server-scale performance, GPU training,
 security audit or benchmarking is implied by a successful small local test.
+
+## Freeze committed progress after interruption
+
+Do not manually change FAILED/RUNNING to COMPLETED or reduce the old command's cap: the cap is part of the original fingerprint. After stopping the writer, create a separate bounded selection from its committed decisions:
+
+```bash
+uv run --locked llmops finalize_native_selection \
+  --input ./artifacts/opencode_full \
+  --enterprise ./artifacts/enterprise_ready \
+  --output ./artifacts/opencode_77k \
+  --max-tokens 4096 --seed 42
+```
+
+The original token limit, seed, settings, code, source pins and runtime must match. The command locks the source, checks SQLite integrity, copies the database through SQLite backup and copies cached metadata/tokenizer assets, verifies contiguous/checksummed decisions through existing discovery, reconstructs the exact original fingerprint, and calls the existing finalizer without source streaming. Only an interruption or a stopped RUNNING report without other recorded errors is eligible. The original report and checkpoints remain unchanged; interrupted evidence is retained in the new output. Zero accepted rows, ambiguous runs, changed settings and other processing failures are refused. Existing output cannot be overwritten.
+
+The new plan declares `partial_selection: true` and preserves the original requested cap; it does not claim that all requested examples were processed. Use its actual `accepted_examples` count. A training-ready partial plan does not certify semantic correctness or replace full replay validation before training. No GPU, model weights, new dataset ingestion or training is used by finalization. Further skill profiling must examine the approved records; source-coordinate metadata alone does not establish their skills.

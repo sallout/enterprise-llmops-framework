@@ -32,8 +32,8 @@ class Option:
 
 MENU=(Option('enterprise','Enterprise data extraction'),Option('enterprise_validation','Enterprise data validation'),
       Option('external','External dataset installation'),Option('external_validation','External dataset validation'),
-      Option('fine_tuning','Model compression & fine-tuning'),Option('evaluation','Model evaluation'),Option('model_backup','Model backup to Hugging Face'),Option('security','Security check',False),
-      Option('prompt_injection','Prompt injection check',False),Option('customization','Model customization',False),
+      Option('fine_tuning','Model compression & fine-tuning'),Option('evaluation','Model evaluation'),Option('model_backup','Model backup to Hugging Face'),Option('security','Model security assessment'),
+      Option('customization','Model customization',False),
       Option('environment','Env setup'),Option('exit','Exit'))
 
 
@@ -246,7 +246,7 @@ class Dashboard:
             if code==0:
                 try:outputs=json.loads(Path('.llmops/outputs.json').read_text())
                 except (OSError,ValueError):outputs={}
-                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation','backup_model','export_8bit'}
+                allowed={'enterprise_data','enterprise_prepare','nvidia_data','nvidia_validate','publish_dataset','download_dataset','compress_model','evaluate_model','score_evaluation','backup_model','export_8bit','security_check','prepare_skill_evaluation'}
                 outputs={k:v for k,v in outputs.items() if k in allowed and isinstance(v,str)} if isinstance(outputs,dict) else {}
                 outputs[args[0]]=str(Path(output).resolve())
                 dump_json(Path('.llmops/outputs.json'),outputs)
@@ -508,8 +508,23 @@ class Dashboard:
 
     def evaluation(self):
         action=self.choose('Model evaluation — Linux NVIDIA CUDA',[Option('compare','Compare a completed compression run with original Qwen3'),
-            Option('custom','Evaluate local checkpoints with your own labels'),Option('prepare','Prepare/freeze test questions only (no GPU)'),Option('score','Score saved GPU answers on a Docker host (no GPU)'),Option('back','Back')])
+            Option('custom','Evaluate local checkpoints with your own labels'),Option('prepare','Prepare/freeze test questions only (no GPU)'),Option('score','Score saved GPU answers on a Docker host (no GPU)'),Option('skills','Profile training skills and prepare aligned independent tests (CPU + Docker)'),Option('back','Back')])
         if action=='back':raise Cancelled()
+        if action=='skills':
+            native=self.path('Approved OpenCode source-plan directory',default='artifacts/opencode_77k',directory=True)
+            enterprise=self.path('Matching prepared enterprise directory',default='artifacts/enterprise_ready',directory=True)
+            output,_=self.output('artifacts/opencode_skill_evaluation')
+            sample=self.integer('Reproducible profile sample size',500,maximum=10000)
+            tasks=self.integer('Total independent Python tasks (development + final)',100,minimum=10,maximum=400)
+            previous=self.path('Previously used suite to exclude (optional)',default='evaluation_suites/suite.json',optional=True)
+            args=['prepare_skill_evaluation','--native-plan',str(native),'--enterprise',str(enterprise),
+                  '--output',str(output),'--sample-size',str(sample),'--max-tasks',str(tasks)]
+            if previous:args+=['--exclude-suite',str(previous)]
+            if self.preview('Skill-aligned evaluation preparation',{'Scope':'Profile sample; overlap screen all accepted source rows; Docker reference checks',
+                'Output':str(output),'Selection':'Independent official Python tasks; 80% aligned + 20% general retention target',
+                'Final holdout':'Separate 20% frozen final suite; no model results used','GPU / training':'Not used'}):
+                self.execute(args,output)
+            return
         if action=='score':
             source=self.path('Completed generation directory',default='artifacts/evaluation',directory=True)
             output,_=self.output('artifacts/evaluation_scored')
@@ -569,6 +584,34 @@ class Dashboard:
         self.console.print(table)
         self.console.print('Presence checks only: endpoint reachability and token permissions are not verified.',style='dim')
 
+    def security(self):
+        action=self.choose('Read-only model security assessment',[
+            Option('static','File integrity checks only (no GPU)'),
+            Option('behavior','File checks + garak replay + limited known-trigger screen'),
+            Option('back','Back')])
+        if action=='back':return
+        final=self.path('Trained model directory (contains config.json)',directory=True)
+        baseline=self.path('Original model directory (optional, for matched comparison)',directory=True,optional=True)
+        args=['security_check','--model','final='+str(final)]
+        if baseline:args+=['--model','original='+str(baseline)]
+        if action=='static':args+=['--static-only']
+        else:
+            enterprise=self.path('Prepared enterprise directory',default='artifacts/enterprise_ready',directory=True)
+            cases=self.path('Classified security cases JSONL (optional; blank = unclassified replay)',optional=True)
+            count=self.integer('Maximum replay cases per model',20,maximum=10000)
+            budget=self.integer('Maximum response tokens',256,minimum=16,maximum=4096)
+            args+=['--enterprise',str(enterprise),'--max-cases',str(count),'--max-new-tokens',str(budget)]
+            if cases:args+=['--cases',str(cases)]
+        output,_=self.output('artifacts/security',resumable=True)
+        args+=['--output',str(output)]
+        if (output/'manifest.json').exists():args+=['--resume']
+        if self.preview('Model security assessment',{
+            'Scope':'Read-only; no training, remediation or prompt injection',
+            'Replay':'Reproduction is not automatically confidential disclosure',
+            'Backdoors':'Known-trigger screen only; Microsoft Qwen3 scan NOT_VALIDATED',
+            'Output':str(output), 'Guarantee':'No certification of backdoor absence'}):
+            self.execute(args,output)
+
     def pause(self):
         if self.terminal:
             try:questionary.text('Press Enter to return to the main menu').unsafe_ask()
@@ -583,7 +626,7 @@ class Dashboard:
     def run_loop(self):
         dispatch={'enterprise':self.extraction,'enterprise_validation':self.enterprise_validation,
                   'external':self.external_installation,'external_validation':self.external_validation,'environment':self.environment,
-                  'fine_tuning':self.compression,'evaluation':self.evaluation,'model_backup':self.model_backup}
+                  'fine_tuning':self.compression,'evaluation':self.evaluation,'model_backup':self.model_backup,'security':self.security}
         while True:
             if not self.terminal:self.header()
             try:choice=self.choose('Select an option to start',MENU)
