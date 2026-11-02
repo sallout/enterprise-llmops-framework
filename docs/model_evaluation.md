@@ -222,3 +222,49 @@ timing and memory measurements already recorded per answer are retained.
 An execution-disabled run still has `evaluation_complete=false` and no code pass@1.
 After recovery, use `score_evaluation` on a Docker host to execute the saved answers.
 Recovering a report is not evidence of model improvement or semantic correctness.
+
+## External NF4 reference with standardized inputs
+
+The selected external reference is `unsloth/Qwen3-14B-bnb-4bit` revision
+`b455922269e4678c84f854fe38a6993d73614a1e`, not its pretraining-only Base sibling.
+Its published chat template and pad token differ from the project's pinned original
+Qwen3. The evaluator's template-mismatch guard remains enabled. Prepare a separate
+inference view instead of silently comparing different templates or modifying the
+original downloaded reference:
+
+```bash
+uv run --locked llmops prepare_quantized_reference \
+  --model /workspace/models/unsloth_qwen3_14b_4bit \
+  --reference /workspace/models/qwen3_original_security \
+  --suite ./evaluation_suites/opencode_77k_100_final/final_suite.json \
+  --output /workspace/models/unsloth_qwen3_14b_4bit_comparison \
+  --receipt /workspace/artifacts/unsloth_comparison_protocol \
+  --revision b455922269e4678c84f854fe38a6993d73614a1e
+```
+
+This CPU/tokenizer-only command requires equal full token-to-ID vocabularies and
+compatible EOS/BOS stopping settings. It assigns the reference tokenizer's chat
+template and padding to a separate tokenizer, verifies identical rendered prompts
+and token IDs for every frozen task, saves/reloads that tokenizer and verifies the
+IDs again. It preserves the external tokenizer assets under the receipt directory.
+Tensor shards are hard-linked where supported (copied otherwise), never rewritten;
+source and destination tensor hashes and original configuration/asset hashes must
+match. Keep both views for inference only; hard links share underlying bytes.
+The output/receipt must be new and separate from all input paths. Failed preparation
+must not be used as an approved comparison.
+
+The receipt records the caller-provided upstream pin, original/common template
+hashes, padding, unchanged tensor hashes, storage method, prompt-token hashes and
+suite digest. Carry this receipt with evaluation exports. The command records local
+hashes; it does not independently attest that source tensors correspond to the
+caller-provided Hub revision. Download from the explicit immutable pin first.
+No model weights or GPU are loaded during preparation.
+
+Pass the resulting local comparison directory to `evaluate_model --model
+unsloth_nf4=...` alongside the exact original and final checkpoints. Keep the frozen
+final suite, greedy non-thinking decoding and response/input budgets identical.
+This evaluates external Unsloth weights under a common documented input protocol,
+not its unmodified default settings. It is an external reference, not a perfectly
+controlled quantization-only ablation: its upstream base revision, quantizer version
+and module selection may differ from the project's own export. No causal claim
+about training alone follows from outperforming this comparator.

@@ -846,3 +846,25 @@ def prepare_skill_evaluation_command(
         typer.echo(f"Development tasks: {result['development_tasks']}; final held-out tasks: {result['final_tasks']}")
         typer.echo(f"Report: {output.resolve()/'report.json'}")
     run_safely(execute)
+
+
+@app.command('prepare_quantized_reference')
+def prepare_quantized_reference_command(
+    model: Path = typer.Option(...,exists=True,file_okay=False),
+    reference: Path = typer.Option(...,exists=True,file_okay=False),
+    suite: Path = typer.Option(...,exists=True,dir_okay=False),
+    output: Path = typer.Option(...,help='New standardized inference model directory; external source remains unchanged.'),
+    receipt: Path = typer.Option(...,help='Separate new protocol report and preserved original tokenizer assets.'),
+    repo_id: str = typer.Option('unsloth/Qwen3-14B-bnb-4bit'),
+    revision: str = typer.Option(...,help='Immutable external model download revision.'),
+) -> None:
+    """Standardize a separate NF4 comparison view; verify every prompt without GPU/model loading."""
+    def execute():
+        from policy_dissertation.comparison_preparation import prepare_quantized_reference
+        result=prepare_quantized_reference(model,reference,suite,output,receipt,repo_id=repo_id,revision=revision)
+        typer.echo(f"Status: {result['status']}")
+        if result['status']=='FAILED':raise DissertationError('Quantized reference preparation failed; inspect receipt/report.json.')
+        typer.echo(f"Identical prompt tokenizations verified: {result['verified_task_prompts']}; weight bytes unchanged: True")
+        typer.echo(f"Prepared model: {output.resolve()}")
+        typer.echo(f"Protocol report: {receipt.resolve()/'report.json'}")
+    run_safely(execute)
