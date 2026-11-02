@@ -1,0 +1,42 @@
+{
+  "key": "0ee21dc7482ff2f96e961640b00d3eabb9fa227441d936ef5fbb41ab4ab00ba7",
+  "digest": "ad4e9685dadc85b4ac26d4c71f366dfdd35e4ddd4a0dfa5891b34f5a8bf5f975",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/19",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/19",
+      "task_prompt": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    number_words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']\n    word_to_number = {word: index for index, word in enumerate(number_words)}\n    words = numbers.split()\n    sorted_words = sorted(words, key=lambda word: word_to_number[word])\n    return ' '.join(sorted_words)\n```",
+      "input_tokens": 134,
+      "output_tokens": 186,
+      "generation_seconds": 10.391934710089117,
+      "output_tokens_per_second_including_prefill": 17.898495822863474,
+      "peak_allocated_bytes": 9913615360,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

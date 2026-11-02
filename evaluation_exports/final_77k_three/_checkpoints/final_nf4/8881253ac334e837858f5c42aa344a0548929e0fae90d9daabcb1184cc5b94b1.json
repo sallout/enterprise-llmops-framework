@@ -1,0 +1,41 @@
+{
+  "key": "2016506a12234e8c72176740ffec4c1e4e40ecd3c9f49daef487bf1a08c6e9bb",
+  "digest": "929725478abb3460bac10bda185c6085e8d3035982ede7551f3db116156551b9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/117",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/117",
+      "task_prompt": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n    vowels = set('aeiouAEIOU')\n    def count_consonants(word):\n        return sum(1 for char in word if char.isalpha() and char not in vowels)\n    \n    words = s.split()\n    result = [word for word in words if count_consonants(word) == n]\n    return result\n```",
+      "input_tokens": 210,
+      "output_tokens": 249,
+      "generation_seconds": 13.730501262005419,
+      "output_tokens_per_second_including_prefill": 18.13480769919336,
+      "peak_allocated_bytes": 9933721600,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

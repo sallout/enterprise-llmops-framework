@@ -1,0 +1,39 @@
+{
+  "key": "ea53bf7971b866e040d4187a0bd0873e44ab4d27b032fcf04e2a91c8b2bf34e2",
+  "digest": "70ee4bedb6400b94da7acc967b72a974613bef345765c908eb1df040ced8c4bd",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:94",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "94",
+      "task_prompt": "Given a list of tuples, write a function that returns the first value of the tuple with the smallest second value.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef index_minimum(tuples_list):\n    \"\"\"\n    Returns the first value of the tuple with the smallest second value from a list of tuples.\n    \n    :param tuples_list: List of tuples, where each tuple contains a string and an integer.\n    :return: The first value of the tuple with the smallest second value.\n    \"\"\"\n    return min(tuples_list, key=lambda x: x[1])[0]\n```",
+      "input_tokens": 166,
+      "output_tokens": 89,
+      "generation_seconds": 4.894675127230585,
+      "output_tokens_per_second_including_prefill": 18.18302495805403,
+      "peak_allocated_bytes": 9921111040,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

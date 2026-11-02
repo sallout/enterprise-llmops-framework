@@ -1,0 +1,40 @@
+{
+  "key": "a0f81c8f74993ed7ed4e8ccbc87082c98b7fbc04193a2c75967966aaa26f7a73",
+  "digest": "e59c89863d38b8c0d57b623451f2309f934e25ede5fb95a0a23a68e18af0be98",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/111",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/111",
+      "task_prompt": "\ndef histogram(test):\n    \"\"\"Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \n    Example:\n    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}\n    histogram('a b b a') == {'a': 2, 'b': 2}\n    histogram('a b c a b') == {'a': 2, 'b': 2}\n    histogram('b b b b a') == {'b': 4}\n    histogram('') == {}\n\n    \"\"\"\n",
+      "skill_tags": [
+        "mappings_sets",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef histogram(test):\n    \"\"\"\n    Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \n    :param test: A string of space-separated lowercase letters.\n    :return: A dictionary with letters as keys and their counts as values.\n    \"\"\"\n    if not test:\n        return {}\n    \n    letter_counts = Counter(test.split())\n    max_count = max(letter_counts.values())\n    result = {letter: count for letter, count in letter_counts.items() if count == max_count}\n    \n    return result\n```",
+      "input_tokens": 180,
+      "output_tokens": 144,
+      "generation_seconds": 8.012846843339503,
+      "output_tokens_per_second_including_prefill": 17.9711409459544,
+      "peak_allocated_bytes": 9924826112,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

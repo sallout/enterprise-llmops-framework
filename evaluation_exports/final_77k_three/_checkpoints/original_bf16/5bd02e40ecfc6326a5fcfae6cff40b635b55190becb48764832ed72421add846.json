@@ -1,0 +1,39 @@
+{
+  "key": "d677c07d3157282c337ef8d2df4a94f58eac6dc5e9e7ec962a9b46e1ac1ada83",
+  "digest": "afc04e91f8458103f8ab6c418c1bd2d57326bd365d4625d2590cf3e780cc215a",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:166",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "166",
+      "task_prompt": "Write a function that counts the number of pairs of integers in a list that xor to an even number.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom itertools import combinations\n\ndef find_even_pair(nums):\n    count = 0\n    for a, b in combinations(nums, 2):\n        if (a ^ b) % 2 == 0:\n            count += 1\n    return count\n```",
+      "input_tokens": 124,
+      "output_tokens": 58,
+      "generation_seconds": 2.4827794418670237,
+      "output_tokens_per_second_including_prefill": 23.360915199291572,
+      "peak_allocated_bytes": 29583580160,
+      "peak_reserved_bytes": 29628563456
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

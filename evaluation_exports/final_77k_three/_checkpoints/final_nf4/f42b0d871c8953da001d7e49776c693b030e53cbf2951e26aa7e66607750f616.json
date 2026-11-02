@@ -1,0 +1,40 @@
+{
+  "key": "e15686950d228cea8ad32163a6b6563f7bb9993fb8454db1ec0de84403c7db81",
+  "digest": "ad3724a209ad386e48682213259a9a5435976c9197da07864b90b06cefeca61c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:141",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "141",
+      "task_prompt": "Write a function to sort a list of elements.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef pancake_sort(arr):\n    \"\"\"\n    Sorts a list of elements using the pancake sort algorithm.\n    \n    Parameters:\n    arr (list): The list of elements to be sorted.\n    \n    Returns:\n    list: The sorted list.\n    \"\"\"\n    def flip(arr, i):\n        arr[:i+1] = arr[:i+1][::-1]\n    \n    n = len(arr)\n    while n > 1:\n        max_index = arr.index(max(arr[:n]))\n        if max_index != n - 1:\n            if max_index != 0:\n                flip(arr, max_index)\n            flip(arr, n - 1)\n        n -= 1\n    return arr\n```",
+      "input_tokens": 179,
+      "output_tokens": 150,
+      "generation_seconds": 8.28702611522749,
+      "output_tokens_per_second_including_prefill": 18.10058251468202,
+      "peak_allocated_bytes": 9924554752,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

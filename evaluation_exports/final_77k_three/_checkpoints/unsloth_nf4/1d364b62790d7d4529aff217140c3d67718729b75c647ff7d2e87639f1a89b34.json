@@ -1,0 +1,40 @@
+{
+  "key": "68e98a6ad28cee7ae8e80bf075b68f54214aeb7def19ac246a951ce329d5476b",
+  "digest": "4ee348d1e92e05a209fd7dc6f27319d6126d615c0d45f392579c86918197524e",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/78",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/78",
+      "task_prompt": "\ndef hex_key(num):\n    \"\"\"You have been tasked to write a function that receives \n    a hexadecimal number as a string and counts the number of hexadecimal \n    digits that are primes (prime number, or a prime, is a natural number \n    greater than 1 that is not a product of two smaller natural numbers).\n    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.\n    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...\n    So you have to determine a number of the following digits: 2, 3, 5, 7, \n    B (=decimal 11), D (=decimal 13).\n    Note: you may assume the input is always correct or empty string, \n    and symbols A,B,C,D,E,F are always uppercase.\n    Examples:\n    For num = \"AB\" the output should be 1.\n    For num = \"1077E\" the output should be 2.\n    For num = \"ABED1A33\" the output should be 4.\n    For num = \"123456789ABCDEF0\" the output should be 6.\n    For num = \"2020\" the output should be 2.\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef hex_key(num):\n    \"\"\"Counts the number of hexadecimal digits that are prime numbers.\"\"\"\n    # Define the set of prime hexadecimal digits\n    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}\n    \n    # Count how many characters in the input string are in the prime_hex_digits set\n    count = sum(1 for ch in num if ch in prime_hex_digits)\n    \n    return count\n```",
+      "input_tokens": 344,
+      "output_tokens": 97,
+      "generation_seconds": 5.491912106983364,
+      "output_tokens_per_second_including_prefill": 17.662336561551573,
+      "peak_allocated_bytes": 10223158272,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

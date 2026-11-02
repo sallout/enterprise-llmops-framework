@@ -1,0 +1,39 @@
+{
+  "key": "20fa5d357feecd85eeb0f5d884903feb9afe6d0c3a658c61bddbd8c7ed42e6e6",
+  "digest": "daae9ea40340b22a8ced681d1c82ee366e1dabfbe0d8fb6f0d89fac5057c4218",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:465",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "465",
+      "task_prompt": "Write a function to drop empty items from a given dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef drop_empty(d):\n    return {k: v for k, v in d.items() if v is not None}\n```",
+      "input_tokens": 145,
+      "output_tokens": 30,
+      "generation_seconds": 1.6900243572890759,
+      "output_tokens_per_second_including_prefill": 17.751223448709474,
+      "peak_allocated_bytes": 10167965696,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

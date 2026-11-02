@@ -1,0 +1,40 @@
+{
+  "key": "dc92fa59390f7f90fe6ef7797051a92839711e6ce92351f2aa8acf4a53816a88",
+  "digest": "42a482a5a84aeb17faea59fb73cb0144214f824e105ce97164f394028a53e99a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/12",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/12",
+      "task_prompt": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    \"\"\"\n    if not strings:\n        return None\n    return max(strings, key=len)\n```",
+      "input_tokens": 131,
+      "output_tokens": 81,
+      "generation_seconds": 4.647780746687204,
+      "output_tokens_per_second_including_prefill": 17.427672348299634,
+      "peak_allocated_bytes": 9913053696,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

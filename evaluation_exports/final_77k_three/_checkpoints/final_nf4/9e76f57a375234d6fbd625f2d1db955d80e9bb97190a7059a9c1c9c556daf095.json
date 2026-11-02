@@ -1,0 +1,40 @@
+{
+  "key": "b0262a73c6eeb1b77211dc4d95431c89dc97f15957c6fb4714154409093bebb2",
+  "digest": "164bdbac5650329fabc4e6d3f8ce8d0feb2721f8bcc7b5021acb344e2fc8cd8d",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:67",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "67",
+      "task_prompt": "Write a function to find the number of ways to partition a set of Bell numbers.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef bell_number(n):\n    \"\"\"\n    Returns the nth Bell number using the Bell triangle method.\n    \n    :param n: The index of the Bell number to compute.\n    :return: The nth Bell number.\n    \"\"\"\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 1\n    else:\n        triangle = [[0] * (n + 1) for _ in range(n + 1)]\n        triangle[0][0] = 1\n        for i in range(1, n + 1):\n            triangle[i][0] = triangle[i - 1][i - 1]\n            for j in range(1, i + 1):\n                triangle[i][j] = triangle[i][j - 1] + triangle[i - 1][j - 1]\n        return triangle[n][0]\n```",
+      "input_tokens": 135,
+      "output_tokens": 203,
+      "generation_seconds": 11.2673846851103,
+      "output_tokens_per_second_including_prefill": 18.01660329111349,
+      "peak_allocated_bytes": 9913803264,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

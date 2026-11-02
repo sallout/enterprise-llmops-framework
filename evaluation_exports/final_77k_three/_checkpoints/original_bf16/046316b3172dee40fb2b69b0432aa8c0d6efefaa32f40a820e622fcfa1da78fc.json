@@ -1,0 +1,39 @@
+{
+  "key": "570339c5c28977eba4feba0490ee875be43e890d9d7a68a64f9f1eab70f6500e",
+  "digest": "bccdabdd8f626c4eabefd7f1662b77ccf77dbb413a72b56cdb29ddf8a4f2a33d",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:63",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "63",
+      "task_prompt": "Write a function to find the maximum difference between available pairs in the given tuple list.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_difference(pairs):\n    return max(abs(a - b) for a, b in pairs)\n\n# Test cases\nassert max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\nassert max_difference([(4, 6), (2, 17), (9, 13), (11, 12)]) == 15\nassert max_difference([(12, 35), (21, 27), (13, 23), (41, 22)]) == 23\n```",
+      "input_tokens": 158,
+      "output_tokens": 138,
+      "generation_seconds": 5.820370594039559,
+      "output_tokens_per_second_including_prefill": 23.70983046016366,
+      "peak_allocated_bytes": 29595109376,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

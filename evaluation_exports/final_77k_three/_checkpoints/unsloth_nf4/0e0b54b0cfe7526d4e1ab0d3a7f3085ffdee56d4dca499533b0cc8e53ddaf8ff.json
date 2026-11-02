@@ -1,0 +1,40 @@
+{
+  "key": "6bb772380279b17c7dfcf4f690d76bfde3aa15247f0c55e1da08142813bcc157",
+  "digest": "a538ec54c48799009d9adf643190cf395d9a47775ab66f19f738a7f717b601b3",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/121",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/121",
+      "task_prompt": "\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==> 0\n    \"\"\"\n    total = 0\n    for i in range(0, len(lst), 2):  # iterate over even indices (0-based)\n        if lst[i] % 2 == 1:  # check if element is odd\n            total += lst[i]\n    return total\n```",
+      "input_tokens": 132,
+      "output_tokens": 163,
+      "generation_seconds": 8.90554500836879,
+      "output_tokens_per_second_including_prefill": 18.303203211799428,
+      "peak_allocated_bytes": 10165675008,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "b867ef299ebc82104d604c6836646d344966b105a06db772395244cd8368f8ea",
+  "digest": "a17b1cd54e7be2eb66cdb74e2cdf8fbc63b86ddee5168667737dcbf58cc34d4a",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:120",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "120",
+      "task_prompt": "Write a function to find the maximum absolute product between numbers in pairs of tuples within a given list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_product_tuple(list_of_tuples):\n    max_product = float('-inf')\n    for t in list_of_tuples:\n        product = abs(t[0] * t[1])\n        if product > max_product:\n            max_product = product\n    return max_product\n```",
+      "input_tokens": 152,
+      "output_tokens": 60,
+      "generation_seconds": 2.4216574798338115,
+      "output_tokens_per_second_including_prefill": 24.776418836951937,
+      "peak_allocated_bytes": 29593181184,
+      "peak_reserved_bytes": 29672603648
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

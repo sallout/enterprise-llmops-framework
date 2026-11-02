@@ -1,0 +1,41 @@
+{
+  "key": "d3c79961e0074e44f325136880861ee32d95c222f0a2d22fd9a5f80d5e575953",
+  "digest": "2aacd61b174a75ee87934126dfe0a556986b3fa2882fa4c74a6ee1d049145177",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/120",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/120",
+      "task_prompt": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n    if k == 0:\n        return []\n    # Sort the array in ascending order\n    arr.sort()\n    # Take the last k elements (which are the largest) and sort them in ascending order\n    return arr[-k:]\n```",
+      "input_tokens": 252,
+      "output_tokens": 271,
+      "generation_seconds": 10.776777854189277,
+      "output_tokens_per_second_including_prefill": 25.146662914152365,
+      "peak_allocated_bytes": 29663672320,
+      "peak_reserved_bytes": 29844570112
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

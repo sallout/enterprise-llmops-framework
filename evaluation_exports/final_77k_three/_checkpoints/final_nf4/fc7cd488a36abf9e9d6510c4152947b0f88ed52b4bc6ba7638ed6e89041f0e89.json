@@ -1,0 +1,40 @@
+{
+  "key": "d8035511b989c120a33f09f35349c46d4b7cbf3c6218f2198b21c2b20c03c1a9",
+  "digest": "e26bb6b59ae642348adcdaf981075bae3bc71517d2f3e51e0a748100c7aa79a1",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:247",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "247",
+      "task_prompt": "Write a function to find the length of the longest palindromic subsequence in the given string.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef lps(s: str) -> int:\n    \"\"\"\n    Returns the length of the longest palindromic subsequence in the given string.\n    \n    :param s: Input string\n    :return: Length of the longest palindromic subsequence\n    \"\"\"\n    n = len(s)\n    dp = [[0] * n for _ in range(n)]\n\n    for i in range(n):\n        dp[i][i] = 1\n\n    for cl in range(2, n + 1):\n        for i in range(n - cl + 1):\n            j = i + cl - 1\n            if s[i] == s[j] and cl == 2:\n                dp[i][j] = 2\n            elif s[i] == s[j]:\n                dp[i][j] = dp[i + 1][j - 1] + 2\n            else:\n                dp[i][j] = max(dp[i][j - 1], dp[i + 1][j])\n\n    return dp[0][n - 1]\n```",
+      "input_tokens": 99,
+      "output_tokens": 227,
+      "generation_seconds": 12.955556325148791,
+      "output_tokens_per_second_including_prefill": 17.521439782509145,
+      "peak_allocated_bytes": 9902802944,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

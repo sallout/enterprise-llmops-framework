@@ -1,0 +1,39 @@
+{
+  "key": "7b80bd9269bfdf787ce32307a4c3522fc837f0150bdd89237f0462f3fbf7d0a3",
+  "digest": "2e64cf0975c4c4595a445a2c4521f5a358ac5de43fb77cd820f43cad85ff0717",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:300",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "300",
+      "task_prompt": "Write a function to find the count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\nfrom math import comb\n\ndef count_binary_seq(n):\n    \"\"\"\n    Returns the count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits.\n    \"\"\"\n    total = 0\n    for k in range(n + 1):\n        total += comb(n, k) ** 2\n    return total\n\nassert math.isclose(count_binary_seq(1), 2.0, rel_tol=0.001)\nassert math.isclose(count_binary_seq(2), 6.0, rel_tol=0.001)\nassert math.isclose(count_binary_seq(3), 20.0, rel_tol=0.001)\n```",
+      "input_tokens": 139,
+      "output_tokens": 157,
+      "generation_seconds": 8.988328272942454,
+      "output_tokens_per_second_including_prefill": 17.467096798479954,
+      "peak_allocated_bytes": 9914552832,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

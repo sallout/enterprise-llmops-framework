@@ -1,0 +1,39 @@
+{
+  "key": "31d74f262b0deb3bb5b1a7d39a786feaa2b39e3cfdc9d64c40955c108f48e018",
+  "digest": "446a4d3ae2a12759839c61ed3ab7718d4c0a9bf24e76d51ee73477bb4e0e8b31",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:65",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "65",
+      "task_prompt": "Write a function to flatten a list and sum all of its elements.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef recursive_list_sum(lst):\n    total = 0\n    for item in lst:\n        if isinstance(item, list):\n            total += recursive_list_sum(item)\n        else:\n            total += item\n    return total\n```",
+      "input_tokens": 129,
+      "output_tokens": 50,
+      "generation_seconds": 2.9443884170614183,
+      "output_tokens_per_second_including_prefill": 16.9814552014511,
+      "peak_allocated_bytes": 10164133888,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "0188f9f381eae988846e7fcdc9c7963df20e67d65f23116a4499c050b86b55e8",
+  "digest": "183cf61b184faa890d6d00b62457ee461665904acd3c5323874dc85175fe5044",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/121",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/121",
+      "task_prompt": "\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n    Args:\n        lst (list): A list of integers.\n    \n    Returns:\n        int: The sum of odd elements at even positions.\n    \"\"\"\n    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n```",
+      "input_tokens": 132,
+      "output_tokens": 95,
+      "generation_seconds": 5.240073984023184,
+      "output_tokens_per_second_including_prefill": 18.129515020141305,
+      "peak_allocated_bytes": 9913240576,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

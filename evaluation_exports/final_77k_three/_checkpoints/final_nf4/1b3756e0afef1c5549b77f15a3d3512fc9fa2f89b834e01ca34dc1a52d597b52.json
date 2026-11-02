@@ -1,0 +1,40 @@
+{
+  "key": "e961dfaf700aeddbba49b81bb151b7645244974704a95f93ec72be6e5e154e91",
+  "digest": "43431419012cbf7e427a2f60c6edaf22fb7cd787eec2f22b2a3744627bd2d04a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:223",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "223",
+      "task_prompt": "Write a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_majority(arr, n, element):\n    \"\"\"\n    Determines if the given element is the majority element in a sorted array.\n    \n    Parameters:\n    arr (list): The sorted array.\n    n (int): The length of the array.\n    element (int): The element to check for majority.\n    \n    Returns:\n    bool: True if the element is the majority element, False otherwise.\n    \"\"\"\n    left = 0\n    right = n - 1\n    while left < right:\n        mid = (left + right) // 2\n        if arr[mid] < element:\n            left = mid + 1\n        else:\n            right = mid\n    if left == n // 2 and arr[left] == element:\n        return True\n    return False\n```",
+      "input_tokens": 207,
+      "output_tokens": 168,
+      "generation_seconds": 9.218965749721974,
+      "output_tokens_per_second_including_prefill": 18.223302327060555,
+      "peak_allocated_bytes": 9933029376,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

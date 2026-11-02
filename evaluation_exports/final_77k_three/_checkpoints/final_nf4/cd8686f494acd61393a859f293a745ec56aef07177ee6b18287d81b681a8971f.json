@@ -1,0 +1,40 @@
+{
+  "key": "7895458245b11d02f3b55add62184417e975a36bd790842700bf9ce678fc9814",
+  "digest": "aa4a23d3a55a8d8589e7faf20ab10f21869d11914ebdf1128d74201ee699a910",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:19",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "19",
+      "task_prompt": "Write a function to find whether a given array of integers contains any duplicate element.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef test_duplicate(arr):\n    \"\"\"\n    Determines if the given array contains any duplicate elements.\n\n    Parameters:\n    arr (list of int): The array of integers to check for duplicates.\n\n    Returns:\n    bool: True if there is at least one duplicate element, False otherwise.\n    \"\"\"\n    return len(arr) != len(set(arr))\n```",
+      "input_tokens": 108,
+      "output_tokens": 73,
+      "generation_seconds": 4.099613167811185,
+      "output_tokens_per_second_including_prefill": 17.806558085326685,
+      "peak_allocated_bytes": 9906846720,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

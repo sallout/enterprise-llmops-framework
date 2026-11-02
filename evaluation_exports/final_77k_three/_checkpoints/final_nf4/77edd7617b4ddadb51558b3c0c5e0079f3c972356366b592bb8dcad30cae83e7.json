@@ -1,0 +1,38 @@
+{
+  "key": "b3a0f3ad215319ec78c9eb3e387bc552066d7f5944f02c3d1c8b4b7d8aa8de72",
+  "digest": "33570ede9e678255321139318415e489c407fd19b570436399062cbb6f7697fd",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:394",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "394",
+      "task_prompt": "Write a function to check if given tuple contains no duplicates.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_distinct(input_tuple):\n    \"\"\"\n    Check if the given tuple contains no duplicates.\n\n    Parameters:\n    input_tuple (tuple): The tuple to check for duplicates.\n\n    Returns:\n    bool: True if the tuple contains no duplicates, False otherwise.\n    \"\"\"\n    return len(input_tuple) == len(set(input_tuple))\n```",
+      "input_tokens": 111,
+      "output_tokens": 71,
+      "generation_seconds": 4.119862669147551,
+      "output_tokens_per_second_including_prefill": 17.23358415116559,
+      "peak_allocated_bytes": 9907570688,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

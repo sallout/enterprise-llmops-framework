@@ -1,0 +1,39 @@
+{
+  "key": "9fc38ba5e4267daa15fe08616079fdcd42552c38c54755a7392bcf7e684017be",
+  "digest": "ff05a7caebbf19e16aec6bbaa8eee9ac9e5c263dd9487e9d18b69385fdd1931e",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:260",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "260",
+      "task_prompt": "Write a function to find the nth newman–shanks–williams prime number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef newman_prime(n):\n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(math.sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def nsw_sequence():\n        a, b = 1, 1\n        yield a\n        while True:\n            yield b\n            a, b = b, a + b * b\n\n    count = 0\n    for num in nsw_sequence():\n        if is_prime(num):\n            count += 1\n            if count == n:\n                return num\n```",
+      "input_tokens": 86,
+      "output_tokens": 143,
+      "generation_seconds": 7.736442874651402,
+      "output_tokens_per_second_including_prefill": 18.483946991781213,
+      "peak_allocated_bytes": 10151477248,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

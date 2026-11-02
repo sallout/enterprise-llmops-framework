@@ -1,0 +1,38 @@
+{
+  "key": "1dbc65a08bf79623c94bc26252cdbcfe96db08f07e119dbe251ff0e7a913e9a2",
+  "digest": "3d79c9acba56d36b07fba569c49fa8c93840c645d5f652068981e7f086fe1101",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:93",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "93",
+      "task_prompt": "Write a function to calculate the value of 'a' to the power 'b'.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef power(a, b):\n    \"\"\"\n    Calculate the value of 'a' raised to the power of 'b'.\n\n    Parameters:\n    a (int or float): The base number.\n    b (int): The exponent.\n\n    Returns:\n    int or float: The result of a raised to the power of b.\n    \"\"\"\n    return a ** b\n```",
+      "input_tokens": 87,
+      "output_tokens": 78,
+      "generation_seconds": 4.332885446958244,
+      "output_tokens_per_second_including_prefill": 18.00186064340964,
+      "peak_allocated_bytes": 9899540480,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

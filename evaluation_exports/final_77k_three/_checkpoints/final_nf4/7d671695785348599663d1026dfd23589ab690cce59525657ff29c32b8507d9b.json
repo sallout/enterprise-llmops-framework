@@ -1,0 +1,40 @@
+{
+  "key": "29566a0614bd432a68dec593febcc1b2085fa126729ab57733f8791933dc9a15",
+  "digest": "dc196baf6125586ed01ca06f9aadeadc3f1bfae6dd703b19c3ea0883ce5f7c7e",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:108",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "108",
+      "task_prompt": "Write a function to merge three lists into a single sorted list.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef merge_sorted_list(list1: List[int], list2: List[int], list3: List[int]) -> List[int]:\n    \"\"\"\n    Merges three sorted lists into a single sorted list.\n    \n    :param list1: First sorted list of integers.\n    :param list2: Second sorted list of integers.\n    :param list3: Third sorted list of integers.\n    :return: A single sorted list containing all elements from the input lists.\n    \"\"\"\n    merged_list = list1 + list2 + list3\n    merged_list.sort()\n    return merged_list\n```",
+      "input_tokens": 485,
+      "output_tokens": 129,
+      "generation_seconds": 7.447132173925638,
+      "output_tokens_per_second_including_prefill": 17.32210426607746,
+      "peak_allocated_bytes": 10007757824,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

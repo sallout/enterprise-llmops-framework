@@ -1,0 +1,40 @@
+{
+  "key": "6ac39bb7d891573329a47aaea8fbf659d02c27a843961ca1a82854a4593c99d5",
+  "digest": "2d3b884a20c0bd7a4c3fff741103dccfb575a5e943045943660f3dfe7d99ddd0",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:253",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "253",
+      "task_prompt": "Write a python function that returns the number of integer elements in a given list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_integer(lst):\n    \"\"\"\n    Returns the count of integer elements in the given list.\n\n    Parameters:\n    lst (list): The list to be checked for integer elements.\n\n    Returns:\n    int: The number of integer elements in the list.\n    \"\"\"\n    return sum(isinstance(x, int) for x in lst)\n```",
+      "input_tokens": 101,
+      "output_tokens": 71,
+      "generation_seconds": 3.9756134250201285,
+      "output_tokens_per_second_including_prefill": 17.858879224315057,
+      "peak_allocated_bytes": 9904324608,
+      "peak_reserved_bytes": 10003415040
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "5b3dea01fea99da82af212dc955fe2f835f6127c28aad4a75e7395c7c9a4018b",
+  "digest": "832465eb5587cbebbc84bc19d8b56271a805225ca7848cda5560f9470d748212",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:67",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "67",
+      "task_prompt": "Write a function to find the number of ways to partition a set of Bell numbers.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\nfrom functools import lru_cache\n\ndef bell_number(n):\n    @lru_cache(maxsize=None)\n    def bell(n):\n        if n == 0:\n            return 1\n        return sum(math.comb(n-1, k) * bell(k) for k in range(n))\n    return bell(n)\n```",
+      "input_tokens": 135,
+      "output_tokens": 73,
+      "generation_seconds": 4.007448747754097,
+      "output_tokens_per_second_including_prefill": 18.21607825699868,
+      "peak_allocated_bytes": 10166137856,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

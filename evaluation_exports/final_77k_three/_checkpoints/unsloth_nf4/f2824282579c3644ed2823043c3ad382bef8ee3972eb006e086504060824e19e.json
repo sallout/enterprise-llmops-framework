@@ -1,0 +1,39 @@
+{
+  "key": "a41771e57bcfa44ca3d24f64315a2b5a4942bef1ee94b4ae9334b4ddf2f59a90",
+  "digest": "07ea8c0c6efd5422b69913367a3bf517240e28952a38aee05a355647f97b3df1",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:248",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "248",
+      "task_prompt": "Write a function that takes in an integer n and calculates the harmonic sum of n-1.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef harmonic_sum(n):\n    if n <= 0:\n        return 0.0\n    total = 0.0\n    for i in range(1, n):\n        total += 1.0 / i\n    return total\n```",
+      "input_tokens": 172,
+      "output_tokens": 59,
+      "generation_seconds": 3.278487191069871,
+      "output_tokens_per_second_including_prefill": 17.996105081852246,
+      "peak_allocated_bytes": 10175157248,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

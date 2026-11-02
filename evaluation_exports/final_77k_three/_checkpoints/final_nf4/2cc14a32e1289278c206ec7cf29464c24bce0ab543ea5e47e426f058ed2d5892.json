@@ -1,0 +1,39 @@
+{
+  "key": "609c6201ec383e89fc6feecf7886fb8e2a7b06423960ae20e7f95f82255ee882",
+  "digest": "824cc3a0c095cf04b3c31002b4560b77c0352a4a74fbdd347871cd2dd906bbc5",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:417",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "417",
+      "task_prompt": "Write a function to find common first element in given list of tuple.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom itertools import groupby\n\ndef group_tuples(tuples_list):\n    \"\"\"\n    Groups tuples by their first element and returns a list of tuples with the first element followed by all second elements.\n    \n    :param tuples_list: List of tuples to be grouped.\n    :return: List of grouped tuples.\n    \"\"\"\n    grouped = []\n    for key, group in groupby(tuples_list, lambda x: x[0]):\n        first_element = next(group)\n        second_elements = [t[1] for t in group]\n        grouped.append((first_element[0],) + tuple(second_elements))\n    return grouped\n```",
+      "input_tokens": 162,
+      "output_tokens": 131,
+      "generation_seconds": 7.4868524027988315,
+      "output_tokens_per_second_including_prefill": 17.497339729981572,
+      "peak_allocated_bytes": 9921041408,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

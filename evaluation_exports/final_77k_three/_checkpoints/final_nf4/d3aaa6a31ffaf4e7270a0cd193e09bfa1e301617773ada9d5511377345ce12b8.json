@@ -1,0 +1,40 @@
+{
+  "key": "63f09c3848547e897291961ff752c8ba7966837dfd598f050724652dd92cbccf",
+  "digest": "6dfdadc6b0d468a5c37ba0c07aca49c99a17bf859d4788135ed364d1a5e78ad9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:242",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "242",
+      "task_prompt": "Write a function to count the total number of characters in a string.",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_charac(input_string):\n    \"\"\"\n    Counts the total number of characters in the input string.\n\n    Parameters:\n    input_string (str): The string whose characters are to be counted.\n\n    Returns:\n    int: The total number of characters in the input string.\n    \"\"\"\n    return len(input_string)\n```",
+      "input_tokens": 76,
+      "output_tokens": 68,
+      "generation_seconds": 4.081573416944593,
+      "output_tokens_per_second_including_prefill": 16.66024178756628,
+      "peak_allocated_bytes": 9896549376,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

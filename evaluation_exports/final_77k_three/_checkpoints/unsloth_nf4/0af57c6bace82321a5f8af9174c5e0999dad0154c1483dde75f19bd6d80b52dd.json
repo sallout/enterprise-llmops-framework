@@ -1,0 +1,40 @@
+{
+  "key": "bcc6711b4a465fdf78be8b99ded37a8ec656cc0b10194d9db01ff9281283a520",
+  "digest": "06df58d27a5939cb0a2d8f210d6a308bfaf136785d24ef48b4f54332a540f1c0",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/155",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/155",
+      "task_prompt": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef even_odd_count(num):\n    \"\"\"Given an integer, return a tuple that has the number of even and odd digits respectively.\n\n    Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n    # Convert the number to its absolute value to ignore the sign\n    num = abs(num)\n    even = 0\n    odd = 0\n    for digit in str(num):\n        if int(digit) % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n    return (even, odd)\n```",
+      "input_tokens": 97,
+      "output_tokens": 141,
+      "generation_seconds": 8.895887843798846,
+      "output_tokens_per_second_including_prefill": 15.85001997279995,
+      "peak_allocated_bytes": 10154956800,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "8ed190d47f78ef92b356a4c71dac024a0aa6a7e162d78a7c098d200918a371f9",
+  "digest": "dfc5f90d6744f481c0adc503fddc5438ef0624000e68fcef485f6a0b54de16da",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:274",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "274",
+      "task_prompt": "Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import comb\n\ndef even_binomial_Coeff_Sum(n):\n    \"\"\"\n    Calculate the sum of binomial coefficients at even indices for a given n.\n    \n    Parameters:\n    n (int): A positive integer representing the upper index of the binomial coefficient.\n    \n    Returns:\n    int: The sum of binomial coefficients at even indices.\n    \"\"\"\n    return sum(comb(n, k) for k in range(0, n + 1, 2))\n```",
+      "input_tokens": 101,
+      "output_tokens": 102,
+      "generation_seconds": 5.62394883390516,
+      "output_tokens_per_second_including_prefill": 18.136722614734953,
+      "peak_allocated_bytes": 9904324608,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

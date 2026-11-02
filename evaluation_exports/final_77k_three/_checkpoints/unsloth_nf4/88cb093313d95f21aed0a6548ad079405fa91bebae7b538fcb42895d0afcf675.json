@@ -1,0 +1,41 @@
+{
+  "key": "c47cf2848dfc0d9ddfdfcb8201a83b79085018ce72c248996131ada39ceafaa9",
+  "digest": "272f80749f32ea66acd487925b290e6ad3edfb5ec016b0e5aec190428aa80f20",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:140",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "140",
+      "task_prompt": "Write a function to flatten the list of lists into a single set of numbers.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef extract_singly(nested_list):\n    result = set()\n    for sublist in nested_list:\n        result.update(sublist)\n    return result\n```",
+      "input_tokens": 208,
+      "output_tokens": 35,
+      "generation_seconds": 1.9354803119786084,
+      "output_tokens_per_second_including_prefill": 18.083366585227672,
+      "peak_allocated_bytes": 10185188352,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

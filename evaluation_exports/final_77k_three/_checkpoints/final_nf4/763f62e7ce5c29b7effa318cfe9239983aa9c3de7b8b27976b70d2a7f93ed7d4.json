@@ -1,0 +1,40 @@
+{
+  "key": "effa9311eb6cc1365999570fa4b27fe8fb1f4be9d31a825f68f0cfebfb0c0b47",
+  "digest": "aa89b25fca5985bd10d763276bd5abb05ad365bb22aec18b1fccd587edd9133f",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:283",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "283",
+      "task_prompt": "Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef validate(number):\n    \"\"\"\n    Validates if the frequency of each digit in the number is less than or equal to the digit itself.\n    \n    :param number: Integer to validate\n    :return: Boolean indicating if the condition is met\n    \"\"\"\n    digits = str(number)\n    digit_count = Counter(digits)\n    for digit, count in digit_count.items():\n        if count > int(digit):\n            return False\n    return True\n```",
+      "input_tokens": 95,
+      "output_tokens": 100,
+      "generation_seconds": 5.817322822287679,
+      "output_tokens_per_second_including_prefill": 17.1900379358137,
+      "peak_allocated_bytes": 9901715456,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

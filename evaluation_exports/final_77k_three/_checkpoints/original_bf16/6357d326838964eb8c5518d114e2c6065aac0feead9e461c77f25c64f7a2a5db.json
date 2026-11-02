@@ -1,0 +1,40 @@
+{
+  "key": "a2afcf229d7b118e82292ea07ff2f2cb4a26c4b213aa6772458a75e7e7ecce04",
+  "digest": "cdcbe4df097e1919f2c2bfb82d3138888a8b1e25d70c13030b08be71ca0a7db7",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:424",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "424",
+      "task_prompt": "Write a function to extract only the rear index element of each string in the given tuple.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef extract_rear(strings):\n    return [s[-1] for s in strings]\n\n# Test cases\nassert extract_rear(('Mers', 'for', 'Vers')) == ['s', 'r', 's']\nassert extract_rear(('Avenge', 'for', 'People')) == ['e', 'r', 'e']\nassert extract_rear(('Gotta', 'get', 'go')) == ['a', 't', 'o']\n```",
+      "input_tokens": 127,
+      "output_tokens": 99,
+      "generation_seconds": 4.184587384108454,
+      "output_tokens_per_second_including_prefill": 23.658246539662695,
+      "peak_allocated_bytes": 29584501760,
+      "peak_reserved_bytes": 29628563456
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

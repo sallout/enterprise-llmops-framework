@@ -1,0 +1,11 @@
+{
+  "key": "45d8b2d337201426072ed012794e534b30331de75a15e2bd0b26e01c334a890d",
+  "digest": "eff9e7daeeb9347c91073e3212618901a002c3fcd3d8afcd805bf1f90d994f7b",
+  "data": {
+    "status": "LIMITED_CHECK_COMPLETED",
+    "training_rows_checked": 78077,
+    "excluded": {},
+    "method": ">=80% containment of 13-word prompt OR reference ngrams in a single cached training row",
+    "limitations": "Short passages, paraphrases and pretraining overlap remain unresolved; absence of matches is not proof of independence."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "c4bf03d6048d51460e21f4f3bbb47edd23621ba0d75200fbb6a701edd9ae2a82",
+  "digest": "c39106630b4cfa4e5c632a9577597746d8e0ec97493e37ad5139dc783d749281",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/102",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/102",
+      "task_prompt": "\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n    # Ensure x is less than or equal to y\n    if x > y:\n        return -1\n\n    # Start from y and go down to x, checking for even numbers\n    for num in range(y, x - 1, -1):\n        if num % 2 == 0:\n            return num\n\n    return -1\n```",
+      "input_tokens": 128,
+      "output_tokens": 171,
+      "generation_seconds": 9.450450494419783,
+      "output_tokens_per_second_including_prefill": 18.09437551161932,
+      "peak_allocated_bytes": 10163942400,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

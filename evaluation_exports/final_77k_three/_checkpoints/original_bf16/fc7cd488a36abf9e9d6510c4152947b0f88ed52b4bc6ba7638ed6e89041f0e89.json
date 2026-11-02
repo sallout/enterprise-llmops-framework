@@ -1,0 +1,40 @@
+{
+  "key": "c50f89e0df92826c8aa6748bddd8906a18e9a8a705d35aab3124d9b551674b3e",
+  "digest": "4cedebe6e368673a4b795c86ebd7940fe092fa39d06c064b3c211108bbfa4154",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:247",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "247",
+      "task_prompt": "Write a function to find the length of the longest palindromic subsequence in the given string.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport sys\nsys.setrecursionlimit(10000)\n\ndef lps(s):\n    n = len(s)\n    dp = [[0] * n for _ in range(n)]\n    \n    for i in range(n):\n        dp[i][i] = 1\n    \n    for cl in range(2, n + 1):\n        for i in range(n - cl + 1):\n            j = i + cl - 1\n            if s[i] == s[j]:\n                if cl == 2:\n                    dp[i][j] = 2\n                else:\n                    dp[i][j] = 2 + dp[i + 1][j - 1]\n            else:\n                dp[i][j] = max(dp[i][j - 1], dp[i + 1][j])\n    \n    return dp[0][n - 1]\n\nassert lps(\"TENS FOR TENS\") == 5\nassert lps(\"CARDIO FOR CARDS\") == 7\nassert lps(\"PART OF THE JOURNEY IS PART\") == 9\n```",
+      "input_tokens": 99,
+      "output_tokens": 232,
+      "generation_seconds": 9.92153201578185,
+      "output_tokens_per_second_including_prefill": 23.38348549709514,
+      "peak_allocated_bytes": 29600755200,
+      "peak_reserved_bytes": 29758586880
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

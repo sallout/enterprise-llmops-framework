@@ -1,0 +1,39 @@
+{
+  "key": "f0f4c09a4446323a76104fe17ee339446fff1f0f19a93e30b2a77b22e828e610",
+  "digest": "1ce76b3d380b4617a563e6acce100f6eb08e294e53eb3a05f20ac15d5051d7d7",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:417",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "417",
+      "task_prompt": "Write a function to find common first element in given list of tuple.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom itertools import groupby\n\ndef group_tuples(tuples_list):\n    if not tuples_list:\n        return []\n    first_elements = [t[0] for t in tuples_list]\n    unique_first_elements = set(first_elements)\n    result = []\n    for key in unique_first_elements:\n        group = [t for t in tuples_list if t[0] == key]\n        combined = list(group[0])\n        for t in group[1:]:\n            combined.extend(t[1:])\n        result.append(tuple(combined))\n    return result\n```",
+      "input_tokens": 162,
+      "output_tokens": 115,
+      "generation_seconds": 5.217679827008396,
+      "output_tokens_per_second_including_prefill": 22.04044782600934,
+      "peak_allocated_bytes": 29596307456,
+      "peak_reserved_bytes": 29758586880
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

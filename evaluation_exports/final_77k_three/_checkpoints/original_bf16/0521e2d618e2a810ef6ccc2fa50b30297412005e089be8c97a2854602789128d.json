@@ -1,0 +1,40 @@
+{
+  "key": "fa5cf1e6a1e081044ad24cb1a9fec97ee4309a91a83f949848c5f84bb5ac7564",
+  "digest": "dc89191e3cd0d47a93c9f5ebf3ea18c1e2b0af42bb2e4b2285f188f6fedec8cd",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:286",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "286",
+      "task_prompt": "Write a function to find the largest sum of a contiguous array in the modified array which is formed by repeating the given array k times.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport sys\n\ndef max_sub_array_sum_repeated(arr, n, k):\n    max_so_far = -sys.maxsize\n    max_ending_here = 0\n    total_sum = sum(arr)\n    if total_sum < 0:\n        return max_subarray(arr)\n    else:\n        return max_subarray(arr) + (k - 1) * total_sum\n\ndef max_subarray(arr):\n    max_so_far = -sys.maxsize\n    max_ending_here = 0\n    for x in arr:\n        max_ending_here = max(x, max_ending_here + x)\n        max_so_far = max(max_so_far, max_ending_here)\n    return max_so_far\n```",
+      "input_tokens": 148,
+      "output_tokens": 151,
+      "generation_seconds": 6.6207733461633325,
+      "output_tokens_per_second_including_prefill": 22.80700336728834,
+      "peak_allocated_bytes": 29595512832,
+      "peak_reserved_bytes": 29758586880
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

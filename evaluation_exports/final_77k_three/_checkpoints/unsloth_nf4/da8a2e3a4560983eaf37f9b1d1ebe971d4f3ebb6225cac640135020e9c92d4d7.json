@@ -1,0 +1,39 @@
+{
+  "key": "a2dae601446098082f17ec233baa7279afe27b0044ca54f73e280d2568eba86d",
+  "digest": "6c3149900b14faaaf8accf78e7187ad124cf06b580b522f71d8084058be32155",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:477",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "477",
+      "task_prompt": "Write a python function to convert the given string to lower case.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_lower(s):\n    return s.lower()\n```",
+      "input_tokens": 82,
+      "output_tokens": 15,
+      "generation_seconds": 0.9049817300401628,
+      "output_tokens_per_second_including_prefill": 16.574920246549404,
+      "peak_allocated_bytes": 10150377472,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

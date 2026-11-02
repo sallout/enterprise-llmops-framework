@@ -1,0 +1,40 @@
+{
+  "key": "7948292e682236ce834582cbe6a3aa23acf91eec801da605712011909d4f3c2d",
+  "digest": "2aa07ee3f755669b13657ec93cbd831490ee04a98af9350e8972dd6d68ae496f",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:424",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "424",
+      "task_prompt": "Write a function to extract only the rear index element of each string in the given tuple.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef extract_rear(strings):\n    return [s[-1] for s in strings]\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 127,
+      "output_tokens": 33,
+      "generation_seconds": 1.843229163903743,
+      "output_tokens_per_second_including_prefill": 17.903362558625034,
+      "peak_allocated_bytes": 10163481600,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

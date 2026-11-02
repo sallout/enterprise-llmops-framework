@@ -1,0 +1,40 @@
+{
+  "key": "80a34fbe43fb943cf5fa6fc6a1e9636f129f9ab1c3ffdc9222172eac68edf903",
+  "digest": "72c7d8603f1d05f680516651aed66e7b3e418e0029bebada7c90af22b66e06ee",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/11",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/11",
+      "task_prompt": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # Ensure both strings are of equal length by padding with leading zeros\n    max_len = max(len(a), len(b))\n    a = a.zfill(max_len)\n    b = b.zfill(max_len)\n    \n    # Perform XOR on each corresponding pair of bits\n    result = []\n    for bit_a, bit_b in zip(a, b):\n        xor_bit = '1' if bit_a != bit_b else '0'\n        result.append(xor_bit)\n    \n    return ''.join(result)\n```",
+      "input_tokens": 111,
+      "output_tokens": 185,
+      "generation_seconds": 10.260033104103059,
+      "output_tokens_per_second_including_prefill": 18.03113090600236,
+      "peak_allocated_bytes": 10159660032,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "00298145968d3cac48b466b208013b570ff9c5a322eac29105700c910b43fc31",
+  "digest": "67c1f8bd26e258a541e461f41e97fb9c4dd5813ca8050a6d1178026f8bd7c4ec",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/128",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/128",
+      "task_prompt": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n    if not arr:\n        return None\n\n    sign_product = 1\n    magnitude_sum = 0\n\n    for num in arr:\n        if num == 0:\n            sign_product = 0\n            break\n        sign = 1 if num > 0 else -1\n        sign_product *= sign\n        magnitude_sum += abs(num)\n\n    return sign_product * magnitude_sum\n```",
+      "input_tokens": 151,
+      "output_tokens": 202,
+      "generation_seconds": 8.268418779131025,
+      "output_tokens_per_second_including_prefill": 24.4303058899043,
+      "peak_allocated_bytes": 29604361216,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "a28bef29bb6306039fde442f1fab8e7879e49b96aff16cd8708524b2d382e6cc",
+  "digest": "eb8a8c9da67e5306ac6d384416a95647c80adeb907a460d93fc698c21f2259ba",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:137",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "137",
+      "task_prompt": "Write a function to find the ratio of zeroes to non-zeroes in an array of integers.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef zero_count(arr):\n    zero = arr.count(0)\n    non_zero = len(arr) - zero\n    if non_zero == 0:\n        return 0.0\n    return zero / non_zero\n```",
+      "input_tokens": 232,
+      "output_tokens": 53,
+      "generation_seconds": 2.1062303381040692,
+      "output_tokens_per_second_including_prefill": 25.163439649107012,
+      "peak_allocated_bytes": 29617275904,
+      "peak_reserved_bytes": 29693575168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

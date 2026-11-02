@@ -1,0 +1,39 @@
+{
+  "key": "7e4e10ba041f9207a17da16eb599029f2f1204b819cf5921166c15558a619ba7",
+  "digest": "7019e0a77fb5189184ba6aa9ceb83367655c4a6c0f1172fc73cbcac30013fc51",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:227",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "227",
+      "task_prompt": "Write a function to find minimum of three numbers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef min_of_three(a, b, c):\n    \"\"\"\n    Returns the minimum of three numbers.\n\n    Parameters:\n    a (int or float): First number\n    b (int or float): Second number\n    c (int or float): Third number\n\n    Returns:\n    int or float: The minimum of the three numbers\n    \"\"\"\n    return min(a, b, c)\n```",
+      "input_tokens": 93,
+      "output_tokens": 84,
+      "generation_seconds": 4.597602949012071,
+      "output_tokens_per_second_including_prefill": 18.270390229771767,
+      "peak_allocated_bytes": 9901171712,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

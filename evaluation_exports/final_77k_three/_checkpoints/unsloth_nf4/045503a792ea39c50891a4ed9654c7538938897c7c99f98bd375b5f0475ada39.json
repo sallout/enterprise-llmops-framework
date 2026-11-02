@@ -1,0 +1,39 @@
+{
+  "key": "f68ccbb754753152c2c0725e9288624dfd9afba93df15f6e8271b065bdc9e71c",
+  "digest": "4fef2948c1e78a3a9bb0ffdd2d23383a03599a4378d63a291959fce35b6486b4",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:274",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "274",
+      "task_prompt": "Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef even_binomial_Coeff_Sum(n):\n    total = 0\n    for k in range(0, n + 1, 2):\n        total += math.comb(n, k)\n    return total\n```",
+      "input_tokens": 101,
+      "output_tokens": 54,
+      "generation_seconds": 3.3834477746859193,
+      "output_tokens_per_second_including_prefill": 15.960051283786328,
+      "peak_allocated_bytes": 10155778048,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

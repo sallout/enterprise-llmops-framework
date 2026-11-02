@@ -1,0 +1,39 @@
+{
+  "key": "b18c53fd718bcecd5fa0e73220cfb5df21b93c3b30c67ef6466470c8e4822db9",
+  "digest": "db86e6bdada942621d582d0755f680311c3a287745b1a0a61b3a7b35e33498bb",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:269",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "269",
+      "task_prompt": "Write a function to find the ascii value of a character.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef ascii_value(char):\n    return ord(char)\n\n# Test cases\nassert ascii_value('A') == 65\nassert ascii_value('R') == 82\nassert ascii_value('S') == 83\n```",
+      "input_tokens": 72,
+      "output_tokens": 52,
+      "generation_seconds": 2.299030212685466,
+      "output_tokens_per_second_including_prefill": 22.618232554351476,
+      "peak_allocated_bytes": 29567579136,
+      "peak_reserved_bytes": 29844570112
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

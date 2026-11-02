@@ -1,0 +1,39 @@
+{
+  "key": "4498dac10c83c39036e7e1c0602417177779af5db0514a017a858e134ba0a26a",
+  "digest": "8b6823754833ebc1ac1cd2e7f0d89d090488839913c86f2811b032060c279e1c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:252",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "252",
+      "task_prompt": "Write a python function to convert complex numbers to polar coordinates.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport cmath\n\ndef convert(complex_number):\n    \"\"\"\n    Convert a complex number to polar coordinates.\n\n    Parameters:\n    complex_number (complex): The complex number to convert.\n\n    Returns:\n    tuple: A tuple containing the magnitude and angle (in radians) of the complex number.\n    \"\"\"\n    magnitude = abs(complex_number)\n    angle = cmath.phase(complex_number)\n    return magnitude, angle\n```",
+      "input_tokens": 92,
+      "output_tokens": 89,
+      "generation_seconds": 4.900395011994988,
+      "output_tokens_per_second_including_prefill": 18.161801198097177,
+      "peak_allocated_bytes": 9900899328,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

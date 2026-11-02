@@ -1,0 +1,39 @@
+{
+  "key": "f13f1465e018d476d75278de4f602e4ff426c010981e255a484b5e1247f5e819",
+  "digest": "105eb8b71bf09dc255b37f2a547450abadf99c50595f597986976a18a05a39ad",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:252",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "252",
+      "task_prompt": "Write a python function to convert complex numbers to polar coordinates.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport cmath\n\ndef convert(z):\n    r = abs(z)\n    theta = cmath.phase(z)\n    return (float(r), float(theta))\n```",
+      "input_tokens": 92,
+      "output_tokens": 36,
+      "generation_seconds": 2.215754060074687,
+      "output_tokens_per_second_including_prefill": 16.247290549379176,
+      "peak_allocated_bytes": 10153929728,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

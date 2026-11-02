@@ -1,0 +1,40 @@
+{
+  "key": "62dc9b2d4ddf16e93d041aa8387fea0c171d236146bb293e9b562e250cbacf52",
+  "digest": "0e65320e1c9ee4b5950a34cc7a8fe4895d8c610724bff3647b986d0d0d5c2be5",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:278",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "278",
+      "task_prompt": "Write a function to find the number of elements that occurs before the tuple element in the given tuple.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_first_elements(input_tuple):\n    \"\"\"\n    Counts the number of elements that occur before the first tuple element in the given tuple.\n\n    :param input_tuple: A tuple containing elements, possibly including nested tuples.\n    :return: The count of elements before the first tuple element.\n    \"\"\"\n    count = 0\n    for element in input_tuple:\n        if isinstance(element, tuple):\n            return count\n        count += 1\n    return count\n```",
+      "input_tokens": 138,
+      "output_tokens": 98,
+      "generation_seconds": 6.067381420172751,
+      "output_tokens_per_second_including_prefill": 16.151943188237823,
+      "peak_allocated_bytes": 9914364928,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "f13b193cf6ffdeba2cd1f8e453cf2aac338f91ae4a722fe324e8471c2f499410",
+  "digest": "0594260df2b193fb7dfba2a9230239cbec524a1ed11e883455a8a5161ea852f9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/138",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/138",
+      "task_prompt": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    \"\"\"\n    if n < 8:\n        return False\n    for i in range(2, n // 2 + 1, 2):\n        for j in range(i, n // 2 + 1, 2):\n            for k in range(j, n // 2 + 1, 2):\n                l = n - i - j - k\n                if l > 0 and l % 2 == 0:\n                    return True\n    return False\n```",
+      "input_tokens": 106,
+      "output_tokens": 137,
+      "generation_seconds": 7.585431791841984,
+      "output_tokens_per_second_including_prefill": 18.06093624720763,
+      "peak_allocated_bytes": 9906364416,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

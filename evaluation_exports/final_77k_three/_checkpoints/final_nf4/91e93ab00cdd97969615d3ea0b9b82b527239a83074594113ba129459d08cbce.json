@@ -1,0 +1,39 @@
+{
+  "key": "e22bd39a0183a0bb06fc7c2bce42cae1e433bdb2de75bb1dbfd97729db90bdd3",
+  "digest": "617d59bfee11104d6c6f68160a619cb73cfddb938d85af9feefa39486d29377a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:65",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "65",
+      "task_prompt": "Write a function to flatten a list and sum all of its elements.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef recursive_list_sum(lst):\n    \"\"\"\n    Recursively flattens a nested list and returns the sum of all its elements.\n    \n    :param lst: List of integers or nested lists of integers\n    :return: Integer sum of all elements in the list\n    \"\"\"\n    if not lst:\n        return 0\n    elif isinstance(lst[0], list):\n        return recursive_list_sum(lst[0]) + recursive_list_sum(lst[1:])\n    else:\n        return lst[0] + recursive_list_sum(lst[1:])\n```",
+      "input_tokens": 129,
+      "output_tokens": 113,
+      "generation_seconds": 6.244596038013697,
+      "output_tokens_per_second_including_prefill": 18.095646109390838,
+      "peak_allocated_bytes": 9912678912,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

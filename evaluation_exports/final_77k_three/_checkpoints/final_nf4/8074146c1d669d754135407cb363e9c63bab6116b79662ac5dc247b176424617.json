@@ -1,0 +1,39 @@
+{
+  "key": "4c8b410532fad423a83b534d4358fa263bbf73763c128c23f9da4ff9f8423ce3",
+  "digest": "25d8546b17c28b2b58bcfafbe0d12bf24f2052fe5bdad3eac17f071f36ea6e3c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:246",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "246",
+      "task_prompt": "Write a function for computing square roots using the babylonian method.",
+      "skill_tags": [
+        "oop"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "oop",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef babylonian_squareroot(number):\n    \"\"\"\n    Calculate the square root of a number using the Babylonian method.\n    \n    :param number: The number to find the square root of.\n    :return: The square root of the number.\n    \"\"\"\n    if number < 0:\n        raise ValueError(\"Cannot compute square root of a negative number\")\n    if number == 0:\n        return 0\n    guess = number / 2.0\n    while True:\n        next_guess = (guess + number / guess) / 2\n        if abs(next_guess - guess) < 1e-10:\n            return next_guess\n        guess = next_guess\n```",
+      "input_tokens": 164,
+      "output_tokens": 150,
+      "generation_seconds": 8.45547241345048,
+      "output_tokens_per_second_including_prefill": 17.739990465983738,
+      "peak_allocated_bytes": 9921416192,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "674f885f6d3643e579dc5ac552e60fa55d8f938b45954b3b26c8e4b14f953499",
+  "digest": "8042f81422f2a19d11f4b5a96694e8e6be293df4b62aac2e23dc0847e3b0150f",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/100",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/100",
+      "task_prompt": "\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n    result = []\n    current = n\n    for _ in range(n):\n        result.append(current)\n        if n % 2 == 1:\n            current += 2\n        else:\n            current += 2\n    return result\n```",
+      "input_tokens": 161,
+      "output_tokens": 181,
+      "generation_seconds": 9.870066646952182,
+      "output_tokens_per_second_including_prefill": 18.33827536067264,
+      "peak_allocated_bytes": 10172100608,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

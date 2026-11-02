@@ -1,0 +1,40 @@
+{
+  "key": "394f5d3308fd40bbde9f060a8b3a6789c391ba17303b054a51441cac67377f1c",
+  "digest": "18552dec4ee275375f1957215528633e0bb9fe317f32fe1dda65e6c8aee55e85",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/128",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/128",
+      "task_prompt": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef prod_signs(arr):\n    \"\"\"\n    Returns the sum of magnitudes of integers multiplied by the product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Returns None for empty array.\n\n    :param arr: List of integers\n    :return: Integer or None\n    \"\"\"\n    if not arr:\n        return None\n\n    sign_product = 1\n    magnitude_sum = 0\n\n    for num in arr:\n        if num == 0:\n            sign_product = 0\n        else:\n            sign_product *= 1 if num > 0 else -1\n            magnitude_sum += abs(num)\n\n    return sign_product * magnitude_sum\n```",
+      "input_tokens": 151,
+      "output_tokens": 151,
+      "generation_seconds": 8.684954880736768,
+      "output_tokens_per_second_including_prefill": 17.386388538979983,
+      "peak_allocated_bytes": 9917218816,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

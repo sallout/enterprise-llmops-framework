@@ -1,0 +1,40 @@
+{
+  "key": "d61d2a386e9112dde5e8c8b636543706a845c57868eb5dfb8ebffcd461509876",
+  "digest": "41b8536573fbe8bce22a8d5343aca4526d3abb2381c32ca863502c1538ef8ce7",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:424",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "424",
+      "task_prompt": "Write a function to extract only the rear index element of each string in the given tuple.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef extract_rear(strings):\n    \"\"\"\n    Extracts the last character from each string in the input tuple.\n\n    Parameters:\n    strings (tuple): A tuple of strings.\n\n    Returns:\n    list: A list containing the last character of each string.\n    \"\"\"\n    return [s[-1] for s in strings]\n```",
+      "input_tokens": 127,
+      "output_tokens": 70,
+      "generation_seconds": 3.951703271828592,
+      "output_tokens_per_second_including_prefill": 17.713880619282566,
+      "peak_allocated_bytes": 9912302080,
+      "peak_reserved_bytes": 9980346368
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

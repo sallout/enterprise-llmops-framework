@@ -1,0 +1,40 @@
+{
+  "key": "ae295320e430c4a7b1ac257f5a40088940b49cd28cb844119a4461d12db8ac95",
+  "digest": "6397040d3d736fbfc2b9a7d94b85536ebe0f663e33b1e62f833da5ea4bea11e5",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:242",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "242",
+      "task_prompt": "Write a function to count the total number of characters in a string.",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_charac(s):\n    return len(s)\n```",
+      "input_tokens": 76,
+      "output_tokens": 16,
+      "generation_seconds": 0.888251637108624,
+      "output_tokens_per_second_including_prefill": 18.01291360642138,
+      "peak_allocated_bytes": 10148727808,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

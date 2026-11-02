@@ -1,0 +1,39 @@
+{
+  "key": "b4b32e4b634e8f458a24c47ce82b4923df221be5f1504b2689587cf058da3c2b",
+  "digest": "6a8688a95ba3f1df64cc31f8580b8bb3eba1c588f1cc2659f0bc44d3c96005c5",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:20",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "20",
+      "task_prompt": "Write a function to check if the given number is woodball or not.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_woodall(n):\n    if n < 1:\n        return False\n    m = n\n    while m > 0:\n        m = m // 2\n        if m == 0:\n            return True\n        if m < 1:\n            return False\n    return False\n```",
+      "input_tokens": 87,
+      "output_tokens": 69,
+      "generation_seconds": 3.7648299359716475,
+      "output_tokens_per_second_including_prefill": 18.327521076245404,
+      "peak_allocated_bytes": 10151752704,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

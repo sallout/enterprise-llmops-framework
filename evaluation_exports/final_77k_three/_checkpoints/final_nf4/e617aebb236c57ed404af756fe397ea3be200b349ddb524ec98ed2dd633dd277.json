@@ -1,0 +1,38 @@
+{
+  "key": "f2d1f460b17a331e68dd4a60c5d4049e27b9277bf2b2cd5e579222ac8c1a2f8c",
+  "digest": "52cb46ce5ce8260c834c6dac851b336a3947c1b40d45124adbc44be2c4552b71",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:452",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "452",
+      "task_prompt": "Write a function that gives loss amount on a sale if the given amount has loss else return 0.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef loss_amount(sale_amount, cost_price):\n    \"\"\"\n    Calculate the loss amount if the sale amount is less than the cost price.\n    \n    Parameters:\n    sale_amount (int): The amount for which the sale is made.\n    cost_price (int): The cost price of the item.\n    \n    Returns:\n    int: The loss amount if there is a loss, otherwise 0.\n    \"\"\"\n    return max(0, cost_price - sale_amount)\n```",
+      "input_tokens": 105,
+      "output_tokens": 99,
+      "generation_seconds": 5.67375417612493,
+      "output_tokens_per_second_including_prefill": 17.448764420670614,
+      "peak_allocated_bytes": 9906123776,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

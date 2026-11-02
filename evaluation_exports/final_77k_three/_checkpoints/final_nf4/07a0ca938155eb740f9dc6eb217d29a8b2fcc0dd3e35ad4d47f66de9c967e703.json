@@ -1,0 +1,39 @@
+{
+  "key": "7071b99c8d9e8d38c6e6763b31488cf3e9ecc6f86c81302618fa1b8140d94da5",
+  "digest": "82a1e9dbfef1f3f7d6ecab378ecb7376a8ef5348b66afc5b238d29b1054243df",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:20",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "20",
+      "task_prompt": "Write a function to check if the given number is woodball or not.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_woodall(n):\n    \"\"\"\n    Check if the given number is woodball or not.\n    \n    Parameters:\n    n (int): The number to check.\n    \n    Returns:\n    bool: True if the number is woodball, False otherwise.\n    \"\"\"\n    if n < 1:\n        return False\n    k = 0\n    while True:\n        woodall_number = k * (2 ** k) - 1\n        if woodall_number == n:\n            return True\n        elif woodall_number > n:\n            return False\n        k += 1\n```",
+      "input_tokens": 87,
+      "output_tokens": 127,
+      "generation_seconds": 7.15178154502064,
+      "output_tokens_per_second_including_prefill": 17.75781309881068,
+      "peak_allocated_bytes": 9899540480,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

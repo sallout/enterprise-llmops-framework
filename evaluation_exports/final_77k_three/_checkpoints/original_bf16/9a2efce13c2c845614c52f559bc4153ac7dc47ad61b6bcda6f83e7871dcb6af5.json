@@ -1,0 +1,39 @@
+{
+  "key": "5484c1cbda5182548dcba4523b93224c80994abc60cfc598d26016debf58c7b8",
+  "digest": "41430ca069e3dc30295db36d6b79436fb3690a340191d1a1653da846f5364abe",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:129",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "129",
+      "task_prompt": "Write a function to calculate whether the matrix is a magic square.",
+      "skill_tags": [
+        "matrices"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport numpy as np\n\ndef magic_square_test(matrix):\n    n = len(matrix)\n    magic_sum = n * (n**2 + 1) // 2\n\n    # Check rows\n    for row in matrix:\n        if sum(row) != magic_sum:\n            return False\n\n    # Check columns\n    for col in range(n):\n        if sum(matrix[row][col] for row in range(n)) != magic_sum:\n            return False\n\n    # Check main diagonal\n    if sum(matrix[i][i] for i in range(n)) != magic_sum:\n        return False\n\n    # Check anti-diagonal\n    if sum(matrix[i][n - 1 - i] for i in range(n)) != magic_sum:\n        return False\n\n    # Check if all numbers are unique and in the range 1 to n^2\n    flat = [num for row in matrix for num in row]\n    if sorted(flat) != list(range(1, n**2 + 1)):\n        return False\n\n    return True\n```",
+      "input_tokens": 176,
+      "output_tokens": 220,
+      "generation_seconds": 9.106461443938315,
+      "output_tokens_per_second_including_prefill": 24.158670341314874,
+      "peak_allocated_bytes": 29611407360,
+      "peak_reserved_bytes": 29844570112
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

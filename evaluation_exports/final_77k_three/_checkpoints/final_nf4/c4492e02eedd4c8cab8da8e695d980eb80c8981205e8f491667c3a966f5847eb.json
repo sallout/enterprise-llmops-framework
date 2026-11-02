@@ -1,0 +1,39 @@
+{
+  "key": "b534e9aaca0e8b225fd48f5c83df8c7215f8a1a0c4c2006cbbfac755a9950c60",
+  "digest": "208d1f94599d203b2fb9d5d7228aeeafed23785c4ded3ec2d99057413d5da3b4",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:131",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "131",
+      "task_prompt": "Write a python function to reverse only the vowels of a given string (where y is not a vowel).",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef reverse_vowels(s: str) -> str:\n    \"\"\"\n    Reverses the vowels in the given string.\n    \n    :param s: Input string\n    :return: String with vowels reversed\n    \"\"\"\n    vowels = \"aeiouAEIOU\"\n    s_list = list(s)\n    i, j = 0, len(s_list) - 1\n    while i < j:\n        if s_list[i] in vowels and s_list[j] in vowels:\n            s_list[i], s_list[j] = s_list[j], s_list[i]\n            i += 1\n            j -= 1\n        elif s_list[i] in vowels:\n            j -= 1\n        elif s_list[j] in vowels:\n            i += 1\n        else:\n            i += 1\n            j -= 1\n    return ''.join(s_list)\n```",
+      "input_tokens": 92,
+      "output_tokens": 187,
+      "generation_seconds": 10.602638382930309,
+      "output_tokens_per_second_including_prefill": 17.637119483491976,
+      "peak_allocated_bytes": 9900899328,
+      "peak_reserved_bytes": 10003415040
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

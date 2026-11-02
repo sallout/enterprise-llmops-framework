@@ -1,0 +1,40 @@
+{
+  "key": "a0aff2cb121512794596ee3ae7d721235aed556c0ebd42f45b8a35fbb5581a41",
+  "digest": "c50102f6d5626eff3fa8ceed10e97e075165ab638f0c460dd1303dd88caa0d06",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/142",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/142",
+      "task_prompt": "\n\n\ndef sum_squares(lst):\n    \"\"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_squares(lst):\n    \"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n    total = 0\n    for i, num in enumerate(lst):\n        if i % 3 == 0:\n            total += num ** 2\n        elif i % 4 == 0:\n            total += num ** 3\n        else:\n            total += num\n    return total\n```",
+      "input_tokens": 200,
+      "output_tokens": 232,
+      "generation_seconds": 9.526851720176637,
+      "output_tokens_per_second_including_prefill": 24.35222115493349,
+      "peak_allocated_bytes": 29617321984,
+      "peak_reserved_bytes": 29672603648
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

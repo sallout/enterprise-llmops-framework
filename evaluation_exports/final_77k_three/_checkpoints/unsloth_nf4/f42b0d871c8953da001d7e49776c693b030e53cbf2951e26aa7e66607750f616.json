@@ -1,0 +1,40 @@
+{
+  "key": "84079a029f1400c2cc7b256690f8a42b71787bae225f72ca1fddaaa399ba426f",
+  "digest": "aea5ea406b9dcb8a3a69fecef2f4f4c9beaad277e7eb46cacba08e9a3f777ced",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:141",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "141",
+      "task_prompt": "Write a function to sort a list of elements.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef pancake_sort(arr):\n    import copy\n    arr = copy.deepcopy(arr)\n    n = len(arr)\n    for i in range(n - 1, 0, -1):\n        # Find the index of the maximum element in arr[0..i]\n        max_idx = 0\n        for j in range(1, i + 1):\n            if arr[j] > arr[max_idx]:\n                max_idx = j\n        # Flip the array up to max_idx\n        arr[:max_idx + 1] = arr[:max_idx + 1][::-1]\n        # Flip the array up to i\n        arr[:i + 1] = arr[:i + 1][::-1]\n    return arr\n```",
+      "input_tokens": 179,
+      "output_tokens": 159,
+      "generation_seconds": 8.879918279126287,
+      "output_tokens_per_second_including_prefill": 17.905570186806308,
+      "peak_allocated_bytes": 10177049600,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

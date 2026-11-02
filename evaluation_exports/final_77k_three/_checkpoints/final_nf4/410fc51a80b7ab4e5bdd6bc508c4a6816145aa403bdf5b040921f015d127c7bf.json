@@ -1,0 +1,39 @@
+{
+  "key": "0b431dc679c2fb39dd76a3e421a03e661bfa0e234d65f2716312d05918f5de10",
+  "digest": "5cf7ebf0b563c2704ac8abcc0143d4f6f99306497108e31049399043180498a8",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:311",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "311",
+      "task_prompt": "Write a python function to set the left most unset bit.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef set_left_most_unset_bit(n):\n    \"\"\"\n    Sets the left most unset bit in the binary representation of n.\n    \n    Parameters:\n    n (int): The integer whose left most unset bit is to be set.\n    \n    Returns:\n    int: The integer with the left most unset bit set.\n    \"\"\"\n    return n | (1 << (n.bit_length() - 1))\n```",
+      "input_tokens": 90,
+      "output_tokens": 85,
+      "generation_seconds": 4.665511706378311,
+      "output_tokens_per_second_including_prefill": 18.218794710941324,
+      "peak_allocated_bytes": 9900355584,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

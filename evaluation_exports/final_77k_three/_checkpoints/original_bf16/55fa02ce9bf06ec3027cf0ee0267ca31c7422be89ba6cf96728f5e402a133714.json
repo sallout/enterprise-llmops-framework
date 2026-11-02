@@ -1,0 +1,40 @@
+{
+  "key": "5c2b2eb4d31330be48347e3e874b432fa34591fe013fee1398130a487f3f574c",
+  "digest": "303e0cb792048eb3b6dd4cb0225a899eded60fba67e33aee99dddeb18d55da5d",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:476",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "476",
+      "task_prompt": "Write a python function to find the sum of the largest and smallest value in a given array.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport numpy as np\n\ndef big_sum(arr):\n    return np.max(arr) + np.min(arr)\n```",
+      "input_tokens": 96,
+      "output_tokens": 26,
+      "generation_seconds": 1.1233824151568115,
+      "output_tokens_per_second_including_prefill": 23.1443893452531,
+      "peak_allocated_bytes": 29574898688,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

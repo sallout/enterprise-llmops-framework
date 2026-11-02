@@ -1,0 +1,39 @@
+{
+  "key": "d8019298b8bb10699b217662f5289b47ef76a947f51b9b7807184cb2eb4ec3f2",
+  "digest": "9d85954263f649cafe07cddde559e50cd0f6af53cd6c12761ae30330c2bb6099",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:415",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "415",
+      "task_prompt": "Write a python function to find a pair with highest product from a given array of integers.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_Product(arr):\n    \"\"\"\n    Finds and returns the pair of integers in the array that yields the highest product.\n    \n    :param arr: List of integers\n    :return: Tuple of two integers with the highest product\n    \"\"\"\n    if len(arr) < 2:\n        raise ValueError(\"Array should have at least two elements\")\n    \n    max1 = max2 = float('-inf')\n    min1 = min2 = float('inf')\n    \n    for num in arr:\n        if num > max1:\n            max2 = max1\n            max1 = num\n        elif num > max2:\n            max2 = num\n        \n        if num < min1:\n            min2 = min1\n            min1 = num\n        elif num < min2:\n            min2 = num\n    \n    return (max1, max2) if max1 * max2 > min1 * min2 else (min1, min2)\n```",
+      "input_tokens": 118,
+      "output_tokens": 200,
+      "generation_seconds": 11.215299401897937,
+      "output_tokens_per_second_including_prefill": 17.832782954162997,
+      "peak_allocated_bytes": 9909258240,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

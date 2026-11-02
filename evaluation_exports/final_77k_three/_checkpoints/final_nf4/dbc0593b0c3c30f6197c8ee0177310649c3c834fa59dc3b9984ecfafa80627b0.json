@@ -1,0 +1,39 @@
+{
+  "key": "73dee9da2722d78b4dfbb607466a643b4af639475d1a771838d9e2f9a0706ea3",
+  "digest": "61d76db1244f3f33b280f26fc4364d5a32de3b955882f7a66c2b37cfc85d3cbf",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:393",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "393",
+      "task_prompt": "Write a function to find the list with maximum length.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_length_list(list_of_lists):\n    \"\"\"\n    Returns a tuple containing the length of the longest list and the longest list itself.\n    \n    :param list_of_lists: List of lists to be evaluated.\n    :return: Tuple (max_length, longest_list)\n    \"\"\"\n    max_length = 0\n    longest_list = []\n    for lst in list_of_lists:\n        if len(lst) > max_length:\n            max_length = len(lst)\n            longest_list = lst\n    return (max_length, longest_list)\n```",
+      "input_tokens": 185,
+      "output_tokens": 112,
+      "generation_seconds": 6.371728657279164,
+      "output_tokens_per_second_including_prefill": 17.577647452398875,
+      "peak_allocated_bytes": 9926185984,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

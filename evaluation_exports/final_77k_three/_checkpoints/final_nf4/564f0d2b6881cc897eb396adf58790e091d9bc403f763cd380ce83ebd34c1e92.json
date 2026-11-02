@@ -1,0 +1,39 @@
+{
+  "key": "8a710abd5c3fb46b5f22f7215c23e654c222fc0159e6bf394d2c5fd24b2ca072",
+  "digest": "c6383db18dd65d3cf611e620b56edb9b3645cd98a39ef8d7a97cf396ce1a4668",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:414",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "414",
+      "task_prompt": "Write a python function to check whether any value in a sequence exists in a sequence or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef overlapping(seq1, seq2):\n    \"\"\"\n    Check if any value in seq1 exists in seq2.\n\n    Parameters:\n    seq1 (iterable): The first sequence to check.\n    seq2 (iterable): The second sequence to check against.\n\n    Returns:\n    bool: True if any value in seq1 is found in seq2, False otherwise.\n    \"\"\"\n    return any(value in seq2 for value in seq1)\n```",
+      "input_tokens": 112,
+      "output_tokens": 95,
+      "generation_seconds": 5.400024214293808,
+      "output_tokens_per_second_including_prefill": 17.5925137055008,
+      "peak_allocated_bytes": 9907811328,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "ce0d9a2a16a8e8630e7305250253e89b3778240eace9c3ed7ce58d54c0c3a912",
+  "digest": "a0e4cae19b824f9d25e10911674227a72c7e9d95660084668b47445887a990d8",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/143",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/143",
+      "task_prompt": "\ndef words_in_sentence(sentence):\n    \"\"\"\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n\n    Example 1:\n        Input: sentence = \"This is a test\"\n        Output: \"is\"\n\n    Example 2:\n        Input: sentence = \"lets go for swimming\"\n        Output: \"go for\"\n\n    Constraints:\n        * 1 <= len(sentence) <= 100\n        * sentence contains only letters\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef words_in_sentence(sentence):\n    \"\"\"\n    Returns a string containing words from the original sentence whose lengths are prime numbers,\n    maintaining the original order of the words.\n    \n    :param sentence: A string representing a sentence.\n    :return: A string containing words with prime lengths.\n    \"\"\"\n    def is_prime(n):\n        \"\"\"Check if a number is prime.\"\"\"\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    words = sentence.split()\n    prime_length_words = [word for word in words if is_prime(len(word))]\n    return ' '.join(prime_length_words)\n```",
+      "input_tokens": 178,
+      "output_tokens": 205,
+      "generation_seconds": 11.826142156962305,
+      "output_tokens_per_second_including_prefill": 17.334477911658798,
+      "peak_allocated_bytes": 9924282368,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

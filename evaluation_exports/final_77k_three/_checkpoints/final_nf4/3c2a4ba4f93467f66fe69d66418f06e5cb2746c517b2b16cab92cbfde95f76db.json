@@ -1,0 +1,38 @@
+{
+  "key": "cffd0304282d004811ff89149c6e3e4cb14359a15cf942476506a409072ebb66",
+  "digest": "7831de63b2d7510e559614e48f11b0cdda00937c4d2d6b7d55c6a121cc126ae7",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:266",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "266",
+      "task_prompt": "Write a function to find the lateral surface area of a cube given its side length.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef lateralsurface_cube(side_length):\n    \"\"\"\n    Calculate the lateral surface area of a cube.\n\n    Parameters:\n    side_length (int or float): The length of a side of the cube.\n\n    Returns:\n    int or float: The lateral surface area of the cube.\n    \"\"\"\n    return 4 * side_length ** 2\n```",
+      "input_tokens": 87,
+      "output_tokens": 74,
+      "generation_seconds": 4.106249698903412,
+      "output_tokens_per_second_including_prefill": 18.021310301651155,
+      "peak_allocated_bytes": 9899540480,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "key": "86f9fab3ca0c3798852f05d7a80f3686abcace67a857856666a4961e32b4436e",
+  "digest": "c35b7aa0006ddd593544a7c296634140a791b418cc0f88d2b26cd26a31f743ee",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:104",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "104",
+      "task_prompt": "Write a function to sort each sublist of strings in a given list of lists.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_sublists(list_of_lists):\n    \"\"\"\n    Sorts each sublist of strings in a given list of lists.\n\n    Parameters:\n    list_of_lists (list of list of str): A list containing sublists of strings.\n\n    Returns:\n    list of list of str: A new list where each sublist is sorted.\n    \"\"\"\n    return [sorted(sublist) for sublist in list_of_lists]\n```",
+      "input_tokens": 187,
+      "output_tokens": 86,
+      "generation_seconds": 4.736125195864588,
+      "output_tokens_per_second_including_prefill": 18.15830377015626,
+      "peak_allocated_bytes": 9926729728,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

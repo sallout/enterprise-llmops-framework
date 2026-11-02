@@ -1,0 +1,38 @@
+{
+  "key": "75b58b356aae5d8884dbbe311dd1c58d213bd048e6659488f921077218155600",
+  "digest": "4d942e59e199c2fc82d0b57bcfe827371229c8536545ab1a2e63f53b2a9228ea",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:95",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "95",
+      "task_prompt": "Write a python function to find the length of the smallest list in a list of lists.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Find_Min_Length(list_of_lists):\n    return min(len(sublist) for sublist in list_of_lists)\n```",
+      "input_tokens": 116,
+      "output_tokens": 27,
+      "generation_seconds": 1.700150798074901,
+      "output_tokens_per_second_including_prefill": 15.880944225990064,
+      "peak_allocated_bytes": 10161675264,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

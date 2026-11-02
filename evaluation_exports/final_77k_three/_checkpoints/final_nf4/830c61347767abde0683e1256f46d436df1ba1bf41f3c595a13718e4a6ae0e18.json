@@ -1,0 +1,39 @@
+{
+  "key": "29ec7293d2463ddeb77d890b757345d49f196ab1a2efd54f7b32e2b99d951476",
+  "digest": "23d9c40c0c1e4f9d656ce5714713ed018bb82b970b5f5b01b40657392b5f3c8d",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:473",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "473",
+      "task_prompt": "Write a function to find the tuple intersection of elements in the given tuple list irrespective of their order.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List, Tuple, Set\n\ndef tuple_intersection(list1: List[Tuple], list2: List[Tuple]) -> Set[Tuple]:\n    \"\"\"\n    Returns the intersection of two lists of tuples, ignoring the order of elements within each tuple.\n    \"\"\"\n    set1 = {tuple(sorted(t)) for t in list1}\n    set2 = {tuple(sorted(t)) for t in list2}\n    return set1.intersection(set2)\n```",
+      "input_tokens": 266,
+      "output_tokens": 97,
+      "generation_seconds": 5.3522374629974365,
+      "output_tokens_per_second_including_prefill": 18.123261658438576,
+      "peak_allocated_bytes": 9948211200,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "a204d7eb29aa9dda4de68076c6ee2b350df17023a08d96ae2565ec1a5f692a5c",
+  "digest": "1a8fbd446910f5c42cb64a1fcdccb4c6b805536d20517771a27440653f657162",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:253",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "253",
+      "task_prompt": "Write a python function that returns the number of integer elements in a given list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_integer(lst):\n    return sum(1 for x in lst if isinstance(x, int))\n```",
+      "input_tokens": 101,
+      "output_tokens": 25,
+      "generation_seconds": 1.3999393489211798,
+      "output_tokens_per_second_including_prefill": 17.857916501358062,
+      "peak_allocated_bytes": 10155778048,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

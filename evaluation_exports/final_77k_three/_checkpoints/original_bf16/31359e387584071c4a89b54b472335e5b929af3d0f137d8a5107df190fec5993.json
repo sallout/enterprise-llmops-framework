@@ -1,0 +1,39 @@
+{
+  "key": "cdf349dfabe666a9f907ca88352008edfaef1d9633b4d780663ffc606c5d1532",
+  "digest": "f48cbb7534bae31da3092a0bce4652c628ac793e10f6777c15505218eda4da7e",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:279",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "279",
+      "task_prompt": "Write a function to find the nth decagonal number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_num_decagonal(n):\n    return n * (3 * n - 2)\n```",
+      "input_tokens": 86,
+      "output_tokens": 27,
+      "generation_seconds": 1.0930742411874235,
+      "output_tokens_per_second_including_prefill": 24.70097545311239,
+      "peak_allocated_bytes": 29571801088,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

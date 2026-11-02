@@ -1,0 +1,39 @@
+{
+  "key": "1656681dbe91051e01bfdfc839dae9eeb90a104d433b75cc693bc7b02cfd5651",
+  "digest": "f07806231d5c446caede0354b5458f1da49795a590dfbf4644db20e2bbda846f",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:470",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "470",
+      "task_prompt": "Write a function to find the pairwise addition of the neighboring elements of the given tuple.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add_pairwise(t):\n    return tuple(t[i] + t[i+1] for i in range(len(t)-1))\n\n# Test cases\nassert add_pairwise((1, 5, 7, 8, 10)) == (6, 12, 15, 18)\nassert add_pairwise((2, 6, 8, 9, 11)) == (8, 14, 17, 20)\nassert add_pairwise((3, 7, 9, 10, 12)) == (10, 16, 19, 22)\n```",
+      "input_tokens": 161,
+      "output_tokens": 146,
+      "generation_seconds": 6.001835269853473,
+      "output_tokens_per_second_including_prefill": 24.325892570451106,
+      "peak_allocated_bytes": 29596823552,
+      "peak_reserved_bytes": 29672603648
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

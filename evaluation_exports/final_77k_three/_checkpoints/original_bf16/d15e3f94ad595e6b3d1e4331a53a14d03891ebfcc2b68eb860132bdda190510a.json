@@ -1,0 +1,39 @@
+{
+  "key": "4db05dcfd41abe5f535c0c37e90c49a7a0bf17fb52af22ea8e12a723bf555662",
+  "digest": "043d7425b70daf8862113d85ab161bc91b6bca313a2a4632cb52a5cd6e4a3bc3",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:411",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "411",
+      "task_prompt": "Write a function to convert the given snake case string to camel case string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef snake_to_camel(s):\n    return re.sub(r'_([a-z])', lambda x: x.group(1).upper(), s)\n```",
+      "input_tokens": 91,
+      "output_tokens": 38,
+      "generation_seconds": 1.657880982849747,
+      "output_tokens_per_second_including_prefill": 22.92082507314937,
+      "peak_allocated_bytes": 29573350400,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

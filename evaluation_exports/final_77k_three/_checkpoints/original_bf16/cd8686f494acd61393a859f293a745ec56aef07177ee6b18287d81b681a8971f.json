@@ -1,0 +1,40 @@
+{
+  "key": "48e78fbc0bedc0bfbebccd2497ea92d3b1a20ebe283be7d0c179b7d4ec7a320e",
+  "digest": "93332e127c24234c3bd88ff02927fe4e5a99674bf4e25d51bdec1572600ff25c",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:19",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "19",
+      "task_prompt": "Write a function to find whether a given array of integers contains any duplicate element.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef test_duplicate(arr):\n    return len(arr) != len(set(arr))\n```",
+      "input_tokens": 108,
+      "output_tokens": 20,
+      "generation_seconds": 0.8206054759211838,
+      "output_tokens_per_second_including_prefill": 24.372247793677808,
+      "peak_allocated_bytes": 29578615808,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "ec85452ea9030de59be8889351f4d6be3f73b416f11b788c7c626ae94970c400",
+  "digest": "b408a887952a0556c843ba2fe1343d70f375bd1bb5ada10d77a8bb763e1fdaee",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/73",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/73",
+      "task_prompt": "\ndef smallest_change(arr):\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n    For example:\n    smallest_change([1,2,3,5,4,7,9,6]) == 4\n    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\n    smallest_change([1, 2, 3, 2, 1]) == 0\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef smallest_change(arr):\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n    :param arr: List[int] - The input array of integers.\n    :return: int - The minimum number of changes required to make the array palindromic.\n    \"\"\"\n    left, right = 0, len(arr) - 1\n    changes = 0\n    while left < right:\n        if arr[left] != arr[right]:\n            changes += 1\n        left += 1\n        right -= 1\n    return changes\n```",
+      "input_tokens": 186,
+      "output_tokens": 172,
+      "generation_seconds": 9.968093680217862,
+      "output_tokens_per_second_including_prefill": 17.2550545287653,
+      "peak_allocated_bytes": 9926457344,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

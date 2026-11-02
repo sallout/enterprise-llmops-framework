@@ -1,0 +1,39 @@
+{
+  "key": "2f120d97b228e525c8a4c0b9c1fcb5828aaa834ff38a6dd0f81dba371665daac",
+  "digest": "3ca24cd238a0a23f10f684998f0e319cfab34505248585f7dc189ceeea501a35",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:470",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "470",
+      "task_prompt": "Write a function to find the pairwise addition of the neighboring elements of the given tuple.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add_pairwise(t):\n    return tuple(t[i] + t[i+1] for i in range(len(t)-1))\n```",
+      "input_tokens": 161,
+      "output_tokens": 32,
+      "generation_seconds": 1.9113661907613277,
+      "output_tokens_per_second_including_prefill": 16.741951466272347,
+      "peak_allocated_bytes": 10172100608,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

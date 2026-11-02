@@ -1,0 +1,39 @@
+{
+  "key": "0c7657ff90ea0f783bafb9afc567bee5e6f8a81ad4943052e569030bb33411d1",
+  "digest": "8affcf8552a6811e71c4e4f91a540b62be9f1edf6714763d2e4a192eb0ab32e2",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:478",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "478",
+      "task_prompt": "Write a function to remove lowercase substrings from a given string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef remove_lowercase(s):\n    return re.sub(r'[a-z]', '', s)\n```",
+      "input_tokens": 83,
+      "output_tokens": 25,
+      "generation_seconds": 1.3681624280288815,
+      "output_tokens_per_second_including_prefill": 18.27268421339243,
+      "peak_allocated_bytes": 10150652928,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

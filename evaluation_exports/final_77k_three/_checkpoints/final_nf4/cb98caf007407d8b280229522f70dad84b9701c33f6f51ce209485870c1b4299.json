@@ -1,0 +1,40 @@
+{
+  "key": "c3dbf5a831544c8760ed7e6ee6473ad6c13d4fb7d16cd93c754a721600cfdb7e",
+  "digest": "90b9eceab05a086c1b099cf0d81b5a163d756e3c7bc8b514940891119da17891",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:57",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "57",
+      "task_prompt": "Write a python function to find the largest number that can be formed with the given list of digits.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef find_Max_Num(digits: List[int]) -> int:\n    \"\"\"\n    Returns the largest number that can be formed with the given list of digits.\n    \n    :param digits: List of integers representing the digits.\n    :return: Integer representing the largest number that can be formed.\n    \"\"\"\n    digits.sort(reverse=True)\n    return int(''.join(map(str, digits)))\n```",
+      "input_tokens": 110,
+      "output_tokens": 86,
+      "generation_seconds": 4.739696888718754,
+      "output_tokens_per_second_including_prefill": 18.14462021921569,
+      "peak_allocated_bytes": 9907329024,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

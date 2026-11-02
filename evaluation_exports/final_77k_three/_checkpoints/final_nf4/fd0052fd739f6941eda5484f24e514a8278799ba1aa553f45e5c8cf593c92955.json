@@ -1,0 +1,39 @@
+{
+  "key": "64a3a6154ae936bc632d9c3d39797c2a26356301894845f2e00a0183911c2b94",
+  "digest": "acc0de268de1cbfe4bbb2458a3b8ca9452b6d87c33d38edfd8c895d0fb5225b0",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:269",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "269",
+      "task_prompt": "Write a function to find the ascii value of a character.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef ascii_value(char):\n    \"\"\"\n    Returns the ASCII value of the given character.\n\n    Parameters:\n    char (str): A single character string.\n\n    Returns:\n    int: The ASCII value of the character.\n    \"\"\"\n    return ord(char)\n```",
+      "input_tokens": 72,
+      "output_tokens": 55,
+      "generation_seconds": 3.234940245281905,
+      "output_tokens_per_second_including_prefill": 17.00185964183307,
+      "peak_allocated_bytes": 9895461888,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "01b144d22460321237641d3996b94df72ac4c90e24830c6645a8ea7a6e1af0c4",
+  "digest": "792c57fac387c2d590a24e3707f61c9feb390011600156904238600068899a64",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:139",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "139",
+      "task_prompt": "Write a function to find the circumference of a circle.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef circle_circumference(radius):\n    \"\"\"\n    Calculate the circumference of a circle given its radius.\n\n    Parameters:\n    radius (float): The radius of the circle.\n\n    Returns:\n    float: The circumference of the circle.\n    \"\"\"\n    return 2 * math.pi * radius\n```",
+      "input_tokens": 157,
+      "output_tokens": 67,
+      "generation_seconds": 3.7134985299780965,
+      "output_tokens_per_second_including_prefill": 18.04228531642779,
+      "peak_allocated_bytes": 9918735360,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

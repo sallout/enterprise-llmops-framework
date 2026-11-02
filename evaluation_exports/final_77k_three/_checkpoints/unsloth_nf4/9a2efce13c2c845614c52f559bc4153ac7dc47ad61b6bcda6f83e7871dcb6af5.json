@@ -1,0 +1,39 @@
+{
+  "key": "2dee0ca327bb531e0cf27369b57b77c6b104a09431f382026121de997fa9342a",
+  "digest": "04da9f7d0887cb77de2b74048db5545d652eadac3d5af429b10a92d45cf02d68",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:129",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "129",
+      "task_prompt": "Write a function to calculate whether the matrix is a magic square.",
+      "skill_tags": [
+        "matrices"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport numpy as np\n\ndef magic_square_test(matrix):\n    n = len(matrix)\n    if n == 0:\n        return False\n\n    # Check if it's a square matrix\n    for row in matrix:\n        if len(row) != n:\n            return False\n\n    # Calculate the magic constant\n    magic_constant = n * (n ** 2 + 1) // 2\n\n    # Check rows\n    for row in matrix:\n        if sum(row) != magic_constant:\n            return False\n\n    # Check columns\n    for col in range(n):\n        if sum(matrix[row][col] for row in range(n)) != magic_constant:\n            return False\n\n    # Check main diagonal\n    if sum(matrix[i][i] for i in range(n)) != magic_constant:\n        return False\n\n    # Check anti-diagonal\n    if sum(matrix[i][n - 1 - i] for i in range(n)) != magic_constant:\n        return False\n\n    return True\n```",
+      "input_tokens": 176,
+      "output_tokens": 211,
+      "generation_seconds": 12.047736584208906,
+      "output_tokens_per_second_including_prefill": 17.513663128770585,
+      "peak_allocated_bytes": 10176224256,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

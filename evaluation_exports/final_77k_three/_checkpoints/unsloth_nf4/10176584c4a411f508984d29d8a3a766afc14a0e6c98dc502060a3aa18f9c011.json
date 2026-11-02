@@ -1,0 +1,40 @@
+{
+  "key": "df4a78086c9403563db6ae72f6830d428449bbf83790e5c2def13cef4a01f213",
+  "digest": "18075a1c325bdee5633b6b7e3ea49d781f113ed6f6ec5abb916f4ff8fc43e1c8",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/111",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/111",
+      "task_prompt": "\ndef histogram(test):\n    \"\"\"Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \n    Example:\n    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}\n    histogram('a b b a') == {'a': 2, 'b': 2}\n    histogram('a b c a b') == {'a': 2, 'b': 2}\n    histogram('b b b b a') == {'b': 4}\n    histogram('') == {}\n\n    \"\"\"\n",
+      "skill_tags": [
+        "mappings_sets",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef histogram(test):\n    \"\"\"Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \n    Example:\n    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}\n    histogram('a b b a') == {'a': 2, 'b': 2}\n    histogram('a b c a b') == {'a': 2, 'b': 2}\n    histogram('b b b b a') == {'b': 4}\n    histogram('') == {}\n    \"\"\"\n    if not test:\n        return {}\n    \n    counts = Counter(test.split())\n    max_count = max(counts.values())\n    return {letter: count for letter, count in counts.items() if count == max_count}\n```",
+      "input_tokens": 180,
+      "output_tokens": 200,
+      "generation_seconds": 11.492034557275474,
+      "output_tokens_per_second_including_prefill": 17.403358735410546,
+      "peak_allocated_bytes": 10177324032,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "34702d4ceb2d53b04c419745d836bb0da981b2e6e62a8f9d4ee25d7310ddcc2c",
+  "digest": "c6d565ad803402fd67ba1cd471036cc2cd0b7c70363feafcdd9ea19804c266ab",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:397",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "397",
+      "task_prompt": "Write a function to find the median of three numbers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef median_numbers(a, b, c):\n    return float(sorted([a, b, c])[1])\n```",
+      "input_tokens": 98,
+      "output_tokens": 27,
+      "generation_seconds": 1.093045949935913,
+      "output_tokens_per_second_including_prefill": 24.701614787176194,
+      "peak_allocated_bytes": 29575518208,
+      "peak_reserved_bytes": 29844570112
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

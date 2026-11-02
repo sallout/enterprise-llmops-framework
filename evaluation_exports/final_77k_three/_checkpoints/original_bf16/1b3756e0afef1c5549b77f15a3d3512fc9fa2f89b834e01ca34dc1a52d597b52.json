@@ -1,0 +1,40 @@
+{
+  "key": "40e88730d5a1da87e2eae12c7b72cf1f99e8d8585d738711a2a9eb86c6b29891",
+  "digest": "16065cd478b77ea02adc2ca8bac24eef37022fbdf3e482297362cc5132a70498",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:223",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "223",
+      "task_prompt": "Write a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_majority(arr, n, target):\n    import math\n    count = 0\n    for i in range(n):\n        if arr[i] == target:\n            count += 1\n    return count > math.floor(n / 2)\n```",
+      "input_tokens": 207,
+      "output_tokens": 57,
+      "generation_seconds": 2.454482826869935,
+      "output_tokens_per_second_including_prefill": 23.222814751850972,
+      "peak_allocated_bytes": 29609788416,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

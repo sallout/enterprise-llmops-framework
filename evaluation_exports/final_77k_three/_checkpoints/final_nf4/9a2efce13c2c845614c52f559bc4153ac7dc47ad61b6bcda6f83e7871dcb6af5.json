@@ -1,0 +1,39 @@
+{
+  "key": "5c630a775cc99ec5d619872a22523c24de9d16b763793c8c83f4a44d4e37281f",
+  "digest": "40a5f3bdd882879059472766d87ed97160acf43bb6594b32a791eb75ebb01c2c",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:129",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "129",
+      "task_prompt": "Write a function to calculate whether the matrix is a magic square.",
+      "skill_tags": [
+        "matrices"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef magic_square_test(matrix):\n    \"\"\"\n    Determines if the given matrix is a magic square.\n    \n    A magic square is a square matrix where the sum of each row, each column,\n    and both main diagonals are equal.\n    \n    :param matrix: List of lists of integers representing the matrix.\n    :return: Boolean indicating whether the matrix is a magic square.\n    \"\"\"\n    n = len(matrix)\n    if n == 0:\n        return False\n    \n    magic_sum = sum(matrix[0])\n    \n    for i in range(n):\n        if sum(matrix[i]) != magic_sum:\n            return False\n        if sum(matrix[j][i] for j in range(n)) != magic_sum:\n            return False\n    \n    if sum(matrix[i][i] for i in range(n)) != magic_sum:\n        return False\n    if sum(matrix[i][n - 1 - i] for i in range(n)) != magic_sum:\n        return False\n    \n    return True\n```",
+      "input_tokens": 176,
+      "output_tokens": 206,
+      "generation_seconds": 11.483683930244297,
+      "output_tokens_per_second_including_prefill": 17.9384944109671,
+      "peak_allocated_bytes": 9923738624,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

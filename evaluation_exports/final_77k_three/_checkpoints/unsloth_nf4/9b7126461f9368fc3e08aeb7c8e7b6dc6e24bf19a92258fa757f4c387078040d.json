@@ -1,0 +1,38 @@
+{
+  "key": "eb915cd2167b7be66698a60225a8befaf2d8066655d5993993769949e7b73c29",
+  "digest": "a099ca75ebf53676bd50f0ebe6fb159e7751dd375e3e1586679908726b73c883",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:244",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "244",
+      "task_prompt": "Write a python function to find the next perfect square greater than a given number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef next_Perfect_Square(n):\n    root = math.isqrt(n)\n    if root * root == n:\n        return (root + 1) ** 2\n    else:\n        return (root + 1) ** 2\n```",
+      "input_tokens": 91,
+      "output_tokens": 59,
+      "generation_seconds": 3.2285752329044044,
+      "output_tokens_per_second_including_prefill": 18.27431474995365,
+      "peak_allocated_bytes": 10153724928,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

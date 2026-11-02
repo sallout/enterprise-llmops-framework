@@ -1,0 +1,41 @@
+{
+  "key": "56d40e2c9baf1d82a5db57dde82e6a2b2f56fd7cd5c6c6111541448c4275a294",
+  "digest": "633d4c34d349aaad033a241829f64ab50dbe1252d9d7e2a73dc736f11b70cf54",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/109",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/109",
+      "task_prompt": "\ndef move_one_ball(arr):\n    \"\"\"We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing \n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n    \n    One right shift operation means shifting all elements of the array by one\n    position in the right direction. The last element of the array will be moved to\n    the starting position in the array i.e. 0th index. \n\n    If it is possible to obtain the sorted array by performing the above operation\n    then return True else return False.\n    If the given array is empty then return True.\n\n    Note: The given list is guaranteed to have unique elements.\n\n    For Example:\n    \n    move_one_ball([3, 4, 5, 1, 2])==>True\n    Explanation: By performin 2 right shift operations, non-decreasing order can\n                 be achieved for the given array.\n    move_one_ball([3, 5, 4, 1, 2])==>False\n    Explanation:It is not possible to get non-decreasing order for the given\n                array by performing any number of right shift operations.\n                \n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef move_one_ball(arr):\n    \"\"\"We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N]. The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing \n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n    \n    One right shift operation means shifting all elements of the array by one\n    position in the right direction. The last element of the array will be moved to\n    the starting position in the array i.e. 0th index. \n\n    If it is possible to obtain the sorted array by performing the above operation\n    then return True else return False.\n    If the given array is empty then return True.\n\n    Note: The given list is guaranteed to have unique elements.\n\n    For Example:\n    \n    move_one_ball([3, 4, 5, 1, 2]) ==> True\n    move_one_ball([3, 5, 4, 1, 2]) ==> False\n    \"\"\"\n    if not arr:\n        return True\n\n    sorted_arr = sorted(arr)\n    n = len(arr)\n\n    # Check if the array is already sorted\n    if arr == sorted_arr:\n        return True\n\n    # Find the index where the sorted array starts\n    for i in range(n):\n        if arr[i] == sorted_arr[0]:\n            break\n\n    # Check if the array can be rotated to match the sorted array\n    for j in range(1, n):\n        if arr[(i + j) % n] != sorted_arr[j]:\n            return False\n\n    return True\n```",
+      "input_tokens": 328,
+      "output_tokens": 367,
+      "generation_seconds": 15.15539726614952,
+      "output_tokens_per_second_including_prefill": 24.21579543940536,
+      "peak_allocated_bytes": 29663675392,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

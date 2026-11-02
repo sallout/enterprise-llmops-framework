@@ -1,0 +1,42 @@
+{
+  "key": "e367ece365afedabc052ee33e7fb69f111b85fa6b006041af844996d02e91868",
+  "digest": "02d97eb2a6dc6902acf016ae09fe07a24f16d8275250d06f11a735a7fc271fd4",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/19",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/19",
+      "task_prompt": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    number_words = [\n        'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'\n    ]\n    word_to_index = {word: idx for idx, word in enumerate(number_words)}\n    \n    # Split the input string into words\n    words = numbers.split()\n    \n    # Sort the words based on their numeric value\n    sorted_words = sorted(words, key=lambda word: word_to_index[word])\n    \n    # Join the sorted words back into a string\n    return ' '.join(sorted_words)",
+      "input_tokens": 134,
+      "output_tokens": 220,
+      "generation_seconds": 8.964795121923089,
+      "output_tokens_per_second_including_prefill": 24.540438125796964,
+      "peak_allocated_bytes": 29604525056,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

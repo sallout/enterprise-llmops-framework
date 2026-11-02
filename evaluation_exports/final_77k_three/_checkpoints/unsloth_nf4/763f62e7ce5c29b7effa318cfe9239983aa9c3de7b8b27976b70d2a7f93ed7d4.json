@@ -1,0 +1,40 @@
+{
+  "key": "d47b9ea82f77f2073c587eb8ebd472ca66e9250915377688dd6507fd474d7983",
+  "digest": "86b34f51489ef51eea7824b1b6f28ace9a6693b1a58b9c0871ca96dde4a95cd3",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:283",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "283",
+      "task_prompt": "Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef validate(n):\n    digits = str(abs(n))\n    count = Counter(digits)\n    for digit, freq in count.items():\n        if freq > int(digit):\n            return False\n    return True\n```",
+      "input_tokens": 95,
+      "output_tokens": 52,
+      "generation_seconds": 3.0012452458031476,
+      "output_tokens_per_second_including_prefill": 17.326141564977156,
+      "peak_allocated_bytes": 10154546176,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

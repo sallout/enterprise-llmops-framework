@@ -1,0 +1,39 @@
+{
+  "key": "a1897da674f8692d37e53fcb2a93c3dd6db34f5e7aede3d7c65860c0bdef8851",
+  "digest": "efbe4599321cd158f4c47459d2738c16eb49d7ef09e09ecc70bfcb4a022321d0",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:395",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "395",
+      "task_prompt": "Write a python function to find the first non-repeated character in a given string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef first_non_repeating_character(s):\n    count = Counter(s)\n    for char in s:\n        if count[char] == 1:\n            return char\n    return None\n```",
+      "input_tokens": 91,
+      "output_tokens": 47,
+      "generation_seconds": 1.928781502880156,
+      "output_tokens_per_second_including_prefill": 24.367716057944964,
+      "peak_allocated_bytes": 29573350400,
+      "peak_reserved_bytes": 29844570112
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "3fbe0eafb8ddf0ec735ff33eb4865beca7c4a0bbed7afa3d57b846873237427d",
+  "digest": "7de3d4f01ebd6efb16fa410a5c105460bb04d7e5fe6f2682bc81daa03990f470",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:141",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "141",
+      "task_prompt": "Write a function to sort a list of elements.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef pancake_sort(arr):\n    import copy\n\n    def flip(arr, i):\n        return arr[:i+1][::-1] + arr[i+1:]\n\n    arr = copy.deepcopy(arr)\n    n = len(arr)\n    curr_size = n\n\n    while curr_size > 1:\n        # Find the index of the maximum element in arr[0..curr_size-1]\n        max_idx = arr.index(max(arr[:curr_size]))\n\n        if max_idx != curr_size - 1:\n            # Flip the array up to max_idx\n            if max_idx != 0:\n                arr = flip(arr, max_idx)\n            # Flip the array up to curr_size\n            arr = flip(arr, curr_size - 1)\n\n        curr_size -= 1\n\n    return arr\n```",
+      "input_tokens": 179,
+      "output_tokens": 168,
+      "generation_seconds": 7.109120633918792,
+      "output_tokens_per_second_including_prefill": 23.631614745492456,
+      "peak_allocated_bytes": 29603378176,
+      "peak_reserved_bytes": 29758586880
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "3a5c894721e2f89c4265969a7ee126625be89a0ca4fb9c1641ba1c18ec971a5f",
+  "digest": "cac0962fb74be73e03cd93f046b847184ee4d202e63d529c55db6c864427fd52",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:235",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "235",
+      "task_prompt": "Write a python function to set all even bits of a given number.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef even_bit_set_number(n):\n    return n | 0xAAAAAAAA\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 89,
+      "output_tokens": 31,
+      "generation_seconds": 1.3061952251009643,
+      "output_tokens_per_second_including_prefill": 23.733052612869418,
+      "peak_allocated_bytes": 29572730880,
+      "peak_reserved_bytes": 29693575168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "key": "ffae93e898d4b33b2665eb2f3f0393c688f1b3165a222648595455fc6ec5d060",
+  "digest": "d00ff10ef31a45f9bc4538880ca6a4785b29cf652cca6a06758c8a22803b45e6",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/129",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/129",
+      "task_prompt": "\ndef minPath(grid, k):\n    \"\"\"\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k, \n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n    You have to find the minimum path of length k in the grid. You can start\n    from any cell, and in each step you can move to any of the neighbor cells,\n    in other words, you can go to cells which share an edge with you current\n    cell.\n    Please note that a path of length k means visiting exactly k cells (not\n    necessarily distinct).\n    You CANNOT go off the grid.\n    A path A (of length k) is considered less than a path B (of length k) if\n    after making the ordered lists of the values on the cells that A and B go\n    through (let's call them lst_A and lst_B), lst_A is lexicographically less\n    than lst_B, in other words, there exist an integer index i (1 <= i <= k)\n    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have\n    lst_A[j] = lst_B[j].\n    It is guaranteed that the answer is unique.\n    Return an ordered list of the values on the cells that the minimum path go through.\n\n    Examples:\n\n        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3\n        Output: [1, 2, 1]\n\n        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1\n        Output: [1]\n    \"\"\"\n",
+      "skill_tags": [
+        "matrices",
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom heapq import heappush, heappop\n\ndef minPath(grid, k):\n    \"\"\"\n    Finds the minimum path of length k in the grid.\n    \n    :param grid: List[List[int]] - A 2D grid of integers.\n    :param k: int - The length of the path.\n    :return: List[int] - The ordered list of values on the cells that the minimum path goes through.\n    \"\"\"\n    import heapq\n\n    N = len(grid)\n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n\n    heap = []\n    for i in range(N):\n        for j in range(N):\n            heapq.heappush(heap, (grid[i][j], i, j, [grid[i][j]]))\n\n    while heap:\n        val, x, y, path = heapq.heappop(heap)\n        if len(path) == k:\n            return path\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n            if 0 <= nx < N and 0 <= ny < N:\n                new_path = path + [grid[nx][ny]]\n                heapq.heappush(heap, (new_path, nx, ny, new_path))\n```",
+      "input_tokens": 425,
+      "output_tokens": 273,
+      "generation_seconds": 15.11082228505984,
+      "output_tokens_per_second_including_prefill": 18.066521784847986,
+      "peak_allocated_bytes": 9992385536,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

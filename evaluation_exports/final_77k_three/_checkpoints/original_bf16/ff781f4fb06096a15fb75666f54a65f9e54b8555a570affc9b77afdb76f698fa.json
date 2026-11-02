@@ -1,0 +1,40 @@
+{
+  "key": "64f1e8baf4834cbb5edc5ffc5cff62a1b4c8b054c4ab302fb25ceb86adb1ccde",
+  "digest": "ffd303e1c87d4dec03870f48104715daed2109c77cf8c7da73c3369a9c37bf54",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/99",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/99",
+      "task_prompt": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    import math\n    num = float(value)\n    if num >= 0:\n        return math.floor(num + 0.5)\n    else:\n        return math.ceil(num - 0.5)\n```",
+      "input_tokens": 193,
+      "output_tokens": 205,
+      "generation_seconds": 8.27937117824331,
+      "output_tokens_per_second_including_prefill": 24.76033452138285,
+      "peak_allocated_bytes": 29611736576,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

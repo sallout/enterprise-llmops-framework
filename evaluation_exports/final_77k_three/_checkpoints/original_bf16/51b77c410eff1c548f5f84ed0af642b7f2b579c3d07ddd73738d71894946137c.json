@@ -1,0 +1,38 @@
+{
+  "key": "018846274e1acd1f4d85570a5ec46d0dab07130aea0274518e6684136c1ab369",
+  "digest": "aea43d9447d48639cda26245e28f8fabbe48b0c2396f8a96e24e1e036e34c37d",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:93",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "93",
+      "task_prompt": "Write a function to calculate the value of 'a' to the power 'b'.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef power(a, b):\n    return a ** b\n```",
+      "input_tokens": 87,
+      "output_tokens": 17,
+      "generation_seconds": 0.6802623691037297,
+      "output_tokens_per_second_including_prefill": 24.99035779738649,
+      "peak_allocated_bytes": 29572111360,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

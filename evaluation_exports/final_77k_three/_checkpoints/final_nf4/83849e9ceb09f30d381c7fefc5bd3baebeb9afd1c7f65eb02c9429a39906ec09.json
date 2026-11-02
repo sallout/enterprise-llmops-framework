@@ -1,0 +1,39 @@
+{
+  "key": "9ff7711b95e7f990c47ef6f6b7eb205948e13b7156c332350c6bc8514140f9ea",
+  "digest": "b31f7cc3ff2b3577ec0976b13b7299b6dfe620c5e50ec0e7988f93a1b90a5c62",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:478",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "478",
+      "task_prompt": "Write a function to remove lowercase substrings from a given string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef remove_lowercase(input_string):\n    \"\"\"\n    Removes all lowercase substrings from the input string.\n\n    Parameters:\n    input_string (str): The string from which lowercase substrings are to be removed.\n\n    Returns:\n    str: The resulting string after removing all lowercase substrings.\n    \"\"\"\n    return re.sub(r'[a-z]+', '', input_string)\n```",
+      "input_tokens": 83,
+      "output_tokens": 80,
+      "generation_seconds": 4.501004029065371,
+      "output_tokens_per_second_including_prefill": 17.77381212800468,
+      "peak_allocated_bytes": 9898452992,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

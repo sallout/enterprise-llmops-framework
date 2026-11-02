@@ -1,0 +1,40 @@
+{
+  "key": "74a0ad24af0cd54be7584e4df15bb9409f92742334e7be3621f3e6ea8fccd62e",
+  "digest": "6e4d8d4cc4c598a1c4ae96f279aa1bc2330bfe680a483167658ef80d82bfab44",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:137",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "137",
+      "task_prompt": "Write a function to find the ratio of zeroes to non-zeroes in an array of integers.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef zero_count(arr):\n    \"\"\"\n    Calculate the ratio of zeroes to non-zeroes in the given array of integers.\n    \n    Parameters:\n    arr (list of int): The array of integers.\n    \n    Returns:\n    float: The ratio of zeroes to non-zeroes.\n    \"\"\"\n    zero_count = arr.count(0)\n    non_zero_count = len(arr) - zero_count\n    if non_zero_count == 0:\n        return 0.0\n    return zero_count / non_zero_count\n```",
+      "input_tokens": 232,
+      "output_tokens": 112,
+      "generation_seconds": 6.439483284950256,
+      "output_tokens_per_second_including_prefill": 17.392699855554508,
+      "peak_allocated_bytes": 9938965504,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

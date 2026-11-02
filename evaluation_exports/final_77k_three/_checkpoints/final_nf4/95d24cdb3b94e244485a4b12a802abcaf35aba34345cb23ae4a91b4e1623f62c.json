@@ -1,0 +1,39 @@
+{
+  "key": "e3a05fb62518af617505bcd5a4d55737af281eee439845fbcc2fbc7b374dd1a2",
+  "digest": "67ec1752486270c72e96b7a2fd5e3ec3088b50b06ce8ee2648b5a0d83673d65e",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:271",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "271",
+      "task_prompt": "Write a python function that takes in an integer n and finds the sum of the first n even natural numbers that are raised to the fifth power.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef even_Power_Sum(n):\n    \"\"\"\n    Calculate the sum of the first n even natural numbers raised to the fifth power.\n\n    Parameters:\n    n (int): The number of terms to include in the sum.\n\n    Returns:\n    int: The sum of the first n even natural numbers raised to the fifth power.\n    \"\"\"\n    return sum((2 * i) ** 5 for i in range(1, n + 1))\n```",
+      "input_tokens": 108,
+      "output_tokens": 96,
+      "generation_seconds": 5.274809462018311,
+      "output_tokens_per_second_including_prefill": 18.19970952339714,
+      "peak_allocated_bytes": 9906846720,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

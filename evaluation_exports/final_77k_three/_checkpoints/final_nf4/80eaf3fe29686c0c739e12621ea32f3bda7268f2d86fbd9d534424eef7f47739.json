@@ -1,0 +1,39 @@
+{
+  "key": "05d780a23361d919cf4fd9effe9612a7f8a62e89a7568a293e4927df251851a5",
+  "digest": "b7f7a950f11939006962b4e3621a1afc7b97f6d0c321b7f206576f204e88a6e6",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:465",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "465",
+      "task_prompt": "Write a function to drop empty items from a given dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef drop_empty(input_dict):\n    \"\"\"\n    Removes key-value pairs from the dictionary where the value is None.\n\n    Parameters:\n    input_dict (dict): The dictionary from which to remove empty items.\n\n    Returns:\n    dict: A new dictionary with empty items removed.\n    \"\"\"\n    return {k: v for k, v in input_dict.items() if v is not None}\n```",
+      "input_tokens": 145,
+      "output_tokens": 82,
+      "generation_seconds": 4.5514898570254445,
+      "output_tokens_per_second_including_prefill": 18.01607881723147,
+      "peak_allocated_bytes": 9916176384,
+      "peak_reserved_bytes": 10003415040
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

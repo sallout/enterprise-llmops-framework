@@ -1,0 +1,40 @@
+{
+  "key": "389adb0ab78a529d3e2290affc5cd59d3fa41b846f9216330adc2a0e0a233e2f",
+  "digest": "25306072dea635b3f9fff76b76e3c19c814503773dab37ef8f01bd581a8dc9c0",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/41",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/41",
+      "task_prompt": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move in the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    return n * n\n```",
+      "input_tokens": 180,
+      "output_tokens": 152,
+      "generation_seconds": 8.362448164261878,
+      "output_tokens_per_second_including_prefill": 18.176495329393347,
+      "peak_allocated_bytes": 10177324032,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

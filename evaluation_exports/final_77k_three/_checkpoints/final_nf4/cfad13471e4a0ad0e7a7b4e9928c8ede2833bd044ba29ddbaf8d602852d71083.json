@@ -1,0 +1,39 @@
+{
+  "key": "172ffa1b5608148e5d0638ab8964a0fb56138794a9013a7b0c9ecb6c5c0c761d",
+  "digest": "2fd04279c9000bcca301663caecbe07cb41a93b3d685bd56431385d44bb185d6",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:83",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "83",
+      "task_prompt": "Write a python function to find the character made by adding the ASCII value of all the characters of the given string modulo 26.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef get_Char(s):\n    \"\"\"\n    Returns the character made by adding the ASCII value of all the characters of the given string modulo 26.\n    \n    :param s: Input string\n    :return: Character corresponding to the sum of ASCII values modulo 26\n    \"\"\"\n    total = sum(ord(char) for char in s)\n    return chr(97 + (total % 26))\n```",
+      "input_tokens": 92,
+      "output_tokens": 89,
+      "generation_seconds": 4.934244961943477,
+      "output_tokens_per_second_including_prefill": 18.03720745249443,
+      "peak_allocated_bytes": 9900899328,
+      "peak_reserved_bytes": 10003415040
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

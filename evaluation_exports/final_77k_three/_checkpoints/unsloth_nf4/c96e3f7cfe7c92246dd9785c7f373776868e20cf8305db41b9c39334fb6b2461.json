@@ -1,0 +1,41 @@
+{
+  "key": "d1e491c42ebd2984a06bd8dc50c75425fe56de82c2bddf3cd77029b90cd487e7",
+  "digest": "a070112777ef11d97c46afb6599696d6ebebfa53422ba2efe2ea815f81dd428b",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/70",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/70",
+      "task_prompt": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n    sorted_lst = []\n    while lst:\n        # Get the minimum value\n        min_val = min(lst)\n        sorted_lst.append(min_val)\n        lst.remove(min_val)\n        \n        # If list is empty, break\n        if not lst:\n            break\n        \n        # Get the maximum value from remaining list\n        max_val = max(lst)\n        sorted_lst.append(max_val)\n        lst.remove(max_val)\n    \n    return sorted_lst\n```",
+      "input_tokens": 153,
+      "output_tokens": 213,
+      "generation_seconds": 11.618247678969055,
+      "output_tokens_per_second_including_prefill": 18.33322940649347,
+      "peak_allocated_bytes": 10169919488,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

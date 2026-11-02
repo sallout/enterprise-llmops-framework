@@ -1,0 +1,39 @@
+{
+  "key": "2dcef62de799878b95ffd2a3323faad163dc6f51b02a7d71f7c628ea32b57d9b",
+  "digest": "eb1b7bd9f37b66e52d53e2532bde4b8fc689a01abb82f4d1c5978f0e1e87811f",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:311",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "311",
+      "task_prompt": "Write a python function to set the left most unset bit.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef set_left_most_unset_bit(n):\n    return n | (1 << (n.bit_length() - 1))\n```",
+      "input_tokens": 90,
+      "output_tokens": 29,
+      "generation_seconds": 1.1720423181541264,
+      "output_tokens_per_second_including_prefill": 24.743133887582403,
+      "peak_allocated_bytes": 29573040128,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

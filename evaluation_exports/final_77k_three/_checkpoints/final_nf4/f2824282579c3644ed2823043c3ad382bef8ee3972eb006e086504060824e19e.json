@@ -1,0 +1,39 @@
+{
+  "key": "f10439a148c3a2b112df62955eed0215f349b80a284bd7ba4645861b03684e51",
+  "digest": "d887ddfeee6747812e02ee89e7910075285a90bc49668ddfa02f5c40ca098fe2",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:248",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "248",
+      "task_prompt": "Write a function that takes in an integer n and calculates the harmonic sum of n-1.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef harmonic_sum(n):\n    \"\"\"\n    Calculate the harmonic sum of n-1.\n    \n    Parameters:\n    n (int): The integer up to which the harmonic sum is calculated.\n    \n    Returns:\n    float: The harmonic sum of n-1.\n    \"\"\"\n    return sum(1 / i for i in range(1, n))\n```",
+      "input_tokens": 172,
+      "output_tokens": 78,
+      "generation_seconds": 4.3837008937262,
+      "output_tokens_per_second_including_prefill": 17.793184774908088,
+      "peak_allocated_bytes": 9922659328,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

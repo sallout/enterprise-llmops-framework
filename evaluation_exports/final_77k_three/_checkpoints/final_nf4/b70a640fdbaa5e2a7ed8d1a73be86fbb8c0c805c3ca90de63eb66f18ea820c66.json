@@ -1,0 +1,39 @@
+{
+  "key": "ef14fd76dffe73f1d3eb24f7903fa92e356b68d3fd1bbbe2f99dfc1c0ee7e96b",
+  "digest": "452514c5b4eb8719d4576adfe4f411947213f771e78129f040c94387d7c38c28",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:111",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "111",
+      "task_prompt": "Write a function to find the common elements in given nested lists.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom functools import reduce\nfrom typing import List\n\ndef common_in_nested_lists(nested_lists: List[List[int]]) -> List[int]:\n    \"\"\"\n    Finds the common elements in a list of nested lists.\n\n    :param nested_lists: List of lists containing integers.\n    :return: List of integers that are common to all nested lists.\n    \"\"\"\n    return list(reduce(set.intersection, map(set, nested_lists)))\n```",
+      "input_tokens": 248,
+      "output_tokens": 89,
+      "generation_seconds": 4.8840295183472335,
+      "output_tokens_per_second_including_prefill": 18.222658087070243,
+      "peak_allocated_bytes": 9943643136,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "070b935b5bb97f90bd24ce8b498a4a432825fde8e243618a77b10c252068dc56",
+  "digest": "4d71d61f2a7a8625fe22138fcade6b58dc18aecab3039059688fb0bf807d6320",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:111",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "111",
+      "task_prompt": "Write a function to find the common elements in given nested lists.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport functools\nimport operator\n\ndef common_in_nested_lists(nested_lists):\n    return list(functools.reduce(set.intersection, (set(lst) for lst in nested_lists), set()))\n```",
+      "input_tokens": 248,
+      "output_tokens": 42,
+      "generation_seconds": 2.7892085667699575,
+      "output_tokens_per_second_including_prefill": 15.058034920865776,
+      "peak_allocated_bytes": 10196595712,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

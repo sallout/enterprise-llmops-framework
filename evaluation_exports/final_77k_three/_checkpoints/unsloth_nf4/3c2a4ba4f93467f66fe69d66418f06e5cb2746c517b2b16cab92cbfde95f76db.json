@@ -1,0 +1,38 @@
+{
+  "key": "4fa3c97d27baa6de8e2db1c5309e20c17c9e945f179d9796ef9d4744d00eab19",
+  "digest": "07c98880479703e07b0234db9848f72a6d2c17170ec33b7392dc1a261c6b66cb",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:266",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "266",
+      "task_prompt": "Write a function to find the lateral surface area of a cube given its side length.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef lateralsurface_cube(side_length):\n    return 4 * (side_length ** 2)\n```",
+      "input_tokens": 87,
+      "output_tokens": 28,
+      "generation_seconds": 1.7513050739653409,
+      "output_tokens_per_second_including_prefill": 15.988076786988247,
+      "peak_allocated_bytes": 10151752704,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

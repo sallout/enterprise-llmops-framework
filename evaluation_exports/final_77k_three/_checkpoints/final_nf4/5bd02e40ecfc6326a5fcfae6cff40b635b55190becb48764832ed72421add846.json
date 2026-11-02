@@ -1,0 +1,39 @@
+{
+  "key": "0d29c3a83230ea509f6caf6ac6ca86804dabdba0b392fff9773ce53225ac60c4",
+  "digest": "cb6d88b9bbe0354962e99bfd5e32e194ba019a627d4423c78fd4142b55cedbfa",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:166",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "166",
+      "task_prompt": "Write a function that counts the number of pairs of integers in a list that xor to an even number.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom itertools import combinations\n\ndef find_even_pair(nums):\n    \"\"\"\n    Counts the number of pairs of integers in the list that xor to an even number.\n    \n    :param nums: List of integers\n    :return: Integer count of pairs with even xor\n    \"\"\"\n    count = 0\n    for a, b in combinations(nums, 2):\n        if (a ^ b) % 2 == 0:\n            count += 1\n    return count\n```",
+      "input_tokens": 124,
+      "output_tokens": 102,
+      "generation_seconds": 5.643909988924861,
+      "output_tokens_per_second_including_prefill": 18.07257737989378,
+      "peak_allocated_bytes": 9911739392,
+      "peak_reserved_bytes": 9988734976
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

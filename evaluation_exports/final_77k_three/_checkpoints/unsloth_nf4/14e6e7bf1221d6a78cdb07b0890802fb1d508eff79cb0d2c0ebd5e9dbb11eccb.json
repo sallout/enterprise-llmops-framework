@@ -1,0 +1,39 @@
+{
+  "key": "20a50ff01e337465480b75fadfe458680543c0cb7fcadc19cdcddc6f5195eb59",
+  "digest": "52086d5b48ce0eb92f0f73f57aa2d7b5429d2a35997495748fd2644c215f202e",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:300",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "300",
+      "task_prompt": "Write a function to find the count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\nimport itertools\n\ndef count_binary_seq(n):\n    total = 0\n    for bits in itertools.product([0, 1], repeat=2 * n):\n        first_half = sum(bits[:n])\n        second_half = sum(bits[n:])\n        if first_half == second_half:\n            total += 1\n    return float(total)\n```",
+      "input_tokens": 139,
+      "output_tokens": 77,
+      "generation_seconds": 4.213004176039249,
+      "output_tokens_per_second_including_prefill": 18.27674428568681,
+      "peak_allocated_bytes": 10166754304,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

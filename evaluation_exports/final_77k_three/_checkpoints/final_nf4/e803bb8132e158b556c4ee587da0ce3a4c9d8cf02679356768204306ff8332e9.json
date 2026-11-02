@@ -1,0 +1,39 @@
+{
+  "key": "5692a7a4c2fe7bc345937a17aa0fd6b32a528cd94804efd8dc59feec2f5685f4",
+  "digest": "09be534d13a129a0789cb86f4fa38138194cc08f10d4e65fe34a3f744064eb82",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:395",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "395",
+      "task_prompt": "Write a python function to find the first non-repeated character in a given string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef first_non_repeating_character(s):\n    \"\"\"\n    Returns the first non-repeating character in the string s.\n    If no such character exists, returns None.\n    \"\"\"\n    char_count = {}\n    for char in s:\n        if char in char_count:\n            char_count[char] += 1\n        else:\n            char_count[char] = 1\n    for char in s:\n        if char_count[char] == 1:\n            return char\n    return None\n```",
+      "input_tokens": 91,
+      "output_tokens": 103,
+      "generation_seconds": 6.001833733636886,
+      "output_tokens_per_second_including_prefill": 17.1614217539455,
+      "peak_allocated_bytes": 9900627968,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

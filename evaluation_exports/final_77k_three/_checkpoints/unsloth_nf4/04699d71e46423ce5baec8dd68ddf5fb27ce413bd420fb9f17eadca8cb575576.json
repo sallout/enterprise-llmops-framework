@@ -1,0 +1,40 @@
+{
+  "key": "db59277e44a66e3dde6de0057a7b01d8ebef434e70f871f401db746533e01eb4",
+  "digest": "78a4e7e38d5ed382f7fc43fa172a9d10e53d5cc7288b6037ed31a4b5b475ea5e",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:71",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "71",
+      "task_prompt": "Write a function to sort a list of elements.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef comb_sort(arr):\n    import math\n    gap = len(arr)\n    shrink = 1.3\n    while gap > 1:\n        gap = int(gap / shrink)\n        if gap == 0:\n            gap = 1\n        i = 0\n        while i + gap < len(arr):\n            if arr[i] > arr[i + gap]:\n                arr[i], arr[i + gap] = arr[i + gap], arr[i]\n            i += 1\n    return arr\n```",
+      "input_tokens": 166,
+      "output_tokens": 111,
+      "generation_seconds": 7.383948563132435,
+      "output_tokens_per_second_including_prefill": 15.032607425546765,
+      "peak_allocated_bytes": 10173474816,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

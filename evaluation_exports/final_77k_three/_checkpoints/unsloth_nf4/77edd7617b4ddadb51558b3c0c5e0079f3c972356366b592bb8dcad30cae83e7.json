@@ -1,0 +1,38 @@
+{
+  "key": "7fc2add059250bec389d504ac8e976a85915867870ee206a98a129785a8dd763",
+  "digest": "3563eed6b5a8635de6811f0b0724e78391c3ca118888353f7cef27c1a371912d",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:394",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "394",
+      "task_prompt": "Write a function to check if given tuple contains no duplicates.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_distinct(t):\n    return len(set(t)) == len(t)\n```",
+      "input_tokens": 111,
+      "output_tokens": 21,
+      "generation_seconds": 1.168188814073801,
+      "output_tokens_per_second_including_prefill": 17.976546040333265,
+      "peak_allocated_bytes": 10159660032,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

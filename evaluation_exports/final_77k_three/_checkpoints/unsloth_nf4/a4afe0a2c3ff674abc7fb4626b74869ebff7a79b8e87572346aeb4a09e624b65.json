@@ -1,0 +1,39 @@
+{
+  "key": "4cbf5afad3031ce74d6a76be31333da5df8b722724fbb2dbcaa0f3329cca086f",
+  "digest": "f6530b265515cf35ba1c751ea0592c04603c6a9eb58ba040b1e9f79bc4d42c10",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:94",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "94",
+      "task_prompt": "Given a list of tuples, write a function that returns the first value of the tuple with the smallest second value.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef index_minimum(lst):\n    return min(lst, key=lambda x: x[1])[0]\n\nimport doctest\ndoctest.testmod()\n```",
+      "input_tokens": 166,
+      "output_tokens": 34,
+      "generation_seconds": 1.8861300121061504,
+      "output_tokens_per_second_including_prefill": 18.026328928425162,
+      "peak_allocated_bytes": 10173474816,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

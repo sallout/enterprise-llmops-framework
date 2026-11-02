@@ -1,0 +1,40 @@
+{
+  "key": "eb07de489c0edfb8093777063cae5ecf698698b6be355f636f2c273b905aa79d",
+  "digest": "67c3f43f3a60b824d0e21edf4db2397d03fee76a3363bbb59cfb2442377b9d76",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/99",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/99",
+      "task_prompt": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    import math\n    num = float(value)\n    rounded_num = round(num)\n    if num - rounded_num == 0:\n        return rounded_num\n    elif num > 0 and num - rounded_num == 0.5:\n        return rounded_num + 1\n    elif num < 0 and num - rounded_num == -0.5:\n        return rounded_num - 1\n    else:\n        return rounded_num\n```",
+      "input_tokens": 193,
+      "output_tokens": 253,
+      "generation_seconds": 14.15187202906236,
+      "output_tokens_per_second_including_prefill": 17.8774934849918,
+      "peak_allocated_bytes": 9929264128,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

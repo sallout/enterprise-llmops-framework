@@ -1,0 +1,38 @@
+{
+  "key": "a80d0ebd1bf890b3378c1f5e1ca1abac5ba3063775e5bf9897a6eeb73e176983",
+  "digest": "21c981432a94df93624c58333b03eb3de22268822709237f1698aaf260c4b5d8",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:74",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "74",
+      "task_prompt": "Write a function to check whether it follows the sequence given in the patterns array.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_samepatterns(arr1, arr2):\n    if len(arr1) != len(arr2):\n        return False\n    return all(arr1[i] == arr2[i] for i in range(len(arr1)))\n```",
+      "input_tokens": 114,
+      "output_tokens": 50,
+      "generation_seconds": 3.018983085639775,
+      "output_tokens_per_second_including_prefill": 16.561868212456094,
+      "peak_allocated_bytes": 10161297408,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

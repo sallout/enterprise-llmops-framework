@@ -1,0 +1,39 @@
+{
+  "key": "22725342f5950a54b0ebb442055eb47c92c98676c3e27f899344912a2123b1f2",
+  "digest": "a2d42540b85cbf2629bbbb78b50b8c54a7a478d7af209d26c283837ae4132f6c",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:246",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "246",
+      "task_prompt": "Write a function for computing square roots using the babylonian method.",
+      "skill_tags": [
+        "oop"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "oop",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef babylonian_squareroot(n):\n    if n < 0:\n        raise ValueError(\"Cannot compute square root of a negative number.\")\n    guess = n / 2.0\n    while True:\n        next_guess = (guess + n / guess) / 2\n        if abs(next_guess - guess) < 1e-10:\n            return next_guess\n        guess = next_guess\n```",
+      "input_tokens": 164,
+      "output_tokens": 94,
+      "generation_seconds": 4.2897327416576445,
+      "output_tokens_per_second_including_prefill": 21.912787033831947,
+      "peak_allocated_bytes": 29596906496,
+      "peak_reserved_bytes": 29758586880
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

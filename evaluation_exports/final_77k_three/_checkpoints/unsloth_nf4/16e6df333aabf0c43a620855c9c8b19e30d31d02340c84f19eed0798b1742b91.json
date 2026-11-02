@@ -1,0 +1,40 @@
+{
+  "key": "d363fb3c9d037e1ef9ac80d86261c8df5e837af076b003b0fbbd8ef83b92ac39",
+  "digest": "b684fe950b4747eab9b9de94b44ce047a799c4567a1be839f4fe6ab0ab8798c7",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:450",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "450",
+      "task_prompt": "Write a function to extract specified size of strings from a given list of string values.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef extract_string(string_list, size):\n    return [s for s in string_list if len(s) == size]\n```",
+      "input_tokens": 130,
+      "output_tokens": 29,
+      "generation_seconds": 1.6045868988148868,
+      "output_tokens_per_second_including_prefill": 18.073187573336646,
+      "peak_allocated_bytes": 10164322304,
+      "peak_reserved_bytes": 10282336256
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

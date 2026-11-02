@@ -1,0 +1,40 @@
+{
+  "key": "4fe8dcbf10d2d437e9f14a9af512bb3c16fac8ed11e214f35f4b36aea7c7d49c",
+  "digest": "33ea1d1c7ce0e0ff4b538178aeb60dcae418e503d5425e6af5386ba0c4f464cb",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/11",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/11",
+      "task_prompt": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\"\n    Perform binary XOR on two binary strings and return the result as a binary string.\n    \n    :param a: First binary string\n    :param b: Second binary string\n    :return: Result of binary XOR as a binary string\n    \"\"\"\n    # Convert binary strings to integers\n    int_a = int(a, 2)\n    int_b = int(b, 2)\n    \n    # Perform XOR operation\n    xor_result = int_a ^ int_b\n    \n    # Convert the result back to binary string\n    xor_str = bin(xor_result)[2:]\n    \n    return xor_str\n```",
+      "input_tokens": 111,
+      "output_tokens": 149,
+      "generation_seconds": 8.591456030961126,
+      "output_tokens_per_second_including_prefill": 17.34281121419315,
+      "peak_allocated_bytes": 9907570688,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

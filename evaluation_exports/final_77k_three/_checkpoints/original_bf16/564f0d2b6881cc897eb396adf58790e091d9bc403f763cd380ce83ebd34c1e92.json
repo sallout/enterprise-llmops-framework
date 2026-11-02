@@ -1,0 +1,39 @@
+{
+  "key": "3f07e25e943b32035cac294e72973f4a0b080ca5cac79d5cf45b7e4e15e1b5c7",
+  "digest": "c7552ce444d949ded2e9448448bb895cc4cdf20dbb654f184ffcde5d71865632",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:414",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "414",
+      "task_prompt": "Write a python function to check whether any value in a sequence exists in a sequence or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef overlapping(seq1, seq2):\n    return not set(seq1).isdisjoint(seq2)\n\n# Required imports\n# None\n```",
+      "input_tokens": 112,
+      "output_tokens": 33,
+      "generation_seconds": 1.3423367198556662,
+      "output_tokens_per_second_including_prefill": 24.5839955890861,
+      "peak_allocated_bytes": 29579854848,
+      "peak_reserved_bytes": 29758586880
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

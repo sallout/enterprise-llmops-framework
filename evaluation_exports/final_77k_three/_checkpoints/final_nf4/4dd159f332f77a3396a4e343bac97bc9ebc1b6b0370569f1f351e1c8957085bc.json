@@ -1,0 +1,40 @@
+{
+  "key": "9632217b9033e2beeb077da1978d21708277e84c45954bb30eaec851b5b8e2a0",
+  "digest": "1b73fbe94ea218e46176a0090d9f19019a40ab364e44de3c341629ef452142e4",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/112",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/112",
+      "task_prompt": "\ndef reverse_delete(s,c):\n    \"\"\"Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef reverse_delete(s, c):\n    \"\"\"\n    Deletes all characters in s that are equal to any character in c,\n    then checks if the resulting string is a palindrome.\n    \n    Parameters:\n    s (str): The original string.\n    c (str): The string containing characters to delete from s.\n    \n    Returns:\n    tuple: A tuple containing the resulting string and a boolean indicating if it is a palindrome.\n    \"\"\"\n    result = ''.join(char for char in s if char not in c)\n    is_palindrome = result == result[::-1]\n    return result, is_palindrome\n```",
+      "input_tokens": 191,
+      "output_tokens": 127,
+      "generation_seconds": 7.1888633500784636,
+      "output_tokens_per_second_including_prefill": 17.666214228235933,
+      "peak_allocated_bytes": 9927817216,
+      "peak_reserved_bytes": 10003415040
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

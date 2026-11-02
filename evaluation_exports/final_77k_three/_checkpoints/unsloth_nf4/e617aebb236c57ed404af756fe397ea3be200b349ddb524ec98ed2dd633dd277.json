@@ -1,0 +1,38 @@
+{
+  "key": "0ff58b5908fb6c5a6b2685603eeba6e72fbb43440ec01d1890bbfaaa6eb376a3",
+  "digest": "bc03649a4eadd952864e677bfa73928bd1f6d8c40a6b092c9fc515426b1ebad7",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:452",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "452",
+      "task_prompt": "Write a function that gives loss amount on a sale if the given amount has loss else return 0.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef loss_amount(sale_price, cost_price):\n    return max(0, cost_price - sale_price)\n```",
+      "input_tokens": 105,
+      "output_tokens": 27,
+      "generation_seconds": 1.616842814721167,
+      "output_tokens_per_second_including_prefill": 16.699211422513134,
+      "peak_allocated_bytes": 10158194688,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

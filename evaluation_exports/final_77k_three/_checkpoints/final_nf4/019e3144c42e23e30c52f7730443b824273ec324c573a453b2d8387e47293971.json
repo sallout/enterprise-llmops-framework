@@ -1,0 +1,38 @@
+{
+  "key": "2e470f58e0612a29b774ac03f833190eb4a6a575c27d84d455caeb94602f5d03",
+  "digest": "b0d01a422de0d085cf4f3a42f40302d6313dd25918ecaee03e8f975fdb1f79e9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:256",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "256",
+      "task_prompt": "Write a python function that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_Primes_nums(n):\n    \"\"\"\n    Returns the number of prime numbers less than the given non-negative number n.\n    \n    :param n: int - a non-negative integer\n    :return: int - the count of prime numbers less than n\n    \"\"\"\n    if n < 2:\n        return 0\n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    for start in range(2, int(n**0.5) + 1):\n        if is_prime[start]:\n            for multiple in range(start*start, n, start):\n                is_prime[multiple] = False\n    return sum(is_prime)\n```",
+      "input_tokens": 99,
+      "output_tokens": 150,
+      "generation_seconds": 8.37458740035072,
+      "output_tokens_per_second_including_prefill": 17.911330174154987,
+      "peak_allocated_bytes": 9902802944,
+      "peak_reserved_bytes": 10003415040
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

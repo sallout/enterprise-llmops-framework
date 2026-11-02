@@ -1,0 +1,40 @@
+{
+  "key": "0c2f3f001c0d96dbc40a21ba010b76705b4104b5731e4684a9947231c399a8b3",
+  "digest": "c252346078c101d9672ee754273501a08f843051127df93e8566b194ec26a9ba",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:64",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "64",
+      "task_prompt": "Write a function to sort a list of tuples using the second value of each tuple.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef subject_marks(subject_list):\n    \"\"\"\n    Sorts a list of tuples based on the second value of each tuple.\n\n    Parameters:\n    subject_list (list of tuples): List of tuples where each tuple contains a subject name and a mark.\n\n    Returns:\n    list of tuples: Sorted list of tuples based on the second value of each tuple.\n    \"\"\"\n    return sorted(subject_list, key=lambda x: x[1])\n```",
+      "input_tokens": 206,
+      "output_tokens": 91,
+      "generation_seconds": 5.290120708756149,
+      "output_tokens_per_second_including_prefill": 17.201875913602088,
+      "peak_allocated_bytes": 9932797952,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

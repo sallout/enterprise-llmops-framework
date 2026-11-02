@@ -1,0 +1,38 @@
+{
+  "key": "e867afa9e6106201e205a1ad9bff85c47ccb9d023b5ecb768c2ba1bcf9cd3758",
+  "digest": "2e1fc30a842a4cc65531fc3ca6fd2995c6420b425b1fb105a442a28924d17a7c",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:454",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "454",
+      "task_prompt": "Write a function that matches a word containing 'z'.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_match_wordz(text):\n    return bool(re.search(r'\\b\\w*z\\w*\\b', text))\n```",
+      "input_tokens": 80,
+      "output_tokens": 33,
+      "generation_seconds": 1.2963056811131537,
+      "output_tokens_per_second_including_prefill": 25.456958555996216,
+      "peak_allocated_bytes": 29569942528,
+      "peak_reserved_bytes": 29672603648
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

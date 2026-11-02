@@ -1,0 +1,40 @@
+{
+  "key": "b427a7c8aaa044ae14ac8cab9cc8b0a2abe61665b14d3edddf80a235e7b5817f",
+  "digest": "d75b879a52d284f583a8433d0b2e70282943e12ad3a4d5403b8187cceff46788",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/37",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/37",
+      "task_prompt": "\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    even_values = sorted(l[::2])\n    result = []\n    even_index = 0\n    for i in range(len(l)):\n        if i % 2 == 0:\n            result.append(even_values[even_index])\n            even_index += 1\n        else:\n            result.append(l[i])\n    return result\n```",
+      "input_tokens": 152,
+      "output_tokens": 191,
+      "generation_seconds": 10.609924833290279,
+      "output_tokens_per_second_including_prefill": 18.002012549674998,
+      "peak_allocated_bytes": 9917459456,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

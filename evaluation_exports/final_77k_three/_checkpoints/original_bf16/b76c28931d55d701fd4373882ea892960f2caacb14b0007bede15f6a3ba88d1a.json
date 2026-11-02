@@ -1,0 +1,41 @@
+{
+  "key": "bb2981d92d1c7492b0ec53c2fa2456dde7fca15d09a15dc2b1bb78258c020836",
+  "digest": "ceb1a982d779f10a540bbab1009ff5f6b1f3d5662b9a824369b681a50e977472",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:104",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "104",
+      "task_prompt": "Write a function to sort each sublist of strings in a given list of lists.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_sublists(list_of_lists):\n    return [sorted(sublist) for sublist in list_of_lists]\n```",
+      "input_tokens": 187,
+      "output_tokens": 27,
+      "generation_seconds": 1.1218501692637801,
+      "output_tokens_per_second_including_prefill": 24.067385057060594,
+      "peak_allocated_bytes": 29603795968,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

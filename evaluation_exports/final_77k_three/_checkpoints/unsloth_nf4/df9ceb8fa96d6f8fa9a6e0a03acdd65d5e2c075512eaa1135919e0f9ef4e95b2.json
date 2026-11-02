@@ -1,0 +1,39 @@
+{
+  "key": "8f46e3c4a0fdd72d1a2d7462e23f8f399c06fb331a82c0ec58991292d0ad2383",
+  "digest": "c4651eaa44dad964021dde197dba8d016d6e6a93e95bbdd548492f5fe5e19cdc",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/138",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/138",
+      "task_prompt": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n    # The smallest sum of 4 positive even numbers is 2 + 2 + 2 + 2 = 8\n    # Also, since all even numbers are divisible by 2, the sum must be divisible by 2\n    return n >= 8 and n % 2 == 0\n```",
+      "input_tokens": 106,
+      "output_tokens": 141,
+      "generation_seconds": 8.986790207214653,
+      "output_tokens_per_second_including_prefill": 15.689695291518465,
+      "peak_allocated_bytes": 10158438400,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

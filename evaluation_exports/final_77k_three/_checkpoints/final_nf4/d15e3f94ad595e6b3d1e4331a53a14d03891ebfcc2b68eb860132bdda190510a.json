@@ -1,0 +1,39 @@
+{
+  "key": "5da63fc5429bb6c4e938d2900f1bc5872be3ab2890c2ef1c6422ae3b26ed2f9e",
+  "digest": "b91634880ac4307e134393c090bccd43212ca9a653beed8ac607836003e51dbb",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:411",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "411",
+      "task_prompt": "Write a function to convert the given snake case string to camel case string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef snake_to_camel(snake_str):\n    \"\"\"\n    Convert a snake case string to camel case string.\n    \n    :param snake_str: str - The input string in snake case.\n    :return: str - The converted string in camel case.\n    \"\"\"\n    camel_str = re.sub(r'_([a-z])', lambda match: match.group(1).upper(), snake_str)\n    return camel_str\n```",
+      "input_tokens": 91,
+      "output_tokens": 92,
+      "generation_seconds": 5.29945592302829,
+      "output_tokens_per_second_including_prefill": 17.36027270275475,
+      "peak_allocated_bytes": 9900627968,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

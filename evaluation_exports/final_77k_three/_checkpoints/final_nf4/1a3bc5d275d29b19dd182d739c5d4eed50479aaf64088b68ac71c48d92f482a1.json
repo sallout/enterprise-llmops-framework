@@ -1,0 +1,38 @@
+{
+  "key": "8faed81e2f355bca175fc90144f252b0f5640a8525aeca07196d9a38a2d83225",
+  "digest": "0dcc7d2c52bacbadd4c946be2fda711b877dd24b4536dd5fc11c054b4f4e2b40",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/53",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/53",
+      "task_prompt": "\n\ndef add(x: int, y: int):\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    return x + y\n```",
+      "input_tokens": 83,
+      "output_tokens": 62,
+      "generation_seconds": 3.54898943612352,
+      "output_tokens_per_second_including_prefill": 17.469761777516357,
+      "peak_allocated_bytes": 9898452992,
+      "peak_reserved_bytes": 10223616000
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "148d57d5ec5ca62628c81f2f9ab868ae50e8d17902a787efa03638449a9af569",
+  "digest": "e12c28e39f8d5768f076ec2518c7176dc11359419d5d50af2b73df12dff2e667",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:64",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "64",
+      "task_prompt": "Write a function to sort a list of tuples using the second value of each tuple.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef subject_marks(subject_list):\n    return sorted(subject_list, key=lambda x: x[1])\n```",
+      "input_tokens": 206,
+      "output_tokens": 25,
+      "generation_seconds": 1.5098113273270428,
+      "output_tokens_per_second_including_prefill": 16.5583603378177,
+      "peak_allocated_bytes": 10184781824,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

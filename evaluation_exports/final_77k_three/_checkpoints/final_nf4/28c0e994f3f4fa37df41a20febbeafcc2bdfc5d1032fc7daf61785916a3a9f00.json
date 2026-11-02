@@ -1,0 +1,39 @@
+{
+  "key": "38a205881960e445e3cf3b24c952b4956415e70c26edfc4d12e411c2267ab730",
+  "digest": "5b775467d623860c0dd7237b270882cc5bc9f894ca4bb856a31ab5972afd829f",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:470",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "470",
+      "task_prompt": "Write a function to find the pairwise addition of the neighboring elements of the given tuple.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add_pairwise(t):\n    \"\"\"\n    Returns a new tuple containing the pairwise addition of the neighboring elements of the input tuple.\n    \n    :param t: Tuple of integers\n    :return: Tuple of integers representing pairwise additions\n    \"\"\"\n    return tuple(t[i] + t[i + 1] for i in range(len(t) - 1))\n```",
+      "input_tokens": 161,
+      "output_tokens": 78,
+      "generation_seconds": 4.516465754713863,
+      "output_tokens_per_second_including_prefill": 17.270140910199732,
+      "peak_allocated_bytes": 9919781888,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

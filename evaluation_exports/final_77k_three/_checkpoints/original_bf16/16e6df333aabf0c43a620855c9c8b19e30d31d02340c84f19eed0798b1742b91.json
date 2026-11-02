@@ -1,0 +1,40 @@
+{
+  "key": "04a3d598def98028337791a975fb124458bcaf6b87dcca56fb75629430328d71",
+  "digest": "cd10cbd9c73b6b2299276556a8e073e4f761d11bc23161567f38524c2a5aa905",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:450",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "450",
+      "task_prompt": "Write a function to extract specified size of strings from a given list of string values.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef extract_string(lst, size):\n    return [s for s in lst if len(s) == size]\n```",
+      "input_tokens": 130,
+      "output_tokens": 27,
+      "generation_seconds": 1.0494312760420144,
+      "output_tokens_per_second_including_prefill": 25.728221195990965,
+      "peak_allocated_bytes": 29585432576,
+      "peak_reserved_bytes": 29672603648
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

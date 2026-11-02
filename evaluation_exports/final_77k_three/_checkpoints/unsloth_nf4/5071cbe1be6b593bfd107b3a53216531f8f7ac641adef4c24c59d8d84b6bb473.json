@@ -1,0 +1,40 @@
+{
+  "key": "83c4d6957e6e9d5007fd1e8f0c82793d87553dc12f7c0d7f63bb5c2b334efaa8",
+  "digest": "b64a86dea0474db9438ebc535217047952483d4911f1385f0136e8bb3f31c216",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "humaneval:HumanEval/40",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/40",
+      "task_prompt": "\n\ndef triples_sum_to_zero(l: list):\n    \"\"\"\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef triples_sum_to_zero(l: List[int]) -> bool:\n    \"\"\"\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    \"\"\"\n    n = len(l)\n    if n < 3:\n        return False\n\n    l.sort()\n    for i in range(n - 2):\n        left = i + 1\n        right = n - 1\n        while left < right:\n            current_sum = l[i] + l[left] + l[right]\n            if current_sum == 0:\n                return True\n            elif current_sum < 0:\n                left += 1\n            else:\n                right -= 1\n    return False\n```",
+      "input_tokens": 188,
+      "output_tokens": 274,
+      "generation_seconds": 16.49126583803445,
+      "output_tokens_per_second_including_prefill": 16.61485556603321,
+      "peak_allocated_bytes": 10179523584,
+      "peak_reserved_bytes": 10479468544
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

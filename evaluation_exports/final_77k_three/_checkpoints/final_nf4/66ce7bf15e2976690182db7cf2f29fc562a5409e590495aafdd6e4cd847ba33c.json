@@ -1,0 +1,39 @@
+{
+  "key": "d90246f52fb6fbbc47fc0f437ea9620cf20c52aee7402f18257445b841b9cd13",
+  "digest": "ff8be9351139cc2ec95c651a481735ed9a50b2a1a64af84b9ec64e141060c502",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/162",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/162",
+      "task_prompt": "\ndef string_to_md5(text):\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport hashlib\n\ndef string_to_md5(text):\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n    if not text:\n        return None\n    return hashlib.md5(text.encode()).hexdigest()\n```",
+      "input_tokens": 115,
+      "output_tokens": 107,
+      "generation_seconds": 6.043979245238006,
+      "output_tokens_per_second_including_prefill": 17.703568403929296,
+      "peak_allocated_bytes": 9908535296,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "a81de1b5ef14d210b8eb05d5e098bc0749bb88de35bcf8455c9bdee09a1af3fa",
+  "digest": "5f965a80b3ca2ee3b72b97f6538dab10e429d76d79d682e9e78642e2ff37c32c",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:108",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "108",
+      "task_prompt": "Write a function to merge three lists into a single sorted list.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport heapq\n\ndef merge_sorted_list(list1, list2, list3):\n    merged = list1 + list2 + list3\n    merged.sort()\n    return merged\n```",
+      "input_tokens": 485,
+      "output_tokens": 41,
+      "generation_seconds": 2.298465105239302,
+      "output_tokens_per_second_including_prefill": 17.837991060443503,
+      "peak_allocated_bytes": 10261192704,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

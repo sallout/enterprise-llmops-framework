@@ -1,0 +1,38 @@
+{
+  "key": "86746227d17eb04a74d166ea049892c1d9e692394182d1383c39ab1e7bba4199",
+  "digest": "83532167c5f6bf37fa0ce7f90d88955acb848a93dc9eb6378d35d8159eab5455",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:404",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "404",
+      "task_prompt": "Write a python function to find the minimum of two numbers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef minimum(a, b):\n    \"\"\"\n    Returns the minimum of two numbers.\n\n    Parameters:\n    a (int or float): First number.\n    b (int or float): Second number.\n\n    Returns:\n    int or float: The minimum of the two numbers.\n    \"\"\"\n    return a if a < b else b\n```",
+      "input_tokens": 78,
+      "output_tokens": 71,
+      "generation_seconds": 4.071490294765681,
+      "output_tokens_per_second_including_prefill": 17.438332124057325,
+      "peak_allocated_bytes": 9897093120,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "3e5ee25055a26fbb5480b87520b665e671cb2b7ec7c02345d573a8993a77dc9d",
+  "digest": "217c5e13c44f45dec6de515911b3af52f18e25da3389d9fde8a4ab1dc87caf8b",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:131",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "131",
+      "task_prompt": "Write a python function to reverse only the vowels of a given string (where y is not a vowel).",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef reverse_vowels(s):\n    vowels = re.findall(r'[aeiouAEIOU]', s)\n    return re.sub(r'[aeiouAEIOU]', lambda m: vowels.pop(), s)\n```",
+      "input_tokens": 92,
+      "output_tokens": 50,
+      "generation_seconds": 2.0439679520204663,
+      "output_tokens_per_second_including_prefill": 24.462223074767344,
+      "peak_allocated_bytes": 29573659648,
+      "peak_reserved_bytes": 29672603648
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

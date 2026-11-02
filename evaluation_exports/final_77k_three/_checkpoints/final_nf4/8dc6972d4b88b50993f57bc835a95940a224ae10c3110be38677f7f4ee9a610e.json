@@ -1,0 +1,40 @@
+{
+  "key": "d6e41cc427162f313d150be791c8cad54d0d44aad194cd45c1ea2f8a55261761",
+  "digest": "6a602346aabcf45cbafd6bfeebfdde05c39a9c4027801e5d33750845d6b88c18",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/8",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/8",
+      "task_prompt": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n    total_sum = 0\n    total_product = 1\n    for number in numbers:\n        total_sum += number\n        total_product *= number\n    return total_sum, total_product\n```",
+      "input_tokens": 141,
+      "output_tokens": 151,
+      "generation_seconds": 8.456806016154587,
+      "output_tokens_per_second_including_prefill": 17.8554408971369,
+      "peak_allocated_bytes": 9914927616,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

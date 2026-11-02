@@ -1,0 +1,40 @@
+{
+  "key": "430f057fc222d79a9c0e12e5dad65e419c23f47218960d81645a5eaef123272c",
+  "digest": "f7891de1bb257e4d519261ad12b1f15bc56257668a942b8b9d3fb68eb45e7b25",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/41",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/41",
+      "task_prompt": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Calculate the number of collisions between two sets of cars moving in opposite directions.\n    \n    :param n: Number of cars in each set.\n    :return: Total number of collisions.\n    \"\"\"\n    return n * n\n```",
+      "input_tokens": 180,
+      "output_tokens": 64,
+      "generation_seconds": 3.55451707681641,
+      "output_tokens_per_second_including_prefill": 18.005258834576022,
+      "peak_allocated_bytes": 9924826112,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

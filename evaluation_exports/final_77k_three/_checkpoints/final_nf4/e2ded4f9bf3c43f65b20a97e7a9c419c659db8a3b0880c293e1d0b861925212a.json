@@ -1,0 +1,38 @@
+{
+  "key": "14b54737726eaae1b1e5fb905d4ad9273320b7e45d56eb0c81bbd78db06df040",
+  "digest": "ba362874e36a268cbf14d2ac850b345b280647ee97e84eac76b42d07b3e36247",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:74",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "74",
+      "task_prompt": "Write a function to check whether it follows the sequence given in the patterns array.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_samepatterns(colors, patterns):\n    \"\"\"\n    Checks if the colors list follows the same pattern as the patterns list.\n    \n    :param colors: List of color strings.\n    :param patterns: List of pattern strings.\n    :return: True if colors follow the same pattern as patterns, False otherwise.\n    \"\"\"\n    if len(colors) != len(patterns):\n        return False\n\n    mapping = {}\n    for color, pattern in zip(colors, patterns):\n        if color in mapping:\n            if mapping[color] != pattern:\n                return False\n        else:\n            mapping[color] = pattern\n\n    return True\n```",
+      "input_tokens": 114,
+      "output_tokens": 131,
+      "generation_seconds": 7.587347916793078,
+      "output_tokens_per_second_including_prefill": 17.265584949657796,
+      "peak_allocated_bytes": 9908293632,
+      "peak_reserved_bytes": 10206838784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

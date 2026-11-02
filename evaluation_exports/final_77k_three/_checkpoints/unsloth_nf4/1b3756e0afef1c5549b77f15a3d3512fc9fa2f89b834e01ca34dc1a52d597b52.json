@@ -1,0 +1,40 @@
+{
+  "key": "45d53d1dbaea6f8685216a8a4d98a56b2f6719231e8b49beb0431df1cd2c283e",
+  "digest": "4b1ffd10a76ce8dffd9cd81dc417006ac64a3fd75e8c66ae4f2d0c568f1f63b8",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:223",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "223",
+      "task_prompt": "Write a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_majority(arr, n, target):\n    import math\n    if n == 0:\n        return False\n    first = 0\n    last = n - 1\n    while first <= last:\n        mid = (first + last) // 2\n        if arr[mid] == target:\n            left = mid\n            while left >= 0 and arr[left] == target:\n                left -= 1\n            right = mid\n            while right < n and arr[right] == target:\n                right += 1\n            count = right - left - 1\n            return count > n // 2\n        elif arr[mid] < target:\n            first = mid + 1\n        else:\n            last = mid - 1\n    return False\n```",
+      "input_tokens": 207,
+      "output_tokens": 167,
+      "generation_seconds": 9.14716660277918,
+      "output_tokens_per_second_including_prefill": 18.257019605312585,
+      "peak_allocated_bytes": 10184985600,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

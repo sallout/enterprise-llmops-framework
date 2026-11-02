@@ -1,0 +1,40 @@
+{
+  "key": "83ccd8369d81c685475c1feb3c8a019561f39b2092020411c4d5de5cc52fc2b6",
+  "digest": "aa57f24928626d1327d9e9f709e810de557b3ac9700f151c1611838f8f728026",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/34",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/34",
+      "task_prompt": "\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    return sorted(list(set(l)))\n```",
+      "input_tokens": 106,
+      "output_tokens": 83,
+      "generation_seconds": 3.5377965052612126,
+      "output_tokens_per_second_including_prefill": 23.460931084240446,
+      "peak_allocated_bytes": 29578012672,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

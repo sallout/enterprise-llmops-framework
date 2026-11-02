@@ -1,0 +1,40 @@
+{
+  "key": "cde1e38377acd0885274671b7a9aafc67c3722c4d9678bf382de08fc2d359d11",
+  "digest": "67574d98047e84acf1a873182df52adc4aa8c5c0211aa46460b4e44f27de3db6",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:247",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "247",
+      "task_prompt": "Write a function to find the length of the longest palindromic subsequence in the given string.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport sys\nsys.setrecursionlimit(10000)\n\ndef lps(s):\n    def helper(s, i, j):\n        if i == j:\n            return 1\n        if i > j:\n            return 0\n        if s[i] == s[j]:\n            return 2 + helper(s, i + 1, j - 1)\n        return max(helper(s, i + 1, j), helper(s, i, j - 1))\n    \n    return helper(s, 0, len(s) - 1)\n\nassert lps(\"TENS FOR TENS\") == 5\nassert lps(\"CARDIO FOR CARDS\") == 7\nassert lps(\"PART OF THE JOURNEY IS PART\") == 9\n```",
+      "input_tokens": 99,
+      "output_tokens": 167,
+      "generation_seconds": 9.265695767011493,
+      "output_tokens_per_second_including_prefill": 18.023471113153466,
+      "peak_allocated_bytes": 10155367424,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

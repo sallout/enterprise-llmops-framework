@@ -1,0 +1,39 @@
+{
+  "key": "711c006ab807d381ad18b37887250db562fe5f34455539f8b562223679ba5d0d",
+  "digest": "5a7fea3bb5850d75a78dc7601cb11a0f162b63fd183e40e717f072bc00343404",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:473",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "473",
+      "task_prompt": "Write a function to find the tuple intersection of elements in the given tuple list irrespective of their order.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport itertools\n\ndef tuple_intersection(list1, list2):\n    set1 = set(frozenset(t) for t in list1)\n    set2 = set(frozenset(t) for t in list2)\n    return set(frozenset(t) for t in set1 & set2)\n```",
+      "input_tokens": 266,
+      "output_tokens": 69,
+      "generation_seconds": 4.124887875746936,
+      "output_tokens_per_second_including_prefill": 16.727727414288918,
+      "peak_allocated_bytes": 10200973312,
+      "peak_reserved_bytes": 10462691328
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

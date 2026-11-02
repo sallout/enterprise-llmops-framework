@@ -1,0 +1,40 @@
+{
+  "key": "37777b8b52963cf65a1cf460f8b482a026682101abb25791dbc62c7f0399d09d",
+  "digest": "2a8a1361a832436f4ec4fd67531457ede721b7dd9819142712854c1c1dde80a8",
+  "data": {
+    "model": "unsloth_nf4",
+    "case_id": "mbpp:278",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "278",
+      "task_prompt": "Write a function to find the number of elements that occurs before the tuple element in the given tuple.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_first_elements(t):\n    count = 0\n    for element in t:\n        if isinstance(element, tuple):\n            break\n        count += 1\n    return count\n```",
+      "input_tokens": 138,
+      "output_tokens": 43,
+      "generation_seconds": 2.489850264042616,
+      "output_tokens_per_second_including_prefill": 17.27011484224098,
+      "peak_allocated_bytes": 10166599680,
+      "peak_reserved_bytes": 10460594176
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "6a01c2e4acc71de85d0cb68acaa9ff0b9e793f80c7bf568b22b1768682aee5e3",
+  "digest": "d4df1c94c2319383e84104a92cb9c58dc6b655e22b48431f794209a7812c4637",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:393",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "393",
+      "task_prompt": "Write a function to find the list with maximum length.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_length_list(list_of_lists):\n    return max(((len(sublist), sublist) for sublist in list_of_lists), key=lambda x: x[0])\n```",
+      "input_tokens": 185,
+      "output_tokens": 38,
+      "generation_seconds": 1.5497513771988451,
+      "output_tokens_per_second_including_prefill": 24.5200620945306,
+      "peak_allocated_bytes": 29603196928,
+      "peak_reserved_bytes": 29781655552
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

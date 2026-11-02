@@ -1,0 +1,38 @@
+{
+  "key": "b0c0978c8e523de255b4f9e13dc260591d99ba27e7c30e0ecd5fec836c90fc85",
+  "digest": "abe7421a20d6a495cc6fab2ec876896dc3b57aa1224db9f46f085cd8a93b8fe9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:454",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "454",
+      "task_prompt": "Write a function that matches a word containing 'z'.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_match_wordz(text):\n    \"\"\"\n    Matches a word containing 'z'.\n    \n    Args:\n    text (str): The input string to be checked.\n    \n    Returns:\n    bool: True if the string contains a word with 'z', False otherwise.\n    \"\"\"\n    pattern = r'\\b\\w*z\\w*\\b'\n    return bool(re.search(pattern, text))\n```",
+      "input_tokens": 80,
+      "output_tokens": 87,
+      "generation_seconds": 4.971260127611458,
+      "output_tokens_per_second_including_prefill": 17.500592961688547,
+      "peak_allocated_bytes": 9897636864,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}
