@@ -857,11 +857,12 @@ def prepare_quantized_reference_command(
     receipt: Path = typer.Option(...,help='Separate new protocol report and preserved original tokenizer assets.'),
     repo_id: str = typer.Option('unsloth/Qwen3-14B-bnb-4bit'),
     revision: str = typer.Option(...,help='Immutable external model download revision.'),
+    weight_storage: str = typer.Option('auto',help='auto: hardlink/copy; symlink: reference source tensors without allocating another copy; copy: independent tensor files.'),
 ) -> None:
     """Standardize a separate NF4 comparison view; verify every prompt without GPU/model loading."""
     def execute():
         from policy_dissertation.comparison_preparation import prepare_quantized_reference
-        result=prepare_quantized_reference(model,reference,suite,output,receipt,repo_id=repo_id,revision=revision)
+        result=prepare_quantized_reference(model,reference,suite,output,receipt,repo_id=repo_id,revision=revision,weight_storage=weight_storage)
         typer.echo(f"Status: {result['status']}")
         if result['status']=='FAILED':raise DissertationError('Quantized reference preparation failed; inspect receipt/report.json.')
         typer.echo(f"Identical prompt tokenizations verified: {result['verified_task_prompts']}; weight bytes unchanged: True")

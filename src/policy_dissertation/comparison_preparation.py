@@ -1,5 +1,6 @@
 """Prepare a separate quantized-reference view with a documented common input protocol."""
 import hashlib
+import errno
 import json
 import os
 from pathlib import Path
@@ -13,7 +14,9 @@ from policy_dissertation.pipelines.model_evaluation.suites import read_suite
 from policy_dissertation.pipelines.policy_transformation.data_io import dump_json,digest
 
 
-def prepare_quantized_reference(model,reference,suite,output,receipt,*,repo_id,revision,loader=None):
+def prepare_quantized_reference(model,reference,suite,output,receipt,*,repo_id,revision,loader=None,weight_storage="auto"):
+    if weight_storage not in ("auto","copy","symlink"):
+        raise DissertationError("Weight storage must be auto, copy or symlink.")
     model,reference,suite,output,receipt=(Path(p).resolve() for p in (model,reference,suite,output,receipt))
     if not re.fullmatch(r'[0-9a-f]{40}|[0-9a-f]{64}',revision):
         raise DissertationError('Provide an immutable external model revision.')
@@ -29,7 +32,8 @@ def prepare_quantized_reference(model,reference,suite,output,receipt,*,repo_id,r
     receipt.mkdir(parents=True);output.parent.mkdir(parents=True,exist_ok=True)
     report={'status':'RUNNING','model_weights_modified':False,'model_inference':False,'training_started':False,
             'source_repo':repo_id,'source_revision':revision,'source_revision_verification':'Caller-provided download pin; local file hashes recorded.',
-            'source_directory':str(model),'reference_directory':str(reference),'output_directory':str(output),'errors':[]}
+            'source_directory':str(model),'reference_directory':str(reference),'output_directory':str(output),
+            'requested_weight_storage':weight_storage,'errors':[]}
     try:
         cfg=json.loads((model/'config.json').read_text());ref_cfg=json.loads((reference/'config.json').read_text())
         quant=cfg.get('quantization_config',{})
@@ -85,8 +89,16 @@ def prepare_quantized_reference(model,reference,suite,output,receipt,*,repo_id,r
                 if not p.is_file() or p.is_symlink() or p.name.startswith('.'):
                     continue
                 if p.suffix=='.safetensors':
-                    try:os.link(p,stage/p.name);modes[p.name]='hardlink'
-                    except OSError:shutil.copyfile(p,stage/p.name);modes[p.name]='copy'
+                    if weight_storage=='symlink':
+                        os.symlink(p,stage/p.name);modes[p.name]='symlink'
+                    elif weight_storage=='copy':
+                        shutil.copyfile(p,stage/p.name);modes[p.name]='copy'
+                    else:
+                        try:os.link(p,stage/p.name);modes[p.name]='hardlink'
+                        except OSError as exc:
+                            if exc.errno in (errno.EDQUOT,errno.ENOSPC):
+                                raise DissertationError('Storage quota/full filesystem: use --weight-storage symlink with new output and receipt paths under /tmp; do not delete trained weights.') from exc
+                            shutil.copyfile(p,stage/p.name);modes[p.name]='copy'
                 elif p.suffix in ('.json','.txt','.jinja') or p.name in ('README.md','LICENSE'):
                     shutil.copyfile(p,stage/p.name)
             external.save_pretrained(stage)
@@ -108,9 +120,13 @@ def prepare_quantized_reference(model,reference,suite,output,receipt,*,repo_id,r
             weight_hashes=hashes,weight_storage=modes,original_asset_hashes=assets,
             protocol='Original Qwen chat template and padding, identical vocabulary/rendered prompts/token IDs; external tensor weights unchanged.',
             limitations=['External model is evaluated under a standardized input protocol, not its unmodified default tokenizer settings.',
-                'Upstream source weights may reflect a different base revision/quantization implementation; this is an external comparator, not a fully controlled quantization-only ablation.'])
+                'Upstream source weights may reflect a different base revision/quantization implementation; this is an external comparator, not a fully controlled quantization-only ablation.',
+                'Symlink views require their original downloaded source to remain available; they are temporary inference views, not independent model backups.'])
     except (Exception,KeyboardInterrupt) as exc:
         report['status']='FAILED'
+        if isinstance(exc,OSError) and exc.errno is not None:
+            report['filesystem_errno']=exc.errno
+            report['filesystem_reason']=os.strerror(exc.errno)
         report['errors'].append(str(exc) if isinstance(exc,DissertationError) else 'reference_preparation_failed:'+type(exc).__name__)
     dump_json(receipt/'report.json',report)
     return report

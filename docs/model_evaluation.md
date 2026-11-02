@@ -268,3 +268,31 @@ not its unmodified default settings. It is an external reference, not a perfectl
 controlled quantization-only ablation: its upstream base revision, quantizer version
 and module selection may differ from the project's own export. No causal claim
 about training alone follows from outperforming this comparator.
+
+### Volume quota workaround without duplicating weights
+
+On quota-limited shared storage, `df` can show the shared filesystem's free capacity
+rather than the allocation available to this volume/account. `EDQUOT` (errno 122)
+is a quota failure even when apparent free capacity is large. Automatic hard-link
+mode now refuses to fall back to a large copy on EDQUOT/ENOSPC.
+
+Use new view/receipt paths on a filesystem with available allocation, such as the
+container's `/tmp`, and explicit `--weight-storage symlink`:
+
+```bash
+uv run --locked llmops prepare_quantized_reference \
+  --model /workspace/models/unsloth_qwen3_14b_4bit \
+  --reference /workspace/models/qwen3_original_security \
+  --suite ./evaluation_suites/opencode_77k_100_final/final_suite.json \
+  --output /tmp/unsloth_qwen3_14b_4bit_comparison \
+  --receipt /tmp/unsloth_comparison_protocol \
+  --revision b455922269e4678c84f854fe38a6993d73614a1e \
+  --weight-storage symlink
+```
+
+Only tokenizer/configuration files are copied. Symlinks point to the known original
+local tensor shards; source/view content hashes must still match. Keep the source
+weights available throughout inference. This temporary view is not an independent
+model backup. Copy the protocol receipt with evaluation results before terminating
+the container; `/tmp` is ephemeral. The separate security file scanner deliberately
+refuses symlinks, so this inference view is not a model-security certificate.

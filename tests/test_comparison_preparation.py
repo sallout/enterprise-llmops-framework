@@ -81,3 +81,24 @@ def test_incompatible_generation_eos_is_not_silently_changed(tmp_path,setup):
     (setup[0]/'generation_config.json').write_text('{"eos_token_id":99}')
     r=run(tmp_path,setup)
     assert r['status']=='FAILED' and not (tmp_path/'prepared').exists()
+
+
+def test_symlink_view_reads_same_weights_without_copying_them(tmp_path,setup):
+    r=run(tmp_path,setup,weight_storage='symlink')
+    p=tmp_path/'prepared/model.safetensors'
+    assert r['status']=='COMPLETED' and p.is_symlink()
+    assert p.resolve()==(setup[0]/'model.safetensors').resolve()
+    assert p.read_bytes()==(setup[0]/'model.safetensors').read_bytes()
+    assert r['weight_storage']['model.safetensors']=='symlink'
+
+
+def test_quota_error_is_not_retried_as_large_file_copy(tmp_path,setup,monkeypatch):
+    import errno
+    import policy_dissertation.comparison_preparation as module
+    def quota(*args,**kwargs):raise OSError(errno.EDQUOT,'Disk quota exceeded')
+    monkeypatch.setattr(module.os,'link',quota)
+    r=run(tmp_path,setup)
+    assert r['status']=='FAILED'
+    assert '--weight-storage symlink' in r['errors'][0]
+    assert not (tmp_path/'prepared').exists()
+    assert (setup[0]/'model.safetensors').is_file()
