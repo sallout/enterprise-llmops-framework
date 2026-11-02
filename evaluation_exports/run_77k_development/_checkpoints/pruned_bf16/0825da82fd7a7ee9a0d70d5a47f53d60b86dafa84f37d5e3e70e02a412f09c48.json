@@ -1,0 +1,40 @@
+{
+  "key": "43479aaa21a27b5b5228483adff599d3f7a268cb152503313512e9bcefd165cb",
+  "digest": "b66bfd6ce9ee45d2949bf3e275220c9a0dd885405d8bf1b895c7dc3208755475",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:115",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "115",
+      "task_prompt": "Write a function to check whether all dictionaries in a list are empty or not.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef empty_dit(lst):\n    if not isinstance(lst, list):\n        return isinstance(lst, dict) and not lst\n    return all(not d for d in lst)\n```",
+      "input_tokens": 83,
+      "output_tokens": 40,
+      "generation_seconds": 1.6028517917729914,
+      "output_tokens_per_second_including_prefill": 24.955520033298946,
+      "peak_allocated_bytes": 28627295744,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

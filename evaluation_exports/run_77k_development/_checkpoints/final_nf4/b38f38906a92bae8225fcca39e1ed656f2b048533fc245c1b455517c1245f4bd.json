@@ -1,0 +1,39 @@
+{
+  "key": "fb36e3c884959358f148643dd887725bd7a48e120b58a4e21a5f4edd00bd44b8",
+  "digest": "ae94ce508f6bf6b4737dbee6bc6212e21e732ed401fe64b9c7cfbe8e065824c1",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:436",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "436",
+      "task_prompt": "Write a python function to return the negative numbers in a list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef neg_nos(lst):\n    \"\"\"\n    Returns a list of negative numbers from the input list.\n\n    Parameters:\n    lst (list): A list of integers.\n\n    Returns:\n    list: A list containing only the negative integers from the input list.\n    \"\"\"\n    return [num for num in lst if num < 0]\n```",
+      "input_tokens": 104,
+      "output_tokens": 72,
+      "generation_seconds": 3.990131808910519,
+      "output_tokens_per_second_including_prefill": 18.044516684690464,
+      "peak_allocated_bytes": 9905882112,
+      "peak_reserved_bytes": 10051649536
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

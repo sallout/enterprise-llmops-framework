@@ -1,0 +1,38 @@
+{
+  "key": "4a8de145b6903324c62f5b1257e3b48ef52e4467c484e23c94eaec7900f6c53e",
+  "digest": "b03681b1c5b4f2149e8ea9c16d02f57e4c9ac5e387bd2de92c014f0795c0ab46",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/71",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/71",
+      "task_prompt": "\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n    # Check if the sides form a valid triangle\n    if (a + b > c) and (a + c > b) and (b + c > a):\n        # Calculate semi-perimeter\n        s = (a + b + c) / 2\n        # Use Heron's formula to calculate area\n        area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n        # Round to 2 decimal places\n        return round(area, 2)\n    else:\n        return -1\n```",
+      "input_tokens": 152,
+      "output_tokens": 242,
+      "generation_seconds": 10.09167019277811,
+      "output_tokens_per_second_including_prefill": 23.980173289172903,
+      "peak_allocated_bytes": 28667885568,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

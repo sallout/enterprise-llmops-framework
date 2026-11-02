@@ -1,0 +1,39 @@
+{
+  "key": "972616b10e47c719f9bdc9a45bf0f5af9c4b0c47c5afb4c8bea5df906927dc83",
+  "digest": "0a0c0251c8af3cfe573295e44feb4bb51811accffb628e979d0f6a36ea2d06ec",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:389",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "389",
+      "task_prompt": "Write a function to find the n'th lucas number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_lucas(n):\n    if n == 0:\n        return 2\n    elif n == 1:\n        return 1\n    else:\n        a, b = 2, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n```",
+      "input_tokens": 80,
+      "output_tokens": 77,
+      "generation_seconds": 3.175871995277703,
+      "output_tokens_per_second_including_prefill": 24.245309670696287,
+      "peak_allocated_bytes": 29572243968,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "576527de9cb12f22622e1844dc9c1b480699b833fc97070a63d29c9adb1d1ee4",
+  "digest": "0c2e4c38589bb86e8d4be7d1b8388a2391e5dcae28b208c6832ab18e24c4b362",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:119",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "119",
+      "task_prompt": "Write a python function to find the element that appears only once in a sorted array.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef search(arr):\n    \"\"\"\n    Finds the element that appears only once in a sorted array.\n    \n    :param arr: List[int] - A sorted list of integers where all elements except one appear twice.\n    :return: int - The element that appears only once.\n    \"\"\"\n    left, right = 0, len(arr) - 1\n    \n    while left < right:\n        mid = (left + right) // 2\n        \n        if mid % 2 == 0:\n            if arr[mid] == arr[mid + 1]:\n                left = mid + 2\n            else:\n                right = mid\n        else:\n            if arr[mid] == arr[mid - 1]:\n                left = mid + 1\n            else:\n                right = mid - 1\n                \n    return arr[left]\n```",
+      "input_tokens": 117,
+      "output_tokens": 172,
+      "generation_seconds": 33.926426160149276,
+      "output_tokens_per_second_including_prefill": 5.0697942420482525,
+      "peak_allocated_bytes": 16108697088,
+      "peak_reserved_bytes": 18071158784
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

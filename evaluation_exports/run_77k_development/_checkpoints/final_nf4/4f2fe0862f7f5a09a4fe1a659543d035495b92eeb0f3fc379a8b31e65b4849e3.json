@@ -1,0 +1,40 @@
+{
+  "key": "4bfe4559eca95297f97bc25a66aa2dcb4baa2502da6a30832e501dce8737ea05",
+  "digest": "6a2f75143a9188686868b694d97254fdddb4bd688df939d75a545abfd4b1dca0",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/6",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/6",
+      "task_prompt": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Parse a string of nested parentheses and return the maximum depth of nesting for each group.\n    \n    Args:\n        paren_string (str): A string containing multiple groups of nested parentheses separated by spaces.\n    \n    Returns:\n        List[int]: A list of integers representing the maximum depth of nesting for each group.\n    \"\"\"\n    def max_depth(s: str) -> int:\n        \"\"\" Calculate the maximum depth of nesting for a single group of parentheses.\n        \n        Args:\n            s (str): A string representing a single group of nested parentheses.\n        \n        Returns:\n            int: The maximum depth of nesting.\n        \"\"\"\n        depth = 0\n        max_d = 0\n        for char in s:\n            if char == '(':\n                depth += 1\n                max_d = max(max_d, depth)\n            elif char == ')':\n                depth -= 1\n        return max_d\n\n    groups = paren_string.split()\n    return [max_depth(group) for group in groups]\n```",
+      "input_tokens": 141,
+      "output_tokens": 227,
+      "generation_seconds": 13.624541876837611,
+      "output_tokens_per_second_including_prefill": 16.66111066720791,
+      "peak_allocated_bytes": 9914680320,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

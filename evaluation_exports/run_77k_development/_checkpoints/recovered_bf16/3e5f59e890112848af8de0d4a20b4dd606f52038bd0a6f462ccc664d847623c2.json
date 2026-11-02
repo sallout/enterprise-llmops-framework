@@ -1,0 +1,39 @@
+{
+  "key": "50e4b1dacf4dc0e41ae1a3fca76b82bba9d1b868002d4ab50b87200d784aaf52",
+  "digest": "7d7761efe72c501200ed1894e6b47fbd00d286e08d331c0a0be3a1835c9764ca",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/77",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/77",
+      "task_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    if a >= 0:\n        root = round(a ** (1/3))\n        return root ** 3 == a\n    else:\n        root = round(-(-a) ** (1/3))\n        return (-root) ** 3 == a\n```",
+      "input_tokens": 142,
+      "output_tokens": 167,
+      "generation_seconds": 7.12579144211486,
+      "output_tokens_per_second_including_prefill": 23.43599323059,
+      "peak_allocated_bytes": 28653957120,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

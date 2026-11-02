@@ -1,0 +1,40 @@
+{
+  "key": "3846d0d904ebf242a26c4bd537eac7cdf71a215c6349f8caf8bdd82b1ed0c32e",
+  "digest": "f531c6fa718a128927a4c651d0666fb7e2aa2f33c18acc38517e94babf86895e",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/58",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/58",
+      "task_prompt": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n    return sorted(set(l1) & set(l2))\n```",
+      "input_tokens": 152,
+      "output_tokens": 134,
+      "generation_seconds": 5.449662092141807,
+      "output_tokens_per_second_including_prefill": 24.58868049694725,
+      "peak_allocated_bytes": 28650188800,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

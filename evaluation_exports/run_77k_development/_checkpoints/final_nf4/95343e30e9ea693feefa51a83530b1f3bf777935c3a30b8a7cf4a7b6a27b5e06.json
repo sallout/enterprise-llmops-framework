@@ -1,0 +1,38 @@
+{
+  "key": "38ceb0a8110188e7ca22f8e222b0e916b99a7149b60ad193fbf0ede995a7811b",
+  "digest": "7d8dc0e12f7e5ad313f861fad907aeb9efc938b56891341947c4000bfb5cc500",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/134",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/134",
+      "task_prompt": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n    if not txt:\n        return False\n    words = txt.split()\n    last_word = words[-1]\n    return last_word.isalpha() and len(last_word) == 1\n```",
+      "input_tokens": 166,
+      "output_tokens": 175,
+      "generation_seconds": 9.938693798147142,
+      "output_tokens_per_second_including_prefill": 17.607947639218448,
+      "peak_allocated_bytes": 9921347584,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

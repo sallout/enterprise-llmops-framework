@@ -1,0 +1,40 @@
+{
+  "key": "f88ccb7095f2e5cadb4d64b0430a6689bb3c89111cc32484055fcbac34097eb9",
+  "digest": "fb6dfab843590b191e335e154ddd1999c333b7e2a79327f03b41818ce48b6a05",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:97",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "97",
+      "task_prompt": "Write a function to find frequency of each element in a flattened list of lists, returned in a dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\n\ndef frequency_lists(list_of_lists):\n    freq = defaultdict(int)\n    for lst in list_of_lists:\n        for item in lst:\n            freq[item] += 1\n    return dict(freq)\n```",
+      "input_tokens": 344,
+      "output_tokens": 50,
+      "generation_seconds": 2.0606614807620645,
+      "output_tokens_per_second_including_prefill": 24.264053298802494,
+      "peak_allocated_bytes": 29651727360,
+      "peak_reserved_bytes": 29773266944
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

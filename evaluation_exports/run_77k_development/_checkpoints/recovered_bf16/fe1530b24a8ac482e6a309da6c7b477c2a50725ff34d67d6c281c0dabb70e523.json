@@ -1,0 +1,39 @@
+{
+  "key": "7ab839ba6def8f0bcda74a89c203872ebe011d051021ed48e15b2eea2d80dd4a",
+  "digest": "a089171e4a05a0fdd5db95ca32022890537b14049e24823ee26ac5065aa339c2",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:245",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "245",
+      "task_prompt": "Write a function that takes an array and finds the maximum sum of a bitonic subsequence for the given array, where a sequence is bitonic if it is first increasing and then decreasing.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_sum(arr):\n    \"\"\"\n    Returns the maximum sum of a bitonic subsequence in the given array.\n    \n    :param arr: List[int] - The input array of integers.\n    :return: int - The maximum sum of a bitonic subsequence.\n    \"\"\"\n    n = len(arr)\n    if n == 0:\n        return 0\n\n    lis = [0] * n\n    lds = [0] * n\n\n    for i in range(n):\n        lis[i] = arr[i]\n        for j in range(i):\n            if arr[i] > arr[j] and lis[i] < lis[j] + arr[i]:\n                lis[i] = lis[j] + arr[i]\n\n    for i in range(n - 1, -1, -1):\n        lds[i] = arr[i]\n        for j in range(i + 1, n):\n            if arr[i] > arr[j] and lds[i] < lds[j] + arr[i]:\n                lds[i] = lds[j] + arr[i]\n\n    max_bitonic_sum = 0\n    for i in range(n):\n        max_bitonic_sum = max(max_bitonic_sum, lis[i] + lds[i] - arr[i])\n\n    return max_bitonic_sum\n```",
+      "input_tokens": 186,
+      "output_tokens": 275,
+      "generation_seconds": 11.398345385212451,
+      "output_tokens_per_second_including_prefill": 24.126308749756696,
+      "peak_allocated_bytes": 28678938112,
+      "peak_reserved_bytes": 28737273856
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "d5d557e36c4861890897188e1c53a88cdad8fb843d7237023706a643e3725172",
+  "digest": "0a9fcdf99ecb36b91136771585b3e34199331eca880f9b0762f9418fba606f7b",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:85",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "85",
+      "task_prompt": "Write a function to find the surface area of a sphere.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * (radius ** 2)\n```",
+      "input_tokens": 165,
+      "output_tokens": 28,
+      "generation_seconds": 1.1470616259612143,
+      "output_tokens_per_second_including_prefill": 24.410196772589764,
+      "peak_allocated_bytes": 29597206528,
+      "peak_reserved_bytes": 29815209984
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

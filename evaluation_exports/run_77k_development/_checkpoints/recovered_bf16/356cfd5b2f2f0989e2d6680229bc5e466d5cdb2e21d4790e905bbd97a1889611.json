@@ -1,0 +1,39 @@
+{
+  "key": "661c69d325770dbdc872f565367f9714f6443d4b056b7fea32fb415d047c3dc4",
+  "digest": "ad6daf297b32aa17af15e8f132fc3c4a7c22d3075259e17db1bd309aac4b4c31",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:222",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "222",
+      "task_prompt": "Write a function to check if all the elements in tuple have same data type or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_type(t):\n    \"\"\"\n    Check if all elements in the tuple have the same data type.\n\n    Parameters:\n    t (tuple): The tuple to check.\n\n    Returns:\n    bool: True if all elements have the same data type, False otherwise.\n    \"\"\"\n    return all(isinstance(x, type(t[0])) for x in t)\n\n# Example usage:\n# print(check_type((5, 6, 7, 3, 5, 6)))  # Should return True\n# print(check_type((1, 2, \"4\")))         # Should return False\n# print(check_type((3, 2, 1, 4, 5)))     # Should return True\n```",
+      "input_tokens": 114,
+      "output_tokens": 152,
+      "generation_seconds": 6.220866560935974,
+      "output_tokens_per_second_including_prefill": 24.43389494230375,
+      "peak_allocated_bytes": 28646910464,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

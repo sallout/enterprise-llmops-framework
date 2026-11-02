@@ -1,0 +1,40 @@
+{
+  "key": "a12591e216f20fe550ede8140d36c253f2792fca378f8b45f51e4a01b374dc50",
+  "digest": "8a1ecb6b9ebf0f5cc74b538bd25e8f5771fda19c9f3bfea6659abadf78c5b2eb",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/151",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/151",
+      "task_prompt": "\ndef double_the_difference(lst):\n    '''\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n    \n    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10\n    double_the_difference([-1, -2, 0]) == 0\n    double_the_difference([9, -2]) == 81\n    double_the_difference([0]) == 0  \n   \n    If the input list is empty, return 0.\n    '''\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef double_the_difference(lst):\n    '''\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n    \n    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10\n    double_the_difference([-1, -2, 0]) == 0\n    double_the_difference([9, -2]) == 81\n    double_the_difference([0]) == 0  \n   \n    If the input list is empty, return 0.\n    '''\n    return sum(x**2 for x in lst if isinstance(x, int) and x >= 0 and x % 2 != 0)\n```",
+      "input_tokens": 168,
+      "output_tokens": 168,
+      "generation_seconds": 29.994120800402015,
+      "output_tokens_per_second_including_prefill": 5.601097665704816,
+      "peak_allocated_bytes": 16218329088,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

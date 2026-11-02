@@ -1,0 +1,40 @@
+{
+  "key": "5af76ddfea34ab87e6e5649201d0a0bf69cb187c213ee8b9f20d547c2ec50545",
+  "digest": "e109a2af7ca1828c3f8447008396ba55d39e70636b57f32a67d503c04bbc9394",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:130",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "130",
+      "task_prompt": "Write a function to find the item with maximum frequency in a given list.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef max_occurrences(lst):\n    \"\"\"\n    Returns the item with the maximum frequency in the list.\n    If multiple items have the same maximum frequency, returns the first one encountered.\n    \"\"\"\n    count = Counter(lst)\n    max_count = max(count.values())\n    for item in lst:\n        if count[item] == max_count:\n            return item\n```",
+      "input_tokens": 187,
+      "output_tokens": 81,
+      "generation_seconds": 15.616386094130576,
+      "output_tokens_per_second_including_prefill": 5.186859463627368,
+      "peak_allocated_bytes": 16142410752,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

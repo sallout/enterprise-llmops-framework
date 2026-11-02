@@ -1,0 +1,39 @@
+{
+  "key": "3b8ebfada25466a7b630cd97d3237fdb228e2e09bcbe9fb1133752bc91cc4a24",
+  "digest": "d76d279eda17061f5e9aa645287553e677620d68c050caf4c5daa9624ebbe7be",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/77",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/77",
+      "task_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this integer is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    if a == 0:\n        return True\n    sign = 1\n    if a < 0:\n        sign = -1\n    a_abs = abs(a)\n    low = 0\n    high = a_abs\n    while low <= high:\n        mid = (low + high) // 2\n        cube = mid ** 3\n        if cube == a_abs:\n            return True\n        elif cube < a_abs:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return False\n```",
+      "input_tokens": 142,
+      "output_tokens": 227,
+      "generation_seconds": 10.454693424981087,
+      "output_tokens_per_second_including_prefill": 21.712736162840724,
+      "peak_allocated_bytes": 28663788544,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

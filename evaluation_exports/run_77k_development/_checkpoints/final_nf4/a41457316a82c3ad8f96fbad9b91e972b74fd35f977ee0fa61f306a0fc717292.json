@@ -1,0 +1,40 @@
+{
+  "key": "6781649f43caf10f48c73b313ce6bb387c4e7df6ed3f6897e7c87ea378280cd0",
+  "digest": "cc4d404f4690ad80e1f9646623660dfb8e66105e017d98fdd0950ebf060d5b83",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:88",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "88",
+      "task_prompt": "Write a function to get the frequency of all the elements in a list, returned as a dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\n\ndef freq_count(lst):\n    \"\"\"\n    Returns a dictionary with the frequency of each element in the list.\n    \n    :param lst: List of elements\n    :return: Dictionary with elements as keys and their frequencies as values\n    \"\"\"\n    freq_dict = defaultdict(int)\n    for item in lst:\n        freq_dict[item] += 1\n    return dict(freq_dict)\n```",
+      "input_tokens": 231,
+      "output_tokens": 86,
+      "generation_seconds": 4.8792737210169435,
+      "output_tokens_per_second_including_prefill": 17.62557399261376,
+      "peak_allocated_bytes": 9939021824,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

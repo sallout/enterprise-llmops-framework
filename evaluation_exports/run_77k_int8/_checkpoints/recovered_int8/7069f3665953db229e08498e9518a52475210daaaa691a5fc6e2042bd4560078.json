@@ -1,0 +1,39 @@
+{
+  "key": "f2f499b919200b277a3cbcb3e85bad04ea2b691d1fcbfbc7c1572d912dfb52d4",
+  "digest": "47ab2595d2667418fecfe85127fb98721f0402b13113c4586472aa4120ab7fba",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:419",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "419",
+      "task_prompt": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef round_and_sum(numbers):\n    \"\"\"\n    Rounds each number in the list and returns the sum of these rounded numbers\n    multiplied by the length of the list.\n    \n    :param numbers: List of numbers to be rounded and summed.\n    :return: Sum of rounded numbers multiplied by the length of the list.\n    \"\"\"\n    rounded_numbers = [round(num) for num in numbers]\n    total_sum = sum(rounded_numbers)\n    return total_sum * len(numbers)\n```",
+      "input_tokens": 172,
+      "output_tokens": 104,
+      "generation_seconds": 20.283560550771654,
+      "output_tokens_per_second_including_prefill": 5.127304929510687,
+      "peak_allocated_bytes": 16174749184,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

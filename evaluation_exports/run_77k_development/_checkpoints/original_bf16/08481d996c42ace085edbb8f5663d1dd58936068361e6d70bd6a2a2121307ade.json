@@ -1,0 +1,39 @@
+{
+  "key": "9d9b255ba5c697d4df7a55fc7a99ef008f286a5421bd1e74cadffc7633bf8d18",
+  "digest": "36f5c5427e39def74c0025872bac945ff141e060ff9678d2a48de8ebf575c537",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/27",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/27",
+      "task_prompt": "\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    return string.swapcase()\n```",
+      "input_tokens": 77,
+      "output_tokens": 53,
+      "generation_seconds": 2.162278477102518,
+      "output_tokens_per_second_including_prefill": 24.51118140482104,
+      "peak_allocated_bytes": 29569013760,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

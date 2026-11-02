@@ -1,0 +1,39 @@
+{
+  "key": "d24190f8da73381893b9f72868edf5109343fa8f7ff7d79051d37803170dfb8d",
+  "digest": "eb6269d5a4950f5c30775dfba6c2acee7ea62e4d18dce86b22f7c84f061068a6",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:297",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "297",
+      "task_prompt": "Write a function to flatten a given nested list structure.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport itertools\n\ndef flatten_list(nested_list):\n    return list(itertools.chain.from_iterable(nested_list))\n```",
+      "input_tokens": 315,
+      "output_tokens": 28,
+      "generation_seconds": 1.158833472058177,
+      "output_tokens_per_second_including_prefill": 24.162229237536483,
+      "peak_allocated_bytes": 28698102272,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

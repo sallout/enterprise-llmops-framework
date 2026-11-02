@@ -1,0 +1,38 @@
+{
+  "key": "ffd798b78bd305be9411e39dc60b64a8489e294606e3b67808ec3c69bd3f031c",
+  "digest": "a9fd4b78bba4d780678e0a5eaebb596d50db0f5ef740db52c6f2c36f7e126165",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/154",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/154",
+      "task_prompt": "\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef cycpattern_check(a, b):\n    \"\"\"\n    Returns True if the second word or any of its rotations is a substring in the first word.\n    \n    :param a: The first word (string).\n    :param b: The second word (string).\n    :return: True if any rotation of b is a substring of a, False otherwise.\n    \"\"\"\n    def is_rotation(s1, s2):\n        \"\"\"\n        Checks if s2 is a rotation of s1.\n        \n        :param s1: The original string.\n        :param s2: The string to check if it is a rotation of s1.\n        :return: True if s2 is a rotation of s1, False otherwise.\n        \"\"\"\n        if len(s1) != len(s2):\n            return False\n        return s2 in (s1 + s1)\n\n    for i in range(len(b)):\n        if is_rotation(b, b[i:] + b[:i]):\n            if b[i:] + b[:i] in a:\n                return True\n    return False\n```",
+      "input_tokens": 158,
+      "output_tokens": 223,
+      "generation_seconds": 43.53559901099652,
+      "output_tokens_per_second_including_prefill": 5.122244899942071,
+      "peak_allocated_bytes": 16462500352,
+      "peak_reserved_bytes": 18557698048
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

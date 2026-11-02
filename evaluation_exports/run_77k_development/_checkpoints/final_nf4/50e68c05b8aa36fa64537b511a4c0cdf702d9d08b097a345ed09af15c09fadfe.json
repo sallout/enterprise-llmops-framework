@@ -1,0 +1,39 @@
+{
+  "key": "8337e310d4f3a2e1f6842f10a8d2b8446bcc3be2c6148a4eaafdcabeb023e0cb",
+  "digest": "aa6b60c5ace80201f9d2da7f592acd7c0c242fe0ad5a41f7d240dc3bba3af26a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:301",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "301",
+      "task_prompt": "Write a function to find the depth of a dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef dict_depth(d, current_depth=1):\n    \"\"\"\n    Recursively calculates the depth of a dictionary.\n    \n    Parameters:\n    d (dict): The dictionary to calculate the depth of.\n    current_depth (int): The current depth level in the recursion.\n    \n    Returns:\n    int: The maximum depth of the dictionary.\n    \"\"\"\n    if not isinstance(d, dict) or not d:\n        return current_depth\n    return max(dict_depth(v, current_depth + 1) for v in d.values())\n```",
+      "input_tokens": 110,
+      "output_tokens": 110,
+      "generation_seconds": 6.053372441790998,
+      "output_tokens_per_second_including_prefill": 18.17168876651088,
+      "peak_allocated_bytes": 9907329024,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

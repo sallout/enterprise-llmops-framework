@@ -1,0 +1,40 @@
+{
+  "key": "d40bd665e1288e3b5c9914b59b51e15e644613894af3dc94958567327ad2deb7",
+  "digest": "94705a6b32996c307ca6358c2cb0b6245883947730ca35bfc2b4b622646ecd28",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:88",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "88",
+      "task_prompt": "Write a function to get the frequency of all the elements in a list, returned as a dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef freq_count(lst):\n    \"\"\"\n    Returns a dictionary with the frequency of each element in the list.\n    \n    :param lst: List of elements\n    :return: Dictionary with elements as keys and their frequencies as values\n    \"\"\"\n    return dict(Counter(lst))\n```",
+      "input_tokens": 231,
+      "output_tokens": 65,
+      "generation_seconds": 2.683561723679304,
+      "output_tokens_per_second_including_prefill": 24.221540882198,
+      "peak_allocated_bytes": 28672462336,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

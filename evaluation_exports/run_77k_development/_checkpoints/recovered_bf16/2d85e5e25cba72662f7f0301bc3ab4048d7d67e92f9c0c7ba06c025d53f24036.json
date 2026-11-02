@@ -1,0 +1,39 @@
+{
+  "key": "069d11e5a2ebf3d7cb6ec9a87dccb43813c63c9b46380a541b5cbd2bc7853010",
+  "digest": "37eb0e6af2f007739ae9595ccc93a18d08d4719356cafcbfa0ab17a0ae46d8f8",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/9",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/9",
+      "task_prompt": "from typing import List, Tuple\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List, Tuple\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    if not numbers:\n        return []\n    \n    max_list = [numbers[0]]\n    current_max = numbers[0]\n    \n    for number in numbers[1:]:\n        if number > current_max:\n            current_max = number\n        max_list.append(current_max)\n    \n    return max_list\n```",
+      "input_tokens": 129,
+      "output_tokens": 160,
+      "generation_seconds": 6.450897938106209,
+      "output_tokens_per_second_including_prefill": 24.80274863052185,
+      "peak_allocated_bytes": 28650680320,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

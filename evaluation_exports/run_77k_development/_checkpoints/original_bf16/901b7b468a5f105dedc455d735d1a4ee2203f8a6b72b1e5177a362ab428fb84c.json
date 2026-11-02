@@ -1,0 +1,39 @@
+{
+  "key": "d30c7103118f8a543b382a559f5d8841f8c7ce4a83ba11d3d75d5308ba1e4067",
+  "digest": "c68a881a595ee48780130b2e4cbc9274cf65aff0fee4bf8d116c05c46f0369a3",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:451",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "451",
+      "task_prompt": "Write a function to remove all whitespaces from the given string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef remove_whitespaces(s):\n    return s.replace(\" \", \"\")\n\n# Test cases\nassert remove_whitespaces(' Google    Flutter ') == 'GoogleFlutter'\nassert remove_whitespaces(' Google    Dart ') == 'GoogleDart'\nassert remove_whitespaces(' iOS    Swift ') == 'iOSSwift'\n```",
+      "input_tokens": 96,
+      "output_tokens": 72,
+      "generation_seconds": 2.877621602267027,
+      "output_tokens_per_second_including_prefill": 25.02066287773121,
+      "peak_allocated_bytes": 29574898688,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

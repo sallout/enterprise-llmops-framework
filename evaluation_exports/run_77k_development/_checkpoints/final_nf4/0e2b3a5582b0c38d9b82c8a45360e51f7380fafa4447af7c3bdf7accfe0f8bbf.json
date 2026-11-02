@@ -1,0 +1,39 @@
+{
+  "key": "1f97ca0f62d2acf829f793127673138ec107a3fa5426b38801ab8e504c9c9d73",
+  "digest": "079a8a426efb4352d05c6e6ed2e063ccb03cf618eb13ddd0d493b1a7017b58a3",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:61",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "61",
+      "task_prompt": "Write a python function to count the number of substrings with the sum of digits equal to their length.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_Substrings(s):\n    \"\"\"\n    Counts the number of substrings in the given string where the sum of digits\n    is equal to the length of the substring.\n    \n    :param s: Input string consisting of digits\n    :return: Count of substrings meeting the condition\n    \"\"\"\n    from collections import defaultdict\n\n    count = 0\n    prefix_sum = 0\n    sum_count = defaultdict(int)\n    sum_count[0] = 1\n\n    for char in s:\n        prefix_sum += int(char)\n        count += sum_count[prefix_sum - len(s[:prefix_sum])]\n        sum_count[prefix_sum] += 1\n\n    return count\n```",
+      "input_tokens": 101,
+      "output_tokens": 145,
+      "generation_seconds": 8.002513259183615,
+      "output_tokens_per_second_including_prefill": 18.11930768544485,
+      "peak_allocated_bytes": 9904652288,
+      "peak_reserved_bytes": 10051649536
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

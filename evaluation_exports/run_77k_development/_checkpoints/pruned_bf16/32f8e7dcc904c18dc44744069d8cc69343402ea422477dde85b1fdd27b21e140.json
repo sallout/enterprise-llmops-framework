@@ -1,0 +1,38 @@
+{
+  "key": "e2a95969ddc82b61382e066e40d96c8c3979d3fd3909e1ff88a14a6990021577",
+  "digest": "a02193952fb6d5edbcd170ddf408c9f379bbe76f278353dd962208d5b3bf6316",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:460",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "460",
+      "task_prompt": "Write a python function to get the first element of each sublist.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Extract(list_of_lists):\n    return [sublist[0] for sublist in list_of_lists]\n```",
+      "input_tokens": 125,
+      "output_tokens": 26,
+      "generation_seconds": 1.0554353320039809,
+      "output_tokens_per_second_including_prefill": 24.634384705155895,
+      "peak_allocated_bytes": 28640798208,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

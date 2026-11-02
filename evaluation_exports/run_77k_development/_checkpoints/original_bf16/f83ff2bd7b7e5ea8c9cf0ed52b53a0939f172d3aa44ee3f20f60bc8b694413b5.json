@@ -1,0 +1,39 @@
+{
+  "key": "07c6e2354faf577876246a7b32a3636039745c98e6e332b195c4d914ce89f50e",
+  "digest": "ca09db1718f2ca32cd5684e19ee3f83d627b95181ea22c1d13f08d74a302e743",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:406",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "406",
+      "task_prompt": "Write a python function to find whether the parity of a given number is odd.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_Parity(number):\n    return number % 2 != 0\n```",
+      "input_tokens": 81,
+      "output_tokens": 21,
+      "generation_seconds": 0.8388185710646212,
+      "output_tokens_per_second_including_prefill": 25.035211098565668,
+      "peak_allocated_bytes": 29570252800,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

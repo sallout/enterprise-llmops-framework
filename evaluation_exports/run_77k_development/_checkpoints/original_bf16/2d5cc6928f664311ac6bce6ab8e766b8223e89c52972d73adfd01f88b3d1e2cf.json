@@ -1,0 +1,40 @@
+{
+  "key": "8b41b18ad2138d94caba8261251ba72708991c999258a1d39d1870c1d7f7afa1",
+  "digest": "8a2da423b8765c5130b174842a4cf2885937280ae518b98618ced0a59b950e61",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:130",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "130",
+      "task_prompt": "Write a function to find the item with maximum frequency in a given list.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import Counter\n\ndef max_occurrences(lst):\n    count = Counter(lst)\n    max_freq = max(count.values())\n    for item, freq in count.items():\n        if freq == max_freq:\n            return item\n```",
+      "input_tokens": 187,
+      "output_tokens": 50,
+      "generation_seconds": 2.0475486000068486,
+      "output_tokens_per_second_including_prefill": 24.419444793560828,
+      "peak_allocated_bytes": 29603795968,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

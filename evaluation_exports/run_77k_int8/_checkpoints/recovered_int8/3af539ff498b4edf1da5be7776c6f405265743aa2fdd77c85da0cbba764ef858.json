@@ -1,0 +1,41 @@
+{
+  "key": "7abf9db2c36949e190dc043c00317b5c2904abfba9c70f521ca3f6a47729a4ab",
+  "digest": "4e756d3a4e5c6c4a65f0bd4bef313003cf16d41fad49e1931beb59a6c41ec338",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:12",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "12",
+      "task_prompt": "Write a function to sort a given matrix in ascending order according to the sum of its rows.",
+      "skill_tags": [
+        "matrices",
+        "numeric_math",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport numpy as np\n\ndef sort_matrix(matrix):\n    \"\"\"\n    Sorts a given matrix in ascending order based on the sum of its rows.\n\n    Parameters:\n    matrix (list of lists): The matrix to be sorted.\n\n    Returns:\n    list of lists: The sorted matrix.\n    \"\"\"\n    return sorted(matrix, key=lambda row: np.sum(row))\n```",
+      "input_tokens": 220,
+      "output_tokens": 77,
+      "generation_seconds": 14.680943544022739,
+      "output_tokens_per_second_including_prefill": 5.244894496672192,
+      "peak_allocated_bytes": 16154299904,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

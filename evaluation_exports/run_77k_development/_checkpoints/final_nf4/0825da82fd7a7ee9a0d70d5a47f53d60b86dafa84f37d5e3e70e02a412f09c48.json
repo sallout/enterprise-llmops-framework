@@ -1,0 +1,40 @@
+{
+  "key": "c7775a014c1c8f2cb3e950b2f1073830e7bf5bcca19bbb2165cc1d9729f28a5e",
+  "digest": "b91444937382533b7ea4d5a25f38f434f0d925e1a89c63bb068faf9635d24976",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:115",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "115",
+      "task_prompt": "Write a function to check whether all dictionaries in a list are empty or not.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef empty_dit(dicts):\n    \"\"\"\n    Check if all dictionaries in the list are empty.\n\n    :param dicts: List of dictionaries or a single dictionary.\n    :return: True if all dictionaries are empty, False otherwise.\n    \"\"\"\n    if isinstance(dicts, dict):\n        return len(dicts) == 0\n    elif isinstance(dicts, list):\n        return all(len(d) == 0 for d in dicts)\n    else:\n        return False\n```",
+      "input_tokens": 83,
+      "output_tokens": 101,
+      "generation_seconds": 5.532191117759794,
+      "output_tokens_per_second_including_prefill": 18.256780695042032,
+      "peak_allocated_bytes": 9898780672,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

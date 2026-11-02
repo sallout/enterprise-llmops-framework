@@ -1,0 +1,39 @@
+{
+  "key": "d5d87148d9ce18d34e0a2f9972def22cd405a1d87f9767e730429eb34688e0d1",
+  "digest": "7973aeb92a2bae56ff7733d95a7dec004fdeb48f897b2ae1047d0c61d767bfb5",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:273",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "273",
+      "task_prompt": "Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef substract_elements(tuple1, tuple2):\n    return tuple(a - b for a, b in zip(tuple1, tuple2))\n```",
+      "input_tokens": 172,
+      "output_tokens": 33,
+      "generation_seconds": 1.3439733991399407,
+      "output_tokens_per_second_including_prefill": 24.554057410003757,
+      "peak_allocated_bytes": 28654660608,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

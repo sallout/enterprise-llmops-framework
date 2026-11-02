@@ -1,0 +1,40 @@
+{
+  "key": "49cb084219dc30bac1c69d9f631f03478aec42f30c54b9617a3a6f3a180495b2",
+  "digest": "782232a4ed62c3c3619c30013703200087d40e995d5f07c9ca769dcb790d56ce",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:119",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "119",
+      "task_prompt": "Write a python function to find the element that appears only once in a sorted array.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef search(arr):\n    \"\"\"\n    Finds the element that appears only once in a sorted array.\n    \n    :param arr: List[int] - A sorted list of integers where all elements except one appear twice.\n    :return: int - The element that appears only once.\n    \"\"\"\n    left, right = 0, len(arr) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if mid % 2 == 0:\n            if arr[mid] == arr[mid + 1]:\n                left = mid + 2\n            else:\n                right = mid\n        else:\n            if arr[mid] == arr[mid - 1]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return arr[left]\n```",
+      "input_tokens": 117,
+      "output_tokens": 172,
+      "generation_seconds": 9.42889975802973,
+      "output_tokens_per_second_including_prefill": 18.241789011864654,
+      "peak_allocated_bytes": 9909017600,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

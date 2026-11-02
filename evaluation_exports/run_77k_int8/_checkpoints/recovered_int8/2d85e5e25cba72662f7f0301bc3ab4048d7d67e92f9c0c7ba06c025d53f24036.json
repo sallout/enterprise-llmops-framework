@@ -1,0 +1,39 @@
+{
+  "key": "2107ae179dec9d4f72ac1bdf876d385db2f780338726e410fe076ef7d3d3fe5a",
+  "digest": "b1ea6a154b0554a055f9e82d37209743e91f1d8adefe7d478647fa9c4c833e3a",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/9",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/9",
+      "task_prompt": "from typing import List, Tuple\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List, Tuple\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    if not numbers:\n        return []\n    \n    max_list = [numbers[0]]\n    current_max = numbers[0]\n    \n    for number in numbers[1:]:\n        if number > current_max:\n            current_max = number\n        max_list.append(current_max)\n    \n    return max_list\n```",
+      "input_tokens": 129,
+      "output_tokens": 160,
+      "generation_seconds": 29.275221480987966,
+      "output_tokens_per_second_including_prefill": 5.465372827457782,
+      "peak_allocated_bytes": 16181951488,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

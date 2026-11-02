@@ -1,0 +1,41 @@
+{
+  "key": "9aaac51fd809fe7498d4ecda9e29fc616465131f1b3e7884ec6b7679a2950fe9",
+  "digest": "6cde6fd3356b76d2c643645eb4c6af9e4e736a51e848e5b6fba2bd1c998116d8",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:237",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "237",
+      "task_prompt": "Write a function that takes in a list of tuples and returns a dictionary mapping each unique tuple to the number of times it occurs in the list.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\n\ndef check_occurrences(lst):\n    count = defaultdict(int)\n    for item in lst:\n        count[item] += 1\n    return dict(count)\n```",
+      "input_tokens": 280,
+      "output_tokens": 41,
+      "generation_seconds": 1.6859169318340719,
+      "output_tokens_per_second_including_prefill": 24.31911040563369,
+      "peak_allocated_bytes": 29632883712,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

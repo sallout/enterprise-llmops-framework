@@ -1,0 +1,39 @@
+{
+  "key": "990a01856866db067f25a0aa73d68f125dc62f885058277dd4499426368fdcae",
+  "digest": "64018428bcaf41afde1599835ac9aa1a911de1d80c14ed9efdf665826fb60455",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/76",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/76",
+      "task_prompt": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_simple_power(x, n):\n    \"\"\"\n    Returns True if x is a simple power of n, i.e., n**int = x.\n    Returns False otherwise.\n    \n    :param x: The number to check.\n    :param n: The base number.\n    :return: Boolean indicating if x is a simple power of n.\n    \"\"\"\n    if x < 1 or n < 1:\n        return False\n    if x == 1:\n        return True\n    power = math.log(x, n)\n    return power.is_integer()\n```",
+      "input_tokens": 171,
+      "output_tokens": 123,
+      "generation_seconds": 22.666150827892125,
+      "output_tokens_per_second_including_prefill": 5.426594084454814,
+      "peak_allocated_bytes": 16190675968,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

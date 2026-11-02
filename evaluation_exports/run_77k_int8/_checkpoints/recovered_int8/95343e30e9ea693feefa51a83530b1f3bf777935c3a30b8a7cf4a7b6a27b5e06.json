@@ -1,0 +1,38 @@
+{
+  "key": "0b8b3d4fa69b63002f15e0eb046c492f79525b7fd167ce8931b4d9ee5aeae9ba",
+  "digest": "90fbc4c1ae038dafb6fe796148385fc1e0b54251858396f8276c1563bc88f781",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/134",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/134",
+      "task_prompt": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n    if not txt:\n        return False\n    last_char = txt[-1]\n    if last_char.isalpha():\n        if txt[-2] == ' ' or txt[-2] == txt[0] == ' ':\n            return True\n    return False\n```",
+      "input_tokens": 166,
+      "output_tokens": 191,
+      "generation_seconds": 35.40422507468611,
+      "output_tokens_per_second_including_prefill": 5.39483633936573,
+      "peak_allocated_bytes": 16238076416,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

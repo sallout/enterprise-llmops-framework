@@ -1,0 +1,39 @@
+{
+  "key": "370b135f0a12c3fcc0a2585f34fc59bfa3289d1fd87942b960f6d774b7d3b5a9",
+  "digest": "e0ff671f362c585352743723cfe07fa620c03876dd2c8e3aef0bb7897dff627f",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:222",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "222",
+      "task_prompt": "Write a function to check if all the elements in tuple have same data type or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_type(t):\n    return all(isinstance(x, type(t[0])) for x in t)\n\n# Required imports\n# None needed\n```",
+      "input_tokens": 114,
+      "output_tokens": 34,
+      "generation_seconds": 1.3897018246352673,
+      "output_tokens_per_second_including_prefill": 24.46567990145903,
+      "peak_allocated_bytes": 28637553664,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

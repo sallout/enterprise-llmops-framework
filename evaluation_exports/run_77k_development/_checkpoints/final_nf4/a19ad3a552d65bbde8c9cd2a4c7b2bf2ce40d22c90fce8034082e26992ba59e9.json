@@ -1,0 +1,40 @@
+{
+  "key": "d3d928d19f1d6776b5a09fc006017854e21d78219624476432aa72065e3b8b00",
+  "digest": "1a5ee82d186357f961f64e48a6c38518b5f5877c2e498f17d33281b4afc47317",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:91",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "91",
+      "task_prompt": "Write a function to check if a string is present as a substring in a given list of string values.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_substring(string_list, substring):\n    \"\"\"\n    Check if a substring is present in any of the strings within a list.\n\n    :param string_list: List of strings to search within.\n    :param substring: Substring to search for.\n    :return: True if the substring is found in any string of the list, False otherwise.\n    \"\"\"\n    return any(substring in s for s in string_list)\n```",
+      "input_tokens": 123,
+      "output_tokens": 91,
+      "generation_seconds": 4.974409934133291,
+      "output_tokens_per_second_including_prefill": 18.293627024097532,
+      "peak_allocated_bytes": 9910464512,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

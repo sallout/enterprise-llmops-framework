@@ -1,0 +1,39 @@
+{
+  "key": "d7a3629af1d02256f086ff273ea334456cf5fd4ad6741df1ec76d7ee4fa2f29c",
+  "digest": "177623b0abe071d0ef80675c4e920cdb60cc9264dfbc59e1fe338b6a16e17fb3",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:89",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "89",
+      "task_prompt": "Write a function to find the closest smaller number than n.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef closest_num(n):\n    \"\"\"\n    Returns the closest smaller number than n.\n    \n    Parameters:\n    n (int): The number to find the closest smaller number for.\n    \n    Returns:\n    int: The closest smaller number than n.\n    \"\"\"\n    return n - 1\n```",
+      "input_tokens": 79,
+      "output_tokens": 63,
+      "generation_seconds": 2.5541938468813896,
+      "output_tokens_per_second_including_prefill": 24.665316642635215,
+      "peak_allocated_bytes": 28626592256,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

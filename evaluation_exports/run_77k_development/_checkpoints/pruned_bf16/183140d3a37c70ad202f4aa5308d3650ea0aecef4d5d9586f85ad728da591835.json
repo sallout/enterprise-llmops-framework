@@ -1,0 +1,39 @@
+{
+  "key": "879c531053196bc029db0c8f0546139b2364e9460dbc4024d7767412b740502b",
+  "digest": "3ffdc906dc1a5aecad7a07325c43230ab8e6468b45515566a43c57f9b050e16d",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/103",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/103",
+      "task_prompt": "\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n    if n > m:\n        return -1\n    \n    total_numbers = m - n + 1\n    total_sum = (n + m) * total_numbers // 2\n    average = total_sum / total_numbers\n    rounded_avg = round(average)\n    \n    return bin(rounded_avg)\n```",
+      "input_tokens": 179,
+      "output_tokens": 212,
+      "generation_seconds": 8.843139204196632,
+      "output_tokens_per_second_including_prefill": 23.97338717673838,
+      "peak_allocated_bytes": 28667394048,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "c938a7a8f8b5eebd6af1b191fad742895d0be04a1ddaf8ab7b054216dca8731e",
+  "digest": "e1fd3d38e540350de61b5a2e8e896bf73fa51084f91730c0e8d8914395d20c36",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:270",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "270",
+      "task_prompt": "Write a python function to find the sum of even numbers at even positions of a list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_even_and_even_index(lst):\n    return sum(num for idx, num in enumerate(lst) if idx % 2 == 0 and num % 2 == 0)\n```",
+      "input_tokens": 153,
+      "output_tokens": 42,
+      "generation_seconds": 1.7146413018926978,
+      "output_tokens_per_second_including_prefill": 24.494919114358506,
+      "peak_allocated_bytes": 28649057792,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

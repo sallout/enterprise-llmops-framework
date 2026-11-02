@@ -1,0 +1,39 @@
+{
+  "key": "911d3752c4cca0d2baf5300f4c6cf7e734137e0960c790d9b98ee08238d044d4",
+  "digest": "28a5ebc0d3a7a3da5787cc385d03fdb380efcbabe1a598142cb78c7bfd2548b6",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:389",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "389",
+      "task_prompt": "Write a function to find the n'th lucas number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_lucas(n):\n    \"\"\"\n    Returns the n'th Lucas number.\n    \n    Parameters:\n    n (int): The position in the Lucas sequence.\n    \n    Returns:\n    int: The n'th Lucas number.\n    \"\"\"\n    if n == 0:\n        return 2\n    elif n == 1:\n        return 1\n    else:\n        a, b = 2, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n```",
+      "input_tokens": 80,
+      "output_tokens": 120,
+      "generation_seconds": 4.905931836925447,
+      "output_tokens_per_second_including_prefill": 24.46018493302266,
+      "peak_allocated_bytes": 28636096000,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

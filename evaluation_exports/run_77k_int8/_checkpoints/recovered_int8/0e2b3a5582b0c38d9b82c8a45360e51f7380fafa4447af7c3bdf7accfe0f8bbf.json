@@ -1,0 +1,39 @@
+{
+  "key": "2b2ba166568a0f37aceb327cc00b4e5c4d03af3b23d7c1d3a1c00b8d553ea7dd",
+  "digest": "fec47797c62a52803c42ff0b9444bce0e7e80f059c5ba78abe52ed04e0c95693",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:61",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "61",
+      "task_prompt": "Write a python function to count the number of substrings with the sum of digits equal to their length.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_Substrings(s):\n    \"\"\"\n    Counts the number of substrings in the given string where the sum of the digits\n    in the substring is equal to the length of the substring.\n    \n    :param s: The input string consisting of digits.\n    :return: The count of substrings meeting the condition.\n    \"\"\"\n    count = 0\n    n = len(s)\n    for i in range(n):\n        for j in range(i + 1, n + 1):\n            substring = s[i:j]\n            if sum(int(digit) for digit in substring) == len(substring):\n                count += 1\n    return count\n```",
+      "input_tokens": 101,
+      "output_tokens": 140,
+      "generation_seconds": 26.34956234972924,
+      "output_tokens_per_second_including_prefill": 5.3131812263833895,
+      "peak_allocated_bytes": 16118656512,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

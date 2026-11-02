@@ -1,0 +1,39 @@
+{
+  "key": "09298d1aa3eab6d96d5ffda725ff81016958870c1fb90ee6d8501e496e0f019e",
+  "digest": "9fd7ecdc24e99eea3ff3225c2c55e74ccd90327ff62e87b7a090fd665dc315fa",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:425",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "425",
+      "task_prompt": "Write a function to count the number of sublists containing a particular element.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_element_in_list(list_of_lists, element):\n    \"\"\"\n    Counts the number of sublists in list_of_lists that contain the specified element.\n\n    :param list_of_lists: List of lists to be searched.\n    :param element: Element to search for in the sublists.\n    :return: Number of sublists containing the element.\n    \"\"\"\n    return sum(1 for sublist in list_of_lists if element in sublist)\n```",
+      "input_tokens": 168,
+      "output_tokens": 93,
+      "generation_seconds": 3.889320026617497,
+      "output_tokens_per_second_including_prefill": 23.911634775110336,
+      "peak_allocated_bytes": 28653480960,
+      "peak_reserved_bytes": 28758245376
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

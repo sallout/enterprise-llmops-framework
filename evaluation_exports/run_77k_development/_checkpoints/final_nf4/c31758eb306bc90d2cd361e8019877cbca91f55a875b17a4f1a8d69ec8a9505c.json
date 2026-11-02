@@ -1,0 +1,40 @@
+{
+  "key": "e60894c14fef59e69bd457b7c425ecd14973b344c59081c29159b13e316c710c",
+  "digest": "7b837599b3e7435f797ed11207f3d88f9ebae56d283ff0dc0e7ad2296a8a66c6",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:391",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "391",
+      "task_prompt": "Write a function to convert more than one list to nested dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef convert_list_dictionary(keys, values, scores):\n    \"\"\"\n    Converts three lists into a list of nested dictionaries.\n    \n    :param keys: List of keys.\n    :param values: List of values.\n    :param scores: List of scores.\n    :return: List of nested dictionaries.\n    \"\"\"\n    return [{'key': {'value': score}} for key, value, score in zip(keys, values, scores)]\n```",
+      "input_tokens": 332,
+      "output_tokens": 91,
+      "generation_seconds": 5.07171119004488,
+      "output_tokens_per_second_including_prefill": 17.942662070076338,
+      "peak_allocated_bytes": 9966484480,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

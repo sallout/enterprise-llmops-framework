@@ -1,0 +1,39 @@
+{
+  "key": "b4fbb128707167736d2c4d44aab9f988ca754fd6de621194464ec0890cdb6802",
+  "digest": "4dad44928d8499d247d4090d0a1cfa8f7536b9b46695d5f39fa6181502e786a9",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:127",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "127",
+      "task_prompt": "Write a function to multiply two integers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef multiply_int(a, b):\n    return a * b\n```",
+      "input_tokens": 78,
+      "output_tokens": 18,
+      "generation_seconds": 0.7218254557810724,
+      "output_tokens_per_second_including_prefill": 24.936776412966168,
+      "peak_allocated_bytes": 28625769472,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

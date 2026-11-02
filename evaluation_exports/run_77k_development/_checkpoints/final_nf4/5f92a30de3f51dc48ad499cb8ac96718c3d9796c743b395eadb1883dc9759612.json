@@ -1,0 +1,39 @@
+{
+  "key": "6fbb6db4dd0ca56b771af978d281d84a5e0e10ffbbe7a2af3910949253f85ca3",
+  "digest": "5bd3b81bd039cd1b6f108e126856e179f96cfde016be6aef656b59a4a231cef7",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:297",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "297",
+      "task_prompt": "Write a function to flatten a given nested list structure.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List, Any\n\ndef flatten_list(nested_list: List[Any]) -> List[Any]:\n    \"\"\"\n    Flattens a nested list structure into a single list of elements.\n    \n    :param nested_list: A list that may contain nested lists.\n    :return: A flattened list with all elements.\n    \"\"\"\n    flat_list = []\n    for item in nested_list:\n        if isinstance(item, list):\n            flat_list.extend(flatten_list(item))\n        else:\n            flat_list.append(item)\n    return flat_list\n```",
+      "input_tokens": 315,
+      "output_tokens": 113,
+      "generation_seconds": 6.3664845852181315,
+      "output_tokens_per_second_including_prefill": 17.749198712012326,
+      "peak_allocated_bytes": 9962027520,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

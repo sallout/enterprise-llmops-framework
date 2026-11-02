@@ -1,0 +1,41 @@
+{
+  "key": "8aecba8d642cab4e78a7593506843e91f40691a4c57799b089e218fc51eeb5ff",
+  "digest": "f712aae147bbaca7f8717a96baac691cc2d0c432481e1c45f1d09bc2c12c5f39",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/148",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/148",
+      "task_prompt": "\ndef bf(planet1, planet2):\n    '''\n    There are eight planets in our solar system: the closerst to the Sun \n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, \n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2. \n    The function should return a tuple containing all planets whose orbits are \n    located between the orbit of planet1 and the orbit of planet2, sorted by \n    the proximity to the sun. \n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names. \n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n    '''\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef bf(planet1, planet2):\n    '''\n    Returns a tuple of planets whose orbits are located between the orbit of planet1 and the orbit of planet2, \n    sorted by the proximity to the sun. Returns an empty tuple if planet1 or planet2 are not correct planet names.\n    \n    :param planet1: str, the name of the first planet\n    :param planet2: str, the name of the second planet\n    :return: tuple, planets between planet1 and planet2\n    '''\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    index1 = planets.index(planet1)\n    index2 = planets.index(planet2)\n    if index1 > index2:\n        index1, index2 = index2, index1\n    return tuple(planets[index1 + 1:index2])\n```",
+      "input_tokens": 240,
+      "output_tokens": 218,
+      "generation_seconds": 8.777469030115753,
+      "output_tokens_per_second_including_prefill": 24.836316625218,
+      "peak_allocated_bytes": 28678441984,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

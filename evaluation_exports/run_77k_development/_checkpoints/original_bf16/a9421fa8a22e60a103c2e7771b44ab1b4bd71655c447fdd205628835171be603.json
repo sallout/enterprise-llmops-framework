@@ -1,0 +1,39 @@
+{
+  "key": "1b2162323638c895f483bbabf83cdddfe7f1f2604b5929943b9598d28cafb480",
+  "digest": "77f2ec4c0ef072be6257af7cb57dff633619bdf53b188cfc8c43f0a2fae799e7",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:106",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "106",
+      "task_prompt": "Write a function to append the given list to the given tuples.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add_lists(lst, tpl):\n    return tpl + tuple(lst)\n```",
+      "input_tokens": 159,
+      "output_tokens": 19,
+      "generation_seconds": 0.7833440448157489,
+      "output_tokens_per_second_including_prefill": 24.25498748058908,
+      "peak_allocated_bytes": 29595409408,
+      "peak_reserved_bytes": 29773266944
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

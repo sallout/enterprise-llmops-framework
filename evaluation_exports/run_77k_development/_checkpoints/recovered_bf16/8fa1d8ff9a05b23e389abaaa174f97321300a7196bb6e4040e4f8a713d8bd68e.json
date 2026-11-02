@@ -1,0 +1,40 @@
+{
+  "key": "efe613505e93719c267afda012b59bbe83989d389a5e16c3bd5950a942a9d0ce",
+  "digest": "2cc2c5ec01a567b4d166956dc387a64da6472235e2ae657a1954e7c07c57bb9b",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/91",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/91",
+      "task_prompt": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef is_bored(S):\n    \"\"\"\n    Counts the number of boredoms in a given string. A boredom is defined as a sentence\n    that starts with the word \"I\". Sentences are separated by '.', '?', or '!'.\n\n    :param S: A string containing multiple sentences.\n    :return: An integer representing the number of boredoms.\n    \"\"\"\n    sentences = re.split(r'[.?!]', S)\n    boredom_count = 0\n    for sentence in sentences:\n        if sentence.strip().startswith('I'):\n            boredom_count += 1\n    return boredom_count\n```",
+      "input_tokens": 136,
+      "output_tokens": 128,
+      "generation_seconds": 5.174420877825469,
+      "output_tokens_per_second_including_prefill": 24.737067784441905,
+      "peak_allocated_bytes": 28646584320,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

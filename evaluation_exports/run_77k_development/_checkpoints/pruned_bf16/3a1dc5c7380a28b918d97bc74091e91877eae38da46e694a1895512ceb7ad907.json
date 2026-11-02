@@ -1,0 +1,41 @@
+{
+  "key": "f649582765fd742163aafd23d93c55e77cabef6895ced422fcaa0f295dd081f5",
+  "digest": "bd504d1c9b8a16f0939bf51c817cb582a011e6331356c47aea4d93847d5b30c6",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/104",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/104",
+      "task_prompt": "\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x, return a sorted list of all \n    elements that haven't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n    def has_no_even_digits(n):\n        return all(int(d) % 2 != 0 for d in str(n))\n    \n    result = [num for num in x if has_no_even_digits(num)]\n    return sorted(result)\n```",
+      "input_tokens": 144,
+      "output_tokens": 162,
+      "generation_seconds": 6.671745907980949,
+      "output_tokens_per_second_including_prefill": 24.28150026010592,
+      "peak_allocated_bytes": 28653465600,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

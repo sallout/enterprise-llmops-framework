@@ -1,0 +1,39 @@
+{
+  "key": "53f267a25af21498670c15613feb47aa5b31b738b1c04a11d66eef5d828524b0",
+  "digest": "9f11308824c60536eeaa23b11419f48a72de6f726a8899b47695630f0b62da11",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:422",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "422",
+      "task_prompt": "Write a python function to find the average of cubes of first n natural numbers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_Average_Of_Cube(n):\n    \"\"\"\n    Calculate the average of the cubes of the first n natural numbers.\n\n    Parameters:\n    n (int): The number of natural numbers to consider.\n\n    Returns:\n    float: The average of the cubes of the first n natural numbers.\n    \"\"\"\n    return sum(i**3 for i in range(1, n+1)) / n\n```",
+      "input_tokens": 94,
+      "output_tokens": 86,
+      "generation_seconds": 3.46458230772987,
+      "output_tokens_per_second_including_prefill": 24.822617089547677,
+      "peak_allocated_bytes": 28632818176,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

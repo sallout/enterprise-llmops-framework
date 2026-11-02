@@ -1,0 +1,40 @@
+{
+  "key": "35fe529ff4004aa93d5f814bf40ea94a41ecf47026651f2ea83f436253150fe1",
+  "digest": "17778dbe9326683b2e9196a23bc8a10bff552195b47e622228c2fff28c4bbf11",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/64",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/64",
+      "task_prompt": "\nFIX = \"\"\"\nAdd more test cases.\n\"\"\"\n\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef vowels_count(s):\n    \"\"\"\n    Returns the number of vowels in the input string.\n    Vowels are 'a', 'e', 'i', 'o', 'u', and 'y' if it is at the end of the word.\n    \n    :param s: str - The input string.\n    :return: int - The count of vowels in the string.\n    \"\"\"\n    vowels = set('aeiou')\n    count = 0\n    for char in s:\n        if char.lower() in vowels:\n            count += 1\n    if s and s[-1].lower() == 'y':\n        count += 1\n    return count\n```",
+      "input_tokens": 155,
+      "output_tokens": 143,
+      "generation_seconds": 7.8882522960193455,
+      "output_tokens_per_second_including_prefill": 18.1282234180266,
+      "peak_allocated_bytes": 9918523904,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "de368ec4d99c275c7126062cde646aa4401d24d5d1b8a1d2227e1c5b1c86574b",
+  "digest": "6ab047427d9fee7b73e60a82f52242e055188122fe6f6959464becf618cd402c",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/103",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/103",
+      "task_prompt": "\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef rounded_avg(n, m):\n    \"\"\"Calculate the rounded average of integers from n to m and return it in binary.\n    \n    Args:\n        n (int): The starting integer.\n        m (int): The ending integer.\n    \n    Returns:\n        str or int: The binary representation of the rounded average, or -1 if n > m.\n    \"\"\"\n    if n > m:\n        return -1\n    total = sum(range(n, m + 1))\n    count = m - n + 1\n    average = total / count\n    rounded_average = round(average)\n    return bin(rounded_average)\n```",
+      "input_tokens": 179,
+      "output_tokens": 134,
+      "generation_seconds": 24.50401748996228,
+      "output_tokens_per_second_including_prefill": 5.468491036414383,
+      "peak_allocated_bytes": 16255460352,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

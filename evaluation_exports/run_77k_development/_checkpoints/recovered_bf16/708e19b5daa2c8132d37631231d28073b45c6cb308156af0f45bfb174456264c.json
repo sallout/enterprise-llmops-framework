@@ -1,0 +1,38 @@
+{
+  "key": "88d49335cee5251c6beb7c4992e8a9234602f0dbd73d80b14ac03e6c477a70ac",
+  "digest": "41f1d39ee3e3a60b736960f0a1466732c863bb6e7c641ce232783d53c59a49cf",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:96",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "96",
+      "task_prompt": "Write a python function to find the number of divisors of a given integer.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef divisor(n):\n    \"\"\"\n    Returns the number of divisors of the given integer n.\n    \n    Parameters:\n    n (int): The integer to find divisors for.\n    \n    Returns:\n    int: The number of divisors of n.\n    \"\"\"\n    if n == 0:\n        return 0\n    count = 0\n    sqrt_n = int(math.sqrt(n))\n    for i in range(1, sqrt_n + 1):\n        if n % i == 0:\n            if i * i == n:\n                count += 1\n            else:\n                count += 2\n    return count\n```",
+      "input_tokens": 78,
+      "output_tokens": 138,
+      "generation_seconds": 5.573563718236983,
+      "output_tokens_per_second_including_prefill": 24.759742056676775,
+      "peak_allocated_bytes": 28638717440,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

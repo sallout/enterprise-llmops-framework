@@ -1,0 +1,41 @@
+{
+  "key": "5fa0bb3536fa559010966bbf2d350ac97b9df5d5dcbaa6d47737061183e50c4f",
+  "digest": "d75bb3f19a5bca3a9c44c7aa9b942b66020918e27e59596ccbd902506556cc88",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:12",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "12",
+      "task_prompt": "Write a function to sort a given matrix in ascending order according to the sum of its rows.",
+      "skill_tags": [
+        "matrices",
+        "numeric_math",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport numpy as np\n\ndef sort_matrix(matrix):\n    \"\"\"\n    Sorts a given matrix in ascending order based on the sum of its rows.\n\n    Parameters:\n    matrix (list of lists): The matrix to be sorted.\n\n    Returns:\n    list of lists: The sorted matrix.\n    \"\"\"\n    matrix = np.array(matrix)\n    sorted_indices = np.argsort(matrix.sum(axis=1))\n    sorted_matrix = matrix[sorted_indices]\n    return sorted_matrix.tolist()\n```",
+      "input_tokens": 220,
+      "output_tokens": 98,
+      "generation_seconds": 4.021690944209695,
+      "output_tokens_per_second_including_prefill": 24.367859529608396,
+      "peak_allocated_bytes": 28669801472,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

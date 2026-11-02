@@ -1,0 +1,39 @@
+{
+  "key": "4957e393198e6bf5ae3d5e714436b9f1564fd683315da70048cd8cd41c112d90",
+  "digest": "54ffa33a9b2ff2659ef452ef2600c13153f18037f965be98c8dcdb7b24a7f606",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/77",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/77",
+      "task_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    if a >= 0:\n        root = round(a ** (1/3))\n        return root ** 3 == a\n    else:\n        root = round(-(-a) ** (1/3))\n        return (-root) ** 3 == a\n```",
+      "input_tokens": 142,
+      "output_tokens": 167,
+      "generation_seconds": 31.042164757847786,
+      "output_tokens_per_second_including_prefill": 5.379779448460683,
+      "peak_allocated_bytes": 16204289024,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

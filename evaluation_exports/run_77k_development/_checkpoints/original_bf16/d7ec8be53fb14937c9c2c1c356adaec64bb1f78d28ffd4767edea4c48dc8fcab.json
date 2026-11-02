@@ -1,0 +1,39 @@
+{
+  "key": "5a041fa084b6dbf65dde93e8e0e1a615fbe816f32689fbebca249a985cb3c37f",
+  "digest": "6a7e6f948c75881a1df8615b35e7bdd818a03e5434a71ee05a01b1d8397c0aea",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:59",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "59",
+      "task_prompt": "Write a function to find the nth octagonal number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_octagonal(n):\n    return n * (3 * n - 2)\n```",
+      "input_tokens": 84,
+      "output_tokens": 26,
+      "generation_seconds": 1.040207238867879,
+      "output_tokens_per_second_including_prefill": 24.995019288942256,
+      "peak_allocated_bytes": 29571181568,
+      "peak_reserved_bytes": 29773266944
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "870da700ce99e43864d44d5b5d091ac99c0bfae5f37791ed7e182a3d8052c3d5",
+  "digest": "e0a2335b753e3172e81fce3393944156f11013aee43d872373e49124713e03e6",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:430",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "430",
+      "task_prompt": "Write a function to find the directrix of a parabola.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef parabola_directrix(a, b, c):\n    \"\"\"\n    Calculate the directrix of a parabola given its coefficients a, b, and c.\n    \n    Parameters:\n    a (float): Coefficient of x^2\n    b (float): Coefficient of x\n    c (float): Constant term\n    \n    Returns:\n    float: The directrix of the parabola\n    \"\"\"\n    vertex_x = -b / (2 * a)\n    vertex_y = a * (vertex_x ** 2) + b * vertex_x + c\n    directrix_y = vertex_y - (1 / (4 * a))\n    return directrix_y\n```",
+      "input_tokens": 102,
+      "output_tokens": 148,
+      "generation_seconds": 6.031875798013061,
+      "output_tokens_per_second_including_prefill": 24.536314233915782,
+      "peak_allocated_bytes": 28644288000,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

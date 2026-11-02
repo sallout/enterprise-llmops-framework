@@ -1,0 +1,40 @@
+{
+  "key": "8f2ad677d86ee0bd43b2510c1b69a7bf174784193eae2f66dad8811094bb44d1",
+  "digest": "43e8c05813fa9d02185b07b9fda70fda90ac9e149b19e8d59c8af0bf5e830d5e",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:456",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "456",
+      "task_prompt": "Write a function to reverse each string in a given list of string values.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef reverse_string_list(strings):\n    \"\"\"\n    Reverses each string in the given list of strings.\n\n    :param strings: List of strings to be reversed.\n    :return: List of reversed strings.\n    \"\"\"\n    return [s[::-1] for s in strings]\n```",
+      "input_tokens": 148,
+      "output_tokens": 61,
+      "generation_seconds": 3.37999533303082,
+      "output_tokens_per_second_including_prefill": 18.047362197184366,
+      "peak_allocated_bytes": 9916511232,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "6bdd4630877a99bdb05443f4f3ba2a6303a19c77702827a14d60acb0be770204",
+  "digest": "0658c6af39cbec371d3df1ace59e2153460a8035ae2838470d12844d6f5fdc72",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:228",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "228",
+      "task_prompt": "Write a python function to check whether all the bits are unset in the given range or not.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef all_Bits_Set_In_The_Given_Range(number, start_bit, end_bit):\n    \"\"\"\n    Check if all bits in the given range [start_bit, end_bit] are set in the number.\n    \n    :param number: Integer to check bits in.\n    :param start_bit: Start of the bit range (inclusive).\n    :param end_bit: End of the bit range (inclusive).\n    :return: True if all bits in the range are set, False otherwise.\n    \"\"\"\n    mask = ((1 << (end_bit - start_bit + 1)) - 1) << start_bit\n    return (number & mask) == mask\n```",
+      "input_tokens": 120,
+      "output_tokens": 142,
+      "generation_seconds": 8.031504182145,
+      "output_tokens_per_second_including_prefill": 17.680374283522518,
+      "peak_allocated_bytes": 9909740544,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

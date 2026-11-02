@@ -1,0 +1,39 @@
+{
+  "key": "55e464ed86f8d8f2d46cf7ffaa01d478c1c7729f62794a45229a873e942b815f",
+  "digest": "ba8681e68cd024a5d5638ada99ac64392d115815f93a1af3e751a40973ba06ca",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:87",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "87",
+      "task_prompt": "Write a function to merge three dictionaries into a single dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef merge_dictionaries_three(d1, d2, d3):\n    merged = {}\n    for d in [d1, d2, d3]:\n        merged.update(d)\n    return merged\n```",
+      "input_tokens": 315,
+      "output_tokens": 46,
+      "generation_seconds": 1.8741293321363628,
+      "output_tokens_per_second_including_prefill": 24.544730831123353,
+      "peak_allocated_bytes": 28698102272,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

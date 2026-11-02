@@ -1,0 +1,39 @@
+{
+  "key": "2ae54cde363b619c685e676e9fc105b7b815454b9f70c482c235f06e563af2e5",
+  "digest": "d0b59c0479b0debfd104efaecd830c10f4cb8ef41f9a04b985acd2568a07badf",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:422",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "422",
+      "task_prompt": "Write a python function to find the average of cubes of first n natural numbers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_Average_Of_Cube(n):\n    return (n * (n + 1) ** 2) / 4\n\nassert find_Average_Of_Cube(2) == 4.5\nassert find_Average_Of_Cube(3) == 12\nassert find_Average_Of_Cube(1) == 1\n```",
+      "input_tokens": 94,
+      "output_tokens": 78,
+      "generation_seconds": 3.136721068061888,
+      "output_tokens_per_second_including_prefill": 24.866731311941138,
+      "peak_allocated_bytes": 29574701568,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "c0d306ab086ff4728d9c84e158a04cfc5b0320fa6c59685562f94c99742940f9",
+  "digest": "eea6de6d5e987759bcc313ef428b946bc2d7b2a57c14aa96def59d31933df01a",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/134",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/134",
+      "task_prompt": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n    if not txt:\n        return False\n    # Check if the last character is a letter and is a standalone character (not part of a word)\n    # A standalone character is either the only character in the string or preceded by a space\n    if txt[-1].isalpha():\n        if len(txt) == 1:\n            return True\n        return txt[-2] == ' '\n    return False\n```",
+      "input_tokens": 166,
+      "output_tokens": 221,
+      "generation_seconds": 9.628324612043798,
+      "output_tokens_per_second_including_prefill": 22.953110629813764,
+      "peak_allocated_bytes": 29609932800,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

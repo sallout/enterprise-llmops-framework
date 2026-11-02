@@ -1,0 +1,38 @@
+{
+  "key": "5ef0656b0f4c97ad76d948033806bebd9da1f402ec1a114ba285c729756bbe05",
+  "digest": "de4cf8a231efcb82b43af23e1ffb1f263dcea9a13d6ad51f139dc5ee6f43a9c0",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/134",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/134",
+      "task_prompt": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n    if not txt:\n        return False\n    # Check if the last character is a letter and if it is a standalone character (not part of a word)\n    return txt[-1].isalpha() and (len(txt) == 1 or txt[-2] == ' ')\n```",
+      "input_tokens": 166,
+      "output_tokens": 194,
+      "generation_seconds": 7.835437871981412,
+      "output_tokens_per_second_including_prefill": 24.759305500171315,
+      "peak_allocated_bytes": 28662313984,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

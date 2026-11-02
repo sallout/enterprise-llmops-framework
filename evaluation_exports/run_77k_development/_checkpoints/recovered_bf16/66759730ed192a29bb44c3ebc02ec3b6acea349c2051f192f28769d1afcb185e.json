@@ -1,0 +1,40 @@
+{
+  "key": "ad531a052a4a5513eed36ed5db2367340ab138d4377216e7a40e85724c931b58",
+  "digest": "6ade243cd4090ac7833918a3eec4b7f230b6145584cd427f2335c72cabfa3fba",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:428",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "428",
+      "task_prompt": "Write a function to sort the given array by using shell sort.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef shell_sort(arr):\n    \"\"\"\n    Sorts an array using the shell sort algorithm.\n\n    Parameters:\n    arr (list): The list of elements to be sorted.\n\n    Returns:\n    list: The sorted list.\n    \"\"\"\n    n = len(arr)\n    gap = n // 2\n    while gap > 0:\n        for i in range(gap, n):\n            temp = arr[i]\n            j = i\n            while j >= gap and arr[j - gap] > temp:\n                arr[j] = arr[j - gap]\n                j -= gap\n            arr[j] = temp\n        gap //= 2\n    return arr\n```",
+      "input_tokens": 243,
+      "output_tokens": 139,
+      "generation_seconds": 5.652384797111154,
+      "output_tokens_per_second_including_prefill": 24.591390181192327,
+      "peak_allocated_bytes": 28676124160,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

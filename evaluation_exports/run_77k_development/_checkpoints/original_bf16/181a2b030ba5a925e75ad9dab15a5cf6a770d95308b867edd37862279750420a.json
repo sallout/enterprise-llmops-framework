@@ -1,0 +1,39 @@
+{
+  "key": "584427dbab5b970d363ea466ed359a14e0f09e7709f5d33f6cddf867e5b1db07",
+  "digest": "f5cc3296c020814554e172c410e42b63499213bbf0527af4759a0e402d647a1f",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:435",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "435",
+      "task_prompt": "Write a python function to find the last digit of a given number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef last_Digit(number):\n    return abs(number) % 10\n```",
+      "input_tokens": 84,
+      "output_tokens": 21,
+      "generation_seconds": 0.8800705191679299,
+      "output_tokens_per_second_including_prefill": 23.861724194391407,
+      "peak_allocated_bytes": 29571181568,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

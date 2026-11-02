@@ -1,0 +1,39 @@
+{
+  "key": "79ae3497d870d035ba3149727289784fae8d8e60dc9fcac9d66bc702a80ed253",
+  "digest": "8230cb3c2ec63b7bbeaec477e52e0ba95920d87d5d6190fe58468ef8efe93cc0",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:431",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "431",
+      "task_prompt": "Write a function that takes two lists and returns true if they have at least one common element.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef common_element(list1, list2):\n    return bool(set(list1) & set(list2))\n```",
+      "input_tokens": 124,
+      "output_tokens": 26,
+      "generation_seconds": 1.0409704060293734,
+      "output_tokens_per_second_including_prefill": 24.976694677779676,
+      "peak_allocated_bytes": 29583580160,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

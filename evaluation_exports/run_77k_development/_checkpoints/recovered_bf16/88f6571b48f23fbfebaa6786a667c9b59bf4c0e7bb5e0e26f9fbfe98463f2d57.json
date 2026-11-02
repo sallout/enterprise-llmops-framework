@@ -1,0 +1,40 @@
+{
+  "key": "988aaed227fec6ef32d58039fbb887994dd23425468472d7636ad6a14ebc7842",
+  "digest": "65737d7c6c3c8fb5b993b8fc657bdd88b86305d7c44132367f6aa53d3d612449",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/98",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/98",
+      "task_prompt": "\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n    vowels = 'AEIOU'\n    count = 0\n    for i in range(0, len(s), 2):\n        if s[i] in vowels:\n            count += 1\n    return count\n```",
+      "input_tokens": 101,
+      "output_tokens": 117,
+      "generation_seconds": 4.716856515966356,
+      "output_tokens_per_second_including_prefill": 24.80465530464199,
+      "peak_allocated_bytes": 28639045120,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

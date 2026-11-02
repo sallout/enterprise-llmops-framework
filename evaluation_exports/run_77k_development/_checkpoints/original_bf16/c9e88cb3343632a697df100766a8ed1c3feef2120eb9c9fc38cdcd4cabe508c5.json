@@ -1,0 +1,39 @@
+{
+  "key": "f3ddfe537cb3649a90c8e8627240e643e6b4be8b358e55eb69ec090cdb28be67",
+  "digest": "38c0851627c37fe9b45d18706d6fb4a9b3143d1feccd7423150889e863d9bb5c",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:425",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "425",
+      "task_prompt": "Write a function to count the number of sublists containing a particular element.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_element_in_list(list_of_lists, element):\n    count = 0\n    for sublist in list_of_lists:\n        if element in sublist:\n            count += 1\n    return count\n```",
+      "input_tokens": 168,
+      "output_tokens": 46,
+      "generation_seconds": 1.8601457700133324,
+      "output_tokens_per_second_including_prefill": 24.729244740679814,
+      "peak_allocated_bytes": 29598104576,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

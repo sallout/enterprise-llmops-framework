@@ -1,0 +1,40 @@
+{
+  "key": "b64e1fd563dc5e29a3fc7b83780edae47fda5f5b6b573dced7290479b56a7099",
+  "digest": "ff5eddb59cf5f6f5b16be58fa5bb2a5466e6296ef96e6e917ce84481d6e7b615",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:132",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "132",
+      "task_prompt": "Write a function to convert a tuple to a string.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef tup_string(tup):\n    \"\"\"\n    Converts a tuple of characters to a string.\n\n    Parameters:\n    tup (tuple): A tuple containing characters.\n\n    Returns:\n    str: A string formed by concatenating the characters in the tuple.\n    \"\"\"\n    return ''.join(tup)\n```",
+      "input_tokens": 122,
+      "output_tokens": 63,
+      "generation_seconds": 11.88610243005678,
+      "output_tokens_per_second_including_prefill": 5.300307680395704,
+      "peak_allocated_bytes": 16277061632,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

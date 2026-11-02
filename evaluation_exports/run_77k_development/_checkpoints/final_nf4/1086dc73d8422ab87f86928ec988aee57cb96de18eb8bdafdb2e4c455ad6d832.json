@@ -1,0 +1,38 @@
+{
+  "key": "7ae19ecb0384172bfeaa1fa874b2c374da3dde76c23e6a96a64112f34cde1e63",
+  "digest": "cb33ac590e0a4bf23fa43a09b9ba914c03fa1ffd4a636528a04958ebc78e77f9",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:295",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "295",
+      "task_prompt": "Write a function to return the sum of all divisors of a number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_div(n):\n    \"\"\"\n    Returns the sum of all divisors of a given number n.\n    \n    Parameters:\n    n (int): The number for which to find the sum of divisors.\n    \n    Returns:\n    int: The sum of all divisors of n.\n    \"\"\"\n    return sum(i for i in range(1, n + 1) if n % i == 0)\n```",
+      "input_tokens": 74,
+      "output_tokens": 89,
+      "generation_seconds": 4.94743439508602,
+      "output_tokens_per_second_including_prefill": 17.989121814004886,
+      "peak_allocated_bytes": 9896333312,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

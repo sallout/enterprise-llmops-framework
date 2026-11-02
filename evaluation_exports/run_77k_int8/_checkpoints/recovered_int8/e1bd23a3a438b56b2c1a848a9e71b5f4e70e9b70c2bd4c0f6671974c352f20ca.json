@@ -1,0 +1,40 @@
+{
+  "key": "016976e6c69f697cb0516401fe953796a4c21703d238204a1b44c17a1441c906",
+  "digest": "1f701cb437c9d4cecf365ae43c8b36e6e7e570a5048e2574c85d79ae53f00233",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:239",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "239",
+      "task_prompt": "Write a function that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef count_sequences(m, n, last=1):\n    \"\"\"\n    Counts the number of sequences of length n where each element is a positive integer\n    greater than or equal to twice the previous element but less than or equal to m.\n    \n    :param m: The maximum value an element in the sequence can have.\n    :param n: The length of the sequence.\n    :param last: The last element in the sequence (used for recursion).\n    :return: The number of valid sequences.\n    \"\"\"\n    if n == 0:\n        return 1\n    total = 0\n    for i in range(last * 2, m + 1):\n        total += count_sequences(m, n - 1, i)\n    return total\n\ndef get_total_number_of_sequences(m, n):\n    \"\"\"\n    Returns the total number of valid sequences of length n with elements up to m.\n    \n    :param m: The maximum value an element in the sequence can have.\n    :param n: The length of the sequence.\n    :return: The total number of valid sequences.\n    \"\"\"\n    return count_sequences(m, n)\n```",
+      "input_tokens": 133,
+      "output_tokens": 253,
+      "generation_seconds": 46.78659084811807,
+      "output_tokens_per_second_including_prefill": 5.4075322739651295,
+      "peak_allocated_bytes": 16127098368,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

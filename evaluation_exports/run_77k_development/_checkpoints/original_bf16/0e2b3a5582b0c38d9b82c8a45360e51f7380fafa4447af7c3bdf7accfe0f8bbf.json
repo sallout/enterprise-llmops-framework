@@ -1,0 +1,39 @@
+{
+  "key": "d089fe7b76f4ceaf6c05608c687fc26d0e099ce29d6de825cc81403102fa9a51",
+  "digest": "ac9fcfa0f2e67594badf8c55d3839d1dfb9070f443853f1e95a1868c0b91fc21",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:61",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "61",
+      "task_prompt": "Write a python function to count the number of substrings with the sum of digits equal to their length.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef count_Substrings(s):\n    import sys\n    sys.setrecursionlimit(10000)\n    count = 0\n    n = len(s)\n    for i in range(n):\n        total = 0\n        for j in range(i, n):\n            total += int(s[j])\n            if total == (j - i + 1):\n                count += 1\n    return count\n```",
+      "input_tokens": 101,
+      "output_tokens": 91,
+      "generation_seconds": 3.6784910829737782,
+      "output_tokens_per_second_including_prefill": 24.73840440206626,
+      "peak_allocated_bytes": 29577978368,
+      "peak_reserved_bytes": 29815209984
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

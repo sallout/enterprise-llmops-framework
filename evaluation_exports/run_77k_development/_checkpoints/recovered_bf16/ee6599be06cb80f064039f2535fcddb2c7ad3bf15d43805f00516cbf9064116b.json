@@ -1,0 +1,40 @@
+{
+  "key": "2f175ffd9bef917a2c592773beaac26d0b6374daf280567b2f632895ec860777",
+  "digest": "409bcd0db148ebd6e04e070eac3198db4f9ffad7674d66f58ebc7f70fff86d5e",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/115",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/115",
+      "task_prompt": "\ndef max_fill(grid, capacity):\n    import math\n    \"\"\"\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it, \n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n    Example 1:\n        Input: \n            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]\n            bucket_capacity : 1\n        Output: 6\n\n    Example 2:\n        Input: \n            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]\n            bucket_capacity : 2\n        Output: 5\n    \n    Example 3:\n        Input: \n            grid : [[0,0,0], [0,0,0]]\n            bucket_capacity : 5\n        Output: 0\n\n    Constraints:\n        * all wells have the same length\n        * 1 <= grid.length <= 10^2\n        * 1 <= grid[:,1].length <= 10^2\n        * grid[i][j] -> 0 | 1\n        * 1 <= capacity <= 10\n    \"\"\"\n",
+      "skill_tags": [
+        "matrices",
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_fill(grid, capacity):\n    \"\"\"\n    Calculate the number of times buckets need to be lowered to empty the wells.\n    \n    :param grid: List[List[int]] - A 2D list representing the grid of wells.\n    :param capacity: int - The capacity of each bucket.\n    :return: int - The number of times buckets need to be lowered.\n    \"\"\"\n    import math\n    \n    def count_water_in_well(well):\n        \"\"\"\n        Count the number of water units in a single well.\n        \n        :param well: List[int] - A list representing a single well.\n        :return: int - The number of water units in the well.\n        \"\"\"\n        return sum(well)\n    \n    total_water = 0\n    for well in grid:\n        total_water += count_water_in_well(well)\n    \n    if capacity == 0:\n        return 0\n    \n    return math.ceil(total_water / capacity)\n```",
+      "input_tokens": 355,
+      "output_tokens": 199,
+      "generation_seconds": 8.121059929020703,
+      "output_tokens_per_second_including_prefill": 24.504190553855064,
+      "peak_allocated_bytes": 28728329216,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

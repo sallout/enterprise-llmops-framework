@@ -1,0 +1,40 @@
+{
+  "key": "371065bc9eaf0037923fe3996dca5f91f9feb79ba830fa9a19207df3b7a31fc8",
+  "digest": "82ffd0d69dc01d63ffe50600b65acf5481eb6abac79915fe7ce641fc744fc3eb",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:239",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "239",
+      "task_prompt": "Write a function that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef get_total_number_of_sequences(m, n):\n    \"\"\"\n    Returns the number of possible sequences of length n, where each element is a positive integer\n    and is greater than or equal to twice the previous element but less than or equal to m.\n    \n    :param m: int, the maximum value an element in the sequence can take\n    :param n: int, the length of the sequence\n    :return: int, the number of valid sequences\n    \"\"\"\n    def dp(prev, length):\n        if length == n:\n            return 1\n        count = 0\n        for i in range(prev * 2, m + 1):\n            count += dp(i, length + 1)\n        return count\n\n    return dp(1, 1)\n```",
+      "input_tokens": 133,
+      "output_tokens": 180,
+      "generation_seconds": 9.877558342646807,
+      "output_tokens_per_second_including_prefill": 18.22312698704515,
+      "peak_allocated_bytes": 9913217536,
+      "peak_reserved_bytes": 10051649536
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

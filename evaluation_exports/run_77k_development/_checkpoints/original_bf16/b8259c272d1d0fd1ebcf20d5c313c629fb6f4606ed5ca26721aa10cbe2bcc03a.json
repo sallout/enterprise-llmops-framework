@@ -1,0 +1,39 @@
+{
+  "key": "b0ee6d3179ee4fe0d53c24ec8b6cafde7689584248912e4868ac93503a72e748",
+  "digest": "48d145bcf0a8334214d82db09c14d244d893c46ac776986c2be0dee2b9797203",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:98",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "98",
+      "task_prompt": "Write a function to multiply all the numbers in a list and divide with the length of the list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef multiply_num(numbers):\n    product = 1\n    for num in numbers:\n        product *= num\n    return product / len(numbers)\n```",
+      "input_tokens": 159,
+      "output_tokens": 37,
+      "generation_seconds": 1.4951840341091156,
+      "output_tokens_per_second_including_prefill": 24.74611763898745,
+      "peak_allocated_bytes": 29595409408,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

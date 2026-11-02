@@ -1,0 +1,40 @@
+{
+  "key": "0ac8e7a8a50efbea3753ff28dc2892468065a335bb38390775a78c2d08d86c90",
+  "digest": "288cd5e9ec08eaa78f7f68fe03a9ad55a57ca334ac6a28c147d038bbd43d0344",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/33",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/33",
+      "task_prompt": "\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    sorted_third_values = sorted([l[i] for i in third_indices])\n    result = l[:]\n    for i, value in zip(third_indices, sorted_third_values):\n        result[i] = value\n    return result\n```",
+      "input_tokens": 179,
+      "output_tokens": 218,
+      "generation_seconds": 40.85015274072066,
+      "output_tokens_per_second_including_prefill": 5.336577353422991,
+      "peak_allocated_bytes": 16200783872,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

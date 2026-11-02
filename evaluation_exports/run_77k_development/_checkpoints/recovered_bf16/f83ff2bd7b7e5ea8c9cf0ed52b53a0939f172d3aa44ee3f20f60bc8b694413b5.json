@@ -1,0 +1,39 @@
+{
+  "key": "b237b9d058ae4003f1fc20d4cc08916b463c609a523b21b329c8ffba8cc69737",
+  "digest": "83e9e54a48104a37f0e746d48e629e4997da78933526ad115eb2de7d0f456caf",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:406",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "406",
+      "task_prompt": "Write a python function to find whether the parity of a given number is odd.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_Parity(number):\n    \"\"\"\n    Determines if the parity of the given number is odd.\n\n    Parameters:\n    number (int): The number to check for parity.\n\n    Returns:\n    bool: True if the number is odd, False otherwise.\n    \"\"\"\n    return number % 2 != 0\n```",
+      "input_tokens": 81,
+      "output_tokens": 68,
+      "generation_seconds": 2.7224950338713825,
+      "output_tokens_per_second_including_prefill": 24.977088719719035,
+      "peak_allocated_bytes": 28627739136,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

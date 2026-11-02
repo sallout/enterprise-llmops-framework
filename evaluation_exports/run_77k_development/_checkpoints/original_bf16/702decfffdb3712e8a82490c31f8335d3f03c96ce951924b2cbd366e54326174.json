@@ -1,0 +1,40 @@
+{
+  "key": "819f6959b8af0185beae6691f3995806c7f81d4036cadb5dc27de65f4ba8e1f1",
+  "digest": "2ae6443cac1ac723ba75414272b064b55566f8d289f7f5b4ae05fedb3343ede5",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/33",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/33",
+      "task_prompt": "\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indices that are not divisible by three, while its values at the indices that are divisible by three are equal\n    to the values of the corresponding indices of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n    # Extract elements at indices divisible by 3\n    third_elements = [l[i] for i in range(len(l)) if i % 3 == 0]\n    # Sort those elements\n    third_elements.sort()\n    # Create a new list, replacing elements at indices divisible by 3 with sorted ones\n    result = l[:]\n    idx = 0\n    for i in range(len(result)):\n        if i % 3 == 0:\n            result[i] = third_elements[idx]\n            idx += 1\n    return result\n```",
+      "input_tokens": 179,
+      "output_tokens": 259,
+      "generation_seconds": 12.328198968898505,
+      "output_tokens_per_second_including_prefill": 21.008745937131888,
+      "peak_allocated_bytes": 29618315776,
+      "peak_reserved_bytes": 29773266944
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

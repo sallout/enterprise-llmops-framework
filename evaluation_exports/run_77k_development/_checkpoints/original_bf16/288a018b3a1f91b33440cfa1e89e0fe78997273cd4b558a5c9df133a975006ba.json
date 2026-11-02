@@ -1,0 +1,39 @@
+{
+  "key": "8ddfcc48d0768ec84989f416325aac4f26badacc1b8e00836242802274c5b914",
+  "digest": "7fbec6c9f5f018b81df0803882e8633b43926804351c139b119015f52e1f4563",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:434",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "434",
+      "task_prompt": "Write a function that matches a string that has an a followed by one or more b's.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_match_one(s):\n    return bool(re.fullmatch(r'ab+', s))\n```",
+      "input_tokens": 80,
+      "output_tokens": 26,
+      "generation_seconds": 1.0559144518338144,
+      "output_tokens_per_second_including_prefill": 24.623206884653968,
+      "peak_allocated_bytes": 29569942528,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "79947fbb5eaf436d9917092a89278410e8d5ffa57ee3aa0ec650211ae44d32d8",
+  "digest": "14eab4cf8ffee804d07e9242c287b560720ad7406f3d33e59ad2ffdd192a1fd5",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:163",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "163",
+      "task_prompt": "Write a function to calculate the area of a regular polygon given the length and number of its sides.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef area_polygon(length, sides):\n    \"\"\"\n    Calculate the area of a regular polygon given the length of its sides and the number of sides.\n    \n    Parameters:\n    length (float): The length of each side of the polygon.\n    sides (int): The number of sides of the polygon.\n    \n    Returns:\n    float: The area of the polygon.\n    \"\"\"\n    return (sides * length**2) / (4 * math.tan(math.pi / sides))\n```",
+      "input_tokens": 144,
+      "output_tokens": 105,
+      "generation_seconds": 20.097723746672273,
+      "output_tokens_per_second_including_prefill": 5.22447224986788,
+      "peak_allocated_bytes": 16152296448,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "2a5420444d1d0d646371d7fa846428b83699b010ce0d926fe4dbcae56f64c404",
+  "digest": "cb5205b0dd62de9fe2aace3026543285d02eb7017e04d6bffb3e28c0922345c7",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/85",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/85",
+      "task_prompt": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add(lst):\n    \"\"\"\n    Given a non-empty list of integers lst. add the even elements that are at odd indices.\n\n    :param lst: List of integers\n    :return: Sum of even elements at odd indices\n    \"\"\"\n    return sum(x for i, x in enumerate(lst) if i % 2 == 1 and x % 2 == 0)\n```",
+      "input_tokens": 84,
+      "output_tokens": 83,
+      "generation_seconds": 4.634081122931093,
+      "output_tokens_per_second_including_prefill": 17.910778382641226,
+      "peak_allocated_bytes": 9899052032,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

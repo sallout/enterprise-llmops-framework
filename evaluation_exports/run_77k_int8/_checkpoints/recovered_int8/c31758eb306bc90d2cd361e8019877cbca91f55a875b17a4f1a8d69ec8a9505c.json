@@ -1,0 +1,40 @@
+{
+  "key": "a6835cfedd3096b14fc15c85d525d1ede89f41f73b6a64268d7f8989c8082790",
+  "digest": "9941b0037e6622f1f985fdb3d315a44010ae991f6b5ef9817a4e9f78b6a7cfc9",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:391",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "391",
+      "task_prompt": "Write a function to convert more than one list to nested dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef convert_list_dictionary(*lists):\n    \"\"\"\n    Converts multiple lists into a list of nested dictionaries.\n    \n    Parameters:\n    *lists: Variable length argument list of lists to be converted.\n    \n    Returns:\n    A list of nested dictionaries.\n    \"\"\"\n    return [{lists[0][i]: {lists[1][i]: lists[2][i]}} for i in range(len(lists[0]))]\n```",
+      "input_tokens": 332,
+      "output_tokens": 90,
+      "generation_seconds": 16.899455957114697,
+      "output_tokens_per_second_including_prefill": 5.325615228584318,
+      "peak_allocated_bytes": 16452886016,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

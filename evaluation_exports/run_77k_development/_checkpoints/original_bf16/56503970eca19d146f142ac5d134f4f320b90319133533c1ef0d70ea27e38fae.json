@@ -1,0 +1,39 @@
+{
+  "key": "72a661b2956ce5abc3ada782dc875e45725e16e4f86e764ff0e2ece8981b41de",
+  "digest": "34f38caa19d06c1d5c446e7b1037250ab65acc3058576b858b95fadf09ac00cd",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:410",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "410",
+      "task_prompt": "Write a function to find the minimum value in a given heterogeneous list.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef min_val(lst):\n    return min(x for x in lst if isinstance(x, (int, float)))\n\nimport unittest\n\nclass TestMinVal(unittest.TestCase):\n    def test_min_val(self):\n        self.assertEqual(min_val(['Python', 3, 2, 4, 5, 'version']), 2)\n        self.assertEqual(min_val(['Python', 15, 20, 25]), 15)\n        self.assertEqual(min_val(['Python', 30, 20, 40, 50, 'version']), 20)\n\nif __name__ == '__main__':\n    unittest.main()\n```",
+      "input_tokens": 121,
+      "output_tokens": 137,
+      "generation_seconds": 5.593614550773054,
+      "output_tokens_per_second_including_prefill": 24.492213175658694,
+      "peak_allocated_bytes": 29588793856,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "0cd0f9500ed44ef5f289c194256706852d534cc8494ea4555a556b3513a52211",
+  "digest": "1cfcea1732a184647c79abf400a046fc447b85547dc4cc50a25f0570fab14e98",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:287",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "287",
+      "task_prompt": "Write a python function takes in an integer n and returns the sum of squares of first n even natural numbers.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef square_Sum(n):\n    return sum((2 * i) ** 2 for i in range(1, n + 1))\n```",
+      "input_tokens": 92,
+      "output_tokens": 34,
+      "generation_seconds": 1.3662161980755627,
+      "output_tokens_per_second_including_prefill": 24.88625156683988,
+      "peak_allocated_bytes": 29573659648,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

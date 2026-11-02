@@ -1,0 +1,40 @@
+{
+  "key": "2f285882bcaf3891903c17c43e11519118d7e4ec5cbc7535301b5e204847d04f",
+  "digest": "aa28c1e7de0bb917446b4c9095372f1f6d363ed464859956c309b39fb90c75d5",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:119",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "119",
+      "task_prompt": "Write a python function to find the element that appears only once in a sorted array.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef search(arr):\n    from collections import Counter\n    count = Counter(arr)\n    for num, freq in count.items():\n        if freq == 1:\n            return num\n    return None\n```",
+      "input_tokens": 117,
+      "output_tokens": 45,
+      "generation_seconds": 1.8249463369138539,
+      "output_tokens_per_second_including_prefill": 24.658259308653967,
+      "peak_allocated_bytes": 28638438912,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "2cf899326e802413b7100c60967b78430e9e35f56c68cd8d6b2b491221b1426f",
+  "digest": "82ca539cd7c8365e0fe899a062b7f6112a19918e8e4ab234f320ebdb263a8d42",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:301",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "301",
+      "task_prompt": "Write a function to find the depth of a dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef dict_depth(d):\n    \"\"\"\n    Returns the depth of a dictionary.\n    \n    :param d: Dictionary to find the depth of.\n    :return: Integer representing the depth of the dictionary.\n    \"\"\"\n    if not isinstance(d, dict) or not d:\n        return 0\n    return 1 + max((dict_depth(v) for v in d.values()), default=0)\n\n# Required imports\nimport unittest\n\nclass TestDictDepth(unittest.TestCase):\n    def test_dict_depth(self):\n        self.assertEqual(dict_depth({'a':1, 'b': {'c': {'d': {}}}}), 4)\n        self.assertEqual(dict_depth({'a':1, 'b': {'c':'python'}}), 2)\n        self.assertEqual(dict_depth({1: 'Sun', 2: {3: {4:'Mon'}}}), 3)\n\nif __name__ == '__main__':\n    unittest.main()\n```",
+      "input_tokens": 110,
+      "output_tokens": 192,
+      "generation_seconds": 35.695404059719294,
+      "output_tokens_per_second_including_prefill": 5.378843721135058,
+      "peak_allocated_bytes": 16124692992,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "8514dbbf1f7051a089fe114c11ca894efa18e40d65daa4b3fe80cfd468f0bd2d",
+  "digest": "da83e8710d27e09074a05b61ef68652e8a7ddeca5bfbd3f0d3baa69074234d66",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:16",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "16",
+      "task_prompt": "Write a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_lowercase_underscore(s):\n    return bool(re.fullmatch(r'[a-z]+(_[a-z]+)*', s))\n```",
+      "input_tokens": 100,
+      "output_tokens": 35,
+      "generation_seconds": 1.4156738719902933,
+      "output_tokens_per_second_including_prefill": 24.723208284400677,
+      "peak_allocated_bytes": 28632482816,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

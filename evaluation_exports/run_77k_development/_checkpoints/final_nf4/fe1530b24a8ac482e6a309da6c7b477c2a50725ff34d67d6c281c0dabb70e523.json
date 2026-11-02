@@ -1,0 +1,39 @@
+{
+  "key": "7c3b562cca77d0dff12f1ae5eeb329bfae46346459dfec561fe2b9d99c76ce67",
+  "digest": "5025bfa8980d4f214f0c44cb41892ce25e0196cdafdfd956c73ddba31b5dc1be",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:245",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "245",
+      "task_prompt": "Write a function that takes an array and finds the maximum sum of a bitonic subsequence for the given array, where a sequence is bitonic if it is first increasing and then decreasing.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef max_sum(arr):\n    \"\"\"\n    Returns the maximum sum of a bitonic subsequence for the given array.\n    \n    :param arr: List of integers representing the array.\n    :return: Integer representing the maximum sum of a bitonic subsequence.\n    \"\"\"\n    n = len(arr)\n    if n == 0:\n        return 0\n\n    lis = [0] * n\n    lds = [0] * n\n\n    for i in range(n):\n        lis[i] = arr[i]\n        for j in range(i):\n            if arr[i] > arr[j] and lis[i] < lis[j] + arr[i]:\n                lis[i] = lis[j] + arr[i]\n\n    for i in range(n-1, -1, -1):\n        lds[i] = arr[i]\n        for j in range(i+1, n):\n            if arr[i] > arr[j] and lds[i] < lds[j] + arr[i]:\n                lds[i] = lds[j] + arr[i]\n\n    max_bitonic = 0\n    for i in range(n):\n        max_bitonic = max(max_bitonic, lis[i] + lds[i] - arr[i])\n\n    return max_bitonic\n```",
+      "input_tokens": 186,
+      "output_tokens": 266,
+      "generation_seconds": 14.83026578137651,
+      "output_tokens_per_second_including_prefill": 17.936293517681683,
+      "peak_allocated_bytes": 9927783424,
+      "peak_reserved_bytes": 10030678016
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

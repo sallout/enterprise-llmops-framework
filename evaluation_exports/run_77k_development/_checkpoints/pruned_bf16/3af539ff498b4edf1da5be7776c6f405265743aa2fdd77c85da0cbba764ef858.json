@@ -1,0 +1,41 @@
+{
+  "key": "1761c061809962ed45fc02e82cf52156d302c5211fb9c1672e8d0c98bb39879c",
+  "digest": "f927c562da66f08e39b3a6e4ba6ccc9bb28e20cf86ea3ef83cb6934fced2831d",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:12",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "12",
+      "task_prompt": "Write a function to sort a given matrix in ascending order according to the sum of its rows.",
+      "skill_tags": [
+        "matrices",
+        "numeric_math",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "matrices",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport numpy as np\n\ndef sort_matrix(matrix):\n    return sorted(matrix, key=lambda row: np.sum(row))\n```",
+      "input_tokens": 220,
+      "output_tokens": 28,
+      "generation_seconds": 1.1358275539241731,
+      "output_tokens_per_second_including_prefill": 24.65162946898298,
+      "peak_allocated_bytes": 28669801472,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

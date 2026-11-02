@@ -1,0 +1,42 @@
+{
+  "key": "0a44b0fcb4ea998021118bf9f1d6fb7c05f6af9fbcd6337b967cee2e2144eafe",
+  "digest": "fb60749900beea4bca70bdba4981e091961c311819bd9bb33012dcdb7c5b84eb",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/149",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/149",
+      "task_prompt": "\ndef sorted_list_sum(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sorted_list_sum(lst):\n    \"\"\"\n    Accepts a list of strings, removes strings with odd lengths,\n    and returns the resulting list sorted by length and alphabetically.\n    \n    :param lst: List of strings\n    :return: Sorted list of strings with even lengths\n    \"\"\"\n    filtered_list = [word for word in lst if len(word) % 2 == 0]\n    sorted_list = sorted(filtered_list, key=lambda x: (len(x), x))\n    return sorted_list\n```",
+      "input_tokens": 216,
+      "output_tokens": 108,
+      "generation_seconds": 5.966865363996476,
+      "output_tokens_per_second_including_prefill": 18.09995590845106,
+      "peak_allocated_bytes": 9935680512,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

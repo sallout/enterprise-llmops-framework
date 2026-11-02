@@ -1,0 +1,38 @@
+{
+  "key": "00c8a8750a161736ce21383112ef918bae0ad3fa85e3fbcaabb46568962d46f5",
+  "digest": "618b018adb4d2061726cb883c9ec2103018397c2462007237895cfd07f514581",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:430",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "430",
+      "task_prompt": "Write a function to find the directrix of a parabola.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef parabola_directrix(a, b, c):\n    return - ( (4 * a * c) - (b ** 2) ) / (4 * a)\n```",
+      "input_tokens": 102,
+      "output_tokens": 45,
+      "generation_seconds": 1.8489546212367713,
+      "output_tokens_per_second_including_prefill": 24.33807703181994,
+      "peak_allocated_bytes": 29576757248,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

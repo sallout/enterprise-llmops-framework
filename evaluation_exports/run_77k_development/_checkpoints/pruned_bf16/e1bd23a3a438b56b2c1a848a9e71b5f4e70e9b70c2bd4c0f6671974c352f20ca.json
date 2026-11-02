@@ -1,0 +1,40 @@
+{
+  "key": "f85e9fb8db997ac010db2f86f5d3eca22d5dac69132cd0f1825b1e8f05f68722",
+  "digest": "d710103303b19d8ba7a0adb205475c9fd68c62b338313671da1f660a5b74c176",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:239",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "239",
+      "task_prompt": "Write a function that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport sys\nsys.setrecursionlimit(10000)\n\ndef get_total_number_of_sequences(m, n):\n    from functools import lru_cache\n\n    @lru_cache(maxsize=None)\n    def dp(pos, prev):\n        if pos == n:\n            return 1\n        total = 0\n        next_val = 2 * prev\n        while next_val <= m:\n            total += dp(pos + 1, next_val)\n            next_val += 1\n        return total\n\n    result = 0\n    for start in range(1, m + 1):\n        result += dp(1, start)\n    return result\n```",
+      "input_tokens": 133,
+      "output_tokens": 142,
+      "generation_seconds": 5.933515280019492,
+      "output_tokens_per_second_including_prefill": 23.93185039535847,
+      "peak_allocated_bytes": 28648386560,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

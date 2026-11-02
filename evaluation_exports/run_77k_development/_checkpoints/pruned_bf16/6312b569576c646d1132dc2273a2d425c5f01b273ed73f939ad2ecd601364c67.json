@@ -1,0 +1,38 @@
+{
+  "key": "2f978f7d46239d0985eb2ab1d65b790ad7899a5dd13e1bb183131c6e717d10a2",
+  "digest": "9fced022a1a5af790d5dc9832f02581ab0b1093d1c77e69955172618f368775c",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:268",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "268",
+      "task_prompt": "Write a function to find the n'th star number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_star_num(n):\n    return n * (8 * n - 13) + 6\n\n# Required imports (none needed for this task)\n```",
+      "input_tokens": 82,
+      "output_tokens": 38,
+      "generation_seconds": 1.5120402071624994,
+      "output_tokens_per_second_including_prefill": 25.131606831613922,
+      "peak_allocated_bytes": 28626990080,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

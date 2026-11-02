@@ -1,0 +1,40 @@
+{
+  "key": "5b51003fbf66fbfd52dfe41e59dd54362fa5a6bfee3c2d140b4b967946c00ba5",
+  "digest": "5bd3fef8ede47d0671f9b1e7a2aa84455fbcf9cc493cdbf817d05e4d1b70459d",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:132",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "132",
+      "task_prompt": "Write a function to convert a tuple to a string.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef tup_string(tup):\n    \"\"\"\n    Convert a tuple of characters to a string.\n\n    Parameters:\n    tup (tuple): A tuple containing characters.\n\n    Returns:\n    str: A string formed by concatenating the characters in the tuple.\n    \"\"\"\n    return ''.join(tup)\n\n# Test cases\nassert tup_string(('e', 'x', 'e', 'r', 'c', 'i', 's', 'e', 's')) == \"exercises\"\nassert tup_string(('p','y','t','h','o','n')) == \"python\"\nassert tup_string(('p','r','o','g','r','a','m')) == \"program\"\n```",
+      "input_tokens": 122,
+      "output_tokens": 144,
+      "generation_seconds": 5.843815071042627,
+      "output_tokens_per_second_including_prefill": 24.641436843809668,
+      "peak_allocated_bytes": 28646910464,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

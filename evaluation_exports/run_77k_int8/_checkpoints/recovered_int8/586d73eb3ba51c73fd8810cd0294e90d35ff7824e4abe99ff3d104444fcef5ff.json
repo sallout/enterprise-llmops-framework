@@ -1,0 +1,42 @@
+{
+  "key": "9e81031a21734a5ff38bc60df6853316aa059f069942ea6d0a9960b45970166e",
+  "digest": "e17d9a688262256898d64e48b30e1967b9f458ab1bdd1b2b6951094fe1ccb9f7",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/17",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/17",
+      "task_prompt": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "regex_parsing",
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "regex_parsing",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Parses a string of musical notes and returns a list of integers representing the number of beats each note lasts.\n    \n    Args:\n        music_string (str): A string representing musical notes in a special ASCII format.\n    \n    Returns:\n        List[int]: A list of integers where each integer represents the number of beats a note lasts.\n    \"\"\"\n    note_map = {'o': 4, 'o|': 2, '.|': 1}\n    music_notes = music_string.split()\n    beats = [note_map[note] for note in music_notes]\n    return beats\n```",
+      "input_tokens": 201,
+      "output_tokens": 143,
+      "generation_seconds": 28.281975200865418,
+      "output_tokens_per_second_including_prefill": 5.056223937132377,
+      "peak_allocated_bytes": 16371707904,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

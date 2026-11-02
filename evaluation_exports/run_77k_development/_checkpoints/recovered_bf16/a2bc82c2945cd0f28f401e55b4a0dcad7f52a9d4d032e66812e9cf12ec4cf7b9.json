@@ -1,0 +1,39 @@
+{
+  "key": "cf2206ea3450b77cba4533a2d6047975c0e4a3d12e37da81321d3e28fc51dc91",
+  "digest": "1b7132ee9421781aa8b033d667a434fcd28571c45ca965858ddba6ead49249e8",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/48",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/48",
+      "task_prompt": "\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_palindrome(text: str) -> bool:\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    return text == text[::-1]\n```",
+      "input_tokens": 100,
+      "output_tokens": 81,
+      "generation_seconds": 3.2402074709534645,
+      "output_tokens_per_second_including_prefill": 24.99839924638064,
+      "peak_allocated_bytes": 28632982016,
+      "peak_reserved_bytes": 28758245376
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

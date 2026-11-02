@@ -1,0 +1,40 @@
+{
+  "key": "1df0bbf4bb2921558ef6e8b96411492c35f9c2fd6f47957927fbad0203de3210",
+  "digest": "4c9dd69b34555c274dbaab4d4c1ef70cc00e602d8e0f46c6672cbac8ef04ca28",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:475",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "475",
+      "task_prompt": "Write a function to sort a dictionary by value.",
+      "skill_tags": [
+        "mappings_sets",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_counter(counter):\n    \"\"\"\n    Sorts a dictionary by its values in descending order.\n\n    Parameters:\n    counter (dict): A dictionary with string keys and integer values.\n\n    Returns:\n    list: A list of tuples sorted by the dictionary's values in descending order.\n    \"\"\"\n    return sorted(counter.items(), key=lambda item: item[1], reverse=True)\n```",
+      "input_tokens": 198,
+      "output_tokens": 80,
+      "generation_seconds": 4.495570870116353,
+      "output_tokens_per_second_including_prefill": 17.795292814042426,
+      "peak_allocated_bytes": 9930049536,
+      "peak_reserved_bytes": 10051649536
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

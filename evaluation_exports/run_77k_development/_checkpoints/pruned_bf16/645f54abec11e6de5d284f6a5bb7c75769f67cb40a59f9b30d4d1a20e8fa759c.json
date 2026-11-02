@@ -1,0 +1,39 @@
+{
+  "key": "9b9e9227923409ecb42cd6ecde3dad4b0c3979ecf7c32f31ccf27bfd8157a67f",
+  "digest": "57b21312126b28ba2dfb5c3348a214880b44b7012f8ace8f5d3dacbf44803aed",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/76",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/76",
+      "task_prompt": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef is_simple_power(x, n):\n    \"\"\"Returns True if x is a simple power of n, i.e., n**int = x.\n    \n    Args:\n        x (int): The number to check.\n        n (int): The base to check against.\n    \n    Returns:\n        bool: True if x is a simple power of n, False otherwise.\n    \"\"\"\n    if x < 1 or n < 1:\n        return False\n    if x == 1:\n        return True\n    if n == 1:\n        return x == 1\n    log_result = math.log(x, n)\n    return log_result.is_integer()\n```",
+      "input_tokens": 171,
+      "output_tokens": 143,
+      "generation_seconds": 5.823416444007307,
+      "output_tokens_per_second_including_prefill": 24.556031905833688,
+      "peak_allocated_bytes": 28654776320,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

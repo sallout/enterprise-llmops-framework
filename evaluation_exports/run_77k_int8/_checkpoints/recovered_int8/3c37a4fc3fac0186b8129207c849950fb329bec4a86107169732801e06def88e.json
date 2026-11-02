@@ -1,0 +1,40 @@
+{
+  "key": "b8759873c4d3facdbe4e825adf87f1c32bbd7ca26b9513aecbde61dae5dc2ec6",
+  "digest": "7138243294be55ca1de200932b57eb043e951a1aa62a5ae54515f2bf4c071bae",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:16",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "16",
+      "task_prompt": "Write a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_lowercase_underscore(input_string):\n    \"\"\"\n    Returns True if the input string contains sequences of lowercase letters joined with an underscore,\n    otherwise returns False.\n    \"\"\"\n    pattern = r'^[a-z]+(_[a-z]+)*$'\n    return bool(re.match(pattern, input_string))\n```",
+      "input_tokens": 100,
+      "output_tokens": 69,
+      "generation_seconds": 12.890617209952325,
+      "output_tokens_per_second_including_prefill": 5.352730507483217,
+      "peak_allocated_bytes": 16339275776,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

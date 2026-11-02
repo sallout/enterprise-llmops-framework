@@ -1,0 +1,39 @@
+{
+  "key": "927b1cfa18cecde2bf86d3432026f6b1fedf934cab06ae8521aaf13fd345b99c",
+  "digest": "1456a4999c9c8ec300212093807d8dd7e3eaebb040c8927a0ac697fd6deb3c3d",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/77",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/77",
+      "task_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this integer is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    if a == 0:\n        return True\n    abs_a = abs(a)\n    cube_root = round(abs_a ** (1/3))\n    return cube_root ** 3 == abs_a\n```",
+      "input_tokens": 142,
+      "output_tokens": 153,
+      "generation_seconds": 6.150764229241759,
+      "output_tokens_per_second_including_prefill": 24.87495769592541,
+      "peak_allocated_bytes": 29594857472,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

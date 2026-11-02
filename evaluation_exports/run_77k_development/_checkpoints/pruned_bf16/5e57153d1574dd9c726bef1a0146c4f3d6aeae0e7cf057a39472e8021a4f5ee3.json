@@ -1,0 +1,40 @@
+{
+  "key": "289bb2556596ee590aacf1a801635888ef7c049e7df312ed3f648bf37df8421c",
+  "digest": "ef1c11db17a3194a168785da7fc79cc3c2f31f336fa4325be8723abd1ba0424c",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:409",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "409",
+      "task_prompt": "Write a function to find the minimum product from the pairs of tuples within a given list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef min_product_tuple(lst):\n    return min(a * b for a, b in lst)\n\n# Required imports (none needed for this function)\n```",
+      "input_tokens": 148,
+      "output_tokens": 34,
+      "generation_seconds": 1.41798909381032,
+      "output_tokens_per_second_including_prefill": 23.977617422033624,
+      "peak_allocated_bytes": 28647715840,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

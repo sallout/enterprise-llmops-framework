@@ -1,0 +1,40 @@
+{
+  "key": "7eea199bed03a837e715a06b6887974520723792b85bd00ea31d2008f9f8b02b",
+  "digest": "8d62ce2594aa0d4b02dc3d351efbe75b227475807893726fc022cc41f48cc5fe",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:160",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "160",
+      "task_prompt": "Write a function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef find_solution(a, b, n):\n    def extended_gcd(a, b):\n        if b == 0:\n            return (a, 1, 0)\n        else:\n            g, x, y = extended_gcd(b, a % b)\n            return (g, y, x - (a // b) * y)\n\n    g, x, y = extended_gcd(a, b)\n    if n % g != 0:\n        return None\n    else:\n        x0 = (x * (n // g)) % (b // g)\n        y0 = (y * (n // g) - (a // g) * x0) // (b // g)\n        return (x0, y0)\n```",
+      "input_tokens": 117,
+      "output_tokens": 165,
+      "generation_seconds": 6.677398396655917,
+      "output_tokens_per_second_including_prefill": 24.710222484648067,
+      "peak_allocated_bytes": 28649531904,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

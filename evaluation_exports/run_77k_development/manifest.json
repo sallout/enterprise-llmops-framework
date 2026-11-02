@@ -1,0 +1,103 @@
+{
+  "version": "qwen3-model-evaluation-v1",
+  "suite_digest": "e1c28aeb92728992b5ddc262f2dc93e149a2dda31fd2169d3b5d9e9c9a8e4244",
+  "models": {
+    "original_bf16": {
+      "source": "Qwen/Qwen3-14B",
+      "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+      "identity": "40c069824f4251a91eefaf281ebe4c544efd3e18"
+    },
+    "pruned_bf16": {
+      "source": "/workspace/artifacts/compression_77k/_runs/3fef2d82542b693cb3110d2ba2763ad4bf71f80f78de6b762457e404cfcf6f94/pruned",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "bf986ab8088f990d391c8ca9619a9d4b85b6392455f3902b48ff57fc36c0ef14",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00008.safetensors": "dbad0792bc90850188c33ca478787caf82002f7a7aa1a5d6dba1b2e458adc37b",
+        "model-00002-of-00008.safetensors": "44b0c069b7c0e9ddb900e76be2054378b6dfdbb073fe4dcf61c06c200aa684be",
+        "model-00003-of-00008.safetensors": "23e5c0c3e8c595f3f6f0cf41488bdc8a5447096bdf62818a6a9a7f2fb5478099",
+        "model-00004-of-00008.safetensors": "e5447927ad8b26ab129b0669b1ee4bb92d073c161b7b711f5b8ff0dfa61b2a8f",
+        "model-00005-of-00008.safetensors": "15a423d18aeed2bd508e81451696bc8fe41ce9d71f53c0bd3c64e33b7ac8ba9e",
+        "model-00006-of-00008.safetensors": "b8b54f0ada70967264528c7fdd55e08fdf105a172155a74d9371fffebf438aec",
+        "model-00007-of-00008.safetensors": "a3ed1cd2f4c5d9b53477f11c6feb41ada29f4f2b15ba7063159bf303af05dffb",
+        "model-00008-of-00008.safetensors": "be761fef42fd34449c512a75da8593f011dccda007780458740fb6e8189551f5",
+        "model.safetensors.index.json": "db6c9e7a6667d477a556df6606c6a356c9580cb213487b863505c42d2a0212f0",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "4962ab9c7383459a1cc463ed7b82ed4c8c5ac57cbe65117b9deedc037cbcbbe1"
+    },
+    "recovered_bf16": {
+      "source": "/workspace/artifacts/compression_77k/_runs/3fef2d82542b693cb3110d2ba2763ad4bf71f80f78de6b762457e404cfcf6f94/recovery/merged",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "bf986ab8088f990d391c8ca9619a9d4b85b6392455f3902b48ff57fc36c0ef14",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00008.safetensors": "19490064417944a5ad5f6a30ec143d397c3430a86e2f5a1ccd4123bc29850b23",
+        "model-00002-of-00008.safetensors": "37db5f5cd906da3eba75a98221d71ccb231134960b0308aab9d086e8eb2fdb6a",
+        "model-00003-of-00008.safetensors": "89912b3de641541aec4f1ed779bf1fb979c7f28e80cd57f08e2ae632d792b9cc",
+        "model-00004-of-00008.safetensors": "ce7f59c1875265ba9df632688205830af9a84507f5218c7069040a8146abf879",
+        "model-00005-of-00008.safetensors": "f91c72a8576bbc8ec1ca188645724792ca3f5b88606b0579f1ae27db3792542d",
+        "model-00006-of-00008.safetensors": "4014339e0dcd715e19d3cd387f075725486d507ff7da37a8cbe9f571b97da7d9",
+        "model-00007-of-00008.safetensors": "e6117f031c4bdb151266f422d6f76536381e6caf1342c0d304e6fde39223e2a8",
+        "model-00008-of-00008.safetensors": "ce6f3e08eac3bf138e995c1216ea384bac7721e36e8209327357ff1a3c51c8ec",
+        "model.safetensors.index.json": "db6c9e7a6667d477a556df6606c6a356c9580cb213487b863505c42d2a0212f0",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "2e8ab7e71c547db36c673fa75dd156f3657a840e40eda05f8850e54050324070"
+    },
+    "final_nf4": {
+      "source": "/workspace/artifacts/compression_77k/model_4bit",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "0f740010cad2aec8325f4e4681c488609d4f3c9d1b011a26a170e03d052b270c",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00003.safetensors": "d92637636976db4e2ff6b82461dc2e87556fb315af1004db8a032e790a23d7f4",
+        "model-00002-of-00003.safetensors": "8f747391e63a391017d349a0f093fee7da88949f8253c8a58db214b310d0671e",
+        "model-00003-of-00003.safetensors": "1990424e3b490ed9c4e8d7443d550e2d354ea5b7552faf9cbfe6cb202493555e",
+        "model.safetensors.index.json": "e611e6c185f7e51d272f3ee79b6539296e835ba5f75b8be1d43bbf0ce48c260c",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "6e366139bc038cde83fe1802517d9387c02828cbbdc36795be393b534f771377"
+    }
+  },
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "training_tokens_hash": "5b168e846b5bdb4d676b1b2de36becfc3a606b4d2b0a5a2041b28f8c3904140a",
+  "implementation": {
+    "suites.py": "c5f534716ab733d354acf3922dc2501548a2198edbd3b8bc3d9f91a586abab50",
+    "scoring.py": "3c3b93879ad4ca1e1318617ab49d65664be203eea3173679c09594fb911e64e6",
+    "schemas.py": "1c6cfb112e3ce2a1819d5a6ef54924f7669411bcc96fdfc10b58b13325e6c636",
+    "pipeline.py": "26714a8eb620cbbaf7f8fffcbeaa7b6149c488d572db91d95414ba6a5ad8cd51",
+    "execution.py": "b0fb10031a544fdb58691860b580a175d6ea201642725173d6bc8b5181b78844",
+    "contamination.py": "8a98695fb74dd79cec61839a498788e0e8e2274f54c813a0c4273c98ec923f0e",
+    "backend.py": "7d14a5d13aad5089941946a790861aad6eae48325274db3ceab6bd7db08820d9",
+    "__init__.py": "dba0304bd6ead3c00a6919d080cc85d03c49c6092230a25d32a766af518d3aa4"
+  },
+  "fingerprint": "67932275fc4175a01787eb847443d81703929a654725d6c68b9fa129a6e71904"
+}

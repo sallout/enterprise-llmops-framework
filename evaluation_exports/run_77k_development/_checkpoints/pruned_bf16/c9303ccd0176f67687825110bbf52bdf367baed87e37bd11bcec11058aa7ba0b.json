@@ -1,0 +1,40 @@
+{
+  "key": "a04e0d996b93e3bbace1d9ffb230a87b218a6fb61ffb86b046e78b463fe1f504",
+  "digest": "0bddfe6ddf9a31b3c8738e7e1f77a8e208e765857e399ac65f1de0cfa814f416",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/28",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/28",
+      "task_prompt": "from typing import List\n\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    return ''.join(strings)\n```",
+      "input_tokens": 86,
+      "output_tokens": 62,
+      "generation_seconds": 2.5127378050237894,
+      "output_tokens_per_second_including_prefill": 24.67428152513231,
+      "peak_allocated_bytes": 28628210688,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

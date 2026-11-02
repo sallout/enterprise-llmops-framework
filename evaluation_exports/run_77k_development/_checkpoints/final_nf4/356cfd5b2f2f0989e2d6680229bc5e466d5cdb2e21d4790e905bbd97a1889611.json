@@ -1,0 +1,39 @@
+{
+  "key": "6365b000ad547171600620bf5edfd3ff4c10c26d9916cad04163cf33a942d6b3",
+  "digest": "c1f4285bd0187911d631b76c79480e8947ed29acfb688df506c6b122d7e5812d",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:222",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "222",
+      "task_prompt": "Write a function to check if all the elements in tuple have same data type or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_type(t):\n    \"\"\"\n    Check if all elements in the tuple have the same data type.\n\n    Parameters:\n    t (tuple): The tuple to check.\n\n    Returns:\n    bool: True if all elements have the same data type, False otherwise.\n    \"\"\"\n    return all(isinstance(x, type(t[0])) for x in t)\n```",
+      "input_tokens": 114,
+      "output_tokens": 76,
+      "generation_seconds": 4.282609415240586,
+      "output_tokens_per_second_including_prefill": 17.74618991158467,
+      "peak_allocated_bytes": 9908293632,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

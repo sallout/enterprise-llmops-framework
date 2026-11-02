@@ -1,0 +1,40 @@
+{
+  "key": "d9c42bb3d217c9ffdd5f7d774fbf5e799d8fa31dd19ff76fa626cd1659e13392",
+  "digest": "646ba2b1e93ae45e79ac836b011b80e9a17a0e795ee0838c79be607154c51a1d",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:433",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "433",
+      "task_prompt": "Write a function to check whether the entered number is greater than the elements of the given array.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_greater(arr, num):\n    \"\"\"\n    Check if the given number is greater than all elements in the array.\n\n    Parameters:\n    arr (list of int): The list of integers to compare against.\n    num (int): The number to compare with the elements of the array.\n\n    Returns:\n    bool: True if the number is greater than all elements in the array, False otherwise.\n    \"\"\"\n    return all(num > x for x in arr)\n```",
+      "input_tokens": 128,
+      "output_tokens": 98,
+      "generation_seconds": 4.007714034058154,
+      "output_tokens_per_second_including_prefill": 24.452842485062888,
+      "peak_allocated_bytes": 28641682432,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

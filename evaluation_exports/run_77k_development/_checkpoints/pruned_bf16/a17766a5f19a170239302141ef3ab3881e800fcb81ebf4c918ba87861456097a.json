@@ -1,0 +1,39 @@
+{
+  "key": "fc78a542eda3f233e209a4273d8f1c7163c50dedc70cdb0c078c42b567b886a2",
+  "digest": "d7953198d395e099451736e9710331ff45183048fb598ab59bf3a7382ed60370",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:445",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "445",
+      "task_prompt": "Write a function to perform index wise multiplication of tuple elements in the given two tuples.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef index_multiplication(t1, t2):\n    return tuple(tuple(a * b for a, b in zip(pair1, pair2)) for pair1, pair2 in zip(t1, t2))\n```",
+      "input_tokens": 311,
+      "output_tokens": 48,
+      "generation_seconds": 1.9990729740820825,
+      "output_tokens_per_second_including_prefill": 24.01112946966843,
+      "peak_allocated_bytes": 28697147904,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

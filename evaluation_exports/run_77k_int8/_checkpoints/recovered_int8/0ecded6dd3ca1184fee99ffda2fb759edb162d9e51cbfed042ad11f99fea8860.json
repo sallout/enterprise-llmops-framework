@@ -1,0 +1,39 @@
+{
+  "key": "debee33819e334d09ab5862e44420b57a82d8274e8a6e9468db41dd0b0845a8a",
+  "digest": "48a526c4d109a3bee2f987e9bdafa5240ba171512119eb52d74de2862aec0cd1",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:431",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "431",
+      "task_prompt": "Write a function that takes two lists and returns true if they have at least one common element.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef common_element(list1, list2):\n    \"\"\"\n    Returns True if there is at least one common element between list1 and list2.\n    Returns None if there are no common elements.\n    \"\"\"\n    return not set(list1).isdisjoint(set(list2))\n```",
+      "input_tokens": 124,
+      "output_tokens": 60,
+      "generation_seconds": 11.632660060189664,
+      "output_tokens_per_second_including_prefill": 5.157891633517032,
+      "peak_allocated_bytes": 16130173952,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

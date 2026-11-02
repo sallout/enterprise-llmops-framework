@@ -1,0 +1,40 @@
+{
+  "key": "4d2dd30c463277d303d25be44a38c972d2d05ce34d9354bd5e6b2e0fabb1d2e0",
+  "digest": "6ea8c8ff0973129968cf7bd1f0dcdd3ac0aaacfc6c0d01e990dc7d084bb04eef",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/95",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/95",
+      "task_prompt": "\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n",
+      "skill_tags": [
+        "mappings_sets",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    \"\"\"\n    if not dict:\n        return False\n    \n    lower_keys = all(key.islower() for key in dict.keys())\n    upper_keys = all(key.isupper() for key in dict.keys())\n    \n    return lower_keys or upper_keys\n```",
+      "input_tokens": 202,
+      "output_tokens": 106,
+      "generation_seconds": 4.3846700340509415,
+      "output_tokens_per_second_including_prefill": 24.17513727984405,
+      "peak_allocated_bytes": 28663612416,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

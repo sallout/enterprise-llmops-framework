@@ -1,0 +1,40 @@
+{
+  "key": "9dc85fe473a5314c8661b6e6a7e87d940e0f2576b81d399cc76788f3affe8a7b",
+  "digest": "2ec4dace08ba613f7d1103ba1cd5fd4d172f1b0e893b23fa45afd19b62c32826",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:91",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "91",
+      "task_prompt": "Write a function to check if a string is present as a substring in a given list of string values.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_substring(string_list, substring):\n    return any(substring in s for s in string_list)\n```",
+      "input_tokens": 123,
+      "output_tokens": 27,
+      "generation_seconds": 1.0879739047959447,
+      "output_tokens_per_second_including_prefill": 24.816771690001143,
+      "peak_allocated_bytes": 28640208384,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

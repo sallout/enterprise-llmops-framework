@@ -1,0 +1,39 @@
+{
+  "key": "e10b8f99eb9c9dd523eaaba0f96fc36975e8ef6be7f03ddefe5e5c9e597848bd",
+  "digest": "3f7c1b3759b7881ad2a9c901d65cf3fd3ceac33312d282e495606831a2b652de",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:80",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "80",
+      "task_prompt": "Write a function to find the nth tetrahedral number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef tetrahedral_number(n):\n    \"\"\"\n    Calculate the nth tetrahedral number.\n    \n    Parameters:\n    n (int): The position in the sequence of tetrahedral numbers.\n    \n    Returns:\n    int: The nth tetrahedral number.\n    \"\"\"\n    return n * (n + 1) * (n + 2) // 6\n```",
+      "input_tokens": 84,
+      "output_tokens": 80,
+      "generation_seconds": 14.86669127177447,
+      "output_tokens_per_second_including_prefill": 5.381157013187326,
+      "peak_allocated_bytes": 16132525568,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

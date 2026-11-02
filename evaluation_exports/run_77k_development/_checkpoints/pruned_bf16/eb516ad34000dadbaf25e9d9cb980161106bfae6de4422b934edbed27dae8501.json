@@ -1,0 +1,39 @@
+{
+  "key": "c80e2253b690e74def726ac313d3e32a954cc8a5d0b905c62f9fb20c2e2515ef",
+  "digest": "c7aabe738297c7ec0881610f29c1e10bd2efb4947605163e8190871e27e7afec",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:68",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "68",
+      "task_prompt": "Write a python function to check whether the given array is monotonic or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_Monotonic(arr):\n    increasing = all(arr[i] <= arr[i+1] for i in range(len(arr)-1))\n    decreasing = all(arr[i] >= arr[i+1] for i in range(len(arr)-1))\n    return increasing or decreasing\n```",
+      "input_tokens": 109,
+      "output_tokens": 63,
+      "generation_seconds": 2.570538417901844,
+      "output_tokens_per_second_including_prefill": 24.508484121946182,
+      "peak_allocated_bytes": 28636079616,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

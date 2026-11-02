@@ -1,0 +1,40 @@
+{
+  "key": "74ccd4035d7ade6629ce535c2f4689d65211e7329dd24aecad0a27217e384001",
+  "digest": "956607d6262c6d7840df1734d5560b55ccd4151a43b858c7f9339320f86c1845",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:125",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "125",
+      "task_prompt": "Write a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_length(binary_string):\n    \"\"\"\n    Finds the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.\n    \n    :param binary_string: A string consisting of '0's and '1's.\n    :return: An integer representing the maximum difference.\n    \"\"\"\n    from collections import defaultdict\n\n    def max_diff_substring(s):\n        diff_map = defaultdict(int)\n        diff_map[0] = -1\n        max_diff = 0\n        current_diff = 0\n\n        for i, char in enumerate(s):\n            current_diff += 1 if char == '0' else -1\n            if current_diff in diff_map:\n                max_diff = max(max_diff, i - diff_map[current_diff])\n            else:\n                diff_map[current_diff] = i\n\n        return max_diff\n\n    return max_diff_substring(binary_string)\n```",
+      "input_tokens": 121,
+      "output_tokens": 192,
+      "generation_seconds": 11.131339232902974,
+      "output_tokens_per_second_including_prefill": 17.248598392587823,
+      "peak_allocated_bytes": 9909982208,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

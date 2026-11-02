@@ -1,0 +1,40 @@
+{
+  "key": "ebc98d6b75e32ea1a87fa02110d60c6b492a6b4b4530d1537af2f9eb39d45dad",
+  "digest": "d4a89d1437eda2461f7301ec432e876127def68c03edf012fed0b86ff071f81b",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:475",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "475",
+      "task_prompt": "Write a function to sort a dictionary by value.",
+      "skill_tags": [
+        "mappings_sets",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport operator\n\ndef sort_counter(d):\n    return sorted(d.items(), key=operator.itemgetter(1), reverse=True)\n```",
+      "input_tokens": 198,
+      "output_tokens": 30,
+      "generation_seconds": 1.2600431693717837,
+      "output_tokens_per_second_including_prefill": 23.808708089705384,
+      "peak_allocated_bytes": 29607383040,
+      "peak_reserved_bytes": 29815209984
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

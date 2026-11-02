@@ -1,0 +1,40 @@
+{
+  "key": "8fe7a18c1f11c37289c31d914febbfbeadf647462b06530f7bb68acfbc0da37b",
+  "digest": "3cc815785372de89fb82213cf0b6f37560db9d9265451be9bdc2a189c3a2860d",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/95",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/95",
+      "task_prompt": "\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n",
+      "skill_tags": [
+        "mappings_sets",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False if the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n    if not dict:\n        return False\n\n    keys = dict.keys()\n    lower_case = all(key.islower() for key in keys if isinstance(key, str))\n    upper_case = all(key.isupper() for key in keys if isinstance(key, str))\n\n    # Check if all keys are strings and either all lower or all upper\n    if all(isinstance(key, str) for key in keys):\n        return lower_case or upper_case\n    else:\n        return False\n```",
+      "input_tokens": 202,
+      "output_tokens": 269,
+      "generation_seconds": 10.88735293596983,
+      "output_tokens_per_second_including_prefill": 24.707566805451215,
+      "peak_allocated_bytes": 28680598528,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

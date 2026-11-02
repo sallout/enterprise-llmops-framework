@@ -1,0 +1,39 @@
+{
+  "key": "e9731375c14d32f265eb1c2cd51ca2a7e938cde9b717e06241fbfd6a7fdb4a04",
+  "digest": "4c73ab78d5ea71e7c6551a9bb4fb4a0af2300b0767c49a9367ea4da94fc49405",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:451",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "451",
+      "task_prompt": "Write a function to remove all whitespaces from the given string.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef remove_whitespaces(input_string):\n    \"\"\"\n    Removes all whitespace characters from the input string.\n\n    Parameters:\n    input_string (str): The string from which to remove whitespace.\n\n    Returns:\n    str: The string with all whitespace characters removed.\n    \"\"\"\n    return input_string.replace(\" \", \"\")\n```",
+      "input_tokens": 96,
+      "output_tokens": 66,
+      "generation_seconds": 11.833896971773356,
+      "output_tokens_per_second_including_prefill": 5.577199138831918,
+      "peak_allocated_bytes": 16184300032,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

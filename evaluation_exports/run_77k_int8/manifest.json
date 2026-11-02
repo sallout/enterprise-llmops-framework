@@ -1,0 +1,57 @@
+{
+  "version": "qwen3-model-evaluation-v1",
+  "suite_digest": "e1c28aeb92728992b5ddc262f2dc93e149a2dda31fd2169d3b5d9e9c9a8e4244",
+  "models": {
+    "recovered_int8": {
+      "source": "/workspace/artifacts/quantization_77k_8bit/model_8bit",
+      "revision": null,
+      "files": {
+        "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "config.json": "f5f050f9864ee4ce338eeea55746aaecf05822660ed3abe68e21062bd94a900c",
+        "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+        "model-00001-of-00004.safetensors": "54018db472a6d19de041a4b76677850d122870f57c7deebc4d9658bfb036b32b",
+        "model-00002-of-00004.safetensors": "00c6d86db0729cf813f5627d0fefacad5a477bb20b2ee9a4ff4b68ee356b600b",
+        "model-00003-of-00004.safetensors": "15d210bd02aa87891fc36c48816b767a127aa7de0c1cdfe90449fed7e847b766",
+        "model-00004-of-00004.safetensors": "8dbfba56e51a2befd5dfb7980a1a668b64158cbaed6b85e949be8193c8e383cc",
+        "model.safetensors.index.json": "282cf82cd75310d5a2fbf7989d3460e5866ca3951dd0e6db2bc815b5730ee450",
+        "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+        "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+      },
+      "identity": "3e546e41728b3b989d060ba7a27f259248a8317b225e2b294f2bbf509c9864eb"
+    }
+  },
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "training_tokens_hash": "5b168e846b5bdb4d676b1b2de36becfc3a606b4d2b0a5a2041b28f8c3904140a",
+  "implementation": {
+    "suites.py": "c5f534716ab733d354acf3922dc2501548a2198edbd3b8bc3d9f91a586abab50",
+    "scoring.py": "3c3b93879ad4ca1e1318617ab49d65664be203eea3173679c09594fb911e64e6",
+    "schemas.py": "1c6cfb112e3ce2a1819d5a6ef54924f7669411bcc96fdfc10b58b13325e6c636",
+    "pipeline.py": "26714a8eb620cbbaf7f8fffcbeaa7b6149c488d572db91d95414ba6a5ad8cd51",
+    "execution.py": "b0fb10031a544fdb58691860b580a175d6ea201642725173d6bc8b5181b78844",
+    "contamination.py": "8a98695fb74dd79cec61839a498788e0e8e2274f54c813a0c4273c98ec923f0e",
+    "backend.py": "7d14a5d13aad5089941946a790861aad6eae48325274db3ceab6bd7db08820d9",
+    "__init__.py": "dba0304bd6ead3c00a6919d080cc85d03c49c6092230a25d32a766af518d3aa4"
+  },
+  "fingerprint": "dcae35dca196408e2b9b946b67e93e43bda448058477a9d05d0b9c27bb2d2cc4"
+}

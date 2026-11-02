@@ -1,0 +1,40 @@
+{
+  "key": "be4e63e67a0345d90291ebc639ef796017e5d8c995d889dd985005cd3b325c60",
+  "digest": "a2f890aa59bed896fe69927e13126ef8e2cfb21473365f3b66f4a08dcbe868f8",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:115",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "115",
+      "task_prompt": "Write a function to check whether all dictionaries in a list are empty or not.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef empty_dit(lst):\n    \"\"\"\n    Check if all dictionaries in the list are empty.\n    \n    Parameters:\n    lst (list): A list of dictionaries.\n    \n    Returns:\n    bool: True if all dictionaries are empty, False otherwise.\n    \"\"\"\n    return all(not d for d in lst)\n\n# Test cases\nassert empty_dit([{},{},{}]) == True\nassert empty_dit([{1,2},{},{}]) == False\nassert empty_dit({}) == True\n```",
+      "input_tokens": 83,
+      "output_tokens": 107,
+      "generation_seconds": 4.338799777906388,
+      "output_tokens_per_second_including_prefill": 24.661197906585812,
+      "peak_allocated_bytes": 28634456576,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "e0524c85fc9292125f2f03aceb7eea5521f1e4dd7514a7354129db95f7bf6aa8",
+  "digest": "9a18fb0d0ec4b1fdb16475b0a35722dcee4c3f7af84142f755a6e35a7478d855",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/110",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/110",
+      "task_prompt": "\ndef exchange(lst1, lst2):\n    \"\"\"In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef exchange(lst1, lst2):\n    \"\"\"Determine if it is possible to exchange elements between lst1 and lst2\n    to make lst1 a list of only even numbers.\n    \n    Parameters:\n    lst1 (list of int): The first list of numbers.\n    lst2 (list of int): The second list of numbers.\n    \n    Returns:\n    str: \"YES\" if it is possible to make lst1 all even, \"NO\" otherwise.\n    \"\"\"\n    odd_in_lst1 = [x for x in lst1 if x % 2 != 0]\n    even_in_lst2 = [x for x in lst2 if x % 2 == 0]\n    \n    if len(odd_in_lst1) <= len(even_in_lst2):\n        return \"YES\"\n    else:\n        return \"NO\"\n```",
+      "input_tokens": 226,
+      "output_tokens": 178,
+      "generation_seconds": 35.152209299150854,
+      "output_tokens_per_second_including_prefill": 5.063693109163975,
+      "peak_allocated_bytes": 16211225088,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

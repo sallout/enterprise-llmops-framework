@@ -1,0 +1,40 @@
+{
+  "key": "949639838ba7cf94996b3edf46c9cd5d81778b2bfd15cd92feb04bfb49c9a635",
+  "digest": "c46cd3f9c2538c54cc2b6cdf5c926b79bb548ecd9afb7b87e3422e936af03d99",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/91",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/91",
+      "task_prompt": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n    # Split the string into sentences using regex to split on . ? !\n    sentences = re.split(r'[.?!]', S)\n    count = 0\n    for sentence in sentences:\n        # Strip whitespace and check if the sentence starts with \"I\"\n        if sentence.strip().startswith(\"I\"):\n            count += 1\n    return count\n```",
+      "input_tokens": 136,
+      "output_tokens": 181,
+      "generation_seconds": 7.346082473639399,
+      "output_tokens_per_second_including_prefill": 24.638982838744106,
+      "peak_allocated_bytes": 28655267840,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

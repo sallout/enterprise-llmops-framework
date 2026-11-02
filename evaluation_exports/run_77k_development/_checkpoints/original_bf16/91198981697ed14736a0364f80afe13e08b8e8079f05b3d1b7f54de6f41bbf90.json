@@ -1,0 +1,38 @@
+{
+  "key": "0fed02a798fecce9e89c2da7cb6f723b78e094471d2dd93227a4cc692460e4f2",
+  "digest": "a2cfd356193c42401b208952787f541e675226160bfd4285f263972276cbe976",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:17",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "17",
+      "task_prompt": "Write a function that returns the perimeter of a square given its side length as input.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef square_perimeter(side_length):\n    return 4 * side_length\n```",
+      "input_tokens": 81,
+      "output_tokens": 20,
+      "generation_seconds": 0.8044574777595699,
+      "output_tokens_per_second_including_prefill": 24.861475656488892,
+      "peak_allocated_bytes": 29570252800,
+      "peak_reserved_bytes": 29773266944
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

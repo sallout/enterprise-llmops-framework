@@ -1,0 +1,39 @@
+{
+  "key": "e43119fb149ac8118a0c7b841733c283c4bf5f1eb76c441ac62cdd453ba4de40",
+  "digest": "84d7c2cafb531cc380277b4529a94112357b451871a2cbf870b2c7587250578d",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:68",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "68",
+      "task_prompt": "Write a python function to check whether the given array is monotonic or not.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_Monotonic(arr):\n    \"\"\"\n    Check if the given array is monotonic.\n    \n    Parameters:\n    arr (list): The list of elements to check.\n    \n    Returns:\n    bool: True if the array is monotonic, False otherwise.\n    \"\"\"\n    increasing = all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))\n    decreasing = all(arr[i] >= arr[i + 1] for i in range(len(arr) - 1))\n    return increasing or decreasing\n```",
+      "input_tokens": 109,
+      "output_tokens": 117,
+      "generation_seconds": 4.923683325294405,
+      "output_tokens_per_second_including_prefill": 23.762698018968177,
+      "peak_allocated_bytes": 28640355840,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

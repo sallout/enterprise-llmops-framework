@@ -1,0 +1,40 @@
+{
+  "key": "5961ab361355d7ae33c037f5c34f0a0d9e9895b66375d813cedd54796c5fb6e6",
+  "digest": "171861a0c2c7871e8dc35255376a4ae2734b8a061f4ba220c8c797804f747f54",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/64",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/64",
+      "task_prompt": "\nFIX = \"\"\"\nAdd more test cases.\n\"\"\"\n\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef vowels_count(s):\n    \"\"\"\n    Counts the number of vowels in a given string.\n    \n    Parameters:\n    s (str): The input string.\n    \n    Returns:\n    int: The number of vowels in the string.\n    \"\"\"\n    vowels = 'aeiou'\n    count = 0\n    for char in s:\n        if char.lower() in vowels:\n            count += 1\n    if s and s[-1].lower() == 'y':\n        count += 1\n    return count\n```",
+      "input_tokens": 155,
+      "output_tokens": 110,
+      "generation_seconds": 20.262682162690908,
+      "output_tokens_per_second_including_prefill": 5.42869888185582,
+      "peak_allocated_bytes": 16239840768,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

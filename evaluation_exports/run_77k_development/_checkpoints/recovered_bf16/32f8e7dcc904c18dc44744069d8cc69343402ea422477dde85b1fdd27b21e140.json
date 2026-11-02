@@ -1,0 +1,38 @@
+{
+  "key": "3e90b0e7ce03937eb94560ba1a8a035feb5dfb2e6cb12662a01b63217886edaa",
+  "digest": "f94f2a3bc27268d33f03286612b17f3fef471bb4ae33519e81156057329f684f",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:460",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "460",
+      "task_prompt": "Write a python function to get the first element of each sublist.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef Extract(list_of_lists):\n    \"\"\"\n    Returns a list containing the first element of each sublist in the input list of lists.\n    \n    :param list_of_lists: List of lists from which to extract the first element of each sublist.\n    :return: List of first elements from each sublist.\n    \"\"\"\n    return [sublist[0] for sublist in list_of_lists]\n```",
+      "input_tokens": 125,
+      "output_tokens": 82,
+      "generation_seconds": 3.2817485430277884,
+      "output_tokens_per_second_including_prefill": 24.986679791238856,
+      "peak_allocated_bytes": 28640798208,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

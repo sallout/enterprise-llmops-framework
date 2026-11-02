@@ -1,0 +1,38 @@
+{
+  "key": "c7d5c203aee403da3855122f1584ed0fb0c3cdf3c0607a6971505f6a8a118ea4",
+  "digest": "fda955b00ade69c81e7bad1016e7dcc777a686fd43fb6ba6034c6343908e59b4",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:85",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "85",
+      "task_prompt": "Write a function to find the surface area of a sphere.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef surfacearea_sphere(radius):\n    \"\"\"\n    Calculate the surface area of a sphere given its radius.\n\n    Parameters:\n    radius (float): The radius of the sphere.\n\n    Returns:\n    float: The surface area of the sphere.\n    \"\"\"\n    return 4 * math.pi * radius ** 2\n```",
+      "input_tokens": 165,
+      "output_tokens": 70,
+      "generation_seconds": 12.845423262100667,
+      "output_tokens_per_second_including_prefill": 5.449411714328563,
+      "peak_allocated_bytes": 16205406208,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

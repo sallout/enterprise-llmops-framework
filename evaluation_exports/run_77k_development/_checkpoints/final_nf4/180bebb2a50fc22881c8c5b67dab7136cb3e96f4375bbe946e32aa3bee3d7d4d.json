@@ -1,0 +1,40 @@
+{
+  "key": "9bf82b7d6c6ae9c4aaebcf2265ec0c946b98b76117e5d66c2544ad9185896486",
+  "digest": "68563ba86b6498bbff559cdeefdbc9cd10d0c388d5c6ee7ffacef7237c46e812",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:160",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "160",
+      "task_prompt": "Write a function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import gcd\n\ndef find_solution(a, b, n):\n    \"\"\"\n    Returns a tuple (x, y) such that ax + by = n, or None if no solution exists.\n    \"\"\"\n    g, x, y = extended_gcd(a, b)\n    if n % g != 0:\n        return None\n    x0 = (x * (n // g)) % (b // g)\n    y0 = (y * (n // g)) - (a // g) * x0\n    return (x0, y0)\n\ndef extended_gcd(a, b):\n    \"\"\"\n    Returns the greatest common divisor of a and b, and the coefficients x and y such that ax + by = gcd(a, b).\n    \"\"\"\n    if b == 0:\n        return (a, 1, 0)\n    else:\n        g, x1, y1 = extended_gcd(b, a % b)\n        x = y1\n        y = x1 - (a // b) * y1\n        return (g, x, y)\n```",
+      "input_tokens": 117,
+      "output_tokens": 232,
+      "generation_seconds": 12.972962595988065,
+      "output_tokens_per_second_including_prefill": 17.883347638090534,
+      "peak_allocated_bytes": 9909017600,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

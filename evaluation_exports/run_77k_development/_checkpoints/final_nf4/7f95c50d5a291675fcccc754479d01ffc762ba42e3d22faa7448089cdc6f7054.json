@@ -1,0 +1,39 @@
+{
+  "key": "5482be25065033a213c301f7254e66bcafabd835e12e08d046fbc8cb4a213bf7",
+  "digest": "8c0682663aadacba59a4650b4263ecfd01b730f9fd93c0799dafe8c0b3e53824",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:86",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "86",
+      "task_prompt": "Write a function to find nth centered hexagonal number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef centered_hexagonal_number(n):\n    \"\"\"\n    Calculate the nth centered hexagonal number.\n    \n    Parameters:\n    n (int): The position of the centered hexagonal number to calculate.\n    \n    Returns:\n    int: The nth centered hexagonal number.\n    \"\"\"\n    return 3 * n * (n - 1) + 1\n```",
+      "input_tokens": 85,
+      "output_tokens": 76,
+      "generation_seconds": 4.19093801220879,
+      "output_tokens_per_second_including_prefill": 18.13436509406757,
+      "peak_allocated_bytes": 9899324416,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "key": "78a11e5683fcc0adf85ddea19653cf20b81b48eee7e43e475aec5fa5003babec",
+  "digest": "2920059fed994bfd2d02a66dc644eb8bb7f84f54a307f5ad4f1c22f8abb3c01a",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/17",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/17",
+      "task_prompt": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "regex_parsing",
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "regex_parsing",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Parse a string of musical notes and return a list of integers representing the number of beats each note lasts.\n    \n    Args:\n        music_string (str): A string representing musical notes in a special ASCII format.\n    \n    Returns:\n        List[int]: A list of integers where each integer represents the number of beats for a corresponding note.\n    \"\"\"\n    note_map = {'o': 4, 'o|': 2, '.|': 1}\n    music_notes = music_string.split()\n    beats = [note_map[note] for note in music_notes]\n    return beats\n```",
+      "input_tokens": 201,
+      "output_tokens": 144,
+      "generation_seconds": 5.894643409177661,
+      "output_tokens_per_second_including_prefill": 24.428958633154856,
+      "peak_allocated_bytes": 28663307776,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

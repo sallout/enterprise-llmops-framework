@@ -1,0 +1,40 @@
+{
+  "key": "fa7ea13a10616d8088459159510062245957a4248b09c32b0ff6caf0a1e8fcf8",
+  "digest": "008e5b3e8e6c8ec6e69964141e125756f8fb7d3dc66705f85929df4e44ec1783",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:97",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "97",
+      "task_prompt": "Write a function to find frequency of each element in a flattened list of lists, returned in a dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\nfrom typing import List, Dict\n\ndef frequency_lists(list_of_lists: List[List[int]]) -> Dict[int, int]:\n    \"\"\"\n    Returns a dictionary with the frequency of each element in a flattened list of lists.\n    \n    :param list_of_lists: List of lists containing integers.\n    :return: Dictionary with integers as keys and their frequencies as values.\n    \"\"\"\n    frequency_dict = defaultdict(int)\n    for sublist in list_of_lists:\n        for item in sublist:\n            frequency_dict[item] += 1\n    return dict(frequency_dict)\n```",
+      "input_tokens": 344,
+      "output_tokens": 121,
+      "generation_seconds": 6.844078491907567,
+      "output_tokens_per_second_including_prefill": 17.67951670090726,
+      "peak_allocated_bytes": 9970484224,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

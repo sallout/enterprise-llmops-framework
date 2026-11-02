@@ -1,0 +1,38 @@
+{
+  "key": "c47ba954568dabb342bdc81aeafffc55e003ef5c4abe5692bd3ec2e4bfd38fa9",
+  "digest": "ef431625875f2cbc69dc783c7afb06a700646718e08a7992e1bab67d5b259ee2",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:276",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "276",
+      "task_prompt": "Write a function that takes in the radius and height of a cylinder and returns the the volume.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef volume_cylinder(radius, height):\n    return math.pi * (radius ** 2) * height\n```",
+      "input_tokens": 178,
+      "output_tokens": 30,
+      "generation_seconds": 1.2445636647753417,
+      "output_tokens_per_second_including_prefill": 24.104833564633555,
+      "peak_allocated_bytes": 28656430080,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "65ca9bc590110577914c37ff5d3133427a6556f994cebc414d3de958433e92ae",
+  "digest": "1fcb91d27add337c78c5fc4519ad5ab13c247e6284b4ce2a97deb7e92cbcb468",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:391",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "391",
+      "task_prompt": "Write a function to convert more than one list to nested dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef convert_list_dictionary(*lists):\n    if not lists or len(lists) < 3:\n        return []\n    result = []\n    for i in range(len(lists[0])):\n        nested_dict = {}\n        for j in range(len(lists)):\n            if j == 0:\n                key1 = lists[j][i]\n                nested_dict[key1] = {}\n            elif j == 1:\n                key2 = lists[j][i]\n                nested_dict[key1][key2] = lists[j+1][i]\n        result.append(nested_dict)\n    return result\n```",
+      "input_tokens": 332,
+      "output_tokens": 125,
+      "generation_seconds": 5.071141437161714,
+      "output_tokens_per_second_including_prefill": 24.649282917646588,
+      "peak_allocated_bytes": 28703286272,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

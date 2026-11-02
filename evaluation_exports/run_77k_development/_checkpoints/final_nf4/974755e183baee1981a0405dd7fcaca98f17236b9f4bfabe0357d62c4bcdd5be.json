@@ -1,0 +1,41 @@
+{
+  "key": "5380a0a0a34bbc8999d1855bfc70d4f4e16694d6c22ec219f3413c782f87b0e7",
+  "digest": "067dc7588f502ac7f171c0a077b0d415b4475f1f19a27e00f33dd535a5c1ad75",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/68",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/68",
+      "task_prompt": "\ndef pluck(arr):\n    \"\"\"\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n    The plucked node should be returned in a list, [ smalest_value, its index ],\n    If there are no even values or the given array is empty, return [].\n\n    Example 1:\n        Input: [4,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index.\n\n    Example 2:\n        Input: [1,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index. \n\n    Example 3:\n        Input: []\n        Output: []\n    \n    Example 4:\n        Input: [5, 0, 3, 0, 4, 2]\n        Output: [0, 1]\n        Explanation: 0 is the smallest value, but  there are two zeros,\n                     so we will choose the first zero, which has the smallest index.\n\n    Constraints:\n        * 1 <= nodes.length <= 10000\n        * 0 <= node.value\n    \"\"\"\n",
+      "skill_tags": [
+        "graphs_trees",
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "graphs_trees",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef pluck(arr):\n    \"\"\"\n    Plucks the smallest even value node from the given array.\n    \n    Parameters:\n    arr (list of int): The array of non-negative integer nodes.\n    \n    Returns:\n    list: A list containing the smallest even value and its index, or an empty list if no even values are found.\n    \"\"\"\n    if not arr:\n        return []\n    \n    min_even_value = float('inf')\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    return [min_even_value, min_index] if min_index != -1 else []\n```",
+      "input_tokens": 344,
+      "output_tokens": 156,
+      "generation_seconds": 8.597405591979623,
+      "output_tokens_per_second_including_prefill": 18.14500878561898,
+      "peak_allocated_bytes": 9970484224,
+      "peak_reserved_bytes": 10051649536
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

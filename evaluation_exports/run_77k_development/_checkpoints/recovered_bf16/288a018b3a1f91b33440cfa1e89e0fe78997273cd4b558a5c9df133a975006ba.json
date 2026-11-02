@@ -1,0 +1,39 @@
+{
+  "key": "6feed6499f4623cfd2be5c560183afa3ae720774127d20d097d4965eb48aa852",
+  "digest": "7ca8aa24bfa6bd46a2cfd41f285f61f666fc39e435b139b1467ad6a05fcaea36",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:434",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "434",
+      "task_prompt": "Write a function that matches a string that has an a followed by one or more b's.",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport re\n\ndef text_match_one(text):\n    \"\"\"\n    Matches a string that has an 'a' followed by one or more 'b's.\n    \n    Parameters:\n    text (str): The string to be checked.\n    \n    Returns:\n    bool: True if the string matches the pattern, False otherwise.\n    \"\"\"\n    pattern = r'ab+'\n    return bool(re.search(pattern, text))\n```",
+      "input_tokens": 80,
+      "output_tokens": 87,
+      "generation_seconds": 3.5060544488951564,
+      "output_tokens_per_second_including_prefill": 24.814218166924313,
+      "peak_allocated_bytes": 28630688256,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

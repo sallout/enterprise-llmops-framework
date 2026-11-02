@@ -1,0 +1,39 @@
+{
+  "key": "ed092c4de28e8230bc4c7f4fa0740668dcccb7ec18482baecb91db9e1438823b",
+  "digest": "6b70d0576829e0518e2747dc49857c288d9bc6f56cd1a347e523d39f5bfc4bc3",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "mbpp:273",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "273",
+      "task_prompt": "Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef substract_elements(tuple1, tuple2):\n    \"\"\"\n    Subtracts elements of the second tuple from the first tuple element-wise.\n    \n    Parameters:\n    tuple1 (tuple): The first tuple.\n    tuple2 (tuple): The second tuple.\n    \n    Returns:\n    tuple: A new tuple with the result of the element-wise subtraction.\n    \"\"\"\n    return tuple(a - b for a, b in zip(tuple1, tuple2))\n```",
+      "input_tokens": 172,
+      "output_tokens": 95,
+      "generation_seconds": 5.240772468969226,
+      "output_tokens_per_second_including_prefill": 18.127098736397716,
+      "peak_allocated_bytes": 9923011584,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

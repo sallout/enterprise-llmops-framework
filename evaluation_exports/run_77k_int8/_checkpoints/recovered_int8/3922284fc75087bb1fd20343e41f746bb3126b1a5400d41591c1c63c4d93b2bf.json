@@ -1,0 +1,41 @@
+{
+  "key": "cf7981a61ebf7c263f0943f42268c11d5c7aafaf5af48d81280f507c76a1c869",
+  "digest": "9d6c56a68ff6333c675162b683c038fab678e119dcb2b765c2601a708b7fe647",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:237",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "237",
+      "task_prompt": "Write a function that takes in a list of tuples and returns a dictionary mapping each unique tuple to the number of times it occurs in the list.",
+      "skill_tags": [
+        "mappings_sets",
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\n\ndef check_occurences(tuples_list):\n    \"\"\"\n    Returns a dictionary mapping each unique tuple to the number of times it occurs in the list.\n    \n    :param tuples_list: List of tuples\n    :return: Dictionary with tuples as keys and their occurrence counts as values\n    \"\"\"\n    occurrences = defaultdict(int)\n    for t in tuples_list:\n        occurrences[t] += 1\n    return dict(occurrences)\n```",
+      "input_tokens": 280,
+      "output_tokens": 97,
+      "generation_seconds": 18.384648661129177,
+      "output_tokens_per_second_including_prefill": 5.276141077696413,
+      "peak_allocated_bytes": 16177866240,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

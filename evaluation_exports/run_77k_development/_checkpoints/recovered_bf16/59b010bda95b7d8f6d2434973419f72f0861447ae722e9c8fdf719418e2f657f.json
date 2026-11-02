@@ -1,0 +1,40 @@
+{
+  "key": "6b2c4717ae407e846fc0f7bc575ad934356e6a3727b6a8c8a6f487912df17e1b",
+  "digest": "379568b5f9690146876c7abeadacc4492dba54c28c900440871f3e59f4a0423f",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:66",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "66",
+      "task_prompt": "Write a python function to count the number of positive numbers in a list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef pos_count(lst):\n    \"\"\"\n    Counts the number of positive numbers in the given list.\n\n    Parameters:\n    lst (list): A list of integers.\n\n    Returns:\n    int: The count of positive numbers in the list.\n    \"\"\"\n    return sum(1 for num in lst if num > 0)\n```",
+      "input_tokens": 96,
+      "output_tokens": 69,
+      "generation_seconds": 2.783564036246389,
+      "output_tokens_per_second_including_prefill": 24.78836452171076,
+      "peak_allocated_bytes": 28631262208,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

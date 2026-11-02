@@ -1,0 +1,41 @@
+{
+  "key": "2c1d5783ac85a6ba051edb4e851462c9f7e6c1eacad9638b11b07713df6ad7ed",
+  "digest": "6ace65deafb9a670c3ccaea9e9677ec1c97fc2e4c4d5e98f84331bc51a679d6b",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/104",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/104",
+      "task_prompt": "\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n    def has_even_digit(n):\n        \"\"\"Check if the number n has any even digit.\"\"\"\n        return any(int(digit) % 2 == 0 for digit in str(n))\n    \n    return sorted([num for num in x if not has_even_digit(num)])\n```",
+      "input_tokens": 144,
+      "output_tokens": 169,
+      "generation_seconds": 31.491849530953914,
+      "output_tokens_per_second_including_prefill": 5.366467912082674,
+      "peak_allocated_bytes": 16179398144,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

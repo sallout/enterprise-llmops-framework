@@ -1,0 +1,41 @@
+{
+  "key": "d41b761c9d6127781922b454861c9bb4c633b01c4b59b43cb4002bd8dc0d2092",
+  "digest": "9a318346976f2ec59df3cb03f4b8a066583e8ddeddbb219043e7caf1760653ce",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/116",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/116",
+      "task_prompt": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_array(arr):\n    \"\"\"\n    Sorts an array of non-negative integers based on the number of ones in their binary representation.\n    For numbers with the same number of ones, sorts based on their decimal value.\n    \n    :param arr: List of integers\n    :return: Sorted list of integers\n    \"\"\"\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n```",
+      "input_tokens": 199,
+      "output_tokens": 89,
+      "generation_seconds": 4.924342695157975,
+      "output_tokens_per_second_including_prefill": 18.073478128870324,
+      "peak_allocated_bytes": 9930321920,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "3e0c8bb976504a8b6b6ad6fa10e77e3c2ccc413ce7140038661bee5e7dcc7db9",
+  "digest": "0c4216739a4a35df49c78d73713607343c031cd2056faa98c6f71ab087572e94",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:125",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "125",
+      "task_prompt": "Write a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_length(s):\n    import sys\n    sys.setrecursionlimit(10000)\n    max_diff = 0\n    count = 0\n    hash_map = {0: -1}\n    for i in range(len(s)):\n        if s[i] == '1':\n            count += 1\n        else:\n            count -= 1\n        if count in hash_map:\n            max_diff = max(max_diff, i - hash_map[count])\n        else:\n            hash_map[count] = i\n    return max_diff\n```",
+      "input_tokens": 121,
+      "output_tokens": 119,
+      "generation_seconds": 4.809221263043582,
+      "output_tokens_per_second_including_prefill": 24.74413080438915,
+      "peak_allocated_bytes": 28642649600,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

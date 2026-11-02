@@ -1,0 +1,39 @@
+{
+  "key": "39d5bd5737c7cf04d956c3a23ac27f2f45d733253c5ea107fc528f789095aa62",
+  "digest": "d55f23973ffd6ed7719f5360d5d5da12d180c75596cd8e0758a654c017972aed",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:106",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "106",
+      "task_prompt": "Write a function to append the given list to the given tuples.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add_lists(list_to_add, tuple_to_add_to):\n    \"\"\"\n    Appends the elements of the given list to the given tuple and returns a new tuple.\n\n    :param list_to_add: List of elements to be appended.\n    :param tuple_to_add_to: Tuple to which the list elements will be appended.\n    :return: A new tuple with the list elements appended.\n    \"\"\"\n    return tuple_to_add_to + tuple(list_to_add)\n```",
+      "input_tokens": 159,
+      "output_tokens": 97,
+      "generation_seconds": 3.8960287841036916,
+      "output_tokens_per_second_including_prefill": 24.89714665245101,
+      "peak_allocated_bytes": 28650827264,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "7d1a487a30fd22f2696838d42d15d6c8448818cd156c776fb00f905927bb466c",
+  "digest": "ec3634b0bcd149db4ad62e2255ebaca06d0e00a09c348dd3608af931d81600f8",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:125",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "125",
+      "task_prompt": "Write a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef find_length(binary_string):\n    \"\"\"\n    Finds the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.\n    \n    :param binary_string: A string consisting of '0's and '1's.\n    :return: The maximum difference between the number of 0s and number of 1s in any sub-string.\n    \"\"\"\n    max_diff = 0\n    current_diff = 0\n    diff_map = {0: -1}\n    \n    for i, char in enumerate(binary_string):\n        if char == '0':\n            current_diff += 1\n        else:\n            current_diff -= 1\n        \n        if current_diff in diff_map:\n            max_diff = max(max_diff, i - diff_map[current_diff])\n        else:\n            diff_map[current_diff] = i\n    \n    return max_diff\n```",
+      "input_tokens": 121,
+      "output_tokens": 186,
+      "generation_seconds": 34.83923944784328,
+      "output_tokens_per_second_including_prefill": 5.33880770498606,
+      "peak_allocated_bytes": 16129225728,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

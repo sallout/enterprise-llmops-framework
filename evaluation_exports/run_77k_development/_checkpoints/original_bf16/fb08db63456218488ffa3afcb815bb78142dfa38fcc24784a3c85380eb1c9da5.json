@@ -1,0 +1,38 @@
+{
+  "key": "5acfbf376aa4eb36b2817bfd53b7727850854c16717cbc807b65f7bd939c0d97",
+  "digest": "0684e4004670c734077955a1fdcfe38f8b2274365de6fbf393a6508ab32c18b8",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/154",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/154",
+      "task_prompt": "\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef cycpattern_check(a, b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word.\"\"\"\n    len_b = len(b)\n    for i in range(len_b):\n        rotated = b[i:] + b[:i]\n        if rotated in a:\n            return True\n    return False\n```",
+      "input_tokens": 158,
+      "output_tokens": 84,
+      "generation_seconds": 3.3771114931441844,
+      "output_tokens_per_second_including_prefill": 24.873327448775957,
+      "peak_allocated_bytes": 29595109376,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

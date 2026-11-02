@@ -1,0 +1,39 @@
+{
+  "key": "83c96558f6d0e132600774e20bf58c1728d2d1866625194fc2fd3dd54332f5f4",
+  "digest": "8420813d1e9a497c38cf0f7e0232f48e8c78d18c17c6e82bca3206a2aeb1979c",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:87",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "87",
+      "task_prompt": "Write a function to merge three dictionaries into a single dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef merge_dictionaries_three(dict1, dict2, dict3):\n    \"\"\"\n    Merges three dictionaries into a single dictionary.\n    \n    Parameters:\n    dict1 (dict): The first dictionary.\n    dict2 (dict): The second dictionary.\n    dict3 (dict): The third dictionary.\n    \n    Returns:\n    dict: A new dictionary containing all key-value pairs from the input dictionaries.\n    \"\"\"\n    return {**dict1, **dict2, **dict3}\n```",
+      "input_tokens": 315,
+      "output_tokens": 103,
+      "generation_seconds": 4.3506775964051485,
+      "output_tokens_per_second_including_prefill": 23.674473163698963,
+      "peak_allocated_bytes": 28698102272,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

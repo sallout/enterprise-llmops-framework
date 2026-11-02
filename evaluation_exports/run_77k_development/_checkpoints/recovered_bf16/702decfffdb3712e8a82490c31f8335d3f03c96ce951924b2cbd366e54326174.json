@@ -1,0 +1,40 @@
+{
+  "key": "01d325f64f04cd63c41924a248f97771a80cfbaa1e86a7af16c96cc579e0f55d",
+  "digest": "8c09aa49e55b09708b0b4f25cea919cddfe4e586c48f499ccaf326c2a21dd0ec",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/33",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/33",
+      "task_prompt": "\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n    sorted_thirds = sorted(l[i] for i in range(0, len(l), 3))\n    result = []\n    third_index = 0\n    for i in range(len(l)):\n        if i % 3 == 0:\n            result.append(sorted_thirds[third_index])\n            third_index += 1\n        else:\n            result.append(l[i])\n    return result\n```",
+      "input_tokens": 179,
+      "output_tokens": 230,
+      "generation_seconds": 9.332504073157907,
+      "output_tokens_per_second_including_prefill": 24.645046838128327,
+      "peak_allocated_bytes": 28670343168,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

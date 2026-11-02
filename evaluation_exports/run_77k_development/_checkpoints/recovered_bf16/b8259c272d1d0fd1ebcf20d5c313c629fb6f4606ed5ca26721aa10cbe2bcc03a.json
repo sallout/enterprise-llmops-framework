@@ -1,0 +1,39 @@
+{
+  "key": "2e626c77026fdc8b9c1c4c5580e1d8e8dbd495e5424f8f930501629182570ce9",
+  "digest": "5493cb7d79d0d21f20467a0290e2d4e1e271b694a39da2780589ed4b2eb6b7ba",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:98",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "98",
+      "task_prompt": "Write a function to multiply all the numbers in a list and divide with the length of the list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef multiply_num(numbers):\n    \"\"\"\n    Multiplies all the numbers in the list and divides the result by the length of the list.\n    \n    :param numbers: List of numbers to be multiplied.\n    :return: The product of the numbers divided by the length of the list.\n    \"\"\"\n    product = 1\n    for num in numbers:\n        product *= num\n    return product / len(numbers)\n```",
+      "input_tokens": 159,
+      "output_tokens": 91,
+      "generation_seconds": 3.719617275055498,
+      "output_tokens_per_second_including_prefill": 24.46488261312913,
+      "peak_allocated_bytes": 28650827264,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "eca9ab2a5d2c51f74bd726482f9a99572374e8783640569078a9ad7eef66bd6f",
+  "digest": "4824dddc7c41ff239a2ffe2dabf2bd3cea0dc85ac73bb003232b19589ca072ec",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:119",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "119",
+      "task_prompt": "Write a python function to find the element that appears only once in a sorted array.",
+      "skill_tags": [
+        "sequences",
+        "sorting_search"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sorting_search",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef search(arr):\n    \"\"\"\n    Finds the element that appears only once in a sorted array.\n    \n    :param arr: List[int] - A sorted list of integers where all elements except one appear twice.\n    :return: int - The element that appears only once.\n    \"\"\"\n    left, right = 0, len(arr) - 1\n    \n    while left < right:\n        mid = (left + right) // 2\n        \n        if mid % 2 == 0:\n            if arr[mid] == arr[mid + 1]:\n                left = mid + 2\n            else:\n                right = mid\n        else:\n            if arr[mid] == arr[mid - 1]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    \n    return arr[left]\n```",
+      "input_tokens": 117,
+      "output_tokens": 172,
+      "generation_seconds": 6.950202410109341,
+      "output_tokens_per_second_including_prefill": 24.747480699241116,
+      "peak_allocated_bytes": 28650678784,
+      "peak_reserved_bytes": 28758245376
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

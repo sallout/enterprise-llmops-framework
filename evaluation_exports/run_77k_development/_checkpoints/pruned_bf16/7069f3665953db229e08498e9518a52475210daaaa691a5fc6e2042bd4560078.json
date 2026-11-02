@@ -1,0 +1,39 @@
+{
+  "key": "df5d98495af945a023bd083175a78dbfd46097f7e92e6a112477f4f775a3f477",
+  "digest": "4a65966bce15765db5dbce9ae67c055f035b0a689a576d082046b390b548b011",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:419",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "419",
+      "task_prompt": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef round_and_sum(numbers):\n    rounded = [round(num) for num in numbers]\n    total = sum(rounded)\n    length = len(numbers)\n    result = total * length\n    print(result)\n    return result\n```",
+      "input_tokens": 172,
+      "output_tokens": 54,
+      "generation_seconds": 2.228824851103127,
+      "output_tokens_per_second_including_prefill": 24.22801413636133,
+      "peak_allocated_bytes": 28654660608,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

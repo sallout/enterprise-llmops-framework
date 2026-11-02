@@ -1,0 +1,39 @@
+{
+  "key": "e6da228c7a5a5107e54e65fdfafcaa141d96fa3f56f8b0a6232b56aacb1753fe",
+  "digest": "c5488203fab00821dacc79a46c54e4859b7207381e1fa2424af6091908eae3de",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:280",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "280",
+      "task_prompt": "Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sequential_search(arr, element):\n    for index, value in enumerate(arr):\n        if value == element:\n            return (True, index)\n    return (False, -1)\n```",
+      "input_tokens": 211,
+      "output_tokens": 42,
+      "generation_seconds": 1.8746943091973662,
+      "output_tokens_per_second_including_prefill": 22.40365258162112,
+      "peak_allocated_bytes": 28666359296,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

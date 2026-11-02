@@ -1,0 +1,128 @@
+{
+  "schema_version": "qwen3-model-evaluation-v1",
+  "status": "COMPLETED_WITH_WARNINGS",
+  "started_at": "2026-11-02T03:30:52.989647+00:00",
+  "models": {
+    "recovered_int8": {
+      "identity": {
+        "source": "/workspace/artifacts/quantization_77k_8bit/model_8bit",
+        "revision": null,
+        "files": {
+          "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+          "config.json": "f5f050f9864ee4ce338eeea55746aaecf05822660ed3abe68e21062bd94a900c",
+          "generation_config.json": "be1b8099dc8a86b9fa09e0104e99938e98c533ac189c9a4eb8e6124cf87ff146",
+          "model-00001-of-00004.safetensors": "54018db472a6d19de041a4b76677850d122870f57c7deebc4d9658bfb036b32b",
+          "model-00002-of-00004.safetensors": "00c6d86db0729cf813f5627d0fefacad5a477bb20b2ee9a4ff4b68ee356b600b",
+          "model-00003-of-00004.safetensors": "15d210bd02aa87891fc36c48816b767a127aa7de0c1cdfe90449fed7e847b766",
+          "model-00004-of-00004.safetensors": "8dbfba56e51a2befd5dfb7980a1a668b64158cbaed6b85e949be8193c8e383cc",
+          "model.safetensors.index.json": "282cf82cd75310d5a2fbf7989d3460e5866ca3951dd0e6db2bc815b5730ee450",
+          "tokenizer.json": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506",
+          "tokenizer_config.json": "1cc816812993bff176eb4f7495433b736f06fba9b6e7b05cac7b4a1780650c95"
+        },
+        "identity": "3e546e41728b3b989d060ba7a27f259248a8317b225e2b294f2bbf509c9864eb"
+      },
+      "load": {
+        "model_memory_bytes": 15852698112,
+        "quantization": {
+          "quant_method": "bitsandbytes",
+          "_load_in_8bit": true,
+          "_load_in_4bit": false,
+          "llm_int8_threshold": 6.0,
+          "llm_int8_skip_modules": null,
+          "llm_int8_enable_fp32_cpu_offload": false,
+          "llm_int8_has_fp16_weight": false,
+          "bnb_4bit_quant_type": "fp4",
+          "bnb_4bit_use_double_quant": false,
+          "bnb_4bit_compute_dtype": "float32",
+          "bnb_4bit_quant_storage": "uint8",
+          "load_in_4bit": false,
+          "load_in_8bit": true
+        },
+        "chat_template_hash": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+      },
+      "metrics": {
+        "humaneval": {
+          "selected": 40,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 40,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "mbpp": {
+          "selected": 60,
+          "passed": 0,
+          "failed": 0,
+          "unverified": 60,
+          "pass_at_1": null,
+          "wilson_95_interval": null,
+          "scope": "one greedy answer; selected base Python tests only"
+        },
+        "efficiency": {
+          "measured_tasks": 100,
+          "generation_seconds": 2408.431275098119,
+          "output_tokens_per_second_including_prefill": 5.318399629019169,
+          "peak_allocated_bytes": 16462500352,
+          "peak_reserved_bytes": 18574475264,
+          "note": "Sequential batch 1, synchronized wall time including prefill; TTFT not measured; excludes model load and warmup."
+        }
+      }
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "code_execution_disabled_no_pass_at_1"
+  ],
+  "evaluation_complete": false,
+  "suite_digest": "e1c28aeb92728992b5ddc262f2dc93e149a2dda31fd2169d3b5d9e9c9a8e4244",
+  "configuration": {
+    "max_new_tokens": 1024,
+    "max_input_tokens": 4096,
+    "seed": 42,
+    "executor": "disabled",
+    "python_image": "python:3.12-slim",
+    "timeout_seconds": 15,
+    "thinking": false
+  },
+  "limitations": [
+    "Python base HumanEval/MBPP only; not full debugging/refactoring/multilingual coverage.",
+    "Heuristic skills; labels require review.",
+    "Raw-source exact/near-text and function AST screening is not semantic independence proof.",
+    "Pretraining contamination and external data beyond this frozen selection remain unknown.",
+    "Benchmark selected after training; freeze before model answer inspection.",
+    "Small samples have wide uncertainty; do not tune repeatedly on a final test set.",
+    "Quality tests are not a security audit."
+  ],
+  "semantic_enterprise_correctness_verified": false,
+  "fingerprint": "dcae35dca196408e2b9b946b67e93e43bda448058477a9d05d0b9c27bb2d2cc4",
+  "runtime": {
+    "device": "NVIDIA A100-SXM4-80GB",
+    "cuda": "12.8",
+    "versions": {
+      "torch": "2.9.1",
+      "transformers": "5.20.2",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2"
+    }
+  },
+  "execution": {
+    "executor": "disabled"
+  },
+  "contamination": {
+    "status": "LIMITED_CHECK_COMPLETED",
+    "training_rows_checked": 78077,
+    "excluded": {},
+    "method": ">=80% containment of 13-word prompt OR reference ngrams in a single cached training row",
+    "limitations": "Short passages, paraphrases and pretraining overlap remain unresolved; absence of matches is not proof of independence."
+  },
+  "comparisons": {},
+  "selected_tasks": 100,
+  "evaluated_tasks_per_model": 100,
+  "output_hashes": {
+    "suite.json": "3669f2ac7fd809ceb7d5227cf07cd9ef0dc0c404140ffa8d0f17101cc02abf8d",
+    "results.jsonl": "c52fc24862d03cd94f4e7daba59c65ad5faf41153aa748fa33fc3e751ca33e26",
+    "enterprise_review.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "finished_at": "2026-11-02T04:12:31.273539+00:00"
+}

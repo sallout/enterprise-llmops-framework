@@ -1,0 +1,38 @@
+{
+  "key": "03eecf5dbfe3c1e58d9650969b4ac6c0a75b3fa929d17078e78ac44a7020ec4b",
+  "digest": "6f8b90aa6597b427d7b41e8785e221cbf49b22f9e150c779dd19c0fec33b57a4",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:228",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "228",
+      "task_prompt": "Write a python function to check whether all the bits are unset in the given range or not.",
+      "skill_tags": [
+        "unclassified"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef all_Bits_Set_In_The_Given_Range(n, l, r):\n    mask = ((1 << r) - 1) ^ ((1 << (l - 1)) - 1)\n    return (n & mask) == mask\n\nimport sys\n```",
+      "input_tokens": 120,
+      "output_tokens": 62,
+      "generation_seconds": 2.512217118870467,
+      "output_tokens_per_second_including_prefill": 24.679395556334793,
+      "peak_allocated_bytes": 29582742528,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

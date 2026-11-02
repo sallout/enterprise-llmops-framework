@@ -1,0 +1,39 @@
+{
+  "key": "d43aac5e58fe8d676d7c7a966557017346d83a3d68e85aa6678fee338163d943",
+  "digest": "ede2b6903938c05f60947b35a9f0b5721882df03c9d89b6c16ca2855260a78b7",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:445",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "445",
+      "task_prompt": "Write a function to perform index wise multiplication of tuple elements in the given two tuples.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef index_multiplication(tuple1, tuple2):\n    \"\"\"\n    Multiplies elements of two tuples index-wise.\n    \n    Parameters:\n    tuple1 (tuple of tuples): The first tuple containing tuples of integers.\n    tuple2 (tuple of tuples): The second tuple containing tuples of integers.\n    \n    Returns:\n    tuple of tuples: A new tuple where each element is the product of the corresponding elements from tuple1 and tuple2.\n    \"\"\"\n    return tuple(tuple(a * b for a, b in zip(t1, t2)) for t1, t2 in zip(tuple1, tuple2))\n```",
+      "input_tokens": 311,
+      "output_tokens": 127,
+      "generation_seconds": 5.332659090869129,
+      "output_tokens_per_second_including_prefill": 23.815510767874954,
+      "peak_allocated_bytes": 28697147904,
+      "peak_reserved_bytes": 28821159936
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

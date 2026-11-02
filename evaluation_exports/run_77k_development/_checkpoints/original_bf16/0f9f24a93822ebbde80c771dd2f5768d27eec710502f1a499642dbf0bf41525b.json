@@ -1,0 +1,40 @@
+{
+  "key": "ef5e1b024547c002e8efadc596e62c8596a4490be31c1d938ed3dbcf8a6d8cd7",
+  "digest": "0823a0d8aa892ea99ae2749fe0a557eecb33a8648379e60f79e04b2826b75aca",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/85",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/85",
+      "task_prompt": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst, add the even elements that are at odd indices.\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2\n    \"\"\"\n    total = 0\n    for index, value in enumerate(lst):\n        if index % 2 == 1 and value % 2 == 0:\n            total += value\n    return total\n```",
+      "input_tokens": 84,
+      "output_tokens": 95,
+      "generation_seconds": 3.895038896240294,
+      "output_tokens_per_second_including_prefill": 24.390000339072156,
+      "peak_allocated_bytes": 29575848448,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

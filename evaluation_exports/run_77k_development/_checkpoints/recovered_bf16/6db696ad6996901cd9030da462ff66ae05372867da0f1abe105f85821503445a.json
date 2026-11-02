@@ -1,0 +1,40 @@
+{
+  "key": "6fb925d5023bd5cffec87be806b2dc11725025403503cf5bc977197391211d30",
+  "digest": "2d08d6acce8b86e646d871cbf0b1dbb6071f34c7067999d7105c98c4e70a18d8",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:97",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "97",
+      "task_prompt": "Write a function to find frequency of each element in a flattened list of lists, returned in a dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\nfrom itertools import chain\n\ndef frequency_lists(list_of_lists):\n    \"\"\"\n    Returns a dictionary with the frequency of each element in a flattened list of lists.\n    \n    :param list_of_lists: List of lists containing elements.\n    :return: Dictionary with elements as keys and their frequencies as values.\n    \"\"\"\n    flat_list = list(chain.from_iterable(list_of_lists))\n    frequency_dict = defaultdict(int)\n    for item in flat_list:\n        frequency_dict[item] += 1\n    return dict(frequency_dict)\n```",
+      "input_tokens": 344,
+      "output_tokens": 115,
+      "generation_seconds": 4.699599566869438,
+      "output_tokens_per_second_including_prefill": 24.470169929095764,
+      "peak_allocated_bytes": 28706948096,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

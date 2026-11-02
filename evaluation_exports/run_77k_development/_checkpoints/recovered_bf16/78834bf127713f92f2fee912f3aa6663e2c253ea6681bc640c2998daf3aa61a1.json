@@ -1,0 +1,39 @@
+{
+  "key": "8fc4b73cc9a447dee428b93d42a477fbb239d49db8a6262d87c831f1829273da",
+  "digest": "0f9e2864e9d4e8c7afe8a360ccaf29622ec1bf3efca7f0ccf983b285f91c2a13",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "humaneval:HumanEval/152",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/152",
+      "task_prompt": "\ndef compare(game,guess):\n    \"\"\"I think we all remember that feeling when the result of some long-awaited\n    event is finally known. The feelings and thoughts you have at that moment are\n    definitely worth noting down and comparing.\n    Your task is to determine if a person correctly guessed the results of a number of matches.\n    You are given two arrays of scores and guesses of equal length, where each index shows a match. \n    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,\n    the value is 0, and if not, the value is the absolute difference between the guess and the score.\n    \n    \n    example:\n\n    compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]\n    compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef compare(game, guess):\n    \"\"\"\n    Compares the guessed scores with the actual scores and returns the absolute differences.\n    \n    Parameters:\n    game (list of int): The actual scores of the matches.\n    guess (list of int): The guessed scores of the matches.\n    \n    Returns:\n    list of int: A list of absolute differences between the guessed and actual scores.\n    \"\"\"\n    return [abs(g - s) for g, s in zip(guess, game)]\n```",
+      "input_tokens": 259,
+      "output_tokens": 102,
+      "generation_seconds": 4.313300240319222,
+      "output_tokens_per_second_including_prefill": 23.647785759623147,
+      "peak_allocated_bytes": 28681008640,
+      "peak_reserved_bytes": 28758245376
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

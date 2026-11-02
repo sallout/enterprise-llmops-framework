@@ -1,0 +1,38 @@
+{
+  "key": "231e9608ecc0c257d7a3768381e56af378dc206f2f3ed80166008335f3f292f9",
+  "digest": "571bd8e453d740fa3f4e02fdf754965d4ba1ee3dd7f2159313e84d1f52eb89f1",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "humaneval:HumanEval/2",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/2",
+      "task_prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    an integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n    return number - int(number)\n```",
+      "input_tokens": 114,
+      "output_tokens": 91,
+      "generation_seconds": 3.843378801830113,
+      "output_tokens_per_second_including_prefill": 23.677083288451367,
+      "peak_allocated_bytes": 28637553664,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

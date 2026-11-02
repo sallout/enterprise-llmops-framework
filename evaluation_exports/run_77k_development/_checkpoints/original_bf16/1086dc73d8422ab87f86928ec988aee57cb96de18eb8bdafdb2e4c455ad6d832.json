@@ -1,0 +1,38 @@
+{
+  "key": "e4810852e9bd2cb679eca715e54ed95e0fadf0b9fc16a731cf0b44fdf188e627",
+  "digest": "ec214bdd6195055fce376de8ab8016baac6bc71bdacd9d4407a49a9fdad33499",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:295",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "295",
+      "task_prompt": "Write a function to return the sum of all divisors of a number.",
+      "skill_tags": [
+        "numeric_math"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport math\n\ndef sum_div(n):\n    if n == 0:\n        return 0\n    total = 0\n    sqrt_n = int(math.isqrt(n))\n    for i in range(1, sqrt_n + 1):\n        if n % i == 0:\n            total += i\n            if i != n // i:\n                total += n // i\n    return total\n```",
+      "input_tokens": 74,
+      "output_tokens": 88,
+      "generation_seconds": 3.6527157588861883,
+      "output_tokens_per_second_including_prefill": 24.091663794511504,
+      "peak_allocated_bytes": 29573063168,
+      "peak_reserved_bytes": 29760684032
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "key": "d13ae846cd6908a5c3dcf10cc97bd0bb355631baaa93bb5c130c014cc548adb2",
+  "digest": "259cdba84d2aa3f15545a5c8c417d5d6522cef81d8afba05a29de5b3f523ee09",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/17",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/17",
+      "task_prompt": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "regex_parsing",
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "regex_parsing",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Parse a string of musical notes and return a list of integers representing the number of beats for each note.\n    \n    Args:\n        music_string (str): A string representing musical notes in a special ASCII format.\n    \n    Returns:\n        List[int]: A list of integers where each integer represents the number of beats for a corresponding note.\n    \"\"\"\n    note_map = {'o': 4, 'o|': 2, '.|': 1}\n    music_string = music_string.replace(' ', '')  # Remove spaces\n    music_list = music_string.split('|')  # Split by '|'\n    music_list = [note + '|' for note in music_list if note]  # Add back the '|' to each note\n    music_list[-1] = music_list[-1].rstrip('|')  # Remove the last '|'\n    return [note_map[note] for note in music_list]\n```",
+      "input_tokens": 201,
+      "output_tokens": 209,
+      "generation_seconds": 11.468133794609457,
+      "output_tokens_per_second_including_prefill": 18.224412423426685,
+      "peak_allocated_bytes": 9931569664,
+      "peak_reserved_bytes": 10034872320
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "35008e2d40918d4c8adf45941fc3cf7d0dbe6221b8c0760c2eab469c80d18ee1",
+  "digest": "b174b98898816b738565641a67dee3f4011714595018f796d162220b718a6df1",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:270",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "270",
+      "task_prompt": "Write a python function to find the sum of even numbers at even positions of a list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef sum_even_and_even_index(lst):\n    \"\"\"\n    Calculate the sum of even numbers that are at even indices in the list.\n\n    :param lst: List of integers\n    :return: Sum of even numbers at even indices\n    \"\"\"\n    return sum(num for index, num in enumerate(lst) if index % 2 == 0 and num % 2 == 0)\n```",
+      "input_tokens": 153,
+      "output_tokens": 83,
+      "generation_seconds": 16.076841526199132,
+      "output_tokens_per_second_including_prefill": 5.1627056138322684,
+      "peak_allocated_bytes": 16121849856,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

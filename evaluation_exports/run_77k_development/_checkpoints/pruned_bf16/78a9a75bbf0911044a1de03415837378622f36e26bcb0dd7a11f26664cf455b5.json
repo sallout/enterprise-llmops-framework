@@ -1,0 +1,40 @@
+{
+  "key": "112c19a08177d5e28971eb7170a9297c9018e17192d4d216e8d18cb9d12b2e71",
+  "digest": "bfe3092672fd955242ffd46a71d627cbcb528a5da69bc623912dc4d1f888b07e",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:132",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "132",
+      "task_prompt": "Write a function to convert a tuple to a string.",
+      "skill_tags": [
+        "sequences",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef tup_string(tup):\n    return ''.join(tup)\n```",
+      "input_tokens": 122,
+      "output_tokens": 18,
+      "generation_seconds": 0.7274562660604715,
+      "output_tokens_per_second_including_prefill": 24.74375552152259,
+      "peak_allocated_bytes": 28639912960,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

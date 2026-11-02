@@ -1,0 +1,40 @@
+{
+  "key": "2997d90a730af1f8849fe4a1f57ceb3b36acf564b9ce8adf391bdafc9812d08b",
+  "digest": "734cbd8099fe50bf0ff055831354025784bbabf098b91371f81c0fe9a236d2fc",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "humaneval:HumanEval/94",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/94",
+      "task_prompt": "\n\ndef skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef is_prime(n):\n    \"\"\"Check if a number is a prime number.\"\"\"\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef sum_of_digits(n):\n    \"\"\"Calculate the sum of the digits of a number.\"\"\"\n    return sum(int(digit) for digit in str(n))\n\ndef skjkasdkd(lst):\n    \"\"\"Find the largest prime value in the list and return the sum of its digits.\"\"\"\n    largest_prime = None\n    for num in lst:\n        if is_prime(num):\n            if largest_prime is None or num > largest_prime:\n                largest_prime = num\n    return sum_of_digits(largest_prime) if largest_prime is not None else 0\n```",
+      "input_tokens": 356,
+      "output_tokens": 226,
+      "generation_seconds": 41.917150790803134,
+      "output_tokens_per_second_including_prefill": 5.391587828283064,
+      "peak_allocated_bytes": 16436231168,
+      "peak_reserved_bytes": 18574475264
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

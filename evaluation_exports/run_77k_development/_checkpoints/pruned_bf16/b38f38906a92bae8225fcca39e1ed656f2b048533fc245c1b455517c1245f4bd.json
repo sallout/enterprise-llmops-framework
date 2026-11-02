@@ -1,0 +1,39 @@
+{
+  "key": "be0c2cdfc71451a5870dd6485e97fdfde75dc785b9ec5cc3664d6c5c3cdb0a7c",
+  "digest": "76a20a80e57d5a88f08742a6793462615af049bbc88d4c1d075fb120af937cf3",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:436",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "436",
+      "task_prompt": "Write a python function to return the negative numbers in a list.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef neg_nos(lst):\n    return [x for x in lst if x < 0]\n```",
+      "input_tokens": 104,
+      "output_tokens": 25,
+      "generation_seconds": 1.0039183660410345,
+      "output_tokens_per_second_including_prefill": 24.902423190630365,
+      "peak_allocated_bytes": 28634604544,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

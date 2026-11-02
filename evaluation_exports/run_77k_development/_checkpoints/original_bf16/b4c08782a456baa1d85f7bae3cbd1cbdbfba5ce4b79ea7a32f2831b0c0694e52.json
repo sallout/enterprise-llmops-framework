@@ -1,0 +1,40 @@
+{
+  "key": "df23f948eb76bf3f3a1154c6b15363a3525fa890feff705de25875907f062566",
+  "digest": "b8bddb3a9d247abc4591c60c8308f9d7e452b861733c89c78a00192d00147b78",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "humaneval:HumanEval/64",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/64",
+      "task_prompt": "\nFIX = \"\"\"\nAdd more test cases.\n\"\"\"\n\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n",
+      "skill_tags": [
+        "numeric_math",
+        "strings"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "strings",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    >>> vowels_count(\"hello\")\n    2\n    >>> vowels_count(\"sky\")\n    1\n    >>> vowels_count(\"rhythm\")\n    1\n    >>> vowels_count(\"Y\")\n    1\n    >>> vowels_count(\"y\")\n    1\n    >>> vowels_count(\"xyz\")\n    1\n    \"\"\"\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    count = 0\n    for char in s:\n        if char.lower() in vowels:\n            count += 1\n    if s and s[-1].lower() == 'y':\n        count += 1\n    return count\n```",
+      "input_tokens": 155,
+      "output_tokens": 251,
+      "generation_seconds": 10.233331643976271,
+      "output_tokens_per_second_including_prefill": 24.527691345540255,
+      "peak_allocated_bytes": 29613045760,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

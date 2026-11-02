@@ -1,0 +1,40 @@
+{
+  "key": "04f1053560a1f66c25565b5d61207fdf4a899dd25c9f3bbfd36f9f0afa7f1f7c",
+  "digest": "49b4b669a062abb9b27c5d0d781b9c5a3d8e9917ebb42023ec70275b3aab1c42",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:391",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "391",
+      "task_prompt": "Write a function to convert more than one list to nested dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef convert_list_dictionary(*lists):\n    \"\"\"\n    Converts multiple lists into a list of nested dictionaries.\n    \n    Parameters:\n    *lists: Variable length argument list of lists to be converted.\n    \n    Returns:\n    A list of dictionaries where each dictionary maps an element from the first list\n    to a dictionary mapping an element from the second list to an element from the third list.\n    \"\"\"\n    return [{lists[0][i]: {lists[1][i]: lists[2][i]}} for i in range(len(lists[0]))]\n```",
+      "input_tokens": 332,
+      "output_tokens": 118,
+      "generation_seconds": 4.875459447968751,
+      "output_tokens_per_second_including_prefill": 24.20284718995294,
+      "peak_allocated_bytes": 28703286272,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

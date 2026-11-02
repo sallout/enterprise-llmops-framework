@@ -1,0 +1,39 @@
+{
+  "key": "8fd103ec8b647f2417bb2bbe2b2246d2734a913ae28afbf4307b3a0b41f88c18",
+  "digest": "f1b339c991e88920c0264ea512c3e911d4392b49c9e5fffbf2fabf5402fe7471",
+  "data": {
+    "model": "recovered_int8",
+    "case_id": "mbpp:410",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "410",
+      "task_prompt": "Write a function to find the minimum value in a given heterogeneous list.",
+      "skill_tags": [
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef min_val(lst):\n    \"\"\"\n    Returns the minimum value in a heterogeneous list.\n    \n    Parameters:\n    lst (list): A list containing elements of different types.\n    \n    Returns:\n    The minimum value in the list, ignoring non-integer and non-float elements.\n    \"\"\"\n    return min(filter(lambda x: isinstance(x, (int, float)), lst))\n```",
+      "input_tokens": 121,
+      "output_tokens": 80,
+      "generation_seconds": 14.480038463138044,
+      "output_tokens_per_second_including_prefill": 5.52484720283421,
+      "peak_allocated_bytes": 16120309248,
+      "peak_reserved_bytes": 18563989504
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

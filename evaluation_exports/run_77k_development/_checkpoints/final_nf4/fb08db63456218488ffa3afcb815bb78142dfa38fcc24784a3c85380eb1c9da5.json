@@ -1,0 +1,38 @@
+{
+  "key": "80b84b4f4846d03282591397ab59fe1793e50448d9c3f398410aeef614fc3988",
+  "digest": "62d8fa32118189db8246e9c01415680624a5468202063cb7314a450e35d39a1a",
+  "data": {
+    "model": "final_nf4",
+    "case_id": "humaneval:HumanEval/154",
+    "suite": "humaneval",
+    "source": {
+      "dataset": "openai/openai_humaneval",
+      "configuration": "openai_humaneval",
+      "split": "test",
+      "revision": "7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544",
+      "license": "mit",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "HumanEval/154",
+      "task_prompt": "\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n",
+      "skill_tags": [
+        "strings"
+      ],
+      "selection_role": "general_retention",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef cycpattern_check(a, b):\n    \"\"\"\n    Returns True if the second word or any of its rotations is a substring in the first word.\n    \n    :param a: The first word (string).\n    :param b: The second word (string).\n    :return: True if any rotation of b is a substring of a, False otherwise.\n    \"\"\"\n    def rotate(s, n):\n        return s[n:] + s[:n]\n    \n    for i in range(len(b)):\n        rotated_b = rotate(b, i)\n        if rotated_b in a:\n            return True\n    return False\n```",
+      "input_tokens": 158,
+      "output_tokens": 129,
+      "generation_seconds": 7.075873281341046,
+      "output_tokens_per_second_including_prefill": 18.230965263350708,
+      "peak_allocated_bytes": 9919239168,
+      "peak_reserved_bytes": 10032775168
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

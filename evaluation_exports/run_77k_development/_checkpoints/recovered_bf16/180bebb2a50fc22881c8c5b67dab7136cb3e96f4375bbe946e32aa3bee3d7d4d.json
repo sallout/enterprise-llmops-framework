@@ -1,0 +1,40 @@
+{
+  "key": "c10dfc08fad714042e2011191b2b27b916e21f80420076d4c90778b570aa5676",
+  "digest": "8f11a3233f5212968b4b0a1325405bb9962f15e90516cf73e12884e75898f5a8",
+  "data": {
+    "model": "recovered_bf16",
+    "case_id": "mbpp:160",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "160",
+      "task_prompt": "Write a function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "sequences",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom math import gcd\n\ndef extended_gcd(a, b):\n    \"\"\"\n    Computes the greatest common divisor of a and b, and the coefficients of Bézout's identity.\n    \n    :param a: First integer\n    :param b: Second integer\n    :return: A tuple (g, x, y) where g is the gcd of a and b, and x, y are the Bézout coefficients.\n    \"\"\"\n    if a == 0:\n        return b, 0, 1\n    else:\n        g, x1, y1 = extended_gcd(b % a, a)\n        x = y1 - (b // a) * x1\n        y = x1\n        return g, x, y\n\ndef find_solution(a, b, n):\n    \"\"\"\n    Finds integers x and y such that ax + by = n.\n    \n    :param a: Coefficient of x\n    :param b: Coefficient of y\n    :param n: Result of the equation ax + by\n    :return: A tuple (x, y) if a solution exists, otherwise None.\n    \"\"\"\n    g, x, y = extended_gcd(a, b)\n    if n % g != 0:\n        return None\n    else:\n        x = (x * (n // g)) % (b // g)\n        y = (y * (n // g) - x * a) // b\n        return x, y\n```",
+      "input_tokens": 117,
+      "output_tokens": 315,
+      "generation_seconds": 13.05353038199246,
+      "output_tokens_per_second_including_prefill": 24.131402829884795,
+      "peak_allocated_bytes": 28674124800,
+      "peak_reserved_bytes": 28837937152
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "e642e7bb90826dc97a5188387c9e2f782e1e98c6e15f9d9e89284bab8d049941",
+  "digest": "86f9d87a56eec86ab535a8b32370db7295ce8ee360e83774a62dffc5f30ab610",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:301",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "301",
+      "task_prompt": "Write a function to find the depth of a dictionary.",
+      "skill_tags": [
+        "mappings_sets"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nimport collections\n\ndef dict_depth(d):\n    if not isinstance(d, collections.abc.Mapping):\n        return 0\n    return 1 + max((dict_depth(v) for v in d.values()), default=0)\n```",
+      "input_tokens": 110,
+      "output_tokens": 50,
+      "generation_seconds": 2.122117435093969,
+      "output_tokens_per_second_including_prefill": 23.561372793577732,
+      "peak_allocated_bytes": 29579235328,
+      "peak_reserved_bytes": 29773266944
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

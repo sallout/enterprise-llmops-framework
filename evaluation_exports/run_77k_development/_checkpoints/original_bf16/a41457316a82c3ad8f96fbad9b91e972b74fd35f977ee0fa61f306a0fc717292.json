@@ -1,0 +1,40 @@
+{
+  "key": "8994ed08a19223442051dfb6938ecd49386fec98e89bc8f2ea8a6c60ec467ddb",
+  "digest": "049de779ebbf89052abe6269640ef96953a69de810d079fd3cf3921d37044a64",
+  "data": {
+    "model": "original_bf16",
+    "case_id": "mbpp:88",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "88",
+      "task_prompt": "Write a function to get the frequency of all the elements in a list, returned as a dictionary.",
+      "skill_tags": [
+        "mappings_sets",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "mappings_sets",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\nfrom collections import defaultdict\n\ndef freq_count(lst):\n    freq = defaultdict(int)\n    for item in lst:\n        freq[item] += 1\n    return dict(freq)\n```",
+      "input_tokens": 231,
+      "output_tokens": 40,
+      "generation_seconds": 1.6202895529568195,
+      "output_tokens_per_second_including_prefill": 24.686945569083722,
+      "peak_allocated_bytes": 29616976896,
+      "peak_reserved_bytes": 29794238464
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "key": "7f3ad7b2b3a3335b8593a6952ad2206fb19a6453a3803d58eb35b46cf67ed57e",
+  "digest": "67661d709648157c9b2e69e1fb3c740924212f1d57baf288e72c0144fe88eeb7",
+  "data": {
+    "model": "pruned_bf16",
+    "case_id": "mbpp:433",
+    "suite": "mbpp",
+    "source": {
+      "dataset": "google-research-datasets/mbpp",
+      "configuration": "sanitized",
+      "split": "test",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "license": "cc-by-4.0",
+      "variant": "base tests, not EvalPlus extended tests",
+      "record_id": "433",
+      "task_prompt": "Write a function to check whether the entered number is greater than the elements of the given array.",
+      "skill_tags": [
+        "numeric_math",
+        "sequences"
+      ],
+      "selection_role": "skill_aligned",
+      "primary_skill": "numeric_math",
+      "local_reference_test_status": "passed"
+    },
+    "generation": {
+      "status": "ok",
+      "text": "```python\ndef check_greater(arr, num):\n    return all(num > x for x in arr)\n\n# Required imports (none needed for this function)\n```",
+      "input_tokens": 128,
+      "output_tokens": 33,
+      "generation_seconds": 1.349488120060414,
+      "output_tokens_per_second_including_prefill": 24.45371656811818,
+      "peak_allocated_bytes": 28641682432,
+      "peak_reserved_bytes": 28858908672
+    },
+    "score": {
+      "status": "unverified",
+      "reason": "execution_disabled"
+    }
+  }
+}
