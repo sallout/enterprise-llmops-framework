@@ -521,3 +521,26 @@ independent official Python tests with full accepted-source overlap screening an
 Docker reference verification. See [the method and command](docs/skill-aligned-evaluation.md).
 The actual 77,891-row experiment's frozen development/final suites and attribution
 are in [evaluation_suites/opencode_77k_100_final](evaluation_suites/opencode_77k_100_final/README.md).
+
+#### Explicit public backup and recreated repositories
+
+The backup remains private by default. To intentionally publish the full experiment
+archive (including training-input tokens and reports), pass `--public`. The command
+creates the model repository; manual creation is unnecessary. It refuses existing
+repositories with a different visibility instead of silently changing their access.
+After deleting/recreating a destination, use `--refresh-upload-cache` once to move
+stale SDK upload metadata into the private local receipt directory. Weights are not
+removed or modified. This addresses stale resume metadata, not Hub storage quotas.
+
+```bash
+uv run --locked llmops backup_model \
+  --input /workspace/artifacts/compression_77k \
+  --repo-id sallout/qwen3-14b-enterprise-77k-backup \
+  --output /workspace/artifacts/backup_77k_public_receipt \
+  --public --refresh-upload-cache
+```
+
+For subsequent retries against the same repository, omit `--refresh-upload-cache`
+to retain new upload progress. A public upload still requires verified remote
+content hashes and `backup_verified: true` before treating it as complete. The
+standalone INT8 export remains separate from the compression archive.

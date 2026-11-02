@@ -145,3 +145,51 @@ def test_dashboard_backup_uses_explicit_preview(tmp_path,monkeypatch):
     ui=Scripted(answers=[str(root),'owner/model-backup',str(tmp_path/'receipt')],confirmations=[True])
     ui.model_backup()
     assert ui.commands[0][0]=='backup_model' and '--repo-id' in ui.commands[0]
+
+
+def test_public_requires_explicit_opt_in_and_records_real_visibility(tmp_path):
+    root=experiment(tmp_path/'source');hub=Hub();hub.private=False
+    r=backup_model(root,tmp_path/'receipt',settings(),api=hub,public=True,progress=lambda _:None)
+    assert r['backup_verified'] and r['private'] is False
+    assert hub.create['private'] is False and hub.manifest['private'] is False
+
+
+def test_public_opt_in_does_not_silently_change_existing_private_repo(tmp_path):
+    root=experiment(tmp_path/'source');hub=Hub()
+    with pytest.raises(DissertationError):
+        backup_model(root,tmp_path/'receipt',settings(),api=hub,public=True,progress=lambda _:None)
+    assert not hub.uploads
+
+
+def test_recreated_repository_refresh_archives_only_upload_metadata(tmp_path):
+    root=experiment(tmp_path/'source');cache=root/'.cache/huggingface/upload'
+    cache.mkdir(parents=True);(cache/'stale.metadata').write_text('already uploaded to deleted repository')
+    before=(root/'model_4bit/model.safetensors').read_bytes()
+    hub=Hub();hub.private=False
+    r=backup_model(root,tmp_path/'receipt',settings(),api=hub,public=True,refresh_upload_cache=True,progress=lambda _:None)
+    assert r['backup_verified'] and not cache.exists()
+    assert (Path(r['archived_upload_cache'])/'stale.metadata').is_file()
+    assert (root/'model_4bit/model.safetensors').read_bytes()==before
+    assert not any('.cache' in name for name in hub.remote)
+
+
+def test_symlink_upload_cache_cannot_move_external_files(tmp_path):
+    root=experiment(tmp_path/'source');external=tmp_path/'outside';external.mkdir()
+    (root/'.cache').symlink_to(external,target_is_directory=True)
+    hub=Hub()
+    with pytest.raises(DissertationError):
+        backup_model(root,tmp_path/'receipt',settings(),api=hub,refresh_upload_cache=True,progress=lambda _:None)
+    assert external.is_dir() and not hub.uploads
+
+
+def test_cli_forwards_public_and_cache_refresh(tmp_path,monkeypatch):
+    import policy_dissertation.data.model_backup as module
+    captured={}
+    def fake(*args,**kwargs):
+        captured.update(kwargs)
+        return {'status':'COMPLETED','backup_verified':True,'url':'https://huggingface.co/owner/test',
+                'revision':'b'*40,'verified_files':1,'backup_bytes':1}
+    monkeypatch.setattr(module,'backup_model',fake)
+    r=CliRunner().invoke(app,['backup_model','--input',str(tmp_path),'--public','--refresh-upload-cache'])
+    assert r.exit_code==0,r.output
+    assert captured['public'] and captured['refresh_upload_cache']

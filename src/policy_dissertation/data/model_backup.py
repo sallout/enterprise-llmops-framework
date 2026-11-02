@@ -1,7 +1,9 @@
-"""Explicit private model-experiment backup; verify remote bytes before approval."""
+"""Private-by-default model backup with explicit public opt-in and hash verification."""
 import hashlib
 import json
 import re
+import shutil
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from huggingface_hub import HfApi
@@ -50,7 +52,7 @@ def selected_files(root, committed=()):
     return result
 
 
-def backup_model(input_directory, output, settings, *, repo_id=None, api=None, progress=print):
+def backup_model(input_directory, output, settings, *, repo_id=None, api=None, progress=print, public=False, refresh_upload_cache=False):
     root = Path(input_directory).resolve(); output = Path(output).resolve()
     if output.is_relative_to(root) or root.is_relative_to(output):
         raise DissertationError('Backup receipt output must be separate from the compression directory.')
@@ -78,11 +80,13 @@ def backup_model(input_directory, output, settings, *, repo_id=None, api=None, p
     if not (root/'model_4bit/config.json').is_file() or not any((root/'model_4bit').glob('*.safetensors')):
         raise DissertationError('Final model configuration/weights are missing.')
     api = api or HfApi(token=token)
-    with output_lock(output):
+    with output_lock(root), output_lock(output):
+        output.chmod(0o700)
         result = {'schema_version': VERSION, 'status': 'RUNNING', 'backup_verified': False,
             'compression_fingerprint': fingerprint, 'source_directory': str(root), 'errors': [],
             'started_at': datetime.now(timezone.utc).isoformat(),
-            'note': 'Private experiment archive; saved model is in model_4bit/. Remote storage, not an offline guarantee.'}
+            'private': not public,
+            'note': 'Complete experiment archive includes training-input tokens; public opt-in exposes those too. Saved model is in model_4bit/.'}
         dump_json(output/'report.json', result)
         try:
             if repo_id is None:
@@ -98,13 +102,29 @@ def backup_model(input_directory, output, settings, *, repo_id=None, api=None, p
             expected = {name: checksums(path, secrets) for name, path in paths.items()}
             if not expected: raise DissertationError('No backup files found.')
             dump_json(output/'file_manifest.json', expected)
-            api.create_repo(repo_id, repo_type='model', private=True, exist_ok=True)
-            if api.model_info(repo_id).private is not True:
-                raise DissertationError('Destination repository is public; backup refused. Use a private repository.')
-            progress('[2/4] Uploading private experiment archive; rerun identical command after interruption')
+            api.create_repo(repo_id, repo_type='model', private=not public, exist_ok=True)
+            if api.model_info(repo_id).private is not (not public):
+                raise DissertationError('Destination visibility differs from requested mode. Public repositories require --public; existing private repositories are not silently made public.')
+            if public:
+                progress('PUBLIC backup explicitly requested: model weights, reports and training-input tokens will be accessible to everyone.')
+            if refresh_upload_cache:
+                cache=root/'.cache'/'huggingface'/'upload'
+                if any(p.is_symlink() for p in (root/'.cache',root/'.cache'/'huggingface',cache)):
+                    raise DissertationError('Symlink upload cache refused; source files preserved.')
+                if cache.exists():
+                    if not cache.is_dir() or any(name.startswith('.cache/huggingface/upload/') for name in required_files):
+                        raise DissertationError('Upload cache overlaps committed source data; refresh refused.')
+                    archived=output/('previous_upload_cache-'+uuid.uuid4().hex)
+                    shutil.move(str(cache),str(archived))
+                    result['archived_upload_cache']=str(archived)
+                    progress('Archived old SDK upload metadata; payload files are unchanged and will be rechecked/reuploaded.')
+            progress('[2/4] Uploading '+('public' if public else 'private')+' experiment archive; rerun identical command after interruption')
             api.upload_large_folder(repo_id=repo_id, repo_type='model', folder_path=root,
                                    allow_patterns=list(expected), num_workers=2)
-            revision = api.model_info(repo_id).sha
+            remote_info = api.model_info(repo_id)
+            if remote_info.private is not (not public):
+                raise DissertationError('Repository visibility changed during upload; backup is unverified.')
+            revision = remote_info.sha
             progress('[3/4] Verifying all selected remote files against local content hashes')
             remote = {entry.path: entry for entry in api.list_repo_tree(repo_id, repo_type='model', revision=revision,
                                                                       recursive=True) if hasattr(entry, 'size')}
@@ -125,7 +145,7 @@ def backup_model(input_directory, output, settings, *, repo_id=None, api=None, p
                 raise DissertationError('Source file selection changed during backup.')
             progress('[4/4] Saving verified backup manifest and immutable revision')
             payload = {'schema_version': VERSION, 'compression_fingerprint': fingerprint, 'files': expected,
-                       'verified_payload_revision': revision, 'private': True}
+                       'verified_payload_revision': revision, 'private': not public}
             committed = api.upload_file(repo_id=repo_id, repo_type='model',
                 path_or_fileobj=json.dumps(payload, ensure_ascii=False, indent=2).encode(),
                 path_in_repo='backup_manifest.json', commit_message='Record verified compression backup hashes')

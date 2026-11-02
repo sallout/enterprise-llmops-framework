@@ -712,13 +712,15 @@ def score_evaluation(
 def backup_model_command(
     input_directory: Path = typer.Option(..., '--input', exists=True, file_okay=False, help='Completed compression experiment root, not just model_4bit.'),
     output: Path = typer.Option(Path('artifacts/model_backup'), help='Separate local receipt/verification directory.'),
-    repo_id: str | None = typer.Option(None, '--repo-id', help='Private model repository OWNER/NAME; default uses authenticated username and experiment fingerprint.'),
+    repo_id: str | None = typer.Option(None, '--repo-id', help='Model repository OWNER/NAME; private by default.'),
+    public: bool = typer.Option(False, '--public', help='Explicitly publish the complete archive, including training-input tokens.'),
+    refresh_upload_cache: bool = typer.Option(False, help='Archive old SDK upload metadata after deleting/recreating a repository; never removes weights.'),
 ) -> None:
-    """Back up a completed model experiment privately to Hugging Face and verify every file."""
+    """Back up a completed model experiment; private by default, verified for either visibility."""
     def execute():
         from policy_dissertation.data.model_backup import backup_model
         result = backup_model(input_directory, output, Settings(), repo_id=repo_id,
-                              progress=lambda text: typer.echo(text, err=True))
+                              progress=lambda text: typer.echo(text, err=True), public=public, refresh_upload_cache=refresh_upload_cache)
         typer.echo(f"Status: {result['status']}; backup verified: {result['backup_verified']}")
         typer.echo(f"Repository: {result['url']}")
         typer.echo(f"Verified payload revision: {result['revision']}")
